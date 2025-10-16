@@ -1,3 +1,0 @@
-# Actors
-
-They act

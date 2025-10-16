@@ -1,3 +1,0 @@
-# Components
-
-They do stuff!

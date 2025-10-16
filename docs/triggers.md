@@ -1,3 +1,0 @@
-# Triggers
-
-Trigger warning
