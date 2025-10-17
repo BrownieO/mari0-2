@@ -76,7 +76,7 @@ function Editor:load()
     self.menuBar:addChild(self.fileDropdown)
 
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:saveLevel() end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "load", false, nil, function(button) self:loadLevel("mappacks/smb3/1-1.lua") end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "load", false, nil, function(button) self:loadLevel(self:askForInput("Type level path (E.g. mappacks/smb3/1-1.lua):")) end))
 
     self.fileDropdown:autoSize()
 
@@ -617,6 +617,13 @@ function Editor:resize(w, h)
     self.scaleBar.x = x
 end
 
+function Editor:askForInput(prompt)
+	love.window.showMessageBox("Notice", "Please enter the value in the console.", "info", true)
+	print(prompt)
+	local input = io.read()
+	input = string.gsub(input, '\\', "/")
+	return input
+end
 
 function Editor:saveLevel()
     self.fileDropdown:toggle(false)
