@@ -388,6 +388,7 @@ function World:loadLevel(data)
 end
 
 function World:saveLevel(outPath)
+	print("SAVING...")
     local out = {}
 
     -- build the lookup table
@@ -513,7 +514,12 @@ function World:saveLevel(outPath)
 
     table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
 
-    love.filesystem.write(outPath, serialize.tstr(out))
+    success, message = love.filesystem.write(outPath, serialize.tstr(out))
+	if success then
+		print("Saved to " .. outPath .. " (" .. love.filesystem.getAppdataDirectory() .. ")")
+	else
+		print(message)
+	end
 end
 
 function World:advancedPhysicsDebug()
