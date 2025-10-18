@@ -83,6 +83,14 @@ function Level:update(dt)
     updateGroup(self.portalProjectiles, dt)
     prof.pop()
 
+    prof.push("Actor Cleanup")
+    for i = #self.actors, 1, -1 do
+        if self.actors[i].destroyed or self.actors[i].deleteMe then
+            table.remove(self.actors, i)
+        end
+    end
+    prof.pop()
+    
     prof.push("World")
     Physics3.World.update(self, dt)
     prof.pop()
@@ -93,14 +101,6 @@ function Level:update(dt)
     for _, obj in ipairs(self.objects) do
         if obj.postUpdate then
             obj:postUpdate(dt)
-        end
-    end
-    prof.pop()
-
-    prof.push("Actor Cleanup")
-    for i = #self.actors, 1, -1 do
-        if self.actors[i].destroyed or self.actors[i].deleteMe then
-            table.remove(self.actors, i)
         end
     end
     prof.pop()
