@@ -113,15 +113,6 @@ function Level:update(dt)
     if newSpawnLine > self.spawnLine then
         self:spawnActors(newSpawnLine)
     end
-    
-    if game.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
-        game.players[1].actor.y = -1
-    end
-
-    local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")+2
-    if newSpawnLine > self.spawnLine then
-        self:spawnActors(newSpawnLine)
-    end
 end
 
 function Level:draw()
