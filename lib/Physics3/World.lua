@@ -330,6 +330,34 @@ function World:addObject(PhysObj)
 	PhysObj.World = self
 end
 
+function World:removeObject(PhysObj)
+    for i = #self.objects, 1, -1 do
+        if self.objects[i] == PhysObj then
+            table.remove(self.objects, i)
+            break
+        end
+    end
+    
+    -- Clear ground relationships
+    if PhysObj.isGroundFor then
+        for _, obj in ipairs(PhysObj.isGroundFor) do
+            obj.onGround = false
+        end
+        PhysObj.isGroundFor = {}
+    end
+    
+    -- Remove from ground lists of other objects
+    for _, obj in ipairs(self.objects) do
+        if obj.isGroundFor then
+            for i = #obj.isGroundFor, 1, -1 do
+                if obj.isGroundFor[i] == PhysObj then
+                    table.remove(obj.isGroundFor, i)
+                end
+            end
+        end
+    end
+end
+
 function World:loadLevel(data)
     self.layers = {}
     self.tileMaps = {}
