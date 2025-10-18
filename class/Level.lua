@@ -97,6 +97,24 @@ function Level:update(dt)
     end
     prof.pop()
 
+    prof.push("Actor Cleanup")
+    for i = #self.actors, 1, -1 do
+        if self.actors[i].destroyed or self.actors[i].deleteMe then
+            table.remove(self.actors, i)
+        end
+    end
+    prof.pop()
+
+    if game.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
+        game.players[1].actor.y = -1
+    end
+
+    local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")+2
+    if newSpawnLine > self.spawnLine then
+        self:spawnActors(newSpawnLine)
+    end
+end
+    
     if game.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
         game.players[1].actor.y = -1
     end
