@@ -156,14 +156,14 @@ function Actor:loadActorTemplate(actorTemplate)
 
         -- Overrides default properties with custom ones
         local finalArgs = {}
-        if componentArgs then
-            for argKey, argValue in pairs(componentArgs) do
+        if args then
+            for argKey, argValue in pairs(args) do
                 finalArgs[argKey] = argValue
             end
         end
         
-        if self.customProperties.components and self.customProperties.components[componentName] then
-            for customKey, customValue in pairs(self.customProperties.components[componentName]) do
+        if self.customProperties.components and self.customProperties.components[name] then
+            for customKey, customValue in pairs(self.customProperties.components[name]) do
                 finalArgs[customKey] = customValue
             end
         end
