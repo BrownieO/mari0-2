@@ -10,6 +10,9 @@ return {
 
     components = {
         ["misc.unrotate"] = {},
-		["misc.removeOnMarioContact"] = {},
+		["misc.powerUp"] = {
+			powerUpType = "fire",
+			whitelist = {}
+		},
     }
 }
