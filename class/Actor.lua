@@ -198,6 +198,24 @@ function Actor:accelerateTo(dt, target, acceleration)
     end
 end
 
+function Actor:destroy()
+    self.destroyed = true
+    self.deleteMe = true
+    -- Trigger destruction event for components
+    self:event("destroy")
+    -- Remove from physics world
+    if self.world and self.world.removeObject then
+        self.world:removeObject(self)
+    end
+    -- Clear references
+    self.world = nil
+    self.components = {}
+end
+
+function Actor:isDestroyed()
+    return self.destroyed or false
+end
+
 function Actor:switchState(stateName)
     if stateName then
         assert(self.states[stateName],
