@@ -18,9 +18,12 @@ function isHurtByContact:resolve(dir, obj2)
             print("oof")
 			if self.actor.player.powerUp == "small" then
 				love.window.showMessageBox("f", "You died!", "info", true)
-			else
+			elseif self.actor.player.powerUp == "big" then
 				self.actor:loadActorTemplate(actorTemplates["smb3_small"])
-				self.actor.player.powerUp = "small"
+				self.actor.player.powerUp = "small"			
+			else
+				self.actor:loadActorTemplate(actorTemplates["smb3_big"])
+				self.actor.player.powerUp = "big"
 			end
 			
         end
