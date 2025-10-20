@@ -39,6 +39,7 @@ function collectsPowerUps:resolve(dir, obj2)
 		
 			if powerUpComponent["powerUpType"] then
 				if actorTemplates[ "smb3_" .. powerUpComponent["powerUpType"] ] then
+					obj2:destroy()
 					self.actor:loadActorTemplate(actorTemplates["smb3_" .. powerUpComponent["powerUpType"]])
 					self.actor.player.powerUp = powerUpComponent["powerUpType"]
 				end

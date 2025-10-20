@@ -24,5 +24,10 @@ return {
         },
         ["misc.unrotate"] = {},
         ["misc.stompable"] = {},
+		["misc.hurtsByContact"] = {
+			left = true,
+			right = true,
+			bottom = true
+		},
     }
 }
