@@ -11,9 +11,10 @@ end
 
 function collectsPowerUps:resolve(dir, obj2)
     local powerUpComponent = obj2:hasComponent("misc.powerUp")
-    if powerUpComponent then
-        --power-up stuff
-		print("helth")
+    if powerUpComponent and powerUpComponent["powerUpType"] then
+		if actorTemplates[ "smb3_" .. powerUpComponent["powerUpType"] ] then
+			self.actor:loadActorTemplate(actorTemplates["smb3_" .. powerUpComponent["powerUpType"]])
+		end
     end
 end
 
