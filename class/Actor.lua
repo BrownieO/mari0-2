@@ -168,7 +168,7 @@ function Actor:loadActorTemplate(actorTemplate)
             end
         end
 
-        self:addComponent(components[componentName], finalArgs)
+        self:addComponent(components[name], finalArgs)
     end
 end
 
