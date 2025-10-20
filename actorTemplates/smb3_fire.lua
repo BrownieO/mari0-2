@@ -17,6 +17,12 @@ return {
                 {216,  40,   0},
                 {  0,   0,   0}
             },
+            defaultPalette = {
+                {252, 188, 176},
+                {234, 158, 34},
+                {181,  49,  32}
+            },
+			
         },
 
         ["smb3.animation"] = {
@@ -124,5 +130,6 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
+		["misc.collectsPowerUps"] = {},
     }
 }

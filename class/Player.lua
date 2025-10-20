@@ -6,6 +6,7 @@ function Player:initialize(i, settings)
     self.coins = 0
     self.score = 0
     self.lives = 3
+	self.powerUp = "small"
 
     if settings.palette then
         self.palette = convertPalette(settings.palette)
