@@ -36,10 +36,19 @@ function Level:loadLevel(data)
         local actorTemplate = actorTemplates[entity.type]
 
         if actorTemplate and not VAR("debug").noEnemies then -- is enemy
+            -- Extract custom properties
+            local customProperties = {}
+            for propertyKey, propertyValue in pairs(entity) do
+                if propertyKey ~= "type" and propertyKey ~= "x" and propertyKey ~= "y" then
+                    customProperties[propertyKey] = propertyValue
+                end
+            end
+            
             table.insert(self.spawnList, {
                 actorTemplate = actorTemplate,
                 x = entity.x,
                 y = entity.y,
+                customProperties = customProperties,
             })
         elseif entity.type == "spawn" then
             self.spawnX = entity.x
@@ -160,7 +169,7 @@ function Level:spawnActors(untilX)
     while self.spawnI <= #self.spawnList and untilX > self.spawnList[self.spawnI].x do -- Spawn next enemy
         toSpawn = self.spawnList[self.spawnI]
         local x, y = self:coordinateToWorld(toSpawn.x-.5, toSpawn.y)
-        local actor = Actor:new(self, x, y, toSpawn.actorTemplate)
+        local actor = Actor:new(self, x, y, toSpawn.actorTemplate, toSpawn.customProperties)
 
         table.insert(self.actors, actor)
 
