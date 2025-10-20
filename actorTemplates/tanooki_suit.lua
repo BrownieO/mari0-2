@@ -12,7 +12,6 @@ return {
         ["misc.unrotate"] = {},
 		["misc.powerUp"] = {
 			powerUpType = "tanooki",
-			whitelist = {}
 		},
     }
 }

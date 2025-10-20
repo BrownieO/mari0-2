@@ -92,5 +92,6 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
+		["misc.collectsPowerUps"] = {},
     }
 }
