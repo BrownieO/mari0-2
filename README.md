@@ -9,4 +9,4 @@ Developed for LÖVE 11.3
 - Nintendo - Super Mario Bros 3 assets
 - Maurice Guégan - Everything not listed somewhere else
 - Hans Cárdenas - Mario sprites, title logo
-- BrownieO - Wiki
+- BrownieO - Wiki, quick patches
