@@ -12,7 +12,7 @@ return {
         ["misc.unrotate"] = {},
 		["misc.powerUp"] = {
 			powerUpType = "fire",
-			whitelist = "small"
+			whitelist = {"small"}
 		},
     }
 }
