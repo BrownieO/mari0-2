@@ -10,10 +10,15 @@ function palettable:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self.actor.imgPalette = self.imgPalette
-    self.actor.defaultPalette = self.defaultPalette
+    
+    -- If defaultPalette is not specified, use imgPalette as default
+    self.actor.defaultPalette = self.defaultPalette or self.imgPalette
 
-    if self.defaultPalette ~= self.imgPalette then
-        self.actor.palette = self.defaultPalette
+    -- Switch to the defaultPalette if it's different from the imgPalette
+    if self.actor.defaultPalette ~= self.actor.imgPalette then
+        self.actor.palette = self.actor.defaultPalette
+    else
+        self.actor.palette = self.actor.imgPalette
     end
 end
 

@@ -11,7 +11,7 @@ return {
     components = {
         ["misc.unrotate"] = {},
 		["misc.powerUp"] = {
-			powerUpType = "fire",
+			powerUpType = "big",
 			whitelist = {"small"}
 		},
     }
