@@ -24,6 +24,12 @@ function Tracer:cacheCoordinates()
 end
 
 function Tracer:trace()
+	-- Extra safety: if the physics object was destroyed, don't trace
+	if not self.physObj.world then
+		self.tracedLength = 0
+		return
+	end
+
 	local i = 1
 
 	while i <= self.len do
