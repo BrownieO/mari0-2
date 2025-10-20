@@ -6,8 +6,9 @@ function Actor:__tostring()
     return string.format("Actor (%s)", self.actorTemplate.name)
 end
 
-function Actor:initialize(world, x, y, actorTemplate)
+function Actor:initialize(world, x, y, actorTemplate, customProperties)
     self.actorTemplate = actorTemplate
+    self.customProperties = customProperties or {}
 
     local width = self.actorTemplate.width
     local height = self.actorTemplate.height
@@ -153,7 +154,21 @@ function Actor:loadActorTemplate(actorTemplate)
             )
         )
 
-        self:addComponent(components[name], args)
+        -- Overrides default properties with custom ones
+        local finalArgs = {}
+        if componentArgs then
+            for argKey, argValue in pairs(componentArgs) do
+                finalArgs[argKey] = argValue
+            end
+        end
+        
+        if self.customProperties.components and self.customProperties.components[componentName] then
+            for customKey, customValue in pairs(self.customProperties.components[componentName]) do
+                finalArgs[customKey] = customValue
+            end
+        end
+
+        self:addComponent(components[componentName], finalArgs)
     end
 end
 
