@@ -10,11 +10,11 @@ function isHurtByContact:leftCollision(dt, actorEvent, obj2)
 end
 
 function isHurtByContact:topCollision(dt, actorEvent, obj2)
-    self:resolve("top", obj2)
+    self:resolve("bottom", obj2)
 end
 
 function isHurtByContact:bottomCollision(dt, actorEvent, obj2)
-    self:resolve("bottom", obj2)
+    self:resolve("top", obj2)
 end
 
 function isHurtByContact:resolve(dir, obj2)
