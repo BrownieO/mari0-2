@@ -9,6 +9,14 @@ function collectsPowerUps:leftCollision(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
 
+function collectsPowerUps:topCollision(dt, actorEvent, obj2)
+    self:resolve("top", obj2)
+end
+
+function collectsPowerUps:bottomCollision(dt, actorEvent, obj2)
+    self:resolve("bottom", obj2)
+end
+
 function collectsPowerUps:resolve(dir, obj2)
 	local isWhitelisted = true
     local powerUpComponent = obj2:hasComponent("misc.powerUp")
