@@ -18,6 +18,7 @@ function collectsCoins:checkPos(x, y)
 
             if tile and tile.props.coin then
                 self.actor.world:collectCoin(self.actor, layer, coordX, coordY)
+				playSound("coin")
             end
         end
     end

@@ -57,6 +57,7 @@ function jumping:jump(dt, actorEvent)
         self.actor.maxSpeedJump = maxSpeedJump
 
         self.actor:switchState("jumping")
+		playSound("jump")
     end
 end
 
