@@ -10,6 +10,7 @@
 30. Boom-boom defeat
 31. Game over
 32. Lost life
+
 33. Incorrect buzzer
 34. Map Mario has success?
 35. Map Mario appears

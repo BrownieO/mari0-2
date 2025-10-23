@@ -52,7 +52,7 @@ function collectsPowerUps:resolve(dir, obj2)
 				end
 			end
 		end
-		playSound("coin")
+		playSound("mushroom-eat")
 		obj2:destroy()
     end
 end
