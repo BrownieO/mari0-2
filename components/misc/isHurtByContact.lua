@@ -15,7 +15,7 @@ function isHurtByContact:resolve(dir, obj2)
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
             -- hurt stuff
-            print("oof")
+            print(self.actor.player.powerUp)
 			if self.actor.player.powerUp == "small" then
 				love.window.showMessageBox("f", "You died!", "info", true)
 			elseif self.actor.player.powerUp == "big" then
