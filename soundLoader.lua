@@ -7,3 +7,12 @@ for _, path in ipairs(toLoad) do
 	name = name:gsub("%.[^/\\%.]+$", "") -- remove extension
 	sounds[name] = love.audio.newSource(path, "static")
 end
+
+local toLoad = recursiveEnumerate("music")
+
+for _, path in ipairs(toLoad) do
+	name = path:sub(7) -- remove folder name ("music/"). lol hardcode
+	name = name:gsub("%.[^/\\%.]+$", "") -- remove extension
+	sounds[name] = love.audio.newSource(path, "stream")
+	sounds[name]:setLooping(true)
+end

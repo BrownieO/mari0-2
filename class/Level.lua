@@ -24,6 +24,10 @@ function Level:loadLevel(data)
     self.backgroundColor[3] = self.backgroundColor[3]/255
 
     love.graphics.setBackgroundColor(self.backgroundColor)
+	
+	self.music = self.data.music or nil
+	love.audio.stop()
+	playMusic(self.music)
 
     self.spawnLine = 0
     self.spawnI = 1
