@@ -27,7 +27,8 @@ return {
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
-			bottom = true
+			bottom = true,
+			top = false
 		},
     }
 }

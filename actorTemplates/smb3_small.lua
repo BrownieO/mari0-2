@@ -93,5 +93,6 @@ return {
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
+		["misc.diesWhenHurt"] = {},
     }
 }
