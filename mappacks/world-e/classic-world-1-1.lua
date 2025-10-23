@@ -289,5 +289,16 @@ return {
 		{type="mushroom", x=101, y=8},
 		
 		{type="koopa", x=107, y=12},
+		
+		{type="goomba", x=114, y=12},
+		{type="goomba", x=115.5, y=12},
+		
+		{type="goomba", x=124, y=12},
+		{type="goomba", x=125.5, y=12},
+		{type="goomba", x=128, y=12},
+		{type="goomba", x=129.5, y=12},
+		
+		{type="goomba", x=174, y=12},
+		{type="goomba", x=175.5, y=12},
     }
 }
