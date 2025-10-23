@@ -5,9 +5,16 @@ function isHurtByContact:rightCollision(dt, actorEvent, obj2)
     self:resolve("left", obj2)
 end
 
-
 function isHurtByContact:leftCollision(dt, actorEvent, obj2)
     self:resolve("right", obj2)
+end
+
+function isHurtByContact:topCollision(dt, actorEvent, obj2)
+    self:resolve("top", obj2)
+end
+
+function isHurtByContact:bottomCollision(dt, actorEvent, obj2)
+    self:resolve("bottom", obj2)
 end
 
 function isHurtByContact:resolve(dir, obj2)
@@ -15,20 +22,7 @@ function isHurtByContact:resolve(dir, obj2)
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
             -- hurt stuff
-            print(self.actor.player.powerUp)
-			if self.actor.player.powerUp == "small" then
-				love.window.showMessageBox("f", "You died!", "info", true)
-					playSound("death")
-			elseif self.actor.player.powerUp == "big" then
-				self.actor:loadActorTemplate(actorTemplates["smb3_small"])
-				self.actor.player.powerUp = "small"
-					playSound("shrink")
-			else
-				self.actor:loadActorTemplate(actorTemplates["smb3_big"])
-				self.actor.player.powerUp = "big"
-					playSound("shrink")
-			end
-			
+			self.actor:event("hurt", dt)
         end
     end
 end
