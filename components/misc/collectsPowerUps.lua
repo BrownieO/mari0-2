@@ -10,11 +10,11 @@ function collectsPowerUps:leftCollision(dt, actorEvent, obj2)
 end
 
 function collectsPowerUps:topCollision(dt, actorEvent, obj2)
-    self:resolve("top", obj2)
+    self:resolve("bottom", obj2)
 end
 
 function collectsPowerUps:bottomCollision(dt, actorEvent, obj2)
-    self:resolve("bottom", obj2)
+    self:resolve("top", obj2)
 end
 
 function collectsPowerUps:resolve(dir, obj2)
