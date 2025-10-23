@@ -44,6 +44,7 @@ function love.load()
     SETTINGS = require "settingsLoader"
     require "actorTemplateLoader"
     require "componentLoader"
+	require "soundLoader"
 
     -- Misc
     require "cheats"
@@ -227,12 +228,12 @@ end
 
 function playSound(sound)
     if not sound then
-        print("Error playing some sound")
+        print("Sound not specified")
         return
     end
 
-    sound:stop()
-    sound:play()
+    sounds[sound]:stop()
+    sounds[sound]:play()
 end
 
 function worldArrow(x, y, xDir, yDir)
