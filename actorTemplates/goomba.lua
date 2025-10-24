@@ -30,5 +30,6 @@ return {
 			bottom = true,
 			top = false
 		},
-    }
+		["misc.selfDestroys"] = {on = "getStomped"}
+	}
 }
