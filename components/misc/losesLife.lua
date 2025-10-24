@@ -1,17 +1,18 @@
 local Component = require "class.Component"
-local endsGame = class("misc.endsGame", Component)
+local losesLife = class("misc.losesLife", Component)
 
-endsGame.argList = {
+losesLife.argList = {
     {"on", "required|string"},
 }
 
-function endsGame:initialize(actor, args)
+function losesLife:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self[self.on] = function(self)
         playSound("death")
+		self.actor.player.lives = self.actor.player.lives - 1
 		love.window.showMessageBox("Game", "You died!", "info", true)
     end
 end
 
-return endsGame
+return losesLife
