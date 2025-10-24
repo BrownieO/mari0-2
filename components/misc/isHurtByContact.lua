@@ -22,7 +22,7 @@ function isHurtByContact:resolve(dir, obj2)
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
             -- hurt stuff
-			self.actor:event("hurt", dt)
+			self.actor:event("getHurt", dt)
         end
     end
 end
