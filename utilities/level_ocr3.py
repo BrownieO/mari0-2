@@ -62,14 +62,24 @@ unique_ids, freq = np.unique(level, return_counts=True)
 freq_dict = dict(zip(unique_ids, freq))
 freq_dict = dict(sorted(freq_dict.items(), key=lambda item: item[1], reverse=True))
 
-
 image_chain = []
+replacements_dict = {}
+n = 0
+
 for tile_id in freq_dict:
+    replacements_dict[tile_id] = n
+    n = n + 1
     image_chain.append(unique_tiles[tile_id])
-    
+
 im = create_image_chain(image_chain)
 im.show()
 
+m = 0
+for tile_id in level:
+    level[m] = replacements_dict[level[m]]
+    m = m + 1
+
 level = np.reshape(level, (rows, cols))
-im = Image.fromarray((level * 255).astype(np.uint8))
+
+im = Image.fromarray((level).astype(np.uint8))
 im.show()
