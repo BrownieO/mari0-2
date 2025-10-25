@@ -1,3 +1,9 @@
+'''
+Number Grid generator
+By BrownieO
+Generate an image of a grid with numbers.
+'''
+
 from PIL import Image, ImageDraw, ImageFont
 
 def generate_number_grid(x, y, n, m):

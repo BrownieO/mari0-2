@@ -1,3 +1,9 @@
+'''
+OCR = Optical C (level) Recognition
+By BrownieO
+Reads a level image and makes an array of tile IDs.
+It also sorts all the IDs by frequency.
+'''
 import numpy as np
 from PIL import Image, ImageChops
 
