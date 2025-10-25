@@ -1,5 +1,5 @@
 '''
-OCR = Optical C (level) Recognition
+OCR = Optical Clevel Recognition
 By BrownieO
 Reads a level image and makes an array of tile IDs.
 It also sorts all the IDs by frequency.
