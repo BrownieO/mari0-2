@@ -2,7 +2,33 @@
 - Player: NSFPplay 2.5 English
 - Exporter: Famistudio
 
+1. Grass land
+2. Desert land
+3. Water land
+4. Giant land
+5. Sky land
+6. Ice land
+7. Pipe land
+8. Dark land
+9. Overworld
+10. Athletic
+11. Underwater
+12. Underground
+13. Coin heaven
+14. Invincibility star
+15. Warp zone fanfare & music
+16. Music box
+17. Minigame
+18. P-Switch/Toad house
+19. Map hammer bro fight
+20. Wand cutscene
+21. Airship
+22. Boom-Boom fight
+23. Fortress
+24. Bowser fight
+
 25. Peach fanfare & ending
+
 26. Hurry up
 27. Goal
 28. Bowser fall
