@@ -6,8 +6,6 @@ local templates = VAR("tileTemplates")
 for i=1,56 do
     tiles[i] = {collision = templates.cube}
 end
-tiles[19] = nil
-tiles[36] = nil
 
 local stampMaps = {}
 
