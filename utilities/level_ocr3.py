@@ -111,8 +111,14 @@ if sort_tiles:
 if create_palette:
     im = create_image_chain(image_chain)
     im.save(Path(image_file).stem + "_palette.png")
+    print("Palette saved to", Path(image_file).stem + "_palette.png")
 
 if create_level:
     level = np.reshape(level, (rows, cols))
-    im = Image.fromarray(level.astype(np.uint8))
-    im.save(Path(image_file).stem + "_array.png")
+    
+    level_formatted = level
+    level_formatted = np.rot90(level_formatted, 3)
+    level_formatted = np.fliplr(level_formatted)
+    
+    np.savetxt(Path(image_file).stem + ".csv", level_formatted, fmt = "%d", delimiter=",")
+    print("Level array saved to saved to", Path(image_file).stem + ".csv")
