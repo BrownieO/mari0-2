@@ -1,11 +1,29 @@
 '''
-OCR = Optical Clevel Recognition
+OCR = Optical C(level) Recognition
 By BrownieO
-Reads a level image and makes an array of tile IDs.
-It also sorts all the IDs by frequency.
+Reads a level image and makes arrays of tile IDs.
+It also can sort the IDs by frequency.
 '''
+import argparse
 import numpy as np
+from pathlib import Path
 from PIL import Image, ImageChops
+
+parser = argparse.ArgumentParser(description="Reads a level image and makes arrays of tile IDs.")
+parser.add_argument("-f", "--file", help="set the input file path.")
+parser.add_argument("-l", "--level", action="store_true", help="output a full level array.")
+parser.add_argument("-p", "--palette", action="store_true", help="output an image with all the unique tiles.")
+parser.add_argument("-s", "--sort", action="store_true", help="sort the tile IDs by frequency.")
+args = parser.parse_args()
+
+image_file = "./smb12.png" 
+create_level = args.level
+create_palette = args.palette
+sort_tiles = args.sort
+
+if not create_level and not create_palette and not sort_tiles:
+    parser.print_help()
+    quit()
 
 def split_image_into_tiles(image_path):
     global rows
@@ -61,31 +79,39 @@ def create_image_chain(images):
 
     return new_im
 
-image_file = "./smb12.png" 
 level, unique_tiles = split_image_into_tiles(image_file)
 
 unique_ids, freq = np.unique(level, return_counts=True)
-freq_dict = dict(zip(unique_ids, freq))
-freq_dict = dict(sorted(freq_dict.items(), key=lambda item: item[1], reverse=True))
 
-image_chain = []
-replacements_dict = {}
-n = 0
+sort_tiles = True
 
-for tile_id in freq_dict:
-    replacements_dict[tile_id] = n
-    n = n + 1
-    image_chain.append(unique_tiles[tile_id])
+if sort_tiles:
+    freq_dict = dict(zip(unique_ids, freq))
+    freq_dict = dict(sorted(freq_dict.items(), key=lambda item: item[1], reverse=True))
 
-im = create_image_chain(image_chain)
-im.show()
+if create_palette or sort_tiles:
+    image_chain = []
+    replacements_dict = {}
+    n = 0
+    for tile_id in unique_ids:
+        if sort_tiles:
+            replacements_dict[tile_id] = n
+            n = n + 1
+        if create_palette:
+            image_chain.append(unique_tiles[tile_id])
 
-m = 0
-for tile_id in level:
-    level[m] = replacements_dict[level[m]]
-    m = m + 1
+if sort_tiles:
+    m = 0
+    for tile_id in level:
+        level[m] = replacements_dict[level[m]]
+        m = m + 1
 
-level = np.reshape(level, (rows, cols))
+if create_palette:
+    im = create_image_chain(image_chain)
+    im.save(Path(image_file).stem + "_palette.png")
 
-im = Image.fromarray((level).astype(np.uint8))
-im.show()
+if create_level:
+    level = np.reshape(level, (rows, cols))
+    
+    im = Image.fromarray((level).astype(np.uint8))
+    im.save(Path(image_file).stem + "_array.png")
