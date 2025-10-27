@@ -83,28 +83,30 @@ level, unique_tiles = split_image_into_tiles(image_file)
 
 unique_ids, freq = np.unique(level, return_counts=True)
 
-sort_tiles = True
-
 if sort_tiles:
-    freq_dict = dict(zip(unique_ids, freq))
-    freq_dict = dict(sorted(freq_dict.items(), key=lambda item: item[1], reverse=True))
+    sorted_indices = np.argsort(freq)[::-1]
+    sorted_unique_ids = unique_ids[sorted_indices] 
+    sorted_freq = freq[sorted_indices]
+
+    replacements_dict = {tile_id: n for n, tile_id in enumerate(sorted_unique_ids)}
+else:
+    sorted_unique_ids = unique_ids
 
 if create_palette or sort_tiles:
     image_chain = []
-    replacements_dict = {}
     n = 0
-    for tile_id in unique_ids:
-        if sort_tiles:
-            replacements_dict[tile_id] = n
-            n = n + 1
+    for tile_id in sorted_unique_ids:
         if create_palette:
             image_chain.append(unique_tiles[tile_id])
+        if sort_tiles:
+            replacements_dict[tile_id] = n
+            n += 1
 
 if sort_tiles:
     m = 0
     for tile_id in level:
-        level[m] = replacements_dict[level[m]]
-        m = m + 1
+        level[m] = replacements_dict[tile_id]
+        m += 1
 
 if create_palette:
     im = create_image_chain(image_chain)
@@ -112,6 +114,5 @@ if create_palette:
 
 if create_level:
     level = np.reshape(level, (rows, cols))
-    
-    im = Image.fromarray((level).astype(np.uint8))
+    im = Image.fromarray(level.astype(np.uint8))
     im.save(Path(image_file).stem + "_array.png")
