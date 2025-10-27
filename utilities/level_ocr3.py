@@ -16,7 +16,7 @@ parser.add_argument("-p", "--palette", action="store_true", help="output an imag
 parser.add_argument("-s", "--sort", action="store_true", help="sort the tile IDs by frequency.")
 args = parser.parse_args()
 
-image_file = "./smb12.png" 
+image_file = args.file
 create_level = args.level
 create_palette = args.palette
 sort_tiles = args.sort
