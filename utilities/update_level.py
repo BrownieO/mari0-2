@@ -12,11 +12,11 @@ wmap = [
 
 wwidth = 240
 
-def split_list(lst, chunk_size):
+def split_list(lst, width):
     """
     Separate list into rows and columns
     """
-    return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
+    return [lst[i:i + width] for i in range(0, len(lst), width)]
 
 # Replace air with
 for i, n in enumerate(wmap):
