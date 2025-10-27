@@ -1,10 +1,24 @@
 '''
 Number Grid generator
 By BrownieO
-Generate an image of a grid with numbers.
+Generates an image of a grid with numbers.
 '''
-
+import argparse
 from PIL import Image, ImageDraw, ImageFont
+
+parser = argparse.ArgumentParser(description="Generates an image of a grid with numbers.")
+parser.add_argument("-r", '--rows', type=int, help='number of rows')
+parser.add_argument("-c", '--columns', type=int, help='number of columns')
+args = parser.parse_args()
+
+if not args.rows or not args.columns:
+    parser.print_help()
+    quit()
+
+x = args.columns
+y = args.rows
+n = 17  # Width of each cell (in pixels)
+m = 17  # Height of each cell (in pixels)
 
 def generate_number_grid(x, y, n, m):
     # Image size
@@ -42,10 +56,5 @@ def generate_number_grid(x, y, n, m):
             number += 1
 
     img.save("number_grid.png")
-
-x = 8  # Number of rows
-y = 17  # Number of columns
-n = 17  # Width of each cell (in pixels)
-m = 17  # Height of each cell (in pixels)
 
 generate_number_grid(x, y, n, m)
