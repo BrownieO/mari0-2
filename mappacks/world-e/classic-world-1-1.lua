@@ -301,7 +301,7 @@ return {
 		{type="goomba", x=174, y=12},
 		{type="goomba", x=175.5, y=12},
 		
-		{type="goal_block", x=232, y=7},
+		{type="goal_block", x=232, y=7, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
     },
 	
 	music = "overworld-classic"
