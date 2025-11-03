@@ -6,6 +6,7 @@ local Viewport = require("class.Viewport")
 function Level:initialize(path)
     local mapCode = love.filesystem.read(path)
     local data = sandbox.run(mapCode)
+	self.currentLevel = data
 
     self:loadLevel(data)
 

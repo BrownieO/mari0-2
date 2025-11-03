@@ -91,8 +91,12 @@ function Game:changeLevel(path)
     local data = sandbox.run(mapCode)
     self.level:loadLevel(data)
 
-    --self.level = Level:loadLevel(levelPath)
     updateSizes()
+end
+
+function Game:resetLevel()
+	self.level:loadLevel(self.level.currentLevel)
+	updateSizes()
 end
 
 return Game

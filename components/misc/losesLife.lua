@@ -11,7 +11,7 @@ function losesLife:initialize(actor, args)
     self[self.on] = function(self)
         playSound("death")
 		self.actor.player.lives = self.actor.player.lives - 1
-		love.window.showMessageBox("Game", "You died!", "info", true)
+		game:resetLevel()
     end
 end
 
