@@ -8,5 +8,7 @@ return {
     centerX = 13,
     centerY = 13,
 
-    components = {}
+    components = {
+		["misc.warpOnMarioContact"] = {level = "mappacks/smb3/1-1.lua"}
+	}
 }

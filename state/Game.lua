@@ -82,4 +82,17 @@ function Game:mousepressed(x, y, button)
     self.level:mousepressed(x, y, button)
 end
 
+function Game:changeLevel(path)
+	if not path then print("No path") return end
+
+    local mapCode, errorMsg = love.filesystem.read(path)
+	if not mapCode then print(errorMsg) return end
+	
+    local data = sandbox.run(mapCode)
+    self.level:loadLevel(data)
+
+    --self.level = Level:loadLevel(levelPath)
+    updateSizes()
+end
+
 return Game

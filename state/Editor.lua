@@ -665,10 +665,9 @@ end
 
 function Editor:loadLevel(path)
     self.fileDropdown:toggle(false)
-	if not path then return end
+	if not path then print("No path") return end
 
     local mapCode, errorMsg = love.filesystem.read(path)
-
 	if not mapCode then print(errorMsg) return end
 	
     local data = sandbox.run(mapCode)

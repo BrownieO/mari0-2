@@ -63,7 +63,12 @@ function Level:loadLevel(data)
     table.sort(self.spawnList, function(a, b) return a.x<b.x end)
 
     self.actors = {}
-
+	
+	if not self.spawnX or not self.spawnY then
+		self.spawnX = 2
+		self.spawnY = 12
+	end
+	
     local x, y = self:coordinateToWorld(self.spawnX-.5, self.spawnY)
 
     for i = 1, #game.players do
