@@ -647,7 +647,7 @@ function Editor:askForInput(prompt)
 end
 
 function Editor:askForLevel()
-	print("\nLevels in " .. love.filesystem.getAppdataDirectory())
+	print("\nLevels in root (" .. love.filesystem.getAppdataDirectory() .. ")")
 	self:showTree(love.filesystem.getAppdataDirectory())
 	print("")
 	print("\nLevels in mappacks/")
