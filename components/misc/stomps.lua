@@ -16,6 +16,7 @@ function stomps:bottomCollision(dt, actorEvent, obj2)
 
         actorEvent.returns = true
 
+		playSound("stomp")
         obj2:event("getStomped")
         self.actor:event("stomp")
     end
