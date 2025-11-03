@@ -216,8 +216,8 @@ end
 function Level:collectCoin(actor, layer, x, y)
     if layer then
         layer.map[x][y].tile = nil
-		playSound("coin")
     end
+	playSound("coin")
     actor.player.coins = actor.player.coins + 1
 end
 
