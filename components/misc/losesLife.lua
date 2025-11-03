@@ -9,9 +9,9 @@ function losesLife:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self[self.on] = function(self)
-        playSound("death")
 		self.actor.player.lives = self.actor.player.lives - 1
 		game:resetLevel()
+		playSound("death")
     end
 end
 
