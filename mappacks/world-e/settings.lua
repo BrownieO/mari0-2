@@ -6,5 +6,5 @@ return {
 
     players = "any",
 
-    main = "classic-world-1-1.lua",
+    main = "classic-world-1-2.lua",
 }

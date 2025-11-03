@@ -210,6 +210,13 @@ function Level:bumpBlock(cell, actor)
         if item == "coin" then
             self:collectCoin(actor)
         end
+		
+		-- Collect coins above
+		if cell.layer.map[cell.x][cell.y - 1].tile then
+			if cell.layer.map[cell.x][cell.y - 1].tile.props.coin then
+				self:collectCoin(actor, cell.layer, cell.x, cell.y - 1)
+			end
+		end
     end
 end
 
