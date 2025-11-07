@@ -7,6 +7,7 @@ return {
     quadHeight = 26,
     centerX = 13,
     centerY = 13,
+	static = true,
 
     components = {
 		["misc.warpOnMarioContact"] = {level = "mappacks/smb3/1-1.lua"}

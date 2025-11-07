@@ -15,6 +15,10 @@ function Actor:initialize(world, x, y, actorTemplate, customProperties)
 
     Physics3.PhysObj.initialize(self, world, x-width/2, y-height, width, height)
 
+    if self.actorTemplate.static then
+        self.gravity = 0
+    end
+
     self.actorEvent = {}
 
     self.debug = {
