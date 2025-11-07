@@ -15,6 +15,7 @@ end
 
 function Level:loadLevel(data)
     self.data = data
+	self.currentLevel = data
 
     Physics3.World.initialize(self)
     Physics3.World.loadLevel(self, self.data)
