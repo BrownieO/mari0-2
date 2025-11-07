@@ -223,6 +223,30 @@ return {
         }
     },
     entities = {
+		{type="goomba", x=16, y=13},
+		{type="goomba", x=17, y=12},
+		{type="goomba", x=29, y=13},
+
+		{type="koopa", x=44, y=13},	
+		{type="koopa", x=45.5, y=13},
+		
+		{type="koopa", x=59, y=13},
+		{type="goomba", x=62, y=13},
+		{type="goomba", x=64, y=13},
+		{type="goomba", x=73, y=5},
+		{type="goomba", x=76, y=9},
+		{type="goomba", x=77.5, y=9},
+		
+		{type="goomba", x=99, y=13},
+		{type="goomba", x=100.5, y=13},
+		{type="goomba", x=102, y=13},
+		
+		{type="goomba", x=113, y=13},
+		
+		{type="goomba", x=135, y=10},
+		{type="goomba", x=136.5, y=9},
+		
+		{type="koopa_red", x=146, y=13},
     },
 	
 	backgroundColor = {0,0,0},
