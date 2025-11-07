@@ -7,7 +7,6 @@ return {
     quadHeight = 32,
     centerX = 16,
     centerY = 16,
-	static = true,
 
     dontAutoQuad = true,
 
@@ -21,7 +20,7 @@ return {
         },
         ["misc.unrotate"] = {},
 		
-		--["smb3.eightWay"] = {},
+		["smb3.eightWay"] = {},
 		
         ["misc.crosshair"] = {},
         ["misc.portalGun"] = {},
