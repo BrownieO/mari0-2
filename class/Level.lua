@@ -79,6 +79,7 @@ function Level:loadLevel(data)
         local mario = Actor:new(self, x, y, actorTemplates.smb3_small)
         mario.player = player
         player.actor = mario
+		mario:loadActorTemplate(actorTemplates["smb3_" .. mario.player.powerUp])
 
         -- apply settings like character palette and portal colors
         if player.palette then
