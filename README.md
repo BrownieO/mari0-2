@@ -11,3 +11,4 @@ Developed for LÖVE 11.3
 - Hans Cárdenas - Mario sprites, title logo
 - Technochips - Fixes
 - BrownieO - [Wiki](https://github.com/BrownieO/mari0-2/wiki), quick patches, utilities
+- awesomezack - P-Balloon sprites
