@@ -210,6 +210,9 @@ function Level:bumpBlock(cell, actor)
         local item = tile.props.defaultItem
         if item == "coin" then
             self:collectCoin(actor)
+		elseif item then
+			local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
+			table.insert(self.actors, sprout)
         end
 		
 		-- Collect coins above

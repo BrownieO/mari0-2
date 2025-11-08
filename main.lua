@@ -68,7 +68,7 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
-    game = Game:new("smb3", 1)
+    game = Game:new("world-e", 1)
 
     gameStateManager:loadState(game)
     gameStateManager:addState(Editor:new(game.level))
