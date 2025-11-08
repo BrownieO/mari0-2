@@ -22,6 +22,7 @@ return {
         showFPSInTime = true, -- shows the FPS instead of the level time in the SMB 3 UI
 
         -- World stuff
+		mappack = "world-e",
         animatedTileCallbacks = false,
         layers = false, -- shows borders for level layers
         reSpriteBatchLayers = false, -- prints to console when a level layer's spritebatch is re-made
