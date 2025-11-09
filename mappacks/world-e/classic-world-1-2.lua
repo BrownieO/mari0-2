@@ -1,10 +1,10 @@
 return {
     tileMaps = {"smb3-underground", "smb3-general"},
     lookups = {
-		{2, 4}, -- 1. Hard block
-		{2, 3}, -- 2. Brick
-		{2, 2}, -- 3. Q Block
-		{2, 1}, -- 4. Coin
+		{2, 22}, -- 1. Hard block
+		{2, 21}, -- 2. Brick
+		{2, 14}, -- 3. Q Block
+		{2, 13}, -- 4. Coin
 		{1,4}, -- 5. Top left ground
 		{1,5}, -- 6. Top ground
 		{1,6}, -- 7. Top right ground
