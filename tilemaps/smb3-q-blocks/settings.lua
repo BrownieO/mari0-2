@@ -78,13 +78,17 @@ tiles[9] = {
     turnsInto = 1,
 }
 
+tiles[11] = {
+    collision = templates.cube,
+}
+
 tiles[12] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "mushroom",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[13] = {
@@ -93,7 +97,7 @@ tiles[13] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "fire_flower",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[14] = {
@@ -102,7 +106,7 @@ tiles[14] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "super_leaf",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[15] = {
@@ -111,7 +115,7 @@ tiles[15] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "starman",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[16] = {
@@ -120,7 +124,7 @@ tiles[16] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "one_up",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[17] = {
@@ -129,7 +133,7 @@ tiles[17] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "p_balloon",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[18] = {
@@ -138,7 +142,7 @@ tiles[18] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "tanooki_suit",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 tiles[19] = {
@@ -147,7 +151,7 @@ tiles[19] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "mushroom",
-    turnsInto = 1,
+    turnsInto = 11,
 }
 
 local props = {
