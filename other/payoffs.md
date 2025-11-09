@@ -2,6 +2,7 @@
 
 | You/It | Deco | Item | Goodie | Baddie | Hazard | Lava |
 |--------|------|------|--------|--------|--------|------|
+|        |      |      | Defeat | Hurt   | Hurt   | Hurt |
 | Deco   | live | live | live   | live   | live   | live |
 | Item   | live | live | die    | live   | live   | die  |
 | Goodie | live | live | live   | die    | die    | die  |
