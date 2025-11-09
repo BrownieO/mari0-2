@@ -18,6 +18,7 @@ function isHurtByContact:bottomCollision(dt, actorEvent, obj2)
 end
 
 function isHurtByContact:resolve(dir, obj2)
+	if self.actor.starred then return end
     local hurtsByContactComponent = obj2:hasComponent("misc.hurtsByContact")
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then

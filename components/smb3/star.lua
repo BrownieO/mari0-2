@@ -35,6 +35,8 @@ function star:initialize(actor, args)
     self.actor.starTimer = 0
     self.actor.somerSaultFrame = 2
     self.actor.somerSaultFrameTimer = 0
+	love.audio.stop()
+	playMusic("starman")
 end
 
 function star:update(dt, actorEvent)
@@ -57,6 +59,8 @@ function star:update(dt, actorEvent)
     if self.actor.starTimer >= STARTIME then
         self.actor.palette = self.actor.defaultPalette
         self.actor.starred = false
+		love.audio.stop()
+		playMusic(game.level.music)
 
         self.actor:removeComponent(self.class)
     end

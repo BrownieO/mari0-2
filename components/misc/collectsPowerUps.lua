@@ -18,43 +18,40 @@ function collectsPowerUps:bottomCollision(dt, actorEvent, obj2)
 end
 
 function collectsPowerUps:resolve(dir, obj2)
+	local powerUpComponent = obj2:hasComponent("misc.powerUp")
+	if not powerUpComponent then return	end
+
+	local currentPowerUp = self.actor.player.powerUp
 	local isWhitelisted = true
-    local powerUpComponent = obj2:hasComponent("misc.powerUp")
-	
-    if powerUpComponent then
-		if powerUpComponent["whitelist"] then
-			if next(powerUpComponent["whitelist"]) then
+
+	if powerUpComponent["whitelist"] and next(powerUpComponent["whitelist"]) then
+		isWhitelisted = false
+		for _, whitelisted in ipairs(powerUpComponent["whitelist"]) do
+			if currentPowerUp == whitelisted then
+				isWhitelisted = true
+				break
+			end
+		end
+	end
+
+	if isWhitelisted and powerUpComponent["blacklist"] and next(powerUpComponent["blacklist"]) then
+		for _, blacklisted in ipairs(powerUpComponent["blacklist"]) do
+			if currentPowerUp == blacklisted then
 				isWhitelisted = false
-				for _, whitelisted in ipairs(powerUpComponent["whitelist"]) do
-					if self.actor.player.powerUp == whitelisted then
-						isWhitelisted = true
-					end
-				end
+				break
 			end
 		end
-	
-		if isWhitelisted then
-			if powerUpComponent["blacklist"] then
-				if next(powerUpComponent["blacklist"]) then
-					isWhitelisted = false
-					for _, blacklisted in ipairs(powerUpComponent["blacklist"]) do
-						if self.actor.player.powerUp == blacklisted then
-							return
-						end
-					end
-				end
-			end
-		
-			if powerUpComponent["powerUpType"] then
-				if actorTemplates[ "smb3_" .. powerUpComponent["powerUpType"] ] then
-					self.actor:loadActorTemplate(actorTemplates["smb3_" .. powerUpComponent["powerUpType"]])
-					self.actor.player.powerUp = powerUpComponent["powerUpType"]
-				end
-			end
+	end
+
+	if isWhitelisted and powerUpComponent["powerUpType"] then
+		local templateKey = "smb3_" .. powerUpComponent["powerUpType"]
+		if actorTemplates[templateKey] then
+			self.actor:loadActorTemplate(actorTemplates[templateKey])
+			self.actor.player.powerUp = powerUpComponent["powerUpType"]
 		end
-		playSound("mushroom-eat")
-		obj2:destroy()
-    end
+	end
+	playSound("mushroom-eat")
+	obj2:destroy()
 end
 
 return collectsPowerUps

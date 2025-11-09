@@ -23,13 +23,14 @@ return {
             maxSpeed = 32,
         },
         ["misc.unrotate"] = {},
-        ["misc.stompable"] = {},
+        ["misc.stompable"] = {dies = true},
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = false
 		},
-		["misc.selfDestroys"] = {on = "getStomped"},
+		["misc.isHurtByStar"] = {},
+		["misc.knockedWhenHurt"] = {}
 	}
 }
