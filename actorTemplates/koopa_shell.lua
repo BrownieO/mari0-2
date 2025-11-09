@@ -51,6 +51,8 @@ return {
         ["misc.transforms"] = {
             on = "wakeUp",
             into = "koopa"
-        }
+        },
+		["misc.isHurtByStar"] = {},
+		["misc.knockedWhenHurt"] = {}
     }
 }

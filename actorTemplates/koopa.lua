@@ -28,6 +28,8 @@ return {
         ["misc.transforms"] = {
             on = "getStomped",
             into = "koopa_shell"
-        }
+        },
+		["misc.isHurtByStar"] = {},
+		["misc.knockedWhenHurt"] = {}
     }
 }

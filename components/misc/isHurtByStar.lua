@@ -19,7 +19,6 @@ end
 
 function isHurtByStar:resolve(dir, obj2)
 	if obj2.starred then
-		print("oof")
 		self.actor:event("getHurt", dt)
 	end
 end
