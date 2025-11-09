@@ -32,6 +32,7 @@ function DebugWindow:initialize(editor)
     self.element:addChild(Gui3.TextButton:new(0, 0, "raccoon", true, 0, function(button) changeTemplate("raccoon") end))
     self.element:addChild(Gui3.TextButton:new(0, 0, "tanooki", true, 0, function(button) changeTemplate("tanooki") end))
     self.element:addChild(Gui3.TextButton:new(0, 0, "frog", true, 0, function(button) changeTemplate("frog") end))
+	self.element:addChild(Gui3.TextButton:new(0, 0, "balloon", true, 0, function(button) changeTemplate("balloon") end))
 
     self.element.autoArrangeChildren = true
     self.element:sizeChanged()
