@@ -297,8 +297,7 @@ function animation:postUpdate(dt)
     end
 
     -- Somersault animation
-    if  self.actor.starred and
-        (self.actor.state.name == "jumping" or self.actor.state.name == "falling" or self.actor.state.name == "floating") then
+    if self.actor.animationState == "somerSault" and self.actor.frameCounts.somerSault then
         local somersaultFrames = self.actor.frameCounts.somerSault
 
         self.actor.somerSaultFrameTimer = self.actor.somerSaultFrameTimer + dt
