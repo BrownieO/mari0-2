@@ -183,7 +183,7 @@ function animation:postUpdate(dt)
     elseif self.actor.state.name == "buttSliding" then
         self.actor.animationState = "buttSlide"
 
-    elseif self.actor.starred and self.actor.frameCounts.somerSault then
+    elseif self.actor.starred and self.actor.frameCounts.somerSault and (self.actor.state.name == "jumping" or self.actor.state.name == "falling" or self.actor.state.name == "floating") then
         self.actor.animationState = "somerSault"
 
     elseif self.actor.state.name == "floating" then
@@ -298,7 +298,7 @@ function animation:postUpdate(dt)
 
     -- Somersault animation
     if  self.actor.starred and
-        (self.actor.state.name == "jump" or self.actor.state.name == "fall" or self.actor.state.name == "float") then
+        (self.actor.state.name == "jumping" or self.actor.state.name == "falling" or self.actor.state.name == "floating") then
         local somersaultFrames = self.actor.frameCounts.somerSault
 
         self.actor.somerSaultFrameTimer = self.actor.somerSaultFrameTimer + dt
