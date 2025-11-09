@@ -58,6 +58,8 @@ return {
         ["misc.transforms"] = {
             on = "wakeUp",
             into = "koopa_red"
-        }
+        },
+		["misc.isHurtByStar"] = {},
+		["misc.knockedWhenHurt"] = {}
     }
 }

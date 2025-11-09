@@ -36,6 +36,8 @@ return {
         ["misc.transforms"] = {
             on = "getStomped",
             into = "koopa_red_shell"
-        }
+        },
+		["misc.isHurtByStar"] = {},
+		["misc.knockedWhenHurt"] = {}
     }
 }

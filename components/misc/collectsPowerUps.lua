@@ -49,6 +49,10 @@ function collectsPowerUps:resolve(dir, obj2)
 			self.actor:loadActorTemplate(actorTemplates[templateKey])
 			self.actor.player.powerUp = powerUpComponent["powerUpType"]
 		end
+		local componentKey = "smb3." .. powerUpComponent["powerUpType"]
+		if components[componentKey] then
+			self.actor:addComponent(components[componentKey])
+		end
 	end
 	playSound("mushroom-eat")
 	obj2:destroy()
