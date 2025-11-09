@@ -51,7 +51,29 @@ tiles[16] = {
     delays = {8/60},
 }
 
-local cubes = {4, 5, 9, 10, 11, 12, 17, 18, 19, 20}
+tiles[13] = {
+    img = "coinug.png",
+    delays = {8/60},
+    coin = true,
+}
+
+tiles[14] = {
+    collision = templates.cube,
+    img = "coinblockug.png",
+    delays = {8/60},
+    holdsItems = true,
+    defaultItem = "coin", -- ?
+    turnsInto = 23,
+}
+
+tiles[21] = {
+    collision = templates.cube,
+    img = "brickug.png",
+    delays = {8/60},
+    holdsItems = true,
+}
+
+local cubes = {4, 5, 9, 10, 11, 12, 17, 18, 19, 20, 22, 23}
 
 for _, v in ipairs(cubes) do
     tiles[v] = {collision = templates.cube}
@@ -62,6 +84,9 @@ tiles[3].nonPortalable = {false, true, false, true}
 tiles[6] = {
     water = true,
 }
+
+
+
 
 local stampMaps = {
     {
