@@ -237,14 +237,16 @@ end
 
 function Actor:switchState(stateName)
     if stateName then
-        assert(self.states[stateName],
-            string.format("Tried to switch to nonexistent ActorState \"%s\" on %s.",
-            stateName,
-            self.actorTemplate.name)
-        )
-        self.state = ActorState:new(self, stateName, self.states[stateName])
-
-        self.state:checkExit()
+		if self.states[stateName] then
+			self.state = ActorState:new(self, stateName, self.states[stateName])
+			self.state:checkExit()		
+		else
+			print(
+				string.format("Tried to switch to nonexistent ActorState \"%s\" on %s.",
+				stateName,
+				self.actorTemplate.name)
+			)		
+		end
     end
 end
 
