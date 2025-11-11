@@ -39,51 +39,51 @@ function World:update(dt)
     prof.push("Objects")
     for _, obj in ipairs(self.objects) do
         if not obj.destroyed then
-            obj:preMovement()
-        end
+        	obj:preMovement()
+    end
     end
 
     for _, obj in ipairs(self.objects) do
         if not obj.destroyed then
-            prof.push("Think")
-            obj:update(dt)
-            prof.pop()
+        prof.push("Think")
+		obj:update(dt)
+        prof.pop()
 
-            obj.prevX = obj.x
-            obj.prevY = obj.y
+        obj.prevX = obj.x
+        obj.prevY = obj.y
 
-            -- Add half of gravity
-            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+        -- Add half of gravity
+        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
 
-            local oldX, oldY = obj.x, obj.y
+        local oldX, oldY = obj.x, obj.y
 
-            obj.frameMovementX = obj.speed[1] * dt
-            obj.frameMovementY = obj.speed[2] * dt
+        obj.frameMovementX = obj.speed[1] * dt
+        obj.frameMovementY = obj.speed[2] * dt
 
-            obj.x = obj.x + obj.frameMovementX
-            obj.y = obj.y + obj.frameMovementY
+        obj.x = obj.x + obj.frameMovementX
+        obj.y = obj.y + obj.frameMovementY
 
-            -- Add other half of gravity
-            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+		-- Add other half of gravity
+        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
 
-            self:checkPortaling(obj, oldX, oldY)
+        self:checkPortaling(obj, oldX, oldY)
 
-            local oldX, oldY = obj.x, obj.y
+        local oldX, oldY = obj.x, obj.y
 
-            prof.push("Collisions")
-            obj:resolveCollisions()
-            prof.pop()
+        prof.push("Collisions")
+        obj:resolveCollisions()
+        prof.pop()
 
-            self:checkPortaling(obj, oldX, oldY)
-        end
+        self:checkPortaling(obj, oldX, oldY)
+    end
     end
 
     for _, obj in ipairs(self.objects) do
         if not obj.destroyed then
-            obj:postMovement()
-        end
+        obj:postMovement()
+    end
     end
     prof.pop()
 end
@@ -632,19 +632,45 @@ function World:checkCollision(x, y, obj, vector, portalled)
         end
     end
 
-    return self:checkCollisionCommon(x, y, obj, vector, true, true)
+    -- level boundaries
+    if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
+        return fakeCellInstance
+    end
+
+    -- World
+    for _, layer in ipairs(self.layers) do
+        local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
+
+        if cell then
+            return cell
+        end
+    end
+
+    -- Actors
+    -- todo: quad tree magic
+
+    for _, obj2 in ipairs(self.objects) do
+        if obj ~= obj2 then
+            -- Check collision groups
+            if CollisionGroups.shouldCollide(obj, obj2) then
+                if obj2:checkCollision(math.round(x), math.round(y)) then
+                    return obj2
+                end
+            end
+        end
+    end
+
+    return false
 end
 
-function World:checkCollisionCommon(x, y, obj, vector, checkGroups, skipPortals)
-    if not skipPortals then
-        -- Portals
-        for _, portal in ipairs(self.portals) do
-            if portal.linkedPortal then
-                local col = portal:checkCollision(math.round(x), math.round(y), obj, vector)
+function World:checkCollisionCommon(x, y, obj, vector, checkGroups)
+    -- Portals
+    for _, portal in ipairs(self.portals) do
+        if portal.linkedPortal then
+            local col = portal:checkCollision(math.round(x), math.round(y), obj, vector)
 
-                if col then
-                    return portal
-                end
+            if col then
+                return portal
             end
         end
     end

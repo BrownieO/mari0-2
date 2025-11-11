@@ -23,13 +23,7 @@ function Tracer:cacheCoordinates()
 	end
 end
 
-function Tracer:trace()
-	-- Extra safety: if the physics object was destroyed, don't trace
-	if not self.physObj.world then
-		self.tracedLength = 0
-		return
-	end
-
+function Tracer:trace(ignoreGroups)
 	local i = 1
 
 	while i <= self.len do
@@ -50,8 +44,12 @@ function Tracer:trace()
 			xRounded = math.floor(x)
 		end
 
-		local collisionFunc = ignoreGroups and self.physObj.world.checkCollisionIgnoreGroups or self.physObj.world.checkCollision
-		local col = collisionFunc(self.physObj.world, xRounded, yRounded, self.physObj, self.vectorNormalized)
+		local col
+		if ignoreGroups then
+			col = self.physObj.world:checkCollisionIgnoreGroups(xRounded, yRounded, self.physObj, self.vectorNormalized)
+		else
+			col = self.physObj.world:checkCollision(xRounded, yRounded, self.physObj, self.vectorNormalized)
+		end
 
 		if col then
 			if ignoreGroups then

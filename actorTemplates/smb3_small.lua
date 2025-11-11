@@ -10,6 +10,9 @@ return {
 
     dontAutoQuad = true,
 
+    collisionGroup = 4,
+    noncollide = 0,
+
     components = {
         ["misc.palettable"] = {
             imgPalette = {
