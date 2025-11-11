@@ -677,38 +677,11 @@ function World:checkCollision(x, y, obj, vector, portalled)
         end
     end
 
-    -- level boundaries
-    if x < 0 or x >= self:getXEnd() * 16 then -- todo: bad for performance due to recalculation of XEnd!
-        return fakeCellInstance
-    end
-
-    -- World
-    for _, layer in ipairs(self.layers) do
-        local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
-
-        if cell then
-            return cell
-        end
-    end
-
-    -- Actors
-    -- todo: quad tree magic
-
-    for _, obj2 in ipairs(self.objects) do
-        if obj ~= obj2 then
-            -- Check collision groups
-            if CollisionGroups.shouldCollide(obj, obj2) then
-                if obj2:checkCollision(math.round(x), math.round(y)) then
-                    return obj2
-                end
-            end
-        end
-    end
-
-    return false
+    return self:checkCollisionCommon(x, y, obj, vector, true, true)
 end
 
-function World:checkCollisionCommon(x, y, obj, vector, checkGroups)
+function World:checkCollisionCommon(x, y, obj, vector, checkGroups, skipPortals)
+    if not skipPortals then
     -- Portals
     for _, portal in ipairs(self.portals) do
         if portal.linkedPortal then
@@ -718,6 +691,7 @@ function World:checkCollisionCommon(x, y, obj, vector, checkGroups)
                 return portal
             end
         end
+    end
     end
 
     -- level boundaries
