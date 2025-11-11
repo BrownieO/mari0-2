@@ -50,15 +50,35 @@ function Tracer:trace()
 			xRounded = math.floor(x)
 		end
 
-		local col = self.physObj.world:checkCollision(xRounded, yRounded, self.physObj, self.vectorNormalized)
+		local collisionFunc = ignoreGroups and self.physObj.world.checkCollisionIgnoreGroups or self.physObj.world.checkCollision
+		local col = collisionFunc(self.physObj.world, xRounded, yRounded, self.physObj, self.vectorNormalized)
+
 		if col then
-			self.tracedLength = i
+			if ignoreGroups then
+				-- Skip non-PhysObj collisions when doing contact checks (tiles, etc.)
+				if not (col.class and col.class:isSubclassOf(Physics3.PhysObj)) then
+					i = i + 1 -- continue scanning for a PhysObj
+					goto continue
+				end
+				-- Record tracedLength for debug consistency with old tracer behavior
+				self.tracedLength = i
+			else
+				self.tracedLength = i
+			end
 			return xRounded, yRounded, col
 		end
 
+		::continue::
 		i = i + 1
 	end
-	self.tracedLength = self.len
+	if not ignoreGroups then
+		self.tracedLength = self.len
+	end
+end
+
+function Tracer:traceIgnoreGroups()
+	-- Wrapper kept for backwards compatibility
+	return self:trace(true)
 end
 
 function Tracer:debugDraw()

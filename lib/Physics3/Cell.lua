@@ -19,6 +19,10 @@ function Cell:initialize(x, y, layer, tile)
     self.tile = tile
 
     self.bounceTimer = self.bounceTime
+    
+    -- Cells (tiles) belong to the TILE collision group (1)
+    self.collisionGroup = 2
+    self.noncollide = 0
 end
 
 function Cell:update(dt)
