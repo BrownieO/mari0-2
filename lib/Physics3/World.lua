@@ -3,6 +3,7 @@ local Cell = require((...):gsub("%.World$", "") .. ".Cell")
 local Tile = require((...):gsub("%.World$", "") .. ".Tile")
 local TileMap = require((...):gsub("%.World$", "") .. ".TileMap")
 local Portal = require((...):gsub("%.World$", "") .. ".portal.Portal")
+local CollisionGroups = require((...):gsub("%.World$", "") .. ".CollisionGroups")
 local World = class("Physics3.World")
 
 local fakeTileInstance = Tile:new()
@@ -695,13 +696,62 @@ function World:checkCollision(x, y, obj, vector, portalled)
 
     for _, obj2 in ipairs(self.objects) do
         if obj ~= obj2 then
-            if obj2:checkCollision(math.round(x), math.round(y)) then
-                return obj2
+            -- Check collision groups
+            if CollisionGroups.shouldCollide(obj, obj2) then
+                if obj2:checkCollision(math.round(x), math.round(y)) then
+                    return obj2
+                end
             end
         end
     end
 
     return false
+end
+
+function World:checkCollisionCommon(x, y, obj, vector, checkGroups)
+    -- Portals
+    for _, portal in ipairs(self.portals) do
+        if portal.linkedPortal then
+            local col = portal:checkCollision(math.round(x), math.round(y), obj, vector)
+
+            if col then
+                return portal
+            end
+        end
+    end
+
+    -- level boundaries
+    if x < 0 or x >= self:getXEnd() * 16 then -- todo: bad for performance due to recalculation of XEnd!
+        return fakeCellInstance
+    end
+
+    -- World
+    for _, layer in ipairs(self.layers) do
+        local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
+
+        if cell then
+            return cell
+        end
+    end
+
+    -- Actors
+    -- todo: quad tree magic
+
+    for _, obj2 in ipairs(self.objects) do
+        if obj ~= obj2 then
+            if not checkGroups or CollisionGroups.shouldCollide(obj, obj2) then
+                if obj2:checkCollision(math.round(x), math.round(y)) then
+                    return obj2
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+function World:checkCollisionIgnoreGroups(x, y, obj, vector)
+    return self:checkCollisionCommon(x, y, obj, vector, false)
 end
 
 function World:getXStart()

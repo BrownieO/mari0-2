@@ -20,6 +20,10 @@ function PhysObj:initialize(world, x, y, width, height)
     self.isGroundFor = {}
     self.inPortals = {}
 
+    -- Default collision group and mask
+    self.collisionGroup = nil -- Default: no collision group assigned
+    self.noncollide = 0 -- Default: collide with everything
+
     -- register yourself with the world
     world:addObject(self)
 
@@ -116,60 +120,98 @@ function PhysObj:unRotate(dt)
     end
 end
 
-function PhysObj:leftColCheck()
+-- Generic tracer side check to remove duplicated collision/contact code
+function PhysObj:_tracerSideCheck(tracerList, comparator, ignoreGroups)
     local colX, colY, colObj
-
-    for _, tracer in ipairs(self.tracers.left) do
-        local traceX, traceY, traceObj = tracer:trace()
-
-        if traceX and (not colX or traceX < colX) then
-            colX, colY, colObj = traceX, traceY, traceObj
+    for _, tracer in ipairs(tracerList) do
+        local traceX, traceY, traceObj = tracer:trace(ignoreGroups)
+        if traceX then
+            if not colX or comparator(traceX, traceY, colX, colY) then
+                colX, colY, colObj = traceX, traceY, traceObj
+            end
         end
     end
-
     return colX, colY, colObj
+end
+
+function PhysObj:leftColCheck()
+    return self:_tracerSideCheck(
+        self.tracers.left,
+        function(traceX, traceY, colX, colY)
+            return traceX < colX
+        end,
+        false
+    )
 end
 
 function PhysObj:rightColCheck()
-    local colX, colY, colObj
-
-    for _, tracer in ipairs(self.tracers.right) do
-        local traceX, traceY, traceObj = tracer:trace()
-
-        if traceX and (not colX or traceX > colX) then
-            colX, colY, colObj = traceX, traceY, traceObj
-        end
-    end
-
-    return colX, colY, colObj
+    return self:_tracerSideCheck(
+        self.tracers.right,
+        function(traceX, traceY, colX, colY)
+            return traceX > colX
+        end,
+        false
+    )
 end
 
 function PhysObj:topColCheck()
-    local colX, colY, colObj
-
-    for _, tracer in ipairs(self.tracers.up) do
-        local traceX, traceY, traceObj = tracer:trace()
-
-        if traceX and (not colX or traceY < colY) then
-            colX, colY, colObj = traceX, traceY, traceObj
-        end
-    end
-
-    return colX, colY, colObj
+    return self:_tracerSideCheck(
+        self.tracers.up,
+        function(traceX, traceY, colX, colY)
+            return traceY < colY
+        end,
+        false
+    )
 end
 
 function PhysObj:bottomColCheck()
-    local colX, colY, colObj
+    return self:_tracerSideCheck(
+        self.tracers.down,
+        function(traceX, traceY, colX, colY)
+            return traceY < colY
+        end,
+        false
+    )
+end
 
-    for _, tracer in ipairs(self.tracers.down) do
-        local traceX, traceY, traceObj = tracer:trace()
+function PhysObj:leftContactCheck()
+    return self:_tracerSideCheck(
+        self.tracers.left,
+        function(traceX, traceY, colX, colY)
+            return traceX < colX
+        end,
+        true
+    )
+end
 
-        if traceX and (not colX or traceY < colY) then
-            colX, colY, colObj = traceX, traceY, traceObj
-        end
-    end
+function PhysObj:rightContactCheck()
+    return self:_tracerSideCheck(
+        self.tracers.right,
+        function(traceX, traceY, colX, colY)
+            return traceX > colX
+        end,
+        true
+    )
+end
 
-    return colX, colY, colObj
+function PhysObj:topContactCheck()
+    return self:_tracerSideCheck(
+        self.tracers.up,
+        function(traceX, traceY, colX, colY)
+            return traceY < colY
+        end,
+        true
+    )
+end
+
+function PhysObj:bottomContactCheck()
+    return self:_tracerSideCheck(
+        self.tracers.down,
+        function(traceX, traceY, colX, colY)
+            return traceY < colY
+        end,
+        true
+    )
 end
 
 function PhysObj:leftColResolve(obj, x, y)
@@ -268,6 +310,22 @@ function PhysObj:resolveCollisions()
         end
     end
 
+    -- Fire non-physics contact events
+    local cx, cy, cobj
+    if self.speed[1] <= 0 then
+        cx, cy, cobj = self:leftContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:leftContact(cobj)
+            cobj:rightContact(self)
+        end
+    elseif self.speed[1] >= 0 then
+        cx, cy, cobj = self:rightContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:rightContact(cobj)
+            cobj:leftContact(self)
+        end
+    end
+
     x = nil
 
     if self.speed[2] >= 0 then
@@ -303,6 +361,22 @@ function PhysObj:resolveCollisions()
             self:topColResolve(obj, x, y)
 
             obj:bottomColResolve(self)
+        end
+    end
+
+    -- Fire non-physics contact events for vertical direction
+    cx, cy, cobj = nil, nil, nil
+    if self.speed[2] >= 0 then
+        cx, cy, cobj = self:bottomContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:bottomContact(cobj)
+            cobj:topContact(self)
+        end
+    else
+        cx, cy, cobj = self:topContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:topContact(cobj)
+            cobj:bottomContact(self)
         end
     end
 end
@@ -399,6 +473,14 @@ end
 function PhysObj:bottomCollision()
 end
 function PhysObj:topCollision()
+end
+function PhysObj:leftContact()
+end
+function PhysObj:rightContact()
+end
+function PhysObj:bottomContact()
+end
+function PhysObj:topContact()
 end
 function PhysObj:startFall()
 end
