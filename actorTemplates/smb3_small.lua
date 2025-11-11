@@ -94,7 +94,7 @@ return {
         ["misc.kicks"] = {},
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
-        ["misc.bumpsBlocks"] = {},
+        ["misc.bumpsBlocks"] = {dontBreak = true},
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
     }

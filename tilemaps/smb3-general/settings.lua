@@ -22,6 +22,7 @@ tiles[3] = {
     img = "brick.png",
     delays = {8/60},
     holdsItems = true,
+	breakable = true,
 }
 
 
@@ -71,6 +72,7 @@ tiles[21] = {
     img = "brickug.png",
     delays = {8/60},
     holdsItems = true,
+	breakable = true,
 }
 
 local cubes = {4, 5, 9, 10, 11, 12, 17, 18, 19, 20, 22, 23}

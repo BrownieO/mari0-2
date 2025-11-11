@@ -194,13 +194,24 @@ function Level:spawnActors(untilX)
     self.spawnLine = untilX
 end
 
-function Level:bumpBlock(cell, actor)
+function Level:bumpBlock(cell, actor, dontBreak)
     local tile = cell.tile
 
-    if tile.breakable or tile.props.holdsItems then
+    if tile.props.breakable or tile.props.holdsItems then
+		-- Collect coins above
+		if cell.layer.map[cell.x][cell.y - 1].tile then
+			if cell.layer.map[cell.x][cell.y - 1].tile.props.coin then
+				self:collectCoin(actor, cell.layer, cell.x, cell.y - 1)
+			end
+		end
+		
+		if tile.props.breakable and not dontBreak then
+			cell.layer.map[cell.x][cell.y].tile = nil
+			return
+		end
         -- Make it bounce
         cell.layer:bounceCell(cell.x, cell.y)
-
+		
         if tile.props.turnsInto then
             local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
 
@@ -215,13 +226,6 @@ function Level:bumpBlock(cell, actor)
 			local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
 			table.insert(self.actors, sprout)
         end
-		
-		-- Collect coins above
-		if cell.layer.map[cell.x][cell.y - 1].tile then
-			if cell.layer.map[cell.x][cell.y - 1].tile.props.coin then
-				self:collectCoin(actor, cell.layer, cell.x, cell.y - 1)
-			end
-		end
     end
 end
 

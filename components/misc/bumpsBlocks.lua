@@ -1,10 +1,13 @@
 local Component = require "class.Component"
 local bumpsBlocks = class("misc.bumpsBlocks", Component)
 
+bumpsBlocks.argList = {
+    {"dontBreak", "boolean", false},
+}
+
 function bumpsBlocks:topCollision(dt, actorEvent, obj2)
     if obj2.class == Physics3.Cell then
-        self.actor.world:bumpBlock(obj2, self.actor)
-		playSound("block")
+        self.actor.world:bumpBlock(obj2, self.actor, self.dontBreak)
     end
 end
 
