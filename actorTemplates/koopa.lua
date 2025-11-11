@@ -8,6 +8,9 @@ return {
     centerX = 8,
     centerY = 25,
 
+    collisionGroup = 8,
+    noncollide = 4,
+
     components = {
         ["misc.palettable"] = {
             imgPalette = {

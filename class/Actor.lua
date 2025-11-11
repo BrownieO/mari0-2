@@ -148,6 +148,15 @@ function Actor:loadActorTemplate(actorTemplate)
     self.state = nil
     self.states = {}
 
+    -- Load collision group properties from actor template
+    if self.actorTemplate.collisionGroup then
+        self.collisionGroup = self.actorTemplate.collisionGroup
+    end
+    
+    if self.actorTemplate.noncollide then
+        self.noncollide = self.actorTemplate.noncollide
+    end
+
     self.components = {}
     for name, args in pairs(self.actorTemplate.components) do
         assert(components[name],
@@ -190,6 +199,22 @@ end
 
 function Actor:rightCollision(obj2)
     return self:event("rightCollision", 0, obj2)
+end
+
+function Actor:leftContact(obj2)
+    return self:event("leftContact", 0, obj2)
+end
+
+function Actor:rightContact(obj2)
+    return self:event("rightContact", 0, obj2)
+end
+
+function Actor:topContact(obj2)
+    return self:event("topContact", 0, obj2)
+end
+
+function Actor:bottomContact(obj2)
+    return self:event("bottomContact", 0, obj2)
 end
 
 function Actor:startFall()
@@ -242,10 +267,10 @@ function Actor:switchState(stateName)
 			self.state:checkExit()		
 		else
 			print(
-				string.format("Tried to switch to nonexistent ActorState \"%s\" on %s.",
-				stateName,
-				self.actorTemplate.name)
-			)		
+            string.format("Tried to switch to nonexistent ActorState \"%s\" on %s.",
+            stateName,
+            self.actorTemplate.name)
+        )
 		end
     end
 end
