@@ -11,7 +11,7 @@ return {
     dontAutoQuad = true,
 
     collisionGroup = 4,
-    noncollide = 0,
+    noncollide = 8,
 
     components = {
         ["misc.palettable"] = {
