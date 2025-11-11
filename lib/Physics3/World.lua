@@ -1,9 +1,9 @@
 local serialize = require "lib.serialize"
-local Cell = require((...):gsub('%.World$', '') .. ".Cell")
-local Tile = require((...):gsub('%.World$', '') .. ".Tile")
-local TileMap = require((...):gsub('%.World$', '') .. ".TileMap")
-local Portal = require((...):gsub('%.World$', '') .. ".portal.Portal")
-local CollisionGroups = require((...):gsub('%.World$', '') .. ".CollisionGroups")
+local Cell = require((...):gsub("%.World$", "") .. ".Cell")
+local Tile = require((...):gsub("%.World$", "") .. ".Tile")
+local TileMap = require((...):gsub("%.World$", "") .. ".TileMap")
+local Portal = require((...):gsub("%.World$", "") .. ".portal.Portal")
+local CollisionGroups = require((...):gsub("%.World$", "") .. ".CollisionGroups")
 local World = class("Physics3.World")
 
 local fakeTileInstance = Tile:new()
@@ -14,7 +14,7 @@ function World:initialize()
 
     self.layers = {}
 
-	self.objects = {}
+    self.objects = {}
     self.portals = {}
     self.portalVectorDebugs = {}
 end
@@ -39,51 +39,51 @@ function World:update(dt)
     prof.push("Objects")
     for _, obj in ipairs(self.objects) do
         if not obj.destroyed then
-        	obj:preMovement()
-    end
-    end
-
-    for _, obj in ipairs(self.objects) do
-        if not obj.destroyed then
-        prof.push("Think")
-		obj:update(dt)
-        prof.pop()
-
-        obj.prevX = obj.x
-        obj.prevY = obj.y
-
-        -- Add half of gravity
-        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
-
-        local oldX, oldY = obj.x, obj.y
-
-        obj.frameMovementX = obj.speed[1] * dt
-        obj.frameMovementY = obj.speed[2] * dt
-
-        obj.x = obj.x + obj.frameMovementX
-        obj.y = obj.y + obj.frameMovementY
-
-		-- Add other half of gravity
-        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
-
-        self:checkPortaling(obj, oldX, oldY)
-
-        local oldX, oldY = obj.x, obj.y
-
-        prof.push("Collisions")
-        obj:resolveCollisions()
-        prof.pop()
-
-        self:checkPortaling(obj, oldX, oldY)
-    end
+            obj:preMovement()
+        end
     end
 
     for _, obj in ipairs(self.objects) do
         if not obj.destroyed then
-        obj:postMovement()
+            prof.push("Think")
+            obj:update(dt)
+            prof.pop()
+
+            obj.prevX = obj.x
+            obj.prevY = obj.y
+
+            -- Add half of gravity
+            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+
+            local oldX, oldY = obj.x, obj.y
+
+            obj.frameMovementX = obj.speed[1] * dt
+            obj.frameMovementY = obj.speed[2] * dt
+
+            obj.x = obj.x + obj.frameMovementX
+            obj.y = obj.y + obj.frameMovementY
+
+            -- Add other half of gravity
+            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+
+            self:checkPortaling(obj, oldX, oldY)
+
+            local oldX, oldY = obj.x, obj.y
+
+            prof.push("Collisions")
+            obj:resolveCollisions()
+            prof.pop()
+
+            self:checkPortaling(obj, oldX, oldY)
+        end
     end
+
+    for _, obj in ipairs(self.objects) do
+        if not obj.destroyed then
+            obj:postMovement()
+        end
     end
     prof.pop()
 end
@@ -91,25 +91,38 @@ end
 function World:checkPortaling(obj, oldX, oldY)
     for _, p in ipairs(self.portals) do
         if p.open then
-            local iX, iY = linesIntersect(oldX+obj.width/2, oldY+obj.height/2, obj.x+obj.width/2, obj.y+obj.height/2, p.x1, p.y1, p.x2, p.y2)
+            local iX, iY =
+                linesIntersect(
+                oldX + obj.width / 2,
+                oldY + obj.height / 2,
+                obj.x + obj.width / 2,
+                obj.y + obj.height / 2,
+                p.x1,
+                p.y1,
+                p.x2,
+                p.y2
+            )
 
-            if iX and sideOfLine(obj.x+obj.width/2, obj.y+obj.height/2, p.x1, p.y1, p.x2, p.y2) < 0 then -- don't portal when getting into portals from behind
-                local x, y, velocityX, velocityY = obj.x+obj.width/2, obj.y+obj.height/2, obj.speed[1], obj.speed[2]
+            if iX and sideOfLine(obj.x + obj.width / 2, obj.y + obj.height / 2, p.x1, p.y1, p.x2, p.y2) < 0 then -- don't portal when getting into portals from behind
+                local x, y, velocityX, velocityY =
+                    obj.x + obj.width / 2,
+                    obj.y + obj.height / 2,
+                    obj.speed[1],
+                    obj.speed[2]
                 local angle = math.atan2(velocityY, velocityX)
-                local speed = math.sqrt(velocityX^2+velocityY^2)
+                local speed = math.sqrt(velocityX ^ 2 + velocityY ^ 2)
 
                 local outX, outY, outAngle, angleDiff, reversed = self:doPortal(p, x, y, angle)
 
                 obj.x = outX
                 obj.y = outY
 
-                if outAngle < -math.pi*0.25 and outAngle > -math.pi*0.75 then -- todo: questionable way to ensure player makes it out of floorPortals
+                if outAngle < -math.pi * 0.25 and outAngle > -math.pi * 0.75 then -- todo: questionable way to ensure player makes it out of floorPortals
                     speed = math.max(180, speed)
                 end
 
-                obj.speed[1] = math.cos(outAngle)*speed
-                obj.speed[2] = math.sin(outAngle)*speed
-
+                obj.speed[1] = math.cos(outAngle) * speed
+                obj.speed[2] = math.sin(outAngle) * speed
 
                 obj.angle = normalizeAngle(obj.angle + angleDiff)
 
@@ -119,26 +132,31 @@ function World:checkPortaling(obj, oldX, oldY)
 
                 if VAR("debug").portalVector then
                     self.portalVectorDebugs = {}
-                    table.insert(self.portalVectorDebugs, {
-                        inX = x,
-                        inY = y,
-                        inVX = velocityX,
-                        inVY = velocityY,
-
-                        outX = obj.x,
-                        outY = obj.y,
-                        outVX = obj.speed[1],
-                        outVY = obj.speed[2],
-
-                        reversed = reversed
-                    })
+                    table.insert(
+                        self.portalVectorDebugs,
+                        {
+                            inX = x,
+                            inY = y,
+                            inVX = velocityX,
+                            inVY = velocityY,
+                            outX = obj.x,
+                            outY = obj.y,
+                            outVX = obj.speed[1],
+                            outVY = obj.speed[2],
+                            reversed = reversed
+                        }
+                    )
                 end
 
-                obj.x = obj.x-obj.width/2
-                obj.y = obj.y-obj.height/2
+                obj.x = obj.x - obj.width / 2
+                obj.y = obj.y - obj.height / 2
 
                 if obj:checkCollisions() then
-                    print("Hey, object " .. tostring(obj) .. " ended up in a wall after portalling. This should be resolved in the future.")
+                    print(
+                        "Hey, object " ..
+                            tostring(obj) ..
+                                " ended up in a wall after portalling. This should be resolved in the future."
+                    )
                 end
 
                 if obj.portalled then
@@ -153,7 +171,8 @@ function World:checkPortaling(obj, oldX, oldY)
     return false
 end
 
-local function emptyStencil() end
+local function emptyStencil()
+end
 
 local outStencilP
 local function outStencil()
@@ -217,15 +236,15 @@ function World:draw()
     love.graphics.setColor(1, 1, 1)
 
     for _, obj in ipairs(self.objects) do
-        local x, y = obj.x+obj.width/2, obj.y+obj.height/2
+        local x, y = obj.x + obj.width / 2, obj.y + obj.height / 2
 
-        local quadX = obj.x+obj.width/2-obj.centerX
-        local quadY = obj.y+obj.height/2-obj.centerY
+        local quadX = obj.x + obj.width / 2 - obj.centerX
+        local quadY = obj.y + obj.height / 2 - obj.centerY
         local quadWidth = obj.quadWidth
         local quadHeight = obj.quadHeight
 
         if obj.animationDirection == -1 then
-            quadX = quadX + obj.centerX*2-obj.quadWidth
+            quadX = quadX + obj.centerX * 2 - obj.quadWidth
         end
 
         love.graphics.stencil(emptyStencil, "replace")
@@ -235,7 +254,10 @@ function World:draw()
 
         for _, p in ipairs(self.portals) do
             if p.open then
-                if  rectangleOnLine(quadX, quadY, quadWidth, quadHeight, p.x1, p.y1, p.x2, p.y2) and objectWithinPortalRange(p, x, y) then
+                if
+                    rectangleOnLine(quadX, quadY, quadWidth, quadHeight, p.x1, p.y1, p.x2, p.y2) and
+                        objectWithinPortalRange(p, x, y)
+                 then
                     table.insert(inPortals, p)
                 end
             end
@@ -243,7 +265,8 @@ function World:draw()
 
         for _, p in ipairs(inPortals) do
             local angle = math.atan2(obj.speed[2], obj.speed[1])
-            local cX, cY, cAngle, angleDiff, reversed = self:doPortal(p, obj.x+obj.width/2, obj.y+obj.height/2, obj.angle)
+            local cX, cY, cAngle, angleDiff, reversed =
+                self:doPortal(p, obj.x + obj.width / 2, obj.y + obj.height / 2, obj.angle)
 
             local xScale = 1
             if reversed then
@@ -268,12 +291,12 @@ function World:draw()
                 a = a + (obj.angle or 0)
             end
 
-            drawObject(obj, cX, cY, a, (obj.animationDirection or 1)*xScale, 1, obj.centerX, obj.centerY)
+            drawObject(obj, cX, cY, a, (obj.animationDirection or 1) * xScale, 1, obj.centerX, obj.centerY)
 
             love.graphics.setStencilTest()
 
             if VAR("debug").portalStencils then
-                love.graphics.rectangle("fill", cX-.5, cY-.5, 1, 1)
+                love.graphics.rectangle("fill", cX - .5, cY - .5, 1, 1)
             end
         end
 
@@ -298,11 +321,11 @@ function World:draw()
         love.graphics.setStencilTest()
 
         if VAR("debug").actorQuad then
-            love.graphics.rectangle("line", quadX-.5, quadY-.5, quadWidth+1, quadHeight+1)
+            love.graphics.rectangle("line", quadX - .5, quadY - .5, quadWidth + 1, quadHeight + 1)
         end
 
         obj:draw()
-	end
+    end
     prof.pop()
 
     prof.push("Portals Front")
@@ -316,7 +339,7 @@ function World:draw()
     prof.push("Debug")
     if VAR("debug").physicsAdvanced then
         love.graphics.setColor(1, 1, 1)
-		self:advancedPhysicsDebug()
+        self:advancedPhysicsDebug()
     end
 
     if VAR("debug").portalVector then
@@ -333,8 +356,8 @@ function World:draw()
 end
 
 function World:addObject(PhysObj)
-	table.insert(self.objects, PhysObj)
-	PhysObj.World = self
+    table.insert(self.objects, PhysObj)
+    PhysObj.World = self
 end
 
 function World:removeObject(PhysObj)
@@ -344,7 +367,7 @@ function World:removeObject(PhysObj)
             break
         end
     end
-    
+
     -- Clear ground relationships
     if PhysObj.isGroundFor then
         for _, obj in ipairs(PhysObj.isGroundFor) do
@@ -352,7 +375,7 @@ function World:removeObject(PhysObj)
         end
         PhysObj.isGroundFor = {}
     end
-    
+
     -- Remove from ground lists of other objects
     for _, obj in ipairs(self.objects) do
         if obj.isGroundFor then
@@ -380,7 +403,7 @@ function World:loadLevel(data)
         local tileMap = lookup[1]
         local tileNo = lookup[2]
 
-		assert(self.tileMaps[tileMap], "The map file has no tilemap with the number" .. tileMap)
+        assert(self.tileMaps[tileMap], "The map file has no tilemap with the number" .. tileMap)
         table.insert(self.tileLookups, self.tileMaps[tileMap].tiles[tileNo])
     end
 
@@ -404,7 +427,15 @@ function World:loadLevel(data)
                 if unresolvedTile ~= 0 then -- 0 means no tile
                     local tile = self.tileLookups[unresolvedTile] -- convert from the saved file's specific tile lookup to the actual tileMap's number
 
-                    assert(tile, string.format("Couldn't load real tile at x=%s, y=%s for requested lookup \"%s\". Check the map file for incorrect numbers or corruption.", x, y, unresolvedTile))
+                    assert(
+                        tile,
+                        string.format(
+                            'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". Check the map file for incorrect numbers or corruption.',
+                            x,
+                            y,
+                            unresolvedTile
+                        )
+                    )
 
                     map[x][y] = Cell:new(x, y, dataLayer, tile)
                 else
@@ -424,7 +455,7 @@ function World:loadLevel(data)
 end
 
 function World:saveLevel(outPath)
-	print("SAVING...")
+    print("SAVING...")
     local out = {}
 
     -- build the lookup table
@@ -456,7 +487,12 @@ function World:saveLevel(outPath)
         end
     end
 
-    table.sort(lookups, function(a, b) return a.count > b.count end)
+    table.sort(
+        lookups,
+        function(a, b)
+            return a.count > b.count
+        end
+    )
 
     -- build tileMap order
     local tileMaps = {}
@@ -480,7 +516,12 @@ function World:saveLevel(outPath)
         tileMaps[tileMapI].count = tileMaps[tileMapI].count + 1
     end
 
-    table.sort(tileMaps, function(a, b) return a.count > b.count end)
+    table.sort(
+        tileMaps,
+        function(a, b)
+            return a.count > b.count
+        end
+    )
 
     out.tileMaps = {}
 
@@ -548,14 +589,14 @@ function World:saveLevel(outPath)
     -- Entities
     out.entities = {}
 
-    table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
+    table.insert(out.entities, {type = "spawn", x = self.spawnX, y = self.spawnY})
 
     success, message = love.filesystem.write(outPath, serialize.tstr(out))
-	if success then
-		print("Saved to " .. outPath .. " (" .. love.filesystem.getAppdataDirectory() .. ")")
-	else
-		print(message)
-	end
+    if success then
+        print("Saved to " .. outPath .. " (" .. love.filesystem.getAppdataDirectory() .. ")")
+    else
+        print(message)
+    end
 end
 
 function World:advancedPhysicsDebug()
@@ -564,20 +605,26 @@ function World:advancedPhysicsDebug()
             self.advancedPhysicsDebugImgData = love.image.newImageData(self.camera.w, self.camera.h)
         end
 
-        self.advancedPhysicsDebugImgData:mapPixel(function (x, y)
-            local worldX = math.round(self.camera.x-self.camera.w/2+x)
-            local worldY = math.round(self.camera.y-self.camera.h/2+y)
-            if self:checkCollision(worldX, worldY, game.players[1].actor) then
-                return 1, 1, 1, 1
-            else
-                return 1, 1, 1, 0
+        self.advancedPhysicsDebugImgData:mapPixel(
+            function(x, y)
+                local worldX = math.round(self.camera.x - self.camera.w / 2 + x)
+                local worldY = math.round(self.camera.y - self.camera.h / 2 + y)
+                if self:checkCollision(worldX, worldY, game.players[1].actor) then
+                    return 1, 1, 1, 1
+                else
+                    return 1, 1, 1, 0
+                end
             end
-        end)
+        )
 
         self.advancedPhysicsDebugImg = love.graphics.newImage(self.advancedPhysicsDebugImgData)
     end
 
-    love.graphics.draw(self.advancedPhysicsDebugImg, math.round(self.camera.x-self.camera.w/2), math.round(self.camera.y-self.camera.h/2))
+    love.graphics.draw(
+        self.advancedPhysicsDebugImg,
+        math.round(self.camera.x - self.camera.w / 2),
+        math.round(self.camera.y - self.camera.h / 2)
+    )
 end
 
 function World:portalVectorDebug()
@@ -603,7 +650,7 @@ function World:checkCollision(x, y, obj, vector, portalled)
                 local nx, ny = pointAroundPoint(x, y, portal.x1, portal.y1, -portal.angle)
 
                 -- comments use an up-pointing portal as example
-                if nx > portal.x1 and nx < portal.x1+portal.size then -- point is horizontally within the portal
+                if nx > portal.x1 and nx < portal.x1 + portal.size then -- point is horizontally within the portal
                     if ny > portal.y1 then
                         if ny < portal.y1 + 1 then -- first pixel's free, because bumpy conversion from vector positions to pixel collision can create some bad effects
                             return false
@@ -612,13 +659,11 @@ function World:checkCollision(x, y, obj, vector, portalled)
 
                             return self:checkCollision(newX, newY, obj, vector, true)
                         end
-
                     elseif ny > portal.y1 - 0.00000001 then -- stops a thin line covering 45° portals
                         return false
                     end
                 else
                     if ny > portal.y1 then
-
                         if ny < portal.y1 + 2 then -- add a thin line of collision to the portal's edges
                             return fakeCellInstance
                         else
@@ -633,7 +678,7 @@ function World:checkCollision(x, y, obj, vector, portalled)
     end
 
     -- level boundaries
-    if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
+    if x < 0 or x >= self:getXEnd() * 16 then -- todo: bad for performance due to recalculation of XEnd!
         return fakeCellInstance
     end
 
@@ -676,7 +721,7 @@ function World:checkCollisionCommon(x, y, obj, vector, checkGroups)
     end
 
     -- level boundaries
-    if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
+    if x < 0 or x >= self:getXEnd() * 16 then -- todo: bad for performance due to recalculation of XEnd!
         return fakeCellInstance
     end
 
@@ -774,8 +819,8 @@ local function rayCastGetColSide(side, stepX, stepY)
 end
 
 function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/raycasting.html - thanks!
-    local rayPosX = x+1
-    local rayPosY = y+1
+    local rayPosX = x + 1
+    local rayPosY = y + 1
     local rayDirX = math.cos(dir)
     local rayDirY = math.sin(dir)
 
@@ -793,10 +838,21 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
         local xEnd = self:getXEnd()
         local yEnd = self:getYEnd()
 
-        local rayPos2X = rayPosX + rayDirX*100000
-        local rayPos2Y = rayPosY + rayDirY*100000 -- GOOD CODE (todo? may be fine)
+        local rayPos2X = rayPosX + rayDirX * 100000
+        local rayPos2Y = rayPosY + rayDirY * 100000 -- GOOD CODE (todo? may be fine)
 
-        if not rectangleOnLine(xStart, yStart, xEnd-xStart+1, yEnd-yStart+1, rayPosX, rayPosY, rayPos2X, rayPos2Y) then
+        if
+            not rectangleOnLine(
+                xStart,
+                yStart,
+                xEnd - xStart + 1,
+                yEnd - yStart + 1,
+                rayPosX,
+                rayPosY,
+                rayPos2X,
+                rayPos2Y
+            )
+         then
             return false
         end
 
@@ -811,7 +867,7 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
     local stepX, stepY
 
     local hit = false -- was there a wall hit?
-    local side -- was a NS or a EW wall hit?
+    local side  -- was a NS or a EW wall hit?
     local sideDistX, sideDistY
     -- calculate step and initial sideDist
     if rayDirX < 0 then
@@ -850,23 +906,22 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
                         local tile = layer:getTile(mapX, mapY)
 
                         if tile and tile.collision then
-                            if  tile.props.exclusiveCollision and
-                                (tile.props.exclusiveCollision ~= rayCastGetColSide(side, stepX, stepY) or
-                                firstCheck) then
+                            if
+                                tile.props.exclusiveCollision and
+                                    (tile.props.exclusiveCollision ~= rayCastGetColSide(side, stepX, stepY) or
+                                        firstCheck)
+                             then
                                 -- don't collide when coming from the wrong side in exclusiveCollision
                                 -- also don't collide if we are inside an exclusiveCollision
-
                             elseif tile.collision == VAR("tileTemplates").cube then
                                 cubeCol = true
-
                             else
-
                                 -- complicated polygon stuff
                                 local col
 
                                 -- Trace line
                                 local t1x, t1y = x, y
-                                local t2x, t2y = x+math.cos(dir)*100000, y+math.sin(dir)*100000 --todo find a better way for this
+                                local t2x, t2y = x + math.cos(dir) * 100000, y + math.sin(dir) * 100000 --todo find a better way for this
 
                                 for i = 1, #tile.collision, 2 do
                                     local nextI = i + 2
@@ -876,19 +931,23 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
                                     end
 
                                     -- Polygon edge line
-                                    local p1x, p1y = tile.collision[i]/self.tileSize+mapX-1, tile.collision[i+1]/self.tileSize+mapY-1
-                                    local p2x, p2y = tile.collision[nextI]/self.tileSize+mapX-1, tile.collision[nextI+1]/self.tileSize+mapY-1
+                                    local p1x, p1y =
+                                        tile.collision[i] / self.tileSize + mapX - 1,
+                                        tile.collision[i + 1] / self.tileSize + mapY - 1
+                                    local p2x, p2y =
+                                        tile.collision[nextI] / self.tileSize + mapX - 1,
+                                        tile.collision[nextI + 1] / self.tileSize + mapY - 1
 
                                     local interX, interY = linesIntersect(p1x, p1y, p2x, p2y, t1x, t1y, t2x, t2y)
                                     if interX then
-                                        local dist = math.sqrt((t1x-interX)^2 + (t1y-interY)^2)
+                                        local dist = math.sqrt((t1x - interX) ^ 2 + (t1y - interY) ^ 2)
 
                                         if not col or dist < col.dist then
                                             col = {
                                                 dist = dist,
                                                 x = interX,
                                                 y = interY,
-                                                side = (i+1)/2
+                                                side = (i + 1) / 2
                                             }
                                         end
                                     end
@@ -909,8 +968,8 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
                 end
 
                 if cubeCol then
-                    local absX = mapX-1
-                    local absY = mapY-1
+                    local absX = mapX - 1
+                    local absY = mapY - 1
 
                     if side == "ver" then
                         local dist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX
@@ -953,12 +1012,11 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
 end
 
 function World:inMap(x, y)
-    return  x >= self:getXStart() and x <= self:getXEnd() and
-            y >= self:getYStart() and y <= self:getYEnd()
+    return x >= self:getXStart() and x <= self:getXEnd() and y >= self:getYStart() and y <= self:getYEnd()
 end
 
 function World:coordinateToWorld(x, y)
-    return x*self.tileSize, y*self.tileSize
+    return x * self.tileSize, y * self.tileSize
 end
 
 function World:coordinateToCamera(x, y)
@@ -967,7 +1025,7 @@ function World:coordinateToCamera(x, y)
 end
 
 function World:worldToCoordinate(x, y)
-    return math.floor(x/self.tileSize)+1, math.floor(y/self.tileSize)+1
+    return math.floor(x / self.tileSize) + 1, math.floor(y / self.tileSize) + 1
 end
 
 function World:cameraToCoordinate(x, y)
@@ -992,7 +1050,7 @@ end
 
 function World:getMouse()
     local x, y = love.mouse.getPosition()
-    return x/VAR("scale"), y/VAR("scale")
+    return x / VAR("scale"), y / VAR("scale")
 end
 
 function World:getTile(x, y)
@@ -1018,8 +1076,8 @@ function World:getCoordinateRectangle(x, y, w, h, clamp)
         h = -h
     end
 
-    lx, ty = self:worldToCoordinate(x+8, y+8)
-    rx, by = self:worldToCoordinate(x+w-8, y+h-8)
+    lx, ty = self:worldToCoordinate(x + 8, y + 8)
+    rx, by = self:worldToCoordinate(x + w - 8, y + h - 8)
 
     if clamp then
         if lx > self:getXEnd() or rx < 1 or ty > self:getYEnd() or by < 1 then -- selection is completely outside layer
@@ -1040,29 +1098,29 @@ function World:attemptPortal(layer, tileX, tileY, side, x, y, color, ignoreP)
 
     if x1 then
         -- make sure that the surface is big enough to hold a portal
-        local length = math.sqrt((x1-x2)^2+(y1-y2)^2)
+        local length = math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2)
 
         if length >= VAR("portalSize") then
-            local angle = math.atan2(y2-y1, x2-x1)
-            local middleProgress = math.sqrt((x-x1)^2+(y-y1)^2)/length
+            local angle = math.atan2(y2 - y1, x2 - x1)
+            local middleProgress = math.sqrt((x - x1) ^ 2 + (y - y1) ^ 2) / length
 
-            local leftSpace = middleProgress*length
-            local rightSpace = (1-middleProgress)*length
+            local leftSpace = middleProgress * length
+            local rightSpace = (1 - middleProgress) * length
 
-            if leftSpace < VAR("portalSize")/2 then -- move final portal position to the right
-                middleProgress = (VAR("portalSize")/2/length)
-            elseif rightSpace < VAR("portalSize")/2 then -- move final portal position to the left
-                middleProgress = 1-(VAR("portalSize")/2/length)
+            if leftSpace < VAR("portalSize") / 2 then -- move final portal position to the right
+                middleProgress = (VAR("portalSize") / 2 / length)
+            elseif rightSpace < VAR("portalSize") / 2 then -- move final portal position to the left
+                middleProgress = 1 - (VAR("portalSize") / 2 / length)
             end
 
-            local mX = x1 + (x2-x1)*middleProgress
-            local mY = y1 + (y2-y1)*middleProgress
+            local mX = x1 + (x2 - x1) * middleProgress
+            local mY = y1 + (y2 - y1) * middleProgress
 
-            local p1x = math.cos(angle+math.pi)*VAR("portalSize")/2+mX - .5
-            local p1y = math.sin(angle+math.pi)*VAR("portalSize")/2+mY - .5
+            local p1x = math.cos(angle + math.pi) * VAR("portalSize") / 2 + mX - .5
+            local p1y = math.sin(angle + math.pi) * VAR("portalSize") / 2 + mY - .5
 
-            local p2x = math.cos(angle)*VAR("portalSize")/2+mX - .5
-            local p2y = math.sin(angle)*VAR("portalSize")/2+mY - .5
+            local p2x = math.cos(angle) * VAR("portalSize") / 2 + mX - .5
+            local p2y = math.sin(angle) * VAR("portalSize") / 2 + mY - .5
 
             local portal = Portal:new(self, p1x, p1y, p2x, p2y, color)
             table.insert(self.portals, portal)
@@ -1081,24 +1139,24 @@ function World:portalPoint(x, y, inPortal, outPortal, reversed)
 
     if not reversed then
         -- Rotate around entry portal (+ half a turn)
-        newX, newY = pointAroundPoint(x, y, inPortal.x2, inPortal.y2, -inPortal.angle-math.pi)
+        newX, newY = pointAroundPoint(x, y, inPortal.x2, inPortal.y2, -inPortal.angle - math.pi)
 
         -- Translate by portal offset (from opposite sides)
         newX = newX + (outPortal.x1 - inPortal.x2)
         newY = newY + (outPortal.y1 - inPortal.y2)
     else
         -- Rotate around entry portal
-	    newX, newY = pointAroundPoint(x, y, inPortal.x1, inPortal.y1, -inPortal.angle)
+        newX, newY = pointAroundPoint(x, y, inPortal.x1, inPortal.y1, -inPortal.angle)
 
         -- mirror along entry portal
-        newY = newY + (inPortal.y1-newY)*2
+        newY = newY + (inPortal.y1 - newY) * 2
 
         -- Translate by portal offset
         newX = newX + (outPortal.x1 - inPortal.x1)
         newY = newY + (outPortal.y1 - inPortal.y1)
     end
 
-	-- Rotate around exit portal
+    -- Rotate around exit portal
     return pointAroundPoint(newX, newY, outPortal.x1, outPortal.y1, outPortal.angle)
 end
 
@@ -1106,7 +1164,7 @@ function World:doPortal(portal, x, y, angle)
     -- Check whether to reverse portal direction (when portal face the same way)
     local reversed = portal:getReversed(portal.connectsTo)
 
-	-- Modify speed
+    -- Modify speed
     local r
     local rDiff
 
@@ -1125,14 +1183,22 @@ function World:doPortal(portal, x, y, angle)
 end
 
 local windMill = {
-    -1, -1,
-    0, -1,
-    1, -1,
-    1,  0,
-    1,  1,
-    0,  1,
-    -1,  1,
-    -1, 0
+    -1,
+    -1,
+    0,
+    -1,
+    1,
+    -1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    -1,
+    1,
+    -1,
+    0
 }
 
 local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a rewrite.
@@ -1146,12 +1212,12 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
         found = false
 
         if dir == "clockwise" then
-            x = tile.collision[side*2-1]
-            y = tile.collision[side*2]
+            x = tile.collision[side * 2 - 1]
+            y = tile.collision[side * 2]
 
             nextSide = side + 1
 
-            if nextSide > #tile.collision/2 then
+            if nextSide > #tile.collision / 2 then
                 nextSide = 1
             end
         elseif dir == "anticlockwise" then
@@ -1162,24 +1228,24 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                 -- Move x and y though because reasons
                 local tempSide = side + 1
 
-                if tempSide > #tile.collision/2 then
+                if tempSide > #tile.collision / 2 then
                     tempSide = 1
                 end
 
-                x = tile.collision[tempSide*2-1]
-                y = tile.collision[tempSide*2]
+                x = tile.collision[tempSide * 2 - 1]
+                y = tile.collision[tempSide * 2]
             else
                 nextSide = side - 1
                 if nextSide == 0 then
-                    nextSide = #tile.collision/2
+                    nextSide = #tile.collision / 2
                 end
             end
         end
 
-        nextX = tile.collision[nextSide*2-1]
-        nextY = tile.collision[nextSide*2]
+        nextX = tile.collision[nextSide * 2 - 1]
+        nextY = tile.collision[nextSide * 2]
 
-        nextAngle = math.atan2(nextX-x, nextY-y)
+        nextAngle = math.atan2(nextX - x, nextY - y)
 
         if first then
             angle = nextAngle
@@ -1199,7 +1265,6 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                     moveY = -1
                 elseif nextY == 16 and nextX ~= 0 and nextX ~= 16 then -- DOWN
                     moveY = 1
-
                 else
                     if nextX == 0 and nextY == 0 then -- top left, either upleft or up or left
                         if dir == "clockwise" and x == 0 then -- UP
@@ -1210,7 +1275,6 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                             moveX = -1
                             moveY = -1
                         end
-
                     elseif nextX == 16 and nextY == 0 then -- top right, either upright or right or up
                         if dir == "clockwise" and y == 0 then -- RIGHT
                             moveX = 1
@@ -1220,7 +1284,6 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                             moveX = 1
                             moveY = -1
                         end
-
                     elseif nextX == 16 and nextY == 16 then -- bottom right, either downright or down or right
                         if dir == "clockwise" and x == 16 then -- DOWN
                             moveY = 1
@@ -1230,7 +1293,6 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                             moveX = 1
                             moveY = 1
                         end
-
                     elseif nextX == 0 and nextY == 16 then -- bottom left, either downleft or left or down
                         if dir == "clockwise" and y == 16 then -- LEFT
                             moveX = -1
@@ -1249,8 +1311,8 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                 -- Find where on the "windmill" we are
                 local pos
                 for i = 1, #windMill, 2 do
-                    if windMill[i] == moveX and windMill[i+1] == moveY then
-                        pos = (i+1)/2
+                    if windMill[i] == moveX and windMill[i + 1] == moveY then
+                        pos = (i + 1) / 2
                     end
                 end
 
@@ -1270,8 +1332,8 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                     end
                 end
 
-                local checkTileX = tileX + windMill[nextPos*2-1]
-                local checkTileY = tileY + windMill[nextPos*2]
+                local checkTileX = tileX + windMill[nextPos * 2 - 1]
+                local checkTileY = tileY + windMill[nextPos * 2]
 
                 local checkTile
 
@@ -1282,8 +1344,8 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                 nextTileX = tileX + moveX
                 nextTileY = tileY + moveY
 
-                x = nextX - moveX*self.tileSize
-                y = nextY - moveY*self.tileSize
+                x = nextX - moveX * self.tileSize
+                y = nextY - moveY * self.tileSize
 
                 tileX = nextTileX
                 tileY = nextTileY
@@ -1296,14 +1358,14 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                             local points = nextTile.collision
 
                             for i = 1, #points, 2 do
-                                if points[i] == x and points[i+1] == y then
-                                    local nextBlockSide = (i+1)/2
+                                if points[i] == x and points[i + 1] == y then
+                                    local nextBlockSide = (i + 1) / 2
 
                                     if dir == "anticlockwise" then
                                         nextBlockSide = nextBlockSide - 1
 
                                         if nextBlockSide == 0 then
-                                            nextBlockSide = #nextTile.collision/2
+                                            nextBlockSide = #nextTile.collision / 2
                                         end
                                     end
 
@@ -1314,7 +1376,7 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
                                         -- not valid either!
                                     else
                                         found = true
-                                        side = (i+1)/2
+                                        side = (i + 1) / 2
                                         tile = nextTile
                                     end
                                 end
@@ -1331,7 +1393,7 @@ local function walkSide(self, layer, tile, tileX, tileY, side, dir) -- needs a r
         first = false
     until not found
 
-    return tileX+x/self.tileSize-1, tileY+y/self.tileSize-1
+    return tileX + x / self.tileSize - 1, tileY + y / self.tileSize - 1
 end
 
 function World:checkPortalSurface(layer, tileX, tileY, side, worldX, worldY, ignoreP)
@@ -1369,17 +1431,20 @@ function World:checkPortalSurface(layer, tileX, tileY, side, worldX, worldY, ign
                 local onLine = pointOnLine(p.x1, p.y1, p.x2, p.y2, worldX, worldY)
                 if onLine then -- surface is the same! (or at least on the same line which is good enough)
                     if onLine >= 0 then -- Check on which side of the same surface portal we are
-                        if math.abs(startX-.5-worldX) > math.abs(p.x2-worldX) or
-                            math.abs(startY-.5-worldY) > math.abs(p.y2-worldY) then -- finally check that we are not accidentally lengthening the portal surface
-                            startX = p.x2+.5
-                            startY = p.y2+.5
+                        if
+                            math.abs(startX - .5 - worldX) > math.abs(p.x2 - worldX) or
+                                math.abs(startY - .5 - worldY) > math.abs(p.y2 - worldY)
+                         then -- finally check that we are not accidentally lengthening the portal surface
+                            startX = p.x2 + .5
+                            startY = p.y2 + .5
                         end
-
                     else
-                        if math.abs(endX-.5-worldX) > math.abs(p.x1-worldX) or
-                            math.abs(endY-.5-worldY) > math.abs(p.y1-worldY) then
-                            endX = p.x1+.5
-                            endY = p.y1+.5
+                        if
+                            math.abs(endX - .5 - worldX) > math.abs(p.x1 - worldX) or
+                                math.abs(endY - .5 - worldY) > math.abs(p.y1 - worldY)
+                         then
+                            endX = p.x1 + .5
+                            endY = p.y1 + .5
                         end
                     end
                 end
