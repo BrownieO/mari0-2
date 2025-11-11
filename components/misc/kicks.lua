@@ -1,21 +1,21 @@
 local Component = require "class.Component"
 local kicks = class("misc.kicks", Component)
 
-function kicks:leftCollision(dt, actorEvent, obj2)
+function kicks:leftContact(dt, actorEvent, obj2)
     if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
         obj2:event("kicked", 0, -1)
         actorEvent.returns = true
     end
 end
 
-function kicks:rightCollision(dt, actorEvent, obj2)
+function kicks:rightContact(dt, actorEvent, obj2)
     if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
         obj2:event("kicked", 0, 1)
         actorEvent.returns = true
     end
 end
 
-function kicks:bottomCollision(dt, actorEvent, obj2)
+function kicks:bottomContact(dt, actorEvent, obj2)
     if obj2:hasComponent("misc.kickable") then
         if obj2.cache.speed[1] == 0 then -- kick it
             local selfX = self.actor.x + self.actor.width*.5
