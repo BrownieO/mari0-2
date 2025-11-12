@@ -14,5 +14,10 @@ return {
 			powerUpType = "big",
 			whitelist = {"small"}
 		},
+        ["movement.truffleShuffle"] = {
+            dontTurnAnimation = true,
+            maxSpeed = 32,
+			startSpeed = -32,
+        },
     }
 }
