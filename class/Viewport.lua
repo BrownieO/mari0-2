@@ -50,7 +50,7 @@ function Viewport:update(dt)
         end
 
         -- Only scroll up in flight mode
-        if self.target.flying or self.camera.y < self.level:getYEnd()*16-CAMERAHEIGHT then -- ?
+        if self.target.flying or self.camera.y < self.level:getYEnd()*16-CAMERAHEIGHT or true then -- Always enabled for now
             if pYr < UPSCROLLBORDER then
                 self.camera.y = self.camera.y - VAR("cameraScrollRate")*dt
 
