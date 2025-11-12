@@ -12,5 +12,10 @@ return {
         ["misc.unrotate"] = {},
 		["misc.lifeOnMarioContact"] = {},
 		["misc.removeOnMarioContact"] = {},
+        ["movement.truffleShuffle"] = {
+            dontTurnAnimation = true,
+            maxSpeed = 32,
+			startSpeed = -32,
+        },
     }
 }
