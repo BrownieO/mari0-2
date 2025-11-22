@@ -97,5 +97,6 @@ return {
         ["misc.bumpsBlocks"] = {dontBreak = true},
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
+		["smb3.star"] = {},
     }
 }

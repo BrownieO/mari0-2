@@ -135,5 +135,6 @@ return {
         ["misc.bumpsBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
+		["smb3.star"] = {},
     }
 }
