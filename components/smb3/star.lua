@@ -2,11 +2,10 @@ local Component = require "class.Component"
 local star = class("smb3.star", Component)
 
 local STARTIME = 7.45
-
-local STARFRAMESLOWTIME = 1 -- see STARFRAMETIMESLOW
+local STARFRAMESLOWTIME = 1
 
 local STARFRAMETIME = 1/60
-local STARFRAMETIMESLOW = 4/60 -- used during the last STARFRAMESLOWTIME seconds
+local STARFRAMETIMESLOW = 4/60
 
 local STARPALETTES = {
     convertPalette({
@@ -14,13 +13,11 @@ local STARPALETTES = {
         {  0,   0,   0},
         {216,  40,   0},
     }),
-
     convertPalette({
         {252, 252, 252},
         {  0,   0,   0},
         { 76, 220,  72},
     }),
-
     convertPalette({
         {252, 188, 176},
         {  0,   0,   0},
@@ -28,46 +25,59 @@ local STARPALETTES = {
     })
 }
 
-function star:initialize(actor, args)
-    Component.initialize(self, actor, args)
+function star:getStar()
+    if not self.active then
+        self.active = true
+        self.actor.starred = true
+        self.actor.somerSaultFrame = 2
+        self.actor.somerSaultFrameTimer = 0
 
-    self.actor.starred = true
+        love.audio.stop()
+        playMusic("starman")
+    end
+
     self.actor.starTimer = 0
-    self.actor.somerSaultFrame = 2
-    self.actor.somerSaultFrameTimer = 0
-	love.audio.stop()
-	playMusic("starman")
+end
+
+function star:loseStar()
+    if self.active then
+        self.active = false
+        self.actor.starred = false
+        self.actor.starTimer = 0
+        self.actor.palette = self.actor.defaultPalette
+
+        love.audio.stop()
+        playMusic(game.level.music)
+    end
 end
 
 function star:update(dt, actorEvent)
-    self.actor.starTimer = self.actor.starTimer + dt
-
-    -- get frame
-    local palette
-    if self.actor.starTimer >= STARTIME - STARFRAMESLOWTIME then
-        palette = math.ceil(math.fmod(self.actor.starTimer, (#STARPALETTES+1)*STARFRAMETIMESLOW)/STARFRAMETIMESLOW)
-    else
-        palette = math.ceil(math.fmod(self.actor.starTimer, (#STARPALETTES+1)*STARFRAMETIME)/STARFRAMETIME)
+    if not self.active then
+        return
     end
 
-    if palette == 4 then
+    self.actor.starTimer = self.actor.starTimer + dt
+
+    local frameTime = (self.actor.starTimer >= STARTIME - STARFRAMESLOWTIME)
+        and STARFRAMETIMESLOW or STARFRAMETIME
+
+    local totalCycleTime = (#STARPALETTES + 1) * frameTime
+    local cyclePos = math.fmod(self.actor.starTimer, totalCycleTime)
+    local paletteIndex = math.floor(cyclePos / frameTime) + 1
+
+    if paletteIndex > #STARPALETTES then
         self.actor.palette = self.actor.defaultPalette
     else
-        self.actor.palette = STARPALETTES[palette]
+        self.actor.palette = STARPALETTES[paletteIndex]
     end
 
     if self.actor.starTimer >= STARTIME then
-        self.actor.palette = self.actor.defaultPalette
-        self.actor.starred = false
-		love.audio.stop()
-		playMusic(game.level.music)
-
-        self.actor:removeComponent(self.class)
+        self:loseStar()
     end
 end
 
 function star:jump()
-    if self.actor.onGround then
+    if self.active and self.actor.onGround then
         self.actor.somerSaultFrame = 2
         self.actor.somerSaultFrameTimer = 0
     end

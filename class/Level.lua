@@ -166,8 +166,7 @@ function Level:cmdpressed(cmds)
     end
 
     if cmds["debug.star"] then -- debug
-        game.players[1].actor:removeComponent("smb3.star")
-        game.players[1].actor:addComponent("smb3.star")
+        game.players[1].actor:event("getStar")
     end
 end
 
