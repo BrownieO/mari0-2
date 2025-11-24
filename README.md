@@ -1,6 +1,6 @@
 # Mari0 2
 
-This is my fork of Mari0 2, the planned sequel of Mari0 which would combine Super Mario Bros 3 with elements of Portal.
+This is my fork of Mari0 2, the planned sequel of Mari0. The game would combine Super Mario Bros 3 with elements of Portal.
 
 Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to get started.
 
