@@ -1,8 +1,10 @@
 # Mari0 2
 
-Sequel to Mari0 based on Super Mario Bros 3
+This is my fork of Mari0 2, the planned sequel of Mari0 which would combine Super Mario Bros 3 with elements of Portal.
 
-Developed for LÖVE 11.3
+Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to get started.
+
+Developed for LÖVE 11.5
 
 ## Credits
 
@@ -10,5 +12,5 @@ Developed for LÖVE 11.3
 - Maurice Guégan - Everything not listed somewhere else
 - Hans Cárdenas - Mario sprites, title logo
 - Technochips - Fixes
-- BrownieO - [Wiki](https://github.com/BrownieO/mari0-2/wiki), quick patches, utilities
+- BrownieO - Wiki, quick patches, utilities.
 - awesomezack - P-Balloon sprites
