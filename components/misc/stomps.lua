@@ -6,7 +6,7 @@ stomps.argList = {
 }
 
 function stomps:bottomContact(dt, actorEvent, obj2)
-    if obj2:hasComponent("misc.stompable") and not self.actor.starred then
+    if obj2:hasComponent("misc.stompable") and not self.actor.starred and not self.actor.iFramed then
         -- self.actor.y = obj2.y-self.actor.height
         self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
 
