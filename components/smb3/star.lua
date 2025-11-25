@@ -26,7 +26,7 @@ local STARPALETTES = {
 }
 
 function star:getStar()
-    if not self.actor.starred then
+    if not self.active then
         self.active = true
         self.actor.starred = true
         self.actor.somerSaultFrame = 2
