@@ -1,6 +1,6 @@
 # Mari0 2
 
-![the unstable game](other/pixel_tile_bug.png)
+![Picture of the game](other/pixel_tile_bug.png)
 
 This is my fork of Mari0 2, the planned sequel of Mari0. The game will combine Super Mario Bros 3 with some elements from Portal.
 
