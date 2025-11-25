@@ -31,7 +31,9 @@ function iFrames:update(dt, actorEvent)
 end
 
 function iFrames:getHurt()
-	iFrames:getIFrames()
+	if self.actor then
+		self:getIFrames()
+	end
 end
 
 return iFrames
