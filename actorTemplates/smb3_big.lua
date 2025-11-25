@@ -130,5 +130,6 @@ return {
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
 		["smb3.star"] = {},
+		["smb3.iFrames"] = {},
     }
 }

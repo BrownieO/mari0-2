@@ -98,5 +98,6 @@ return {
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
 		["smb3.star"] = {},
+		["smb3.iFrames"] = {},
     }
 }
