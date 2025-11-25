@@ -26,7 +26,7 @@ local STARPALETTES = {
 }
 
 function star:getStar()
-    if not self.active then
+    if not self.actor.starred then
         self.active = true
         self.actor.starred = true
         self.actor.somerSaultFrame = 2
@@ -40,7 +40,7 @@ function star:getStar()
 end
 
 function star:loseStar()
-    if self.active then
+    if self.actor.starred then
         self.active = false
         self.actor.starred = false
         self.actor.starTimer = 0
@@ -52,7 +52,7 @@ function star:loseStar()
 end
 
 function star:update(dt, actorEvent)
-    if not self.active then
+    if not self.actor.starred then
         return
     end
 
