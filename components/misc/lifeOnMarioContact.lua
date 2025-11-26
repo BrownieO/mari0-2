@@ -5,19 +5,19 @@ function lifeOnMarioContact:initialize(actor, args)
     Component.initialize(self, actor, args)
 end
 
-function lifeOnMarioContact:leftCollision(dt, actorEvent, obj2)
+function lifeOnMarioContact:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
 
-function lifeOnMarioContact:rightCollision(dt, actorEvent, obj2)
+function lifeOnMarioContact:rightContact(dt, actorEvent, obj2)
     self:resolve("left", obj2)
 end
 
-function lifeOnMarioContact:topCollision(dt, actorEvent, obj2)
+function lifeOnMarioContact:topContact(dt, actorEvent, obj2)
     self:resolve("bottom", obj2)
 end
 
-function lifeOnMarioContact:bottomCollision(dt, actorEvent, obj2)
+function lifeOnMarioContact:bottomContact(dt, actorEvent, obj2)
     self:resolve("top", obj2)
 end
 
