@@ -1,19 +1,19 @@
 local Component = require "class.Component"
 local collectsPowerUps = class("misc.collectsPowerUps", Component)
 
-function collectsPowerUps:rightCollision(dt, actorEvent, obj2)
+function collectsPowerUps:rightContact(dt, actorEvent, obj2)
     self:resolve("left", obj2)
 end
 
-function collectsPowerUps:leftCollision(dt, actorEvent, obj2)
+function collectsPowerUps:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
 
-function collectsPowerUps:topCollision(dt, actorEvent, obj2)
+function collectsPowerUps:topContact(dt, actorEvent, obj2)
     self:resolve("bottom", obj2)
 end
 
-function collectsPowerUps:bottomCollision(dt, actorEvent, obj2)
+function collectsPowerUps:bottomContact(dt, actorEvent, obj2)
     self:resolve("top", obj2)
 end
 

@@ -8,6 +8,9 @@ return {
     centerX = 8,
     centerY = 8,
 
+    collisionGroup = 16,
+    noncollide = 4,
+
     components = {
         ["misc.unrotate"] = {},
 		["misc.powerUp"] = {
