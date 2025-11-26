@@ -48,6 +48,7 @@ return {
             into = "koopa_red_shell"
         },
 		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {}
+		["misc.knockedWhenHurt"] = {},
+		["misc.isHurtByContact"] = {},
     }
 }
