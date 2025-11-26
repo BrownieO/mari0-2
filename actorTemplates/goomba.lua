@@ -34,6 +34,7 @@ return {
 			top = false
 		},
 		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {}
+		["misc.knockedWhenHurt"] = {},
+        ["misc.isHurtByContact"] = {},
 	}
 }
