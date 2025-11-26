@@ -8,6 +8,10 @@ return {
     centerX = 8,
     centerY = 25,
 
+    collisionGroup = 8,
+    noncollide = 4,
+
+
     components = {
         ["misc.palettable"] = {
             imgPalette = {
@@ -33,6 +37,12 @@ return {
         },
         ["misc.unrotate"] = {},
         ["misc.stompable"] = {},
+		["misc.hurtsByContact"] = {
+			left = true,
+			right = true,
+			bottom = true,
+			top = false
+		},
         ["misc.transforms"] = {
             on = "getStomped",
             into = "koopa_red_shell"

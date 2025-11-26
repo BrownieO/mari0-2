@@ -9,7 +9,8 @@ CollisionGroups.TILE = 2
 CollisionGroups.PLAYER = 4
 CollisionGroups.ENEMY = 8
 CollisionGroups.POWER_UP = 16
-CollisionGroups.OBJECT = 32
+CollisionGroups.ENVIRONMENT = 32
+CollisionGroups.PROJECTILE = 64
 
 function CollisionGroups.shouldCollide(obj1, obj2)
     if not obj1.collisionGroup or not obj2.collisionGroup then
