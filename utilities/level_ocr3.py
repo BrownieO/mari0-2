@@ -1,7 +1,7 @@
 '''
 OCR = Optical C(level) Recognition
 By BrownieO
-Reads a level image and makes arrays of tile IDs.
+Reads a level image and makes an array of tile IDs.
 It also can sort the IDs by frequency.
 '''
 import argparse
@@ -9,7 +9,7 @@ import numpy as np
 from pathlib import Path
 from PIL import Image, ImageChops
 
-parser = argparse.ArgumentParser(description="Reads a level image and makes arrays of tile IDs.")
+parser = argparse.ArgumentParser(description="Reads a level image and makes an array of tile IDs.")
 parser.add_argument("-f", "--file", help="set the input file path.")
 parser.add_argument("-l", "--level", action="store_true", help="output a full level array.")
 parser.add_argument("-p", "--palette", action="store_true", help="output an image with all the unique tiles.")
@@ -110,8 +110,11 @@ if sort_tiles:
 
 if create_palette:
     im = create_image_chain(image_chain)
-    im.save(Path(image_file).stem + "_palette.png")
-    print("Palette saved to", Path(image_file).stem + "_palette.png")
+    
+    output_palette_path = Path(image_file).parent / (Path(image_file).stem + "_palette.png")
+    
+    im.save(output_palette_path)
+    print(f"Palette saved to {output_palette_path}")
 
 if create_level:
     level = np.reshape(level, (rows, cols))
@@ -120,5 +123,7 @@ if create_level:
     level_formatted = np.rot90(level_formatted, 3)
     level_formatted = np.fliplr(level_formatted)
     
-    np.savetxt(Path(image_file).stem + ".csv", level_formatted, fmt = "%d", delimiter=",")
-    print("Level array saved to saved to", Path(image_file).stem + ".csv")
+    output_path = Path(image_file).parent / (Path(image_file).stem + ".csv")
+    
+    np.savetxt(output_path, level_formatted, fmt="%d", delimiter=",")
+    print(f"Level array saved to {output_path}")
