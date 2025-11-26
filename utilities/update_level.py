@@ -8,7 +8,7 @@ import numpy as np
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Port Mari0 level arrays to Mari3 format.')
-    parser.add_argument('--map', type=str, required=True, help='Path to the array')
+    parser.add_argument('--map', type=str, required=True, help='Path to the ID list')
     parser.add_argument('--width', type=int, required=True, help='Width of the map')
     parser.add_argument('--output', type=str, default=None, help='Output file to save the result (optional)')
     
