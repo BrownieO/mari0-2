@@ -206,7 +206,10 @@ function Level:bumpBlock(cell, actor, dontBreak)
 		
 		if tile.props.breakable and not dontBreak then
 			cell.layer.map[cell.x][cell.y].tile = nil
+			playSound("block-break")
 			return
+		else
+			playSound("block")
 		end
         -- Make it bounce
         cell.layer:bounceCell(cell.x, cell.y)
@@ -224,6 +227,7 @@ function Level:bumpBlock(cell, actor, dontBreak)
 		elseif item then
 			local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
 			table.insert(self.actors, sprout)
+			playSound("mushroom-appear")
         end
     end
 end
