@@ -93,6 +93,7 @@ function Smb3Ui:update(dt)
 
         while self.pMeterBlinkTimer > VAR("pMeterBlinkTime")*2 do
             self.pMeterBlinkTimer = self.pMeterBlinkTimer - VAR("pMeterBlinkTime")*2
+			playSound("p-meter-new")
         end
     end
 
