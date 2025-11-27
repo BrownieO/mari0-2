@@ -43,11 +43,16 @@ function collectsPowerUps:resolve(dir, obj2)
 		end
 	end
 
-	if isWhitelisted and powerUpComponent["powerUpType"] then
-		local templateKey = "smb3_" .. powerUpComponent["powerUpType"]
-		if actorTemplates[templateKey] then
-			self.actor:loadActorTemplate(actorTemplates[templateKey])
-			self.actor.player.powerUp = powerUpComponent["powerUpType"]
+	if isWhitelisted then
+		if powerUpComponent["powerUpType"] then
+			local templateKey = "smb3_" .. powerUpComponent["powerUpType"]
+			if actorTemplates[templateKey] then
+				self.actor:loadActorTemplate(actorTemplates[templateKey])
+				self.actor.player.powerUp = powerUpComponent["powerUpType"]
+			end
+		end
+		if powerUpComponent["powerUpEvent"] then
+			self.actor:event(powerUpComponent["powerUpEvent"])
 		end
 	end
 	playSound("mushroom-eat")

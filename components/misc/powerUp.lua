@@ -4,7 +4,8 @@ local powerUp = class("misc.powerUp", Component)
 powerUp.argList = {
     {"powerUpType", "string", "fire"},
 	{"whitelist", "table", {}},
-	{"blacklist", "table", {"mega"}}
+	{"blacklist", "table", {"mega"}},
+	{"powerUpEvent", "string", ""}
 }
 
 return powerUp
