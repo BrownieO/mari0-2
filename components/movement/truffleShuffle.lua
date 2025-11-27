@@ -91,6 +91,7 @@ end
 
 function truffleShuffle:kicked(dt, actorEvent, dir)
     self.actor.speed[1] = self.kickSpeed*dir
+	playSound("knock")
 end
 
 function truffleShuffle:unkicked()
