@@ -14,7 +14,7 @@ return {
     components = {
         ["misc.unrotate"] = {},
 		["misc.powerUp"] = {
-			powerUpType = "star",
+			powerUpEvent = "getStar",
 		},
     }
 }
