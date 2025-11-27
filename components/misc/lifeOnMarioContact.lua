@@ -25,6 +25,7 @@ function lifeOnMarioContact:resolve(dir, obj2)
     local collectsCoins = obj2:hasComponent("misc.collectsCoins")
     if collectsCoins then
 		obj2.player.lives = obj2.player.lives + 1
+		playSound("one-up")
     end
 end
 
