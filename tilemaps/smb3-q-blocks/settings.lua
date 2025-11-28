@@ -78,80 +78,106 @@ tiles[9] = {
     turnsInto = 1,
 }
 
-tiles[11] = {
+tiles[10] = {
+    collision = templates.cube,
+    img = "qblock.png",
+    delays = {8/60},
+    holdsItems = true,
+    defaultItem = "coin",
+    turnsInto = 1,
+}
+
+tiles[31] = {
     collision = templates.cube,
 }
 
-tiles[12] = {
+tiles[32] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "mushroom",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[13] = {
+tiles[33] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "fire_flower",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[14] = {
+tiles[34] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "super_leaf",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[15] = {
+tiles[35] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "starman",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[16] = {
+tiles[36] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "one_up",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[17] = {
+tiles[37] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "p_balloon",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[18] = {
+tiles[38] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "tanooki_suit",
-    turnsInto = 11,
+    turnsInto = 31,
 }
 
-tiles[19] = {
+tiles[39] = {
     collision = templates.cube,
     img = "qblockug.png",
     delays = {8/60},
     holdsItems = true,
     defaultItem = "mushroom",
-    turnsInto = 11,
+    turnsInto = 31,
+}
+
+tiles[40] = {
+    collision = templates.cube,
+    img = "qblockug.png",
+    delays = {8/60},
+    holdsItems = true,
+    defaultItem = "coin",
+    turnsInto = 31,
+}
+
+tiles[60] = {
+    collision = templates.cube,
+	invisible = true,
+    holdsItems = true,
+    defaultItem = "coin",
+    turnsInto = 31,
 }
 
 local props = {

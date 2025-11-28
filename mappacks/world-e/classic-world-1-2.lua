@@ -3,14 +3,14 @@ return {
     lookups = {
 		{2, 22}, -- 1. Hard block
 		{2, 21}, -- 2. Brick
-		{2, 14}, -- 3. Q Block
+		{3, 40}, -- 3. Q Block
 		{2, 13}, -- 4. Coin
 		{1,4}, -- 5. Top left ground
 		{1,5}, -- 6. Top ground
 		{1,6}, -- 7. Top right ground
-		{3,13},-- 8. Q block with mushroom 
-		{3,15},-- 9. Q block with starman
-		{3,16},--10. Q block with 1-up
+		{3,33},-- 8. Q block with fire flower 
+		{3,35},-- 9. Q block with starman
+		{3,36},--10. Q block with 1-up
 		{1,24},--11. L ground
 		{1,24},--12. J ground
 		{2,9}, --13. Pipe flare left
