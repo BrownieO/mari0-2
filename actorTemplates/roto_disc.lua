@@ -8,13 +8,13 @@ return {
     centerX = 8,
     centerY = 8,
 	static = true,
-	resistsStar: true,
+	resistsStar = true,
 
     collisionGroup = 1,
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2, 3, 4, 5, 6, 7, 8, 9 10, 11, 12, 13, 14, 15, 16}
+            frames = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
         },
 		["misc.hurtsByContact"] = {
 			left = true,
