@@ -177,7 +177,7 @@ return {
         }
     },
     entities = {
-		{type="spawn",x=1,y=4}
+		{type="spawn",x=2,y=4}
     },
 	
 	backgroundColor = {0, 0, 0},
