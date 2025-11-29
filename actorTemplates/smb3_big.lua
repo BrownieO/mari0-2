@@ -129,6 +129,7 @@ return {
         ["misc.bumpsBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
+		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
     }

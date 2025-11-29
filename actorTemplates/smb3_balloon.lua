@@ -21,10 +21,11 @@ return {
                 {  0,   0,   0}
             },
         },
-        ["misc.unrotate"] = {},
-		
 		["smb3.eightWay"] = {},
 		
+		
+		
+        ["misc.unrotate"] = {},	
         ["misc.crosshair"] = {},
         ["misc.portalGun"] = {},
         ["misc.stomps"] = {},
@@ -34,5 +35,8 @@ return {
         ["misc.bumpsBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
+		["misc.losesLife"] = {on = "getKilled"},
+		["smb3.star"] = {},
+		["smb3.iFrames"] = {},
     }
 }
