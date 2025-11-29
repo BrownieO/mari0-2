@@ -15,7 +15,7 @@ return {
 		{3, 105}, --12. Stage end border
 		{2, 2}, --13. Goal block
 		{3, 3}, --14. Ground right
-		{4, 2}, --15. Mushroom block
+		{4, 3}, --15. Q block with fire flower
 		{3, 1}, --16. Ground left
 		{3, 1}, --17. Ground left
 
@@ -209,7 +209,7 @@ return {
 {1,1,1,1,1,1,1,1,1,6,5,3},
 {1,1,1,1,1,1,1,1,1,9,1,3},
 {1,1,1,1,1,1,1,1,1,1,1,3},
-{1,1,1,1,1,1,13,1,1,1,1,3},
+{1,1,1,1,1,1,1,1,1,1,1,3},
 {1,1,1,1,1,1,1,1,1,1,1,3},
 {1,1,1,1,1,1,1,1,1,1,1,3},
 {1,1,1,1,1,1,1,1,10,1,1,3},
@@ -221,7 +221,21 @@ return {
         }
     },
     entities = {
-
+        {type="spawn", x=2, y=10},
+        {type="koopa_red", x=30, y=2},
+		
+        {type="goomba", x=44, y=2},
+        {type="goomba", x=46, y=2},
+		
+        {type="koopa_red", x=74, y=2},
+        {type="goomba", x=80, y=3},
+		
+        {type="koopa_red", x=110, y=4},
+        {type="koopa_red", x=114, y=3},
+		
+        {type="koopa_red", x=133, y=10},
+		
+        {type="goal_block", x=184, y=6, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
     },
 	
 	backgroundColor = {92, 148, 252},
