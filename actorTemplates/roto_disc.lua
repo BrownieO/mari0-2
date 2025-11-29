@@ -1,6 +1,6 @@
 return {
-    width = 12,
-    height = 12,
+    width = 6,
+    height = 1,
 
     img = "img/actors/roto_disc.png",
     quadWidth = 16,
@@ -15,7 +15,8 @@ return {
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+            frames = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
+			times = {2/60}
         },
 		["movement.circle"] = {},
 		["misc.hurtsByContact"] = {
