@@ -43,5 +43,5 @@ return {
     ["p"] = "debug.star",
 
     ["pause"] = "debug.pausePlay",
-    ["#"] = "debug.frameAdvance"
+    ["+3"] = "debug.frameAdvance"
 }
