@@ -17,7 +17,7 @@ function CollisionGroups.shouldCollide(obj1, obj2)
         return true
     end
     
-    if not obj1.collisionGroup == CollisionGroups.NON_COLLIDE or obj2.collisionGroup == CollisionGroups.NON_COLLIDE then
+    if obj1.collisionGroup == CollisionGroups.NON_COLLIDE or obj2.collisionGroup == CollisionGroups.NON_COLLIDE then
         return false
     end	
 	

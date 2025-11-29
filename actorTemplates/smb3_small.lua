@@ -98,7 +98,6 @@ return {
         ["misc.bumpsBlocks"] = {dontBreak = true},
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
-		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
