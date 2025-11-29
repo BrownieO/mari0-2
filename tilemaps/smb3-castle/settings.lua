@@ -2,13 +2,18 @@ local tiles = {}
 
 local templates = VAR("tileTemplates")
 
+tiles[29] = {
+	collision = templates.cube
+}
+
+tiles[55] = {
+	lava = true,
+}
+
 tiles[64] = {
     img = "lava.png",
     delays = {8/60},
-}
-
-tiles[29] = {
-	collision = templates.cube
+	lava = true,
 }
 
 local props = {
