@@ -477,7 +477,7 @@ function Editor:cmdpressed(cmd)
         end
 
     elseif cmd["editor.save"] then
-        self:saveLevel()
+        self:saveLevel(self:askForInput("Type a name for the level:"))
 
     elseif cmd["editor.load"] then
         self:loadLevel(self:askForInput("Type level path (E.g. mappacks/smb3/1-1.lua):"))
@@ -657,7 +657,8 @@ function Editor:askForLevel()
 end
 
 function Editor:saveLevel(path)
-	if not path then return end
+	if not path then print("Can't save: no path specified") return end
+	if path == "" then return end
     self.fileDropdown:toggle(false)
 
     self.level:saveLevel(path .. ".lua")

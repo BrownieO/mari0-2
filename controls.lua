@@ -20,6 +20,7 @@ return {
     ["^v"] = "editor.paste",
 
     ["^s"] = "editor.save",
+    ["^o"] = "editor.load",
 
     ["lctrl"] = {"editor.select.subtract", "editor.pipette", "editor.mouseWheelScale"},
     ["rctrl"] = {"editor.select.subtract", "editor.pipette"},

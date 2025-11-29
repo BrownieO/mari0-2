@@ -593,11 +593,11 @@ function World:saveLevel(outPath)
 
     table.insert(out.entities, {type = "spawn", x = self.spawnX, y = self.spawnY})
 
-    success, message = love.filesystem.write(outPath, serialize.tstr(out))
+    success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
     if success then
-        print("Saved to " .. outPath .. " (" .. love.filesystem.getAppdataDirectory() .. ")")
+        print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
     else
-        print(message)
+        print(errorMsg)
     end
 end
 
