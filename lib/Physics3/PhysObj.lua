@@ -23,6 +23,7 @@ function PhysObj:initialize(world, x, y, width, height)
     -- Default collision group and mask
     self.collisionGroup = nil -- Default: no collision group assigned
     self.noncollide = 0 -- Default: collide with everything
+    self.noTileCollision = false -- Default: collide with tiles
 
     -- register yourself with the world
     world:addObject(self)

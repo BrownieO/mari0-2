@@ -9,6 +9,7 @@ return {
     centerY = 8,
 	static = true,
 	resistsStar = true,
+	noTileCollision = true,
 
     collisionGroup = 1,
 
