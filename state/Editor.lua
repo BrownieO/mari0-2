@@ -38,6 +38,7 @@ Editor.windowClasses = {
     stamps = require("class.editor.windows.StampsWindow"),
     minimap = require("class.editor.windows.MinimapWindow"),
     mapOptions = require("class.editor.windows.MapOptionsWindow"),
+	openWindow = require("class.editor.windows.OpenWindow"),
     debug = require("class.editor.windows.DebugWindow"),
 }
 
@@ -75,9 +76,9 @@ function Editor:load()
 
     self.menuBar:addChild(self.fileDropdown)
 
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:saveLevel(self:askForInput("Type a name for the level:")) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "load", false, nil, function(button) self:loadLevel(self:askForLevel()) end))
-
+	
     self.fileDropdown:autoSize()
 
 
@@ -480,7 +481,7 @@ function Editor:cmdpressed(cmd)
         self:saveLevel(self:askForInput("Type a name for the level:"))
 
     elseif cmd["editor.load"] then
-        self:loadLevel(self:askForInput("Type level path (E.g. mappacks/smb3/1-1.lua):"))
+        self:newWindow(self.windowClasses.openWindow)
 
     elseif cmd["editor.select.clear"] then
         if self.selection then
