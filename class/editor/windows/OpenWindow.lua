@@ -27,7 +27,7 @@ function OpenWindow:goToMenu()
 
     self.element.background = {0.5, 0.5, 0.5, 1}
 
-    self:createTree("mappacks/")
+    self:createTree("/mappacks")
 
     self.element.autoArrangeChildren = true
     self.element:sizeChanged()
