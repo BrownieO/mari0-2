@@ -158,6 +158,10 @@ function Actor:loadActorTemplate(actorTemplate)
         self.noncollide = self.actorTemplate.noncollide
     end
 
+    if self.actorTemplate.noTileCollision then
+        self.noTileCollision = self.actorTemplate.noTileCollision
+    end
+
     self.components = {}
     for name, args in pairs(self.actorTemplate.components) do
         assert(components[name],

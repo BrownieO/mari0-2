@@ -702,11 +702,13 @@ function World:checkCollisionCommon(x, y, obj, vector, checkGroups, skipPortals)
     end
 
     -- World
-    for _, layer in ipairs(self.layers) do
-        local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
+    if not (obj and obj.noTileCollision) then
+        for _, layer in ipairs(self.layers) do
+            local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
 
-        if cell then
-            return cell
+            if cell then
+                return cell
+            end
         end
     end
 
