@@ -155,6 +155,18 @@ function Gui3.Canvas:rootwheelmoved(x, y)
     end
 end
 
+function Gui3.Canvas:rootkeypressed(key)
+    if self.lastMouseRegion and self.lastMouseRegion.element.keypressed then
+        return self.lastMouseRegion.element:keypressed(key)
+    end
+end
+
+function Gui3.Canvas:roottextinput(text)
+    if self.lastMouseRegion and self.lastMouseRegion.element.textinput then
+        return self.lastMouseRegion.element:textinput(text)
+    end
+end
+
 function Gui3.Canvas:debugDraw()
     for i = 2, #self.mouseRegions do
         local region = self.mouseRegions[i]
