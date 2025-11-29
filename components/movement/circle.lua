@@ -11,6 +11,7 @@ circle.argList = {
 function circle:initialize(actor, args)
     Component.initialize(self, actor, args)
 	self.circletimer = 0
+	self.actor.y = self.actor.y - 1
 	self.startx = self.actor.x
 	self.starty = self.actor.y
 end
