@@ -155,6 +155,10 @@ function love.keypressed(key)
     gameStateManager:event("keypressed", key)
 end
 
+function love.textinput(text)
+    gameStateManager:event("textinput", text)
+end
+
 function getWorldMouse()
     return love.mouse.getX()/VAR("scale"), love.mouse.getY()/VAR("scale")
 end

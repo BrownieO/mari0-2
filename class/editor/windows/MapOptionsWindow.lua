@@ -19,7 +19,11 @@ function MapOptionsWindow:initialize(editor)
 
     self.element.background = {0.5, 0.5, 0.5}
 
-    self.element:addChild(Gui3.TextInput:new(self.x, self.y, 8, 1))
+    self.textInput = Gui3.TextInput:new(0, 0, 16, 8)
+    self.textInput.onSubmit = function()
+        print("TextInput value: " .. self.textInput:getValue())
+    end
+    self.element:addChild(self.textInput)
 end
 
 return MapOptionsWindow

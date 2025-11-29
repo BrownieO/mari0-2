@@ -539,6 +539,18 @@ function Editor:mousemoved(x, y)
     end
 end
 
+function Editor:keypressed(key)
+    if self.canvas:rootkeypressed(key) then
+        return true
+    end
+end
+
+function Editor:textinput(text)
+    if self.canvas:roottextinput(text) then
+        return true
+    end
+end
+
 function Editor:wheelmoved(x, y)
     -- Zooming
     if controls3.cmdDown("editor.mouseWheelScale") then
