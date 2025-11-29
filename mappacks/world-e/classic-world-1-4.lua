@@ -177,7 +177,15 @@ return {
         }
     },
     entities = {
-		{type="spawn",x=2,y=4}
+		{type="spawn",x=2,y=4},
+		{type="roto_disc",x=30,y=7},
+		{type="roto_disc",x=49,y=4},
+		{type="roto_disc",x=60,y=4},
+		{type="roto_disc",x=67,y=4},
+		{type="roto_disc",x=76,y=7},
+		{type="roto_disc",x=80,y=2},
+		{type="roto_disc",x=84,y=7},
+		{type="roto_disc",x=88,y=2},
     },
 	
 	backgroundColor = {0, 0, 0},
