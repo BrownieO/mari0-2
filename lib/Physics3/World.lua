@@ -596,8 +596,10 @@ function World:saveLevel(outPath)
     success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
     if success then
         print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
+		return "Saved to " .. outPath
     else
         print(errorMsg)
+		return errorMsg
     end
 end
 
