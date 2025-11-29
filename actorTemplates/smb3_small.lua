@@ -87,6 +87,7 @@ return {
         ["smb3.movement"] = {},
         ["smb3.jumping"] = {},
         ["smb3.swimming"] = {},
+		
         ["misc.unrotate"] = {},
         ["misc.crosshair"] = {},
         ["misc.portalGun"] = {},
@@ -97,6 +98,7 @@ return {
         ["misc.bumpsBlocks"] = {dontBreak = true},
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
+		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
     }
