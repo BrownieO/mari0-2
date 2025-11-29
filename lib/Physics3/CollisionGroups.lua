@@ -17,6 +17,10 @@ function CollisionGroups.shouldCollide(obj1, obj2)
         return true
     end
     
+    if not obj1.collisionGroup == CollisionGroups.NON_COLLIDE or obj2.collisionGroup == CollisionGroups.NON_COLLIDE then
+        return false
+    end	
+	
     if obj1.noncollide and bit.band(obj1.noncollide, obj2.collisionGroup) ~= 0 then
         return false
     end
