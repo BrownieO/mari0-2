@@ -39,6 +39,7 @@ Editor.windowClasses = {
     minimap = require("class.editor.windows.MinimapWindow"),
     mapOptions = require("class.editor.windows.MapOptionsWindow"),
 	openWindow = require("class.editor.windows.OpenWindow"),
+	saveWindow = require("class.editor.windows.SaveWindow"),
     debug = require("class.editor.windows.DebugWindow"),
 }
 
@@ -77,7 +78,7 @@ function Editor:load()
     self.menuBar:addChild(self.fileDropdown)
 
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:saveLevel(self:askForInput("Type a name for the level:")) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
 	
     self.fileDropdown:autoSize()
 
@@ -478,7 +479,7 @@ function Editor:cmdpressed(cmd)
         end
 
     elseif cmd["editor.save"] then
-        self:saveLevel(self:askForInput("Type a name for the level:"))
+        self:newWindow(self.windowClasses.saveWindow)
 
     elseif cmd["editor.load"] then
         self:newWindow(self.windowClasses.openWindow)
