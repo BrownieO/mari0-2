@@ -141,5 +141,6 @@ return {
 		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
+		["misc.isKilledByLava"] = {},
     }
 }
