@@ -138,14 +138,18 @@ function Tile:checkCollision(x, y, obj, vector, cellX, cellY)
 end
 
 function Tile:draw(x, y)
-	love.graphics.draw(self.img, self.quad, x, y)
+	if not self.props.invisible then
+		love.graphics.draw(self.img, self.quad, x, y)
+	end
 end
 
 function Tile:drawFrame(x, y, frame)
-	if self.animated then
-		love.graphics.draw(self.img, self.quads[frame], x, y)
-	else
-		love.graphics.draw(self.img, self.quad, x, y)
+	if not self.props.invisible then
+		if self.animated then
+			love.graphics.draw(self.img, self.quads[frame], x, y)
+		else
+			love.graphics.draw(self.img, self.quad, x, y)
+		end
 	end
 end
 
