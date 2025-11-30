@@ -35,6 +35,10 @@ function Layer:update(dt)
 end
 
 function Layer:setBatchCoordinate(x, y, tile)
+    if tile.invisible then
+        return
+    end
+
     local spriteBatch
 
     if tile.animated then
