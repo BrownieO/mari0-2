@@ -593,6 +593,14 @@ function World:saveLevel(outPath)
 
     table.insert(out.entities, {type = "spawn", x = self.spawnX, y = self.spawnY})
 
+    -- Preserve level properties
+    if self.data.backgroundColor then
+        out.backgroundColor = self.data.backgroundColor
+    end
+    if self.data.music then
+        out.music = self.data.music
+    end
+
     success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
     if success then
         print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
