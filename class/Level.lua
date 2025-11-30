@@ -229,6 +229,8 @@ function Level:bumpBlock(cell, actor, dontBreak)
 			table.insert(self.actors, sprout)
 			playSound("mushroom-appear")
         end
+	else
+		playSound("block")
     end
 end
 
