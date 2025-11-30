@@ -295,6 +295,23 @@ function PhysObj:resolveCollisions()
 
     local x, y, obj
 
+    -- Fire non-physics contact events (always, regardless of collision groups)
+    local cx, cy, cobj
+    if self.speed[1] <= 0 then
+        cx, cy, cobj = self:leftContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:leftContact(cobj)
+            cobj:rightContact(self)
+        end
+    elseif self.speed[1] >= 0 then
+        cx, cy, cobj = self:rightContactCheck()
+        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
+            self:rightContact(cobj)
+            cobj:leftContact(self)
+        end
+    end
+
+    -- Resolve collisions (subset of contact)
     if self.speed[1] <= 0 then
         x, y, obj = self:leftColCheck()
     end
@@ -311,24 +328,25 @@ function PhysObj:resolveCollisions()
         end
     end
 
-    -- Fire non-physics contact events
-    local cx, cy, cobj
-    if self.speed[1] <= 0 then
-        cx, cy, cobj = self:leftContactCheck()
+    -- Fire non-physics contact events for vertical direction (always, regardless of collision groups)
+    cx, cy, cobj = nil, nil, nil
+    if self.speed[2] >= 0 then
+        cx, cy, cobj = self:bottomContactCheck()
         if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
-            self:leftContact(cobj)
-            cobj:rightContact(self)
+            self:bottomContact(cobj)
+            cobj:topContact(self)
         end
-    elseif self.speed[1] >= 0 then
-        cx, cy, cobj = self:rightContactCheck()
+    else
+        cx, cy, cobj = self:topContactCheck()
         if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
-            self:rightContact(cobj)
-            cobj:leftContact(self)
+            self:topContact(cobj)
+            cobj:bottomContact(self)
         end
     end
 
     x = nil
 
+    -- Resolve collisions (subset of contact)
     if self.speed[2] >= 0 then
         x, y, obj = self:bottomColCheck()
     end
@@ -362,22 +380,6 @@ function PhysObj:resolveCollisions()
             self:topColResolve(obj, x, y)
 
             obj:bottomColResolve(self)
-        end
-    end
-
-    -- Fire non-physics contact events for vertical direction
-    cx, cy, cobj = nil, nil, nil
-    if self.speed[2] >= 0 then
-        cx, cy, cobj = self:bottomContactCheck()
-        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
-            self:bottomContact(cobj)
-            cobj:topContact(self)
-        end
-    else
-        cx, cy, cobj = self:topContactCheck()
-        if cx and cobj.class and cobj.class:isSubclassOf(PhysObj) then
-            self:topContact(cobj)
-            cobj:bottomContact(self)
         end
     end
 end
