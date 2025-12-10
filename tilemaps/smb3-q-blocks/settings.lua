@@ -2,184 +2,88 @@ local tiles = {}
 
 local templates = VAR("tileTemplates")
 
+local items = {nil, "mushroom", "fire_flower", "super_leaf", "starman", "one_up", "p_balloon", "tanooki_suit", "mushroom", "coin"}
+items[0] = "coin"
+
+-- Used blocks
 tiles[1] = {
     collision = templates.cube,
 }
-
-tiles[2] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "mushroom",
-    turnsInto = 1,
-}
-
-tiles[3] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "fire_flower",
-    turnsInto = 1,
-}
-
-tiles[4] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "super_leaf",
-    turnsInto = 1,
-}
-
-tiles[5] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "starman",
-    turnsInto = 1,
-}
-
-tiles[6] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "one_up",
-    turnsInto = 1,
-}
-
-tiles[7] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "p_balloon",
-    turnsInto = 1,
-}
-
-tiles[8] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "tanooki_suit",
-    turnsInto = 1,
-}
-
-tiles[9] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "mushroom",
-    turnsInto = 1,
-}
-
-tiles[10] = {
-    collision = templates.cube,
-    img = "qblock.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "coin",
-    turnsInto = 1,
-}
-
 tiles[31] = {
     collision = templates.cube,
 }
 
-tiles[32] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "mushroom",
-    turnsInto = 31,
-}
+-- Q blocks
+for i = 2, 10 do
+	tiles[i] = {
+	    collision = templates.cube,
+		img = "qblock.png",
+		delays = {8/60},
+		holdsItems = true,
+		defaultItem = items[i],
+		turnsInto = 1,
+	}
+end
 
-tiles[33] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "fire_flower",
-    turnsInto = 31,
-}
+-- Bricks
+for i = 12, 20 do
+	tiles[i] = {
+	    collision = templates.cube,
+		img = "brick.png",
+		delays = {8/60},
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 1,
+	}
+end
 
-tiles[34] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "super_leaf",
-    turnsInto = 31,
-}
+-- Invisible Q blocks
+for i = 22, 30 do
+	tiles[i] = {
+		collision = templates.cube,
+		exclusiveCollision = 3,
+		invisible = true,
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 1,
+	}
+end
 
-tiles[35] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "starman",
-    turnsInto = 31,
-}
+-- Underground Q blocks
+for i = 32, 40 do
+	tiles[i] = {
+	    collision = templates.cube,
+		img = "qblockug.png",
+		delays = {8/60},
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 31,
+	}
+end
 
-tiles[36] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "one_up",
-    turnsInto = 31,
-}
+-- Underground bricks
+for i = 42, 50 do
+	tiles[i] = {
+	    collision = templates.cube,
+		img = "brickug.png",
+		delays = {8/60},
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 31,
+	}
+end
 
-tiles[37] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "p_balloon",
-    turnsInto = 31,
-}
-
-tiles[38] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "tanooki_suit",
-    turnsInto = 31,
-}
-
-tiles[39] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "mushroom",
-    turnsInto = 31,
-}
-
-tiles[40] = {
-    collision = templates.cube,
-    img = "qblockug.png",
-    delays = {8/60},
-    holdsItems = true,
-    defaultItem = "coin",
-    turnsInto = 31,
-}
-
-tiles[60] = {
-	collision = templates.cube,
-	exclusiveCollision = 3,
-	invisible = true,
-    holdsItems = true,
-    defaultItem = "coin",
-    turnsInto = 31,
-}
+-- Invisible underground Q blocks
+for i = 52, 60 do
+	tiles[i] = {
+		collision = templates.cube,
+		exclusiveCollision = 3,
+		invisible = true,
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 31,
+	}
+end
 
 local props = {
     tileSize = 16,
