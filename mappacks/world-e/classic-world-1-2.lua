@@ -2,15 +2,15 @@ return {
     tileMaps = {"smb3-underground", "smb3-general", "smb3-q-blocks"},
     lookups = {
 		{2, 22}, -- 1. Hard block
-		{2, 21}, -- 2. Brick
+		{2, 21}, -- 2. Bricks
 		{3, 40}, -- 3. Q Block
 		{2, 13}, -- 4. Coin
 		{1,4}, -- 5. Top left ground
 		{1,5}, -- 6. Top ground
 		{1,6}, -- 7. Top right ground
 		{3,33},-- 8. Q block with fire flower 
-		{3,35},-- 9. Q block with starman
-		{3,36},--10. Q block with 1-up
+		{3,45},-- 9. Bricks with starman
+		{3,46},--10. Bricks with 1-up
 		{1,24},--11. L ground
 		{1,24},--12. J ground
 		{2,9}, --13. Pipe flare left
@@ -20,7 +20,8 @@ return {
 		{2,11},--17. Pipe flare top
 		{2,19},--18. Pipe flare bottom
 		{2,12},--19. Pipe top
-		{2,20},--20. Pipe bottom	
+		{2,20},--20. Pipe bottom
+		{3,43},--21. Bricks with fire flower	
 	},
     layers = {
         {
@@ -96,7 +97,7 @@ return {
 {0,0,0,2,2,2,0,0,0,0,0,0,0,0,6},
 {0,0,0,2,2,2,2,2,2,2,2,0,0,0,6},
 {0,0,0,2,2,2,0,0,0,4,2,0,0,0,6},
-{0,0,0,2,2,2,0,0,0,2,2,0,0,0,6},
+{0,0,0,2,2,2,0,0,0,21,2,0,0,0,6},
 {0,0,0,2,0,0,0,0,0,0,0,0,0,0,6},
 {0,0,0,2,0,0,0,0,0,0,0,0,0,0,6},
 {0,0,0,2,0,0,2,2,2,2,2,0,0,0,6},
