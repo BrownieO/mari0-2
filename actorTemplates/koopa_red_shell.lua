@@ -9,7 +9,7 @@ return {
     centerY = 9,
 
     collisionGroup = 64,
-    noncollide = 12,
+    noncollide = 76,
 
     ["components"] = {
         ["misc.palettable"] = {

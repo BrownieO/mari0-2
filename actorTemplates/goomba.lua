@@ -35,6 +35,8 @@ return {
 		},
 		["misc.isHurtByStar"] = {},
 		["misc.knockedWhenHurt"] = {},
-        ["misc.isHurtByContact"] = {},
+        ["misc.isHurtByContact"] = {
+			dontHurtSameGroup = true
+		},
 	}
 }
