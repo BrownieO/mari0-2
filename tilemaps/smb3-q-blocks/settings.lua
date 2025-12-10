@@ -173,7 +173,9 @@ tiles[40] = {
 }
 
 tiles[60] = {
-	invisible = false,
+	collision = templates.cube,
+	exclusiveCollision = 3,
+	invisible = true,
     holdsItems = true,
     defaultItem = "coin",
     turnsInto = 31,
