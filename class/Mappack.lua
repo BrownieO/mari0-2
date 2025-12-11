@@ -13,8 +13,8 @@ function Mappack:loadSettings(settingsPath)
     self.settings = sandbox.run(settingsCode)
 end
 
-function Mappack:startLevel()
-    return Level:new(self.path .. self.settings.main)
+function Mappack:startLevel(players)
+    return Level:new(self.path .. self.settings.main, players)
 end
 
 return Mappack
