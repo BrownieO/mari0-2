@@ -186,6 +186,9 @@ return {
 		{type="roto_disc",x=81,y=3},
 		{type="roto_disc",x=85,y=8},
 		{type="roto_disc",x=89,y=3},
+		{type="bowser_classic",x=134,y=7},
+		{type="goomba",x=135,y=7},
+		{type="lucky_star",x=142,y=6},
     },
 	
 	backgroundColor = {0, 0, 0},
