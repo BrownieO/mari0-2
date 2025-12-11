@@ -2,9 +2,9 @@
 
 ![Picture of the game](other/pixel_tile_bug.png)
 
-This is my fork of the sequel prototype for Mari0. The game would combine Super Mario Bros 3 with some elements from the Portal franchise.
+This is a prototype of a sequel to Mari0. The software would combine Super Mario Bros 3 with elements from the Portal franchise.
 
-This fork is also a prototype, so it may undergo multiple iterations. Don't use it for production.
+My fork is also a prototype, so it may undergo multiple iterations. Don't use it for production.
 
 Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to get started.
 
