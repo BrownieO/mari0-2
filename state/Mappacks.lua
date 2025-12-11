@@ -4,6 +4,7 @@ function Mappacks:initialize()
 end
 
 Mappacks.mappacks = {}
+Mappacks.paths = {}
 
 function Mappacks:readMappacks(path)
     path = path or "."
@@ -17,14 +18,16 @@ function Mappacks:readMappacks(path)
 		if mappackCode then
 			local data = sandbox.run(mappackCode)
 			table.insert(Mappacks.mappacks, data)
+			table.insert(Mappacks.paths, path .. file)
 		end
     end
 end
 
 function Mappacks:populateSelector(mappacks, element)
 	for i, mappack in ipairs(mappacks) do
-		print(mappack.name)
-		local button = Gui3.ImageButton:new(0, 0, "img/ui/default_icon.png", false, false, function() end)
+		local icon = Mappacks.paths[i] .. "/" .. mappack.icon
+		
+		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function() end)
 		element:addChild(button)
 	end
 end
