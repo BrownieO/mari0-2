@@ -20,8 +20,8 @@ end
 function Game:load()
     gameState = "game"
 
-    -- Load the first level
-    self.level = self.mappack:startLevel()
+    -- Load the first level with players
+    self.level = self.mappack:startLevel(self.players)
 
     self.uiVisible = true -- should this be part of Game?
 

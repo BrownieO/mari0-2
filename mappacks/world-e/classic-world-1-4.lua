@@ -189,6 +189,7 @@ return {
 		{type="bowser_classic",x=134,y=7},
 		{type="goomba",x=135,y=7},
 		{type="lucky_star",x=142,y=6},
+		{type="debug_winchest",x=151,y=8},
     },
 	
 	backgroundColor = {0, 0, 0},

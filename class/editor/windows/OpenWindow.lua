@@ -46,7 +46,7 @@ function OpenWindow:createTree(path, depth)
         if info and info.type == "directory" then
 			self.element:addChild(Gui3.Text:new(file, 0, 0))
             self:createTree(fullPath, depth + 1)
-		elseif file ~= "settings.lua" then
+		elseif file ~= "settings.lua" and file:sub(-4) == ".lua" then
 			self.element:addChild(Gui3.TextButton:new(0, 0, file, true, 0, function(button) self.editor:loadLevel(fullPath) end))
         end
     end
