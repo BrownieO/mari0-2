@@ -33,6 +33,7 @@ return {
         lovebird = false, -- enable lövebird debugging (localhost:8000)
         noEnemies = false, -- disables enemy spawning
         musicDisabled = true, -- disables the music
+        editorOnly = false, -- run editor without game
     },
 
     volume = 1,

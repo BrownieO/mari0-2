@@ -3,7 +3,9 @@ local Level = class("Level", Physics3.World)
 local BlockBounce = require("class.BlockBounce")
 local Viewport = require("class.Viewport")
 
-function Level:initialize(path)
+function Level:initialize(path, players)
+    self.players = players or (game and game.players) or {}
+    
     local mapCode = love.filesystem.read(path)
     local data = sandbox.run(mapCode)
 	self.currentLevel = data
@@ -73,8 +75,8 @@ function Level:loadLevel(data)
 	
     local x, y = self:coordinateToWorld(self.spawnX-.5, self.spawnY)
 
-    for i = 1, #game.players do
-        local player = game.players[i]
+    for i = 1, #self.players do
+        local player = self.players[i]
 
         local mario = Actor:new(self, x, y, actorTemplates.smb3_small)
         mario.player = player
@@ -90,7 +92,11 @@ function Level:loadLevel(data)
     end
 
     self.viewports = {}
-    table.insert(self.viewports, Viewport:new(self, 0, 0, CAMERAWIDTH, CAMERAHEIGHT, game.players[1].actor))
+    if #self.players > 0 then
+        table.insert(self.viewports, Viewport:new(self, 0, 0, CAMERAWIDTH, CAMERAHEIGHT, self.players[1].actor))
+    else
+        table.insert(self.viewports, Viewport:new(self, 0, 0, CAMERAWIDTH, CAMERAHEIGHT, nil))
+    end
 
     self.camera = self.viewports[1].camera
 
@@ -126,8 +132,8 @@ function Level:update(dt)
     end
     prof.pop()
 
-    if game.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
-        game.players[1].actor.y = -1
+    if #self.players > 0 and self.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
+        self.players[1].actor.y = -1
     end
 
     local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")+2
@@ -153,20 +159,22 @@ function Level:drawBehindObjects()
 end
 
 function Level:cmdpressed(cmds)
+    if #self.players == 0 then return end
+    
     if cmds["jump"] then
-        game.players[1].actor:event("jump")
+        self.players[1].actor:event("jump")
     end
 
     if cmds["run"] then
-        game.players[1].actor:event("action")
+        self.players[1].actor:event("action")
     end
 
     if cmds["closePortals"] then
-        game.players[1].actor:event("closePortals")
+        self.players[1].actor:event("closePortals")
     end
 
     if cmds["debug.star"] then -- debug
-        game.players[1].actor:event("getStar")
+        self.players[1].actor:event("getStar")
     end
 end
 
