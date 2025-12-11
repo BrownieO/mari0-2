@@ -5,6 +5,7 @@ end
 
 Mappacks.mappacks = {}
 Mappacks.paths = {}
+Mappacks.folders = {}
 
 function Mappacks:readMappacks(path)
     path = path or "."
@@ -19,6 +20,7 @@ function Mappacks:readMappacks(path)
 			local data = sandbox.run(mappackCode)
 			table.insert(Mappacks.mappacks, data)
 			table.insert(Mappacks.paths, path .. file)
+			table.insert(Mappacks.folders, file)
 		end
     end
 end
@@ -26,14 +28,10 @@ end
 function Mappacks:populateSelector(mappacks, element)
 	for i, mappack in ipairs(mappacks) do
 		local icon = Mappacks.paths[i] .. "/" .. mappack.icon
-		local mappackPath = Mappacks.paths[i]
 		
 		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function()
-			table.remove(gameStateManager.activeStates, 1)
-
-			game = Game:new(mappackPath, 1)
-			gameStateManager:loadState(game)	
-			gameStateManager:addState(Editor:new(game.level))
+		print(Mappacks.folders[i])
+			selectedMappackPath = Mappacks.folders[i]
 		end)
 		element:addChild(button)
 	end
