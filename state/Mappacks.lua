@@ -100,10 +100,4 @@ function Mappacks:mousereleased(x, y, button)
     end
 end
 
-function Mappacks:wheelmoved(x, y)
-    if self.canvas:rootwheelmoved(x, y) then
-        return true
-    end
-end
-
 return Mappacks

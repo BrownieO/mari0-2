@@ -6,6 +6,5 @@ return {
 
     players = "any",
 
-    -- main = "1-1.lua",
-    main = "slope-test.lua",
+    main = "1-1.lua",
 }
