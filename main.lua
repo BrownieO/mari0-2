@@ -71,7 +71,6 @@ function love.load()
     -- Alright let's go do the stuff
 	if VAR("debug").editorOnly and VAR("debug").gameOnly then
 		gameStateManager:addState(Mappacks:new())
-		print("No game nor editor")
     elseif VAR("debug").editorOnly then
         -- Editor-only mode: no game
         gameStateManager:addState(Editor:new())
