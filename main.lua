@@ -2,7 +2,7 @@
 -- require "errorhandler"
 require "loop"
 
-local Game, Editor
+local Game, Editor, Mappacks
 
 function love.load()
     require "util"
@@ -52,6 +52,7 @@ function love.load()
     -- States
     Game = require "state.Game"
     Editor = require "state.Editor"
+	Mappacks = require "state.Mappacks"
 
     fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$.,:;!?_-<>=+*\\/'%∩⇔→⇒◔×")
@@ -68,13 +69,16 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
-    if VAR("debug").editorOnly then
+	if VAR("debug").editorOnly and VAR("debug").gameOnly then
+		gameStateManager:addState(Mappacks:new())
+		print("No game nor editor")
+    elseif VAR("debug").editorOnly then
         -- Editor-only mode: no game
         gameStateManager:addState(Editor:new())
     elseif VAR("debug").gameOnly then
         -- Game-only mode: no editor
         game = Game:new(VAR("debug").mappack, 1)
-        gameStateManager:loadState(game)
+        gameStateManager:loadState(game) 
     else
         -- Normal mode: game + editor
         game = Game:new(VAR("debug").mappack, 1)
