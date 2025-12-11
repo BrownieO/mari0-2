@@ -103,6 +103,15 @@ function love.update(dt)
         return
     end
 
+    -- Check if Mappacks selected a mappack
+    if selectedMappackPath then
+        table.remove(gameStateManager.activeStates, 1)
+        game = Game:new(selectedMappackPath, 1)
+        gameStateManager:loadState(game)
+        gameStateManager:addState(Editor:new(game.level))
+        selectedMappackPath = nil
+    end
+
     gameStateManager:event("update", dt)
 end
 
