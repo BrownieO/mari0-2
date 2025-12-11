@@ -27,7 +27,7 @@ function Mappacks:populateSelector(mappacks, element)
 	for i, mappack in ipairs(mappacks) do
 		local icon = Mappacks.paths[i] .. "/" .. mappack.icon
 		
-		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function() end)
+		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function() print(mappack.name) end)
 		element:addChild(button)
 	end
 end
@@ -40,7 +40,7 @@ function Mappacks:load()
 	self.canvas:addChild(self.frame)
 	
 	self.element = Gui3.Box:new(20, 16, 206, 192)
-	self.element.scrollable = {true, true}
+	self.element.scrollable = {true, false}
 	self.element.autoArrangeChildren = true
 	self.canvas:addChild(self.element)
 	
@@ -51,6 +51,7 @@ end
 function Mappacks:update(dt)
     prof.push("UI")
     self.canvas:update(dt)
+    self.canvas:rootmousemoved(love.mouse.getX()/VAR("scale"), love.mouse.getY()/VAR("scale"))
     prof.pop()
 end
 
@@ -64,6 +65,40 @@ function Mappacks:draw()
     love.graphics.pop()
 
     prof.pop()
+end
+
+function Mappacks:cmdpressed(cmd)
+    -- Insert keyboard commands here
+end
+
+function Mappacks:keypressed(key)
+    if self.canvas:rootkeypressed(key) then
+        return true
+    end
+end
+
+function Mappacks:textinput(text)
+    if self.canvas:roottextinput(text) then
+        return true
+    end
+end
+
+function Mappacks:mousepressed(x, y, button)
+    if self.canvas:rootmousepressed(x, y, button) then
+        return true
+    end
+end
+
+function Mappacks:mousereleased(x, y, button)
+    if self.canvas:rootmousereleased(x, y, button) then
+        return true
+    end
+end
+
+function Mappacks:wheelmoved(x, y)
+    if self.canvas:rootwheelmoved(x, y) then
+        return true
+    end
 end
 
 return Mappacks
