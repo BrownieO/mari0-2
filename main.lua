@@ -68,10 +68,15 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
-    game = Game:new(VAR("debug").mappack, 1)
-
-    gameStateManager:loadState(game)
-    gameStateManager:addState(Editor:new(game.level))
+    if VAR("debug").editorOnly then
+        -- Editor-only mode: no game
+        gameStateManager:addState(Editor:new())
+    else
+        -- Normal mode: game + editor
+        game = Game:new(VAR("debug").mappack, 1)
+        gameStateManager:loadState(game)
+        gameStateManager:addState(Editor:new(game.level))
+    end
 
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
 

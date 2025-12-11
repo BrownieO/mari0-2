@@ -50,8 +50,10 @@ end
 function Editor:load()
     updateSizes()
     -- The level must be loaded at this point!
-    self:setActiveLayer(1)
-    self:setActiveTileMap(1)
+    if self.level then
+        self:setActiveLayer(1)
+        self:setActiveTileMap(1)
+    end
 
     self.tools = {}
 
@@ -134,7 +136,9 @@ function Editor:load()
 
     self.scaleBar:addChild(self.scaleSlider)
 
-    self:changeScale(self.level.camera.scale)
+    if self.level then
+        self:changeScale(self.level.camera.scale)
+    end
 
     local minusButton = Gui3.TextButton:new(0, 0, "-", false, 3, function() self:zoom(-1) end)
     minusButton.color.background = {0, 0, 0, 0}
@@ -191,6 +195,8 @@ function Editor:load()
 end
 
 function Editor:update(dt)
+    if not self.level then return end
+    
     prof.push("UI")
     self.canvas:update(dt)
     self.canvas:rootmousemoved(self.level:getMouse())
@@ -258,6 +264,17 @@ local function candyStencil()
 end
 
 function Editor:draw()
+    if not self.level then
+        prof.push("UI")
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.push()
+        love.graphics.origin()
+        self.canvas:rootDraw()
+        love.graphics.pop()
+        prof.pop()
+        return
+    end
+    
     self.level.camera:attach()
 
     local xl, yt = self.level:cameraToWorld(0, 0)
@@ -330,9 +347,11 @@ function Editor:draw()
 end
 
 function Editor:changeScale(val)
-    self.level.camera:zoomTo(val)
-    self.scaleSlider:setValue(val)
-    self:toggleFreeCam(true)
+    if self.level then
+        self.level.camera:zoomTo(val)
+        self.scaleSlider:setValue(val)
+        self:toggleFreeCam(true)
+    end
 end
 
 function Editor:sliderChanged(val)
@@ -342,12 +361,16 @@ end
 function Editor:toggleFreeCam(on)
     self.freeCameraCheckbox.value = on
 
-    if on then
-        self.level.viewports[1].target = nil
-        self.freeCamera = true
-    else
-        self.level.viewports[1].target = game.players[1].actor
-        self.freeCamera = false
+    if self.level then
+        if on then
+            self.level.viewports[1].target = nil
+            self.freeCamera = true
+        else
+            if game and game.players and game.players[1] then
+                self.level.viewports[1].target = game.players[1].actor
+            end
+            self.freeCamera = false
+        end
     end
 end
 
@@ -357,18 +380,20 @@ function Editor:toggleGrid(on)
 end
 
 function Editor:toggleUI(hidden)
-    if game.uiVisible ~= not hidden then
+    if game and game.uiVisible ~= not hidden then
         game.uiVisible = not hidden
         updateSizes()
-        self.toolbar.h = CAMERAHEIGHT-14
-        self.toolbar:sizeChanged()
-        self.level.camera.h = CAMERAHEIGHT
+        if self.level then
+            self.toolbar.h = CAMERAHEIGHT-14
+            self.toolbar:sizeChanged()
+            self.level.camera.h = CAMERAHEIGHT
 
-        self.toggleUICheckbox.value = hidden
+            self.toggleUICheckbox.value = hidden
 
-        local offset = (ui.height)/2/self.level.camera.scale
+            local offset = (ui.height)/2/self.level.camera.scale
 
-        self.level.camera:move(0, offset)
+            self.level.camera:move(0, offset)
+        end
     end
 end
 
@@ -590,6 +615,8 @@ function Editor:wheelmoved(x, y)
 end
 
 function Editor:zoom(i, toMouse)
+    if not self.level then return end
+    
     local zoom
 
     if i > 0 then -- out
@@ -616,7 +643,9 @@ function Editor:zoom(i, toMouse)
 end
 
 function Editor:resetZoom()
-    self:changeScale(1/VAR("scale"))
+    if self.level then
+        self:changeScale(1/VAR("scale"))
+    end
 end
 
 function Editor:resize(w, h)
@@ -673,8 +702,9 @@ end
 function Editor:saveLevel(path)
 	if not path then print("Can't save: no path specified") return end
 	if path == "" then return end
+    if not self.level then print("No level loaded") return end
+    
     self.fileDropdown:toggle(false)
-
     return self.level:saveLevel("/mappacks/" .. path .. ".lua")
 end
 
@@ -686,9 +716,10 @@ function Editor:loadLevel(path)
 	if not mapCode then print(errorMsg) return end
 	
     local data = sandbox.run(mapCode)
-    self.level:loadLevel(data)
-
-    self.activeLayer = self.level.layers[1]
+    if self.level then
+        self.level:loadLevel(data)
+        self.activeLayer = self.level.layers[1]
+    end
 end
 
 function Editor:clearSelection()
@@ -765,6 +796,8 @@ function Editor:unFloatSelection()
 end
 
 function Editor:drawSizeHelp(w, h, glue)
+    if not self.level then return end
+    
     self.level.camera:detach()
 
     local x, y = self.level:getMouse()
@@ -788,7 +821,9 @@ function Editor:drawSizeHelp(w, h, glue)
 end
 
 function Editor:setActiveLayer(layerNo)
-    self.activeLayer = self.level.layers[layerNo]
+    if self.level then
+        self.activeLayer = self.level.layers[layerNo]
+    end
 end
 
 function Editor:setActiveTileMap(tileMap)
@@ -800,6 +835,8 @@ function Editor:setActiveStampMap(stampMap)
 end
 
 function Editor:pipette()
+    if not self.level or not self.activeLayer then return end
+    
     local coordX, coordY = self.level:mouseToCoordinate()
     local layer = self.activeLayer
 
@@ -811,6 +848,8 @@ function Editor:pipette()
 end
 
 function Editor:updateMinimap()
+    if not self.level then return end
+    
     prof.push("updateMinimap")
     if VAR("minimapType") == "realistic" then
         local minimapScale = 8/3*VAR("scale")
@@ -925,6 +964,8 @@ function Editor:drawMinimap()
 end
 
 function Editor:clickMinimap(x, y, button)
+    if not self.level then return end
+    
     x = x/(8/3)
     y = y/(8/3)
 
@@ -934,8 +975,10 @@ function Editor:clickMinimap(x, y, button)
         self.level.camera:lookAt(x, y)
         self:toggleFreeCam(true)
     elseif button == 2 then
-        game.players[1].actor.x = x - game.players[1].actor.width/2
-        game.players[1].actor.y = y - game.players[1].actor.height
+        if game and game.players and game.players[1] then
+            game.players[1].actor.x = x - game.players[1].actor.width/2
+            game.players[1].actor.y = y - game.players[1].actor.height
+        end
     end
 end
 
