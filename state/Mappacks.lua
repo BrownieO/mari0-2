@@ -30,7 +30,6 @@ function Mappacks:populateSelector(mappacks, element)
 		local icon = Mappacks.paths[i] .. "/" .. mappack.icon
 		
 		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function()
-		print(Mappacks.folders[i])
 			selectedMappackPath = Mappacks.folders[i]
 		end)
 		element:addChild(button)

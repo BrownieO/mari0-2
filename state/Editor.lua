@@ -764,11 +764,7 @@ end
 function Editor:exitToMappacks()
     self.fileDropdown:toggle(false)
     
-    -- Remove Game and Editor states, and load Mappacks
-    table.remove(gameStateManager.activeStates, 1) -- Remove Game
-    table.remove(gameStateManager.activeStates, 1) -- Remove Editor
-    
-    gameStateManager:addState(Mappacks:new())
+	exitEditor = true
 end
 
 function Editor:undo()
