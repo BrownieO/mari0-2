@@ -71,6 +71,10 @@ function love.load()
     if VAR("debug").editorOnly then
         -- Editor-only mode: no game
         gameStateManager:addState(Editor:new())
+    elseif VAR("debug").gameOnly then
+        -- Game-only mode: no editor
+        game = Game:new(VAR("debug").mappack, 1)
+        gameStateManager:loadState(game)
     else
         -- Normal mode: game + editor
         game = Game:new(VAR("debug").mappack, 1)

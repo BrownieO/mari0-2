@@ -34,6 +34,7 @@ return {
         noEnemies = false, -- disables enemy spawning
         musicDisabled = true, -- disables the music
         editorOnly = false, -- run editor without game
+        gameOnly = false, -- run game without editor
     },
 
     volume = 1,
