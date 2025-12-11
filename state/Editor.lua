@@ -81,6 +81,7 @@ function Editor:load()
 
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, "exit", false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
 
@@ -758,10 +759,16 @@ function Editor:mapChanged()
     prof.push("new editorState")
     table.insert(self.editorStates, 1, EditorState:new(self))
     prof.pop("new editorState")
+end
 
-    self.editorState = 1
-
-    self:updateMinimap()
+function Editor:exitToMappacks()
+    self.fileDropdown:toggle(false)
+    
+    -- Remove Game and Editor states, and load Mappacks
+    table.remove(gameStateManager.activeStates, 1) -- Remove Game
+    table.remove(gameStateManager.activeStates, 1) -- Remove Editor
+    
+    gameStateManager:addState(Mappacks:new())
 end
 
 function Editor:undo()
