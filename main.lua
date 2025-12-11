@@ -2,7 +2,7 @@
 -- require "errorhandler"
 require "loop"
 
-local Game, Editor
+local Game, Editor, Mappacks
 
 function love.load()
     require "util"
@@ -52,6 +52,7 @@ function love.load()
     -- States
     Game = require "state.Game"
     Editor = require "state.Editor"
+	Mappacks = require "state.Mappacks"
 
     fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$.,:;!?_-<>=+*\\/'%∩⇔→⇒◔×")
@@ -68,10 +69,21 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
-    game = Game:new(VAR("debug").mappack, 1)
-
-    gameStateManager:loadState(game)
-    gameStateManager:addState(Editor:new(game.level))
+	if VAR("debug").editorOnly and VAR("debug").gameOnly then
+		gameStateManager:addState(Mappacks:new())
+    elseif VAR("debug").editorOnly then
+        -- Editor-only mode: no game
+        gameStateManager:addState(Editor:new())
+    elseif VAR("debug").gameOnly then
+        -- Game-only mode: no editor
+        game = Game:new(VAR("debug").mappack, 1)
+        gameStateManager:loadState(game) 
+    else
+        -- Normal mode: game + editor
+        game = Game:new(VAR("debug").mappack, 1)
+        gameStateManager:loadState(game)
+        gameStateManager:addState(Editor:new(game.level))
+    end
 
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
 
@@ -90,6 +102,26 @@ function love.update(dt)
     if not dt then
         return
     end
+
+    -- Check if Mappacks selected a mappack
+    if selectedMappackPath then
+        table.remove(gameStateManager.activeStates, 1)
+        game = Game:new(selectedMappackPath, 1)
+        gameStateManager:loadState(game)
+        gameStateManager:addState(Editor:new(game.level))
+		
+        gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
+		
+        selectedMappackPath = nil
+    end
+
+	if exitEditor then
+		table.remove(gameStateManager.activeStates, 1)
+		table.remove(gameStateManager.activeStates, 1)
+		gameStateManager:addState(Mappacks:new())
+		
+		exitEditor = false
+	end
 
     gameStateManager:event("update", dt)
 end

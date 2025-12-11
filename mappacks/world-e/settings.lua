@@ -1,6 +1,6 @@
 return {
     name = "World-e",
-    description = "e-Reader levels from SMA4",
+    description = "The e-Reader and special cards unlock classic and all-new levels with new features.",
 
     icon = "icon.png",
 

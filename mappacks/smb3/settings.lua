@@ -1,11 +1,10 @@
 return {
-    name = "It's the Super Mario Brothers Super Show!",
-    description = "Dada-da, dada-da, Da! Swing your arms from side to side c'mon it's time to go do the multi-line!",
+    name = "Super Mario Bros 3",
+    description = "The Koopalings join Bowser and cause all sorts of mischief throughout the Mushroom World.",
 
     icon = "icon.png",
 
     players = "any",
 
-    -- main = "1-1.lua",
-    main = "slope-test.lua",
+    main = "1-1.lua",
 }
