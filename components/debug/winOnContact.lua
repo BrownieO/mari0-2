@@ -25,6 +25,7 @@ function winOnContact:resolve(dir, obj2)
     local collectsCoins = obj2:hasComponent("misc.collectsCoins")
     if collectsCoins then
 		self.actor:destroy()
+		exitEditor = true
     end
 end
 
