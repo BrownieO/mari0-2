@@ -26,8 +26,15 @@ end
 function Mappacks:populateSelector(mappacks, element)
 	for i, mappack in ipairs(mappacks) do
 		local icon = Mappacks.paths[i] .. "/" .. mappack.icon
+		local mappackPath = Mappacks.paths[i]
 		
-		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function() print(mappack.name) end)
+		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function()
+			table.remove(gameStateManager.activeStates, 1)
+
+			game = Game:new(mappackPath, 1)
+			gameStateManager:loadState(game)	
+			gameStateManager:addState(Editor:new(game.level))
+		end)
 		element:addChild(button)
 	end
 end
@@ -40,7 +47,7 @@ function Mappacks:load()
 	self.canvas:addChild(self.frame)
 	
 	self.element = Gui3.Box:new(20, 16, 206, 192)
-	self.element.scrollable = {true, false}
+	self.element.scrollable = {false, true}
 	self.element.autoArrangeChildren = true
 	self.canvas:addChild(self.element)
 	
