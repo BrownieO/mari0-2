@@ -37,6 +37,8 @@ function Mappacks:populateSelector(mappacks, element)
 end
 
 function Mappacks:load()
+	love.audio.stop()
+	love.graphics.setBackgroundColor({0, 0, 0})
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
     self.canvas.gui = defaultUI
 	
@@ -47,6 +49,10 @@ function Mappacks:load()
 	self.element.scrollable = {false, true}
 	self.element.autoArrangeChildren = true
 	self.canvas:addChild(self.element)
+	
+	Mappacks.mappacks = {}
+	Mappacks.paths = {}
+	Mappacks.folders = {}
 	
 	Mappacks:readMappacks("mappacks/")
 	Mappacks:populateSelector(Mappacks.mappacks, self.element)
