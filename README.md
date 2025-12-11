@@ -27,3 +27,4 @@ Developed for LÖVE 11.5
 - Technochips - Fixes
 - BrownieO - Wiki, quick patches, utilities.
 - awesomezack - P-Balloon sprites
+- Alesan99 - Rotate component code
