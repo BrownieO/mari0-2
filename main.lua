@@ -109,9 +109,19 @@ function love.update(dt)
         game = Game:new(selectedMappackPath, 1)
         gameStateManager:loadState(game)
         gameStateManager:addState(Editor:new(game.level))
+		
         gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
+		
         selectedMappackPath = nil
     end
+
+	if exitEditor then
+		table.remove(gameStateManager.activeStates, 1)
+		table.remove(gameStateManager.activeStates, 1)
+		gameStateManager:addState(Mappacks:new())
+		
+		exitEditor = false
+	end
 
     gameStateManager:event("update", dt)
 end
