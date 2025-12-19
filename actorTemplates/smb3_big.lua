@@ -127,6 +127,7 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
+        ["misc.bounceOnBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
 		["misc.losesLife"] = {on = "getKilled"},

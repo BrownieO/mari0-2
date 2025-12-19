@@ -89,7 +89,21 @@ end
 tiles[61] = {
     collision = templates.cube,
 	noteblock = true,
+	img = "note_block.png",
+	delays = {8/60},
 }
+
+for i = 62, 70 do
+	tiles[i] = {
+		collision = templates.cube,
+		noteblock = true,
+		img = "note_block.png",
+		delays = {8/60},
+		holdsItems = true,
+		defaultItem = items[i % 10],
+		turnsInto = 61,
+	}
+end
 
 local props = {
     tileSize = 16,

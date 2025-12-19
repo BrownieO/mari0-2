@@ -212,6 +212,7 @@ function Level:bumpBlock(cell, actor, dontBreak)
 			end
 		end
 		
+		-- Break it
 		if tile.props.breakable and not dontBreak then
 			cell.layer.map[cell.x][cell.y].tile = nil
 			playSound("block-break")
@@ -219,9 +220,11 @@ function Level:bumpBlock(cell, actor, dontBreak)
 		else
 			playSound("block")
 		end
+
         -- Make it bounce
         cell.layer:bounceCell(cell.x, cell.y)
 		
+		-- Turn it into another tile
         if tile.props.turnsInto then
             local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
 
@@ -245,8 +248,25 @@ end
 function Level:bounceOnBlock(cell, actor)
     local tile = cell.tile
 	if tile.props.noteblock then
+		-- Make it bounce
 		cell.layer:bounceCell(cell.x, cell.y, "down")
-		playSound("note-block")
+
+		-- Turn it into another tile
+        if tile.props.turnsInto then
+            local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
+
+            cell.layer:setCoordinate(cell.x, cell.y, turnIntoTile)
+        end
+		
+        -- Check what's inside
+        local item = tile.props.defaultItem
+        if item == "coin" then
+            self:collectCoin(actor)
+		elseif item then
+			local sprout = Actor:new(self, cell.x*16-8, (cell.y+1)*16, actorTemplates[item])
+			table.insert(self.actors, sprout)
+			playSound("mushroom-appear")
+        end
 	end
 end
 
