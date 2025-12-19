@@ -96,6 +96,7 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {dontBreak = true},
+        ["misc.bounceOnBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.losesLife"] = {on = "getHurt"},
 		["smb3.star"] = {},

@@ -255,10 +255,10 @@ function Layer:setCoordinate(x, y, tile)
     end
 end
 
-function Layer:bounceCell(x, y)
+function Layer:bounceCell(x, y, direction)
     local cell = self.map[x][y]
 
-    cell:bounce()
+    cell:bounce(direction)
     table.insert(self.bouncingCells, cell)
 end
 

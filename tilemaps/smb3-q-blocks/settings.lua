@@ -85,6 +85,12 @@ for i = 52, 60 do
 	}
 end
 
+-- Note blocks
+tiles[61] = {
+    collision = templates.cube,
+	noteblock = true,
+}
+
 local props = {
     tileSize = 16,
     tileMap = "tiles.png",

@@ -204,7 +204,7 @@ end
 function Level:bumpBlock(cell, actor, dontBreak)
     local tile = cell.tile
 
-    if tile.props.breakable or tile.props.holdsItems then
+    if tile.props.breakable or tile.props.holdsItems or tile.props.noteblock then
 		-- Collect coins above
 		if cell.layer.map[cell.x][cell.y - 1].tile then
 			if cell.layer.map[cell.x][cell.y - 1].tile.props.coin then
@@ -240,6 +240,14 @@ function Level:bumpBlock(cell, actor, dontBreak)
 	else
 		playSound("block")
     end
+end
+
+function Level:bounceOnBlock(cell, actor)
+    local tile = cell.tile
+	if tile.props.noteblock then
+		cell.layer:bounceCell(cell.x, cell.y, "down")
+		playSound("note-block")
+	end
 end
 
 function Level:collectCoin(actor, layer, x, y)
