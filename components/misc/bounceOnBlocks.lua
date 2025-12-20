@@ -6,7 +6,7 @@ bounceOnBlocks.argList = {
 }
 
 function bounceOnBlocks:bottomCollision(dt, actorEvent, obj2)
-	if obj.tile then
+	if obj2.tile then
 		if obj2.tile.props.noteblock then
 			self.actor.world:bounceOnBlock(obj2, self.actor)
 			
