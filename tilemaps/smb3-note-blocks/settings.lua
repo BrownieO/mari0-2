@@ -20,14 +20,14 @@ tiles[8].noteblock = true
 tiles[37] = {
     collision = templates.cube,
 	noteblock = true,
-	noteblockForceY = 6,
+	noteblockForceY = 0,
 	noteblockForceX = -VAR("enemyBounceHeight")*2
 }
 
 tiles[38] = {
     collision = templates.cube,
 	noteblock = true,
-	noteblockForceY = 6,
+	noteblockForceY = 0,
 	noteblockForceX = VAR("enemyBounceHeight")*2
 }
 
