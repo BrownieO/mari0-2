@@ -105,6 +105,12 @@ for i = 62, 70 do
 	}
 end
 
+tiles[71] = {
+    collision = templates.cube,
+	noteblock = true,
+	noteblockForceY = VAR("enemyBounceHeight")*2
+}
+
 local props = {
     tileSize = 16,
     tileMap = "tiles.png",
