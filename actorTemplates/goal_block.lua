@@ -10,6 +10,6 @@ return {
 	static = true,
 
     components = {
-		["misc.warpOnMarioContact"] = {level = "mappacks/smb3/1-1.lua"}
+		["misc.warp"] = {}
 	}
 }

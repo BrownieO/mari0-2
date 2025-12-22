@@ -7,6 +7,7 @@ function Player:initialize(i, settings)
     self.score = 0
     self.lives = 3
 	self.powerUp = "small"
+	self.warpExitId = 0
 
     if settings.palette then
         self.palette = convertPalette(settings.palette)

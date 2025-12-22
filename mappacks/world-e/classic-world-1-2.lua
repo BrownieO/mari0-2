@@ -250,9 +250,9 @@ return {
 		
 		{type="koopa_red", x=146, y=13},
 		
-		{type="goal_block", x=165, y=10, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
+		{type="goal_block", x=165, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
-		{type="goal_block", x=182.5, y=10, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
+		{type="goal_block", x=182.5, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
     },
 	

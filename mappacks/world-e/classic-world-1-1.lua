@@ -280,7 +280,7 @@ return {
 		{type="goomba", x=51, y=12},
 		{type="goomba", x=52.5, y=12},
 
-		{type="pipe", x=56.5, y=10},
+		{type="pipe", x=57.5, y=9+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-1-1.lua"}}},
 				
 		{type="goomba", x=80, y=4},
 		{type="goomba", x=82, y=4},
@@ -301,7 +301,7 @@ return {
 		{type="goomba", x=174, y=12},
 		{type="goomba", x=175.5, y=12},
 		
-		{type="goal_block", x=232, y=7, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
+		{type="goal_block", x=232, y=7, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
     },
 	
 	music = "overworld-classic"

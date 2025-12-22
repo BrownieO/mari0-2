@@ -1,17 +1,19 @@
 return {
-    width = 28,
+    width = 16,
     height = 26,
 
     img = "img/actors/pipe.png",
-    quadWidth = 28,
+    quadWidth = 16,
     quadHeight = 26,
-    centerX = 28/2,
+    centerX = 16/2,
     centerY = 26/2,
 	static = true,
-
+	
     collisionGroup = 1,
 
     components = {
-		["misc.warpOnMarioContact"] = {level = "mappacks/smb3/1-1.lua"}
+		["misc.warp"] = {
+			key = "down"
+		}
 	}
 }
