@@ -235,7 +235,7 @@ return {
 		
         {type="koopa_red", x=133, y=10},
 		
-        {type="goal_block", x=184, y=6, components = {["misc.warpOnMarioContact"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
+        {type="goal_block", x=184, y=6, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
     },
 	
 	backgroundColor = {92, 148, 252},

@@ -102,5 +102,6 @@ return {
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
+		["misc.isWarped"] = {},
     }
 }
