@@ -279,6 +279,8 @@ return {
 		
 		{type="goomba", x=51, y=12},
 		{type="goomba", x=52.5, y=12},
+
+		{type="pipe", x=56.5, y=10},
 				
 		{type="goomba", x=80, y=4},
 		{type="goomba", x=82, y=4},

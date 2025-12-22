@@ -9,19 +9,19 @@ function removeOnMarioContact:initialize(actor, args)
     Component.initialize(self, actor, args)
 end
 
-function removeOnMarioContact:leftCollision(dt, actorEvent, obj2)
+function removeOnMarioContact:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
 
-function removeOnMarioContact:rightCollision(dt, actorEvent, obj2)
+function removeOnMarioContact:rightContact(dt, actorEvent, obj2)
     self:resolve("left", obj2)
 end
 
-function removeOnMarioContact:topCollision(dt, actorEvent, obj2)
+function removeOnMarioContact:topContact(dt, actorEvent, obj2)
     self:resolve("bottom", obj2)
 end
 
-function removeOnMarioContact:bottomCollision(dt, actorEvent, obj2)
+function removeOnMarioContact:bottomContact(dt, actorEvent, obj2)
     self:resolve("top", obj2)
 end
 
