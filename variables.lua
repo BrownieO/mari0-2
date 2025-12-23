@@ -120,6 +120,22 @@ return {
         }
     },
 
+	collisionCategories = {
+		COLLIDE = 0,
+		NON_COLLIDE = 1,
+		TILE = 2,
+		PLAYER = 4,
+		ENEMY = 8,
+		POWER_UP = 16,
+		GIZMO = 32,
+		PROJECTILE = 64,
+		HAZARD = 64,
+	},
+
+	collisionTemplates = {
+	
+	},
+
     editor = {
         cameraSpeed = 300,
         barSize = 14,
