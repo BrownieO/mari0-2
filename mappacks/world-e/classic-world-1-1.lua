@@ -298,6 +298,7 @@ return {
 		{type="goomba", x=128, y=12},
 		{type="goomba", x=129.5, y=12},
 		
+		{type="pipe_exit", x=163, y=10, exitId = 1},
 		{type="goomba", x=174, y=12},
 		{type="goomba", x=175.5, y=12},
 		

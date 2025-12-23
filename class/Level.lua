@@ -39,6 +39,7 @@ function Level:loadLevel(data)
     self.portalProjectiles = {} -- Portal projectiles, duh.
 
     self.spawnList = {}
+	self.exitList = {}
     -- Parse entities
     for _, entity in ipairs(self.data.entities) do
         local actorTemplate = actorTemplates[entity.type]
@@ -61,6 +62,8 @@ function Level:loadLevel(data)
         elseif entity.type == "spawn" then
             self.spawnX = entity.x
             self.spawnY = entity.y
+		elseif entity.type == "pipe_exit" then
+			self.exitList[entity.exitId] = entity
         end
     end
 
@@ -77,11 +80,17 @@ function Level:loadLevel(data)
 
     for i = 1, #self.players do
         local player = self.players[i]
+		local mario
+		
+		if player.exitId and self.exitList[player.exitId] then
+			local exitX, exitY = self:coordinateToWorld(self.exitList[player.exitId].x, self.exitList[player.exitId].y)
+			mario = Actor:new(self, exitX, exitY, actorTemplates["smb3_" .. player.powerUp])
+		else
+			mario = Actor:new(self, x, y, actorTemplates["smb3_" .. player.powerUp])
+		end
 
-        local mario = Actor:new(self, x, y, actorTemplates.smb3_small)
         mario.player = player
         player.actor = mario
-		mario:loadActorTemplate(actorTemplates["smb3_" .. mario.player.powerUp])
 
         -- apply settings like character palette and portal colors
         if player.palette then
