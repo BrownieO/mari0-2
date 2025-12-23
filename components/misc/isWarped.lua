@@ -23,7 +23,7 @@ function isWarped:resolve(dir, obj2)
 		if not warpComponent["key"] or controls3.cmdDown(warpComponent["key"]) then
 			if warpComponent["level"] then
 				if warpComponent["exitId"] then
-					self.actor.player.warpExitId = warpComponent["exitId"]
+					self.actor.player.exitId = warpComponent["exitId"]
 				end
 				game:changeLevel(warpComponent["level"])
 			end
