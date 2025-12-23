@@ -242,8 +242,10 @@ return {
 		{type="goomba", x=99, y=13},
 		{type="goomba", x=100.5, y=13},
 		{type="goomba", x=102, y=13},
-		
+
+		{type="pipe", x=104.5, y=12+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2-1.lua"}}},
 		{type="goomba", x=113, y=13},
+		{type="pipe_exit", x=116, y=12, exitId = 1},
 		
 		{type="goomba", x=135, y=10},
 		{type="goomba", x=136.5, y=9},
