@@ -713,7 +713,7 @@ function World:checkCollisionCommon(x, y, obj, vector, checkGroups, skipPortals)
 
     -- World
     if not (obj and obj.noTileCollision) then
-        if not checkGroups or obj.collisionGroup ~= CollisionGroups.NON_COLLIDE then
+        if not checkGroups or obj.collisionGroup ~= CollisionGroups.templates.NON_COLLIDE then
             for _, layer in ipairs(self.layers) do
                 local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
 

@@ -3,21 +3,14 @@
 
 local CollisionGroups = {}
 
-CollisionGroups.COLLIDE = 0
-CollisionGroups.NON_COLLIDE = 1
-CollisionGroups.TILE = 2
-CollisionGroups.PLAYER = 4
-CollisionGroups.ENEMY = 8
-CollisionGroups.POWER_UP = 16
-CollisionGroups.ENVIRONMENT = 32
-CollisionGroups.PROJECTILE = 64
+CollisionGroups.templates = VAR("collisionCategories")
 
 function CollisionGroups.shouldCollide(obj1, obj2)
     if not obj1.collisionGroup or not obj2.collisionGroup then
         return true
     end
     
-    if obj1.collisionGroup == CollisionGroups.NON_COLLIDE or obj2.collisionGroup == CollisionGroups.NON_COLLIDE then
+    if obj1.collisionGroup == CollisionGroups.templates.NON_COLLIDE or obj2.collisionGroup == CollisionGroups.templates.NON_COLLIDE then
         return false
     end	
 	
