@@ -56,6 +56,7 @@ return {
             into = "koopa"
         },
 		["misc.isHurtByStar"] = {},
+		["misc.isHurtByContact"] = {},
 		["misc.knockedWhenHurt"] = {},
 		["misc.changeCollisionGroup"] = {
 			on = "kicked",

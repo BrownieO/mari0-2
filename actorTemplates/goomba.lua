@@ -31,12 +31,11 @@ return {
 			left = true,
 			right = true,
 			bottom = true,
-			top = false
+			top = false,
+			group = VAR("collisionCategories").PLAYER
 		},
 		["misc.isHurtByStar"] = {},
 		["misc.knockedWhenHurt"] = {},
-        ["misc.isHurtByContact"] = {
-			dontHurtSameGroup = true
-		},
+        ["misc.isHurtByContact"] = {},
 	}
 }

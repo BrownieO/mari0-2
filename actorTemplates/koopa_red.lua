@@ -40,7 +40,8 @@ return {
 			left = true,
 			right = true,
 			bottom = true,
-			top = false
+			top = false,
+			group = VAR("collisionCategories").PLAYER
 		},
         ["misc.transforms"] = {
             on = "getStomped",

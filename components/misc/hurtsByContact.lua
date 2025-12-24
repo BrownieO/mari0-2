@@ -7,6 +7,7 @@ hurtsByContact.argList = {
     {"top", "boolean", false},
     {"bottom", "boolean", false},
     {"onlyWhenMoving", "boolean", false},
+	{"group", "number"}
 }
 
 return hurtsByContact
