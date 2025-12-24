@@ -56,6 +56,12 @@ return {
             into = "koopa"
         },
 		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {}
+		["misc.knockedWhenHurt"] = {},
+		["misc.changeCollisionGroup"] = {
+			on = "kicked",
+			group = VAR("collisionCategories").HAZARD,
+			noncollide = VAR("collisionCategories").HAZARD,
+			off = "unkicked"
+		}
     }
 }
