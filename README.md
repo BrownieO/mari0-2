@@ -21,10 +21,12 @@ Developed for LÖVE 11.5
 
 ## Credits
 
-- Nintendo - Super Mario Bros 3 assets
+- Nintendo - Super Mario assets
+- Hummer Team - Super Mario World assets
 - Maurice Guégan - Everything not listed somewhere else
-- Hans Cárdenas - Mario sprites, title logo
+- Hans Cárdenas - Mario sprites, title logo, testing
 - Technochips - Fixes
-- BrownieO - Wiki, quick patches, utilities.
+- BrownieO - Wiki, quick patches, utilities, music
 - awesomezack - P-Balloon sprites
 - Alesan99 - Circle movement code
+- Lu9 - Music arrangements
