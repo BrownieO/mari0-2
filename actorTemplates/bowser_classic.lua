@@ -8,8 +8,8 @@ return {
     centerX = 16,
     centerY = 32,
 
-    collisionGroup = 8,
-    noncollide = 4,
+    collisionGroup = VAR("collisionCategories").ENEMY,
+    noncollide = VAR("nonCollideTemplates").ENEMY,
 
     components = {
         ["animation.frames"] = {

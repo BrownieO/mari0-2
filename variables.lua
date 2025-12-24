@@ -1,4 +1,4 @@
-return {
+local t = {
     vsync = 2,
     scale = 1,
     volume = 1,
@@ -128,12 +128,7 @@ return {
 		ENEMY = 8,
 		POWER_UP = 16,
 		GIZMO = 32,
-		PROJECTILE = 64,
 		HAZARD = 64,
-	},
-
-	collisionTemplates = {
-	
 	},
 
     editor = {
@@ -142,3 +137,34 @@ return {
         barAlpha = 0.8,
     }
 }
+
+t.nonCollideTemplates = {
+	PLAYER = bit.bor(
+		t.collisionCategories.NON_COLLIDE,
+		t.collisionCategories.PLAYER,
+		t.collisionCategories.ENEMY,
+		t.collisionCategories.POWER_UP,
+		t.collisionCategories.HAZARD
+	),
+	ENEMY = bit.bor(
+		t.collisionCategories.NON_COLLIDE,
+		t.collisionCategories.PLAYER,
+		t.collisionCategories.POWER_UP,
+		t.collisionCategories.HAZARD
+	),	
+	POWER_UP = bit.bor(
+		t.collisionCategories.NON_COLLIDE,
+		t.collisionCategories.PLAYER,
+		t.collisionCategories.ENEMY,
+		t.collisionCategories.HAZARD
+	),	
+	HAZARD = bit.bor(
+		t.collisionCategories.NON_COLLIDE,
+		t.collisionCategories.PLAYER,
+		t.collisionCategories.ENEMY,
+		t.collisionCategories.POWER_UP,
+		t.collisionCategories.HAZARD
+	)			
+}
+
+return t

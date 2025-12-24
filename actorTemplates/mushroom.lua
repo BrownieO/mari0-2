@@ -8,8 +8,8 @@ return {
     centerX = 8,
     centerY = 8,
 	
-    collisionGroup = 16,
-    noncollide = 4,
+    collisionGroup = VAR("collisionCategories").POWER_UP,
+    noncollide = VAR("nonCollideTemplates").POWER_UP,
 	
     components = {
         ["misc.unrotate"] = {},

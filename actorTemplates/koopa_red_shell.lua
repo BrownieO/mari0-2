@@ -8,8 +8,8 @@ return {
     centerX = 8,
     centerY = 9,
 
-    collisionGroup = 64,
-    noncollide = 76,
+    collisionGroup = VAR("collisionCategories").ENEMY,
+    noncollide = VAR("nonCollideTemplates").ENEMY,
 
     ["components"] = {
         ["misc.palettable"] = {
