@@ -10,8 +10,8 @@ return {
 
     dontAutoQuad = true,
 
-    collisionGroup = 4,
-    noncollide = 8,
+    collisionGroup = VAR("collisionCategories").PLAYER,
+    noncollide = VAR("nonCollideTemplates").PLAYER,
 
     components = {
         ["misc.palettable"] = {

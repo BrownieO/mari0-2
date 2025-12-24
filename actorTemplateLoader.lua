@@ -9,7 +9,7 @@ for _, file in ipairs(files) do
         local name = string.sub(file, 1, -5)
 
         local templateCode = love.filesystem.read(dir .. file)
-        local template = sandbox.run(templateCode)
+        local template = sandbox.run(templateCode, {env = {VAR = VAR}})
 
         template.name = name
 
