@@ -204,7 +204,14 @@ local function drawObject(obj, x, y, r, sx, sy, cx, cy)
     end
 end
 
+local bg
 function World:draw()
+    prof.push("Background")
+		if bg then
+			love.graphics.draw(bg, 0, 0)
+		end
+    prof.pop()
+
     prof.push("World")
     prof.push("Layers")
     -- Layers
@@ -394,6 +401,11 @@ function World:loadLevel(data)
     self.layers = {}
     self.tileMaps = {}
     self.tileLookups = {}
+	if data.background then
+		bg = love.graphics.newImage(data.background)
+	else
+		bg = nil
+	end
 
     -- Load used tileMaps
     for _, tileMap in ipairs(data.tileMaps) do

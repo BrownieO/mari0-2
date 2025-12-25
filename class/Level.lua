@@ -22,12 +22,14 @@ function Level:loadLevel(data)
     Physics3.World.initialize(self)
     Physics3.World.loadLevel(self, self.data)
 
-    self.backgroundColor = self.data.backgroundColor or {156, 252, 240}
+    self.backgroundColor = self.data.backgroundColor or {181, 235, 242}
     self.backgroundColor[1] = self.backgroundColor[1]/255
     self.backgroundColor[2] = self.backgroundColor[2]/255
     self.backgroundColor[3] = self.backgroundColor[3]/255
 
     love.graphics.setBackgroundColor(self.backgroundColor)
+	
+	self.background = self.data.background or nil
 	
 	self.music = self.data.music or nil
 	love.audio.stop()

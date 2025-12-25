@@ -305,5 +305,6 @@ return {
 		{type="goal_block", x=232, y=7, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
     },
 	
+	background = "img/backgrounds/classic-1-1.png",
 	music = "overworld-classic"
 }
