@@ -24,6 +24,8 @@ function Tracer:cacheCoordinates()
 end
 
 function Tracer:trace()
+	if not self.physObj.world then return end
+
 	local i = 1
 
 	while i <= self.len do
