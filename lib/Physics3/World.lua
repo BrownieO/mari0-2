@@ -176,7 +176,14 @@ local function drawObject(obj, x, y, r, sx, sy, cx, cy)
     end
 end
 
+local bg
 function World:draw()
+    prof.push("Background")
+		if bg then
+			love.graphics.draw(bg, 0, 0)
+		end
+    prof.pop()
+
     prof.push("World")
     prof.push("Layers")
     -- Layers
@@ -330,10 +337,43 @@ function World:addObject(PhysObj)
 	PhysObj.World = self
 end
 
+function World:removeObject(PhysObj)
+    for i = #self.objects, 1, -1 do
+        if self.objects[i] == PhysObj then
+            table.remove(self.objects, i)
+            break
+        end
+    end
+
+    -- Clear ground relationships
+    if PhysObj.isGroundFor then
+        for _, obj in ipairs(PhysObj.isGroundFor) do
+            obj.onGround = false
+        end
+        PhysObj.isGroundFor = {}
+    end
+
+    -- Remove from ground lists of other objects
+    for _, obj in ipairs(self.objects) do
+        if obj.isGroundFor then
+            for i = #obj.isGroundFor, 1, -1 do
+                if obj.isGroundFor[i] == PhysObj then
+                    table.remove(obj.isGroundFor, i)
+                end
+            end
+        end
+    end
+end
+
 function World:loadLevel(data)
     self.layers = {}
     self.tileMaps = {}
     self.tileLookups = {}
+	if data.background then
+		bg = love.graphics.newImage(data.background)
+	else
+		bg = nil
+	end
 
     -- Load used tileMaps
     for _, tileMap in ipairs(data.tileMaps) do
@@ -345,6 +385,7 @@ function World:loadLevel(data)
         local tileMap = lookup[1]
         local tileNo = lookup[2]
 
+        assert(self.tileMaps[tileMap], "The map file has no tilemap with the number" .. tileMap)
         table.insert(self.tileLookups, self.tileMaps[tileMap].tiles[tileNo])
     end
 
@@ -388,6 +429,7 @@ function World:loadLevel(data)
 end
 
 function World:saveLevel(outPath)
+    print("SAVING...")
     local out = {}
 
     -- build the lookup table
@@ -513,7 +555,22 @@ function World:saveLevel(outPath)
 
     table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
 
-    love.filesystem.write(outPath, serialize.tstr(out))
+    -- Preserve level properties
+    if self.data.backgroundColor then
+        out.backgroundColor = self.data.backgroundColor
+    end
+    if self.data.music then
+        out.music = self.data.music
+    end
+
+    success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
+    if success then
+        print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
+		return "Saved to " .. outPath
+    else
+        print(errorMsg)
+		return errorMsg
+    end
 end
 
 function World:advancedPhysicsDebug()

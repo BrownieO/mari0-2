@@ -35,6 +35,10 @@ function Layer:update(dt)
 end
 
 function Layer:setBatchCoordinate(x, y, tile)
+    if tile.invisible then
+        return
+    end
+
     local spriteBatch
 
     if tile.animated then
@@ -251,10 +255,10 @@ function Layer:setCoordinate(x, y, tile)
     end
 end
 
-function Layer:bounceCell(x, y)
+function Layer:bounceCell(x, y, direction)
     local cell = self.map[x][y]
 
-    cell:bounce()
+    cell:bounce(direction)
     table.insert(self.bouncingCells, cell)
 end
 

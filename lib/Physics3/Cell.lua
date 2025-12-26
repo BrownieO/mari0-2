@@ -37,8 +37,16 @@ function Cell:draw()
             off = self.bounceEase(self.bounceTimer, 0, 1, self.bounceTime)
         end
 
+		if self.direction == "down" then
+			self.tile:draw((self.x-1)*16, (self.y-1)*16+off*self.bounceHeight)
+		elseif self.direction == "left" then
+			self.tile:draw((self.x-1)*16-off*self.bounceHeight, (self.y-1)*16)
+		elseif self.direction == "right" then
+			self.tile:draw((self.x-1)*16+off*self.bounceHeight, (self.y-1)*16)
+		else
         self.tile:draw((self.x-1)*16, (self.y-1)*16-off*self.bounceHeight)
     end
+end
 end
 
 function Cell:drawFrame(frame)
@@ -53,7 +61,8 @@ function Cell:drawFrame(frame)
     end
 end
 
-function Cell:bounce()
+function Cell:bounce(direction)
+	self.direction = direction or "up"
     self.bounceTimer = 0
 end
 
