@@ -11,7 +11,6 @@ function Tile:initialize(tileMap, img, x, y, num, props, path)
 
 	self.type = self.props.type or "normal"
 	self.angle = self.props.angle or 0
-	self.invisible = self.props.invisible or false
 
 	self.frameChangedCallbacks = {}
 
@@ -139,18 +138,14 @@ function Tile:checkCollision(x, y, obj, vector, cellX, cellY)
 end
 
 function Tile:draw(x, y)
-	if not self.invisible then
-		love.graphics.draw(self.img, self.quad, x, y)
-	end
+	love.graphics.draw(self.img, self.quad, x, y)
 end
 
 function Tile:drawFrame(x, y, frame)
-	if not self.invisible then
-		if self.animated then
-			love.graphics.draw(self.img, self.quads[frame], x, y)
-		else
-			love.graphics.draw(self.img, self.quad, x, y)
-		end
+	if self.animated then
+		love.graphics.draw(self.img, self.quads[frame], x, y)
+	else
+		love.graphics.draw(self.img, self.quad, x, y)
 	end
 end
 

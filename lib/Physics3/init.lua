@@ -30,7 +30,6 @@ Physics3.Tile = require(current_folder .. ".Tile")
 Physics3.Cell = require(current_folder .. ".Cell")
 Physics3.TileMap = require(current_folder .. ".TileMap")
 Physics3.Tracer = require(current_folder .. ".Tracer")
-Physics3.CollisionGroups = require(current_folder .. ".CollisionGroups")
 
 -- Portal
 Physics3.Portal = require(current_folder .. ".portal.Portal")
