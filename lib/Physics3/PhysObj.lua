@@ -170,6 +170,7 @@ function PhysObj:bottomColCheck()
 end
 
 function PhysObj:leftColResolve(obj, x, y)
+	self:leftContact(obj)
 	if not self:leftCollision(obj) then
 		if x then
 			if obj.class:isSubclassOf(PhysObj) then
@@ -184,6 +185,7 @@ function PhysObj:leftColResolve(obj, x, y)
 end
 
 function PhysObj:rightColResolve(obj, x, y)
+	self:rightContact(obj)
 	if not self:rightCollision(obj) then
 		if x then
 			if obj.class:isSubclassOf(PhysObj) then
@@ -198,6 +200,7 @@ function PhysObj:rightColResolve(obj, x, y)
 end
 
 function PhysObj:topColResolve(obj, x, y)
+	self:topContact(obj)
 	if not self:topCollision(obj) then
 		if y then
 			self.y = y+1
@@ -208,6 +211,7 @@ function PhysObj:topColResolve(obj, x, y)
 end
 
 function PhysObj:bottomColResolve(obj, x, y)
+	self:bottomContact(obj)
 	if not self:bottomCollision(obj) then
 		if not self.onGround then
 			self.onGround = true
