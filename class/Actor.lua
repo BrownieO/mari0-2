@@ -192,18 +192,22 @@ end
 
 function Actor:topCollision(obj2)
     self:event("topCollision", 0, obj2)
+    self:event("topContact", 0, obj2)
 end
 
 function Actor:bottomCollision(obj2)
-    return self:event("bottomCollision", 0, obj2)
+    self:event("bottomCollision", 0, obj2)
+	self:event("bottomContact", 0, obj2)
 end
 
 function Actor:leftCollision(obj2)
-    return self:event("leftCollision", 0, obj2)
+    self:event("leftCollision", 0, obj2)
+    self:event("leftContact", 0, obj2)
 end
 
 function Actor:rightCollision(obj2)
-    return self:event("rightCollision", 0, obj2)
+    self:event("rightCollision", 0, obj2)
+    self:event("rightContact", 0, obj2)
 end
 
 function Actor:leftContact(obj2)
