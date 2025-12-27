@@ -139,6 +139,7 @@ local t = {
 
 t.collisionMasks = {
 	ALWAYS_COLLIDE = 127,
+	TILE = 127,
 	PLAYER = bit.bor(
 		t.collisionCategories.TILE,
 		t.collisionCategories.GIZMO
@@ -152,7 +153,8 @@ t.collisionMasks = {
 		t.collisionCategories.TILE,
 		t.collisionCategories.POWER_UP,
 		t.collisionCategories.GIZMO
-	),	
+	),
+	GIZMO = 127,
 	HAZARD = 0
 }
 

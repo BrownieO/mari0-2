@@ -152,14 +152,14 @@ function Actor:loadActorTemplate(actorTemplate)
     -- Load collision group properties from actor template
     if self.actorTemplate.collisionGroup then
         self.collisionGroup = self.actorTemplate.collisionGroup
+	else
+		self.collisionGroup = 0
     end
     
     if self.actorTemplate.collisionMask then
         self.collisionMask = self.actorTemplate.collisionMask
-    end
-
-    if self.actorTemplate.noTileCollision then
-        self.noTileCollision = self.actorTemplate.noTileCollision
+	else
+		self.collisionMask = 0
     end
 
     self.components = {}
