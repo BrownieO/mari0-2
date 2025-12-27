@@ -170,12 +170,12 @@ function PhysObj:bottomColCheck()
 end
 
 function PhysObj:shouldCollide(a, b)
-	return bit.band(a.collisionMask, b.collisionGroup) ~= 0 and bit.band(b.collisionMask, a.collisionGroup) ~= 0
+	return bit.band(a.collisionGroup, b.collisionMask) ~= 0
 end
 
 function PhysObj:leftColResolve(obj, x, y)
 	self:leftContact(obj)
-	if not self:leftCollision(obj) then
+	if not self:leftCollision(obj) and PhysObj:shouldCollide(self, obj) then
 		if x then
 			if obj.class:isSubclassOf(PhysObj) then
 				self.x = obj.x+obj.width
@@ -190,7 +190,7 @@ end
 
 function PhysObj:rightColResolve(obj, x, y)
 	self:rightContact(obj)
-	if not self:rightCollision(obj) then
+	if not self:rightCollision(obj) and PhysObj:shouldCollide(self, obj) then
 		if x then
 			if obj.class:isSubclassOf(PhysObj) then
 				self.x = obj.x-self.width
@@ -205,7 +205,7 @@ end
 
 function PhysObj:topColResolve(obj, x, y)
 	self:topContact(obj)
-	if not self:topCollision(obj) then
+	if not self:topCollision(obj) and PhysObj:shouldCollide(self, obj) then
 		if y then
 			self.y = y+1
 		end
@@ -216,7 +216,7 @@ end
 
 function PhysObj:bottomColResolve(obj, x, y)
 	self:bottomContact(obj)
-	if not self:bottomCollision(obj) then
+	if not self:bottomCollision(obj) and PhysObj:shouldCollide(self, obj) then
 		if not self.onGround then
 			self.onGround = true
 		end

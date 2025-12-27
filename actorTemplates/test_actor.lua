@@ -8,8 +8,8 @@ return {
     centerX = 8,
     centerY = 16,
 
-    collisionGroup = 0,
-    collisionMask = 0,
+    collisionGroup = VAR("collisionCategories").ALWAYS_COLLIDE,
+    collisionMask = VAR("collisionMasks").ALWAYS_COLLIDE,
 
     components = {
         ["misc.palettable"] = {
