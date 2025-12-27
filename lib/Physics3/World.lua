@@ -179,10 +179,13 @@ local function drawObject(obj, x, y, r, sx, sy, cx, cy)
 end
 
 local bg
+
 function World:draw()
     prof.push("Background")
 		if bg then
-			love.graphics.draw(bg, 0, 0)
+			for i = 0, 8 do
+				love.graphics.draw(bg, i * bg:getWidth(), 0)
+			end
 		end
     prof.pop()
 
