@@ -15,7 +15,6 @@ function isKilledByLava:update(dt, actorEvent)
     if tile then
         if tile.props.lava == true then
 			self.actor:event("getKilled")
-			self.actor:event("getHurt")
 		end
     end
 end

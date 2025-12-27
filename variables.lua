@@ -128,6 +128,7 @@ local t = {
 		POWER_UP = 16,
 		GIZMO = 32,
 		HAZARD = 64,
+		SHELL = 128,
 	},
 
     editor = {
@@ -138,8 +139,8 @@ local t = {
 }
 
 t.collisionMasks = {
-	ALWAYS_COLLIDE = 127,
-	TILE = 127,
+	ALWAYS_COLLIDE = 255,
+	TILE = 255,
 	PLAYER = bit.bor(
 		t.collisionCategories.TILE,
 		t.collisionCategories.GIZMO
@@ -155,7 +156,8 @@ t.collisionMasks = {
 		t.collisionCategories.GIZMO
 	),
 	GIZMO = 127,
-	HAZARD = t.collisionCategories.TILE
+	HAZARD = 0,
+	SHELL = t.collisionCategories.TILE
 }
 
 return t
