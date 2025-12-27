@@ -230,6 +230,7 @@ function Level:bumpBlock(cell, actor, dontBreak)
 		
 		-- Break it
 		if tile.props.breakable and not dontBreak then
+			cell.layer:setCoordinate(cell.x, cell.y, nil)
 			cell.layer.map[cell.x][cell.y].tile = nil
 			playSound("block-break")
 			return
@@ -288,6 +289,7 @@ end
 
 function Level:collectCoin(actor, layer, x, y)
     if layer then
+		layer:setCoordinate(x, y, nil)
         layer.map[x][y].tile = nil
     end
 	playSound("coin")
