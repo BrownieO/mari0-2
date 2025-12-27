@@ -155,7 +155,7 @@ t.collisionMasks = {
 		t.collisionCategories.GIZMO
 	),
 	GIZMO = 127,
-	HAZARD = 0
+	HAZARD = t.collisionCategories.TILE
 }
 
 return t

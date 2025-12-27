@@ -12,7 +12,7 @@ function changeCollisionGroup:initialize(actor, args)
     Component.initialize(self, actor, args)
 	
 	self.originalGroup = self.actor.collisionGroup
-	self.originalNoncollide = self.actor.collisionMask
+	self.originalMask = self.actor.collisionMask
 
     self[self.on] = function(self)
         self.actor.collisionGroup = self.group
@@ -21,7 +21,7 @@ function changeCollisionGroup:initialize(actor, args)
 	
     self[self.off] = function(self)
         self.actor.collisionGroup = self.originalGroup
-        self.actor.collisionMask = self.originalNoncollide
+        self.actor.collisionMask = self.originalMask
     end
 end
 

@@ -61,7 +61,7 @@ return {
 		["misc.changeCollisionGroup"] = {
 			on = "kicked",
 			group = VAR("collisionCategories").HAZARD,
-			collisionMask = VAR("collisionCategories").HAZARD,
+			collisionMask = VAR("collisionMasks").HAZARD,
 			off = "unkicked"
 		}
     }

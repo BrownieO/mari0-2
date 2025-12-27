@@ -610,6 +610,11 @@ function World:portalVectorDebug()
     end
 end
 
+function World:shouldCollide(a, b)
+	return bit.band(a.collisionGroup, b.collisionMask) ~= 0
+	and bit.band(b.collisionGroup, a.collisionMask) ~= 0
+end
+
 function World:checkCollision(x, y, obj, vector, portalled)
     if obj and not portalled then -- don't re-portal points because that's still
         -- Portal hijacking
