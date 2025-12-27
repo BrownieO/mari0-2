@@ -4,7 +4,7 @@ local changeCollisionGroup = class("misc.changeCollisionGroup", Component)
 changeCollisionGroup.argList = {
     {"on", "required|string"},
     {"group", "required|number"},
-    {"noncollide", "required|number"},
+    {"collisionMask", "required|number"},
     {"off", "string"},
 }
 
@@ -12,16 +12,16 @@ function changeCollisionGroup:initialize(actor, args)
     Component.initialize(self, actor, args)
 	
 	self.originalGroup = self.actor.collisionGroup
-	self.originalNoncollide = self.actor.noncollide
+	self.originalMask = self.actor.collisionMask
 
     self[self.on] = function(self)
         self.actor.collisionGroup = self.group
-        self.actor.noncollide = self.noncollide
+        self.actor.collisionMask = self.collisionMask
     end
 	
     self[self.off] = function(self)
         self.actor.collisionGroup = self.originalGroup
-        self.actor.noncollide = self.originalNoncollide
+        self.actor.collisionMask = self.originalMask
     end
 end
 

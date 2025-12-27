@@ -19,10 +19,9 @@ function Cell:initialize(x, y, layer, tile)
     self.tile = tile
 
     self.bounceTimer = self.bounceTime
-    
-    -- Cells (tiles) belong to the TILE collision group (1)
-    self.collisionGroup = 2
-    self.noncollide = 0
+	
+	self.collisionGroup = VAR("collisionCategories").TILE
+	self.collisionMask = VAR("collisionMasks").ALWAYS_COLLIDE
 end
 
 function Cell:update(dt)
@@ -48,9 +47,9 @@ function Cell:draw()
 		elseif self.direction == "right" then
 			self.tile:draw((self.x-1)*16+off*self.bounceHeight, (self.y-1)*16)
 		else
-			self.tile:draw((self.x-1)*16, (self.y-1)*16-off*self.bounceHeight)
-		end
+        self.tile:draw((self.x-1)*16, (self.y-1)*16-off*self.bounceHeight)
     end
+end
 end
 
 function Cell:drawFrame(frame)

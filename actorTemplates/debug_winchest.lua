@@ -8,8 +8,8 @@ return {
     centerX = 8,
     centerY = 8,
 	
-    collisionGroup = 16,
-    noncollide = 4,
+    collisionGroup = 1,
+    collisionMask = 127,
 	
     components = {
         ["animation.frames"] = {
