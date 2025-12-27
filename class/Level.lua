@@ -124,6 +124,9 @@ function Level:update(dt)
 
     prof.push("Actor Cleanup")
     for i = #self.actors, 1, -1 do
+		if self.actors[i].y > self:getYEnd()*self.tileSize+.5 then
+			self.actors[i]:destroy()
+		end
         if self.actors[i].destroyed or self.actors[i].deleteMe then
             table.remove(self.actors, i)
         end
@@ -144,6 +147,7 @@ function Level:update(dt)
     end
     prof.pop()
 
+	--Level boundary wrap-around
     if #self.players > 0 and self.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
         self.players[1].actor.y = -1
     end
