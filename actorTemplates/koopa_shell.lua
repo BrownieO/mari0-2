@@ -9,7 +9,7 @@ return {
     centerY = 9,
 
     collisionGroup = VAR("collisionCategories").ENEMY,
-    noncollide = VAR("nonCollideTemplates").ENEMY,
+    collisionMask = VAR("collisionMasks").ENEMY,
 
     ["components"] = {
         ["misc.palettable"] = {
@@ -61,7 +61,7 @@ return {
 		["misc.changeCollisionGroup"] = {
 			on = "kicked",
 			group = VAR("collisionCategories").HAZARD,
-			noncollide = VAR("collisionCategories").HAZARD,
+			collisionMask = VAR("collisionCategories").HAZARD,
 			off = "unkicked"
 		}
     }

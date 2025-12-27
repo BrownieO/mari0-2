@@ -154,8 +154,8 @@ function Actor:loadActorTemplate(actorTemplate)
         self.collisionGroup = self.actorTemplate.collisionGroup
     end
     
-    if self.actorTemplate.noncollide then
-        self.noncollide = self.actorTemplate.noncollide
+    if self.actorTemplate.collisionMask then
+        self.collisionMask = self.actorTemplate.collisionMask
     end
 
     if self.actorTemplate.noTileCollision then

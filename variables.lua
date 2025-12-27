@@ -121,14 +121,12 @@ local t = {
     },
 
 	collisionCategories = {
-		COLLIDE = 0,
-		NON_COLLIDE = 1,
-		TILE = 2,
-		PLAYER = 4,
-		ENEMY = 8,
-		POWER_UP = 16,
-		GIZMO = 32,
-		HAZARD = 64,
+		TILE = 1,
+		PLAYER = 2,
+		ENEMY = 4,
+		POWER_UP = 8,
+		GIZMO = 16,
+		HAZARD = 32,
 	},
 
     editor = {
@@ -138,33 +136,22 @@ local t = {
     }
 }
 
-t.nonCollideTemplates = {
+t.collisionMasks = {
 	PLAYER = bit.bor(
-		t.collisionCategories.NON_COLLIDE,
-		t.collisionCategories.PLAYER,
-		t.collisionCategories.ENEMY,
-		t.collisionCategories.POWER_UP,
-		t.collisionCategories.HAZARD
+		t.collisionCategories.TILE,
+		t.collisionCategories.GIZMO
 	),
 	ENEMY = bit.bor(
-		t.collisionCategories.NON_COLLIDE,
-		t.collisionCategories.PLAYER,
-		t.collisionCategories.POWER_UP,
-		t.collisionCategories.HAZARD
-	),	
+		t.collisionCategories.TILE,
+		t.collisionCategories.ENEMY,
+		t.collisionCategories.GIZMO
+	),
 	POWER_UP = bit.bor(
-		t.collisionCategories.NON_COLLIDE,
-		t.collisionCategories.PLAYER,
-		t.collisionCategories.ENEMY,
-		t.collisionCategories.HAZARD
-	),	
-	HAZARD = bit.bor(
-		t.collisionCategories.NON_COLLIDE,
-		t.collisionCategories.PLAYER,
-		t.collisionCategories.ENEMY,
+		t.collisionCategories.TILE,
 		t.collisionCategories.POWER_UP,
-		t.collisionCategories.HAZARD
-	)			
+		t.collisionCategories.GIZMO
+	),	
+	HAZARD = 0
 }
 
 return t

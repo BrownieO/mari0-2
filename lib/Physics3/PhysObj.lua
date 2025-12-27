@@ -169,6 +169,10 @@ function PhysObj:bottomColCheck()
 	return colX, colY, colObj
 end
 
+function PhysObj:shouldCollide(a, b)
+	return bit.band(a.collisionMask, b.collisionGroup) ~= 0 and bit.band(b.collisionMask, a.collisionGroup) ~= 0
+end
+
 function PhysObj:leftColResolve(obj, x, y)
 	self:leftContact(obj)
 	if not self:leftCollision(obj) then

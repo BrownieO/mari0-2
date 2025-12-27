@@ -9,7 +9,7 @@ return {
     centerY = 8,
 	
     collisionGroup = 16,
-    noncollide = 4,
+    collisionMask = 4,
 	
     components = {
         ["animation.frames"] = {
