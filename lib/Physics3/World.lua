@@ -161,6 +161,8 @@ end
 local inPortals = {}
 
 local function drawObject(obj, x, y, r, sx, sy, cx, cy)
+    love.graphics.setColor(1, 1, 1, obj.alpha or 1)
+
     if obj.imgPalette and obj.palette then
         paletteShader.on(obj.imgPalette, obj.palette)
     end
