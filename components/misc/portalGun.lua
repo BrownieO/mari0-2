@@ -48,12 +48,6 @@ function portalGun:click(dt, actorEvent, button)
                 color,
                 self.portals[button])
 			
-			if button == 1 then
-				playSound("portalgun-shoot-blue")
-			elseif button == 2 then
-				playSound("portalgun-shoot-orange")
-			end
-			
             if portal then
                 if self.portals[button] then
                     self.portals[button].deleteMe = true
@@ -68,8 +62,15 @@ function portalGun:click(dt, actorEvent, button)
                     self.portals[button].timer = self.portals[button].connectsTo.timer
                 end
 				
+				if button == 1 then
+					playSound("portalgun-shoot-blue")
+				elseif button == 2 then
+					playSound("portalgun-shoot-orange")
+				end
 				playSound("portal-open1")
-            end
+            else
+				playSound("portal-invalid-surface")
+			end
 
             -- Create projectile
             table.insert(self.actor.world.portalProjectiles, PortalProjectile:new(
