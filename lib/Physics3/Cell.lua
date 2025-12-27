@@ -19,6 +19,8 @@ function Cell:initialize(x, y, layer, tile)
     self.tile = tile
 
     self.bounceTimer = self.bounceTime
+	
+	self.collisionMask = VAR("collisionCategories").TILE
 end
 
 function Cell:update(dt)
