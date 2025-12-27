@@ -10,6 +10,7 @@ function losesLife:initialize(actor, args)
 
     self[self.on] = function(self)
 		self.actor.player.lives = self.actor.player.lives - 1
+		self.actor.player.powerUp = "small"
 		game:resetLevel()
 		playSound("death")
     end

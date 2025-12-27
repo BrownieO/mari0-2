@@ -3,8 +3,8 @@ local Component = require "class.Component"
 local portalGun = class("misc.portalGun", Component)
 
 portalGun.defaultColors = {
-    Color3.fromHSL(200/360, 0.97, 0.61),
-    Color3.fromHSL(30/360, 0.81, 0.51),
+    Color3.fromHSV(207/360, 0.99, 0.98),
+    Color3.fromHSV(31/360, 1, 0.98),
 }
 
 function portalGun:initialize(actor, args)
@@ -16,6 +16,9 @@ function portalGun:initialize(actor, args)
 end
 
 function portalGun:closePortals()
+	if #self.portals > 0 then
+		playSound("portal-fizzle")
+	end
     for i = 1, 2 do
         if self.portals[i] then
             self.portals[i].deleteMe = true
@@ -44,7 +47,13 @@ function portalGun:click(dt, actorEvent, button)
                 crosshair.target.worldY,
                 color,
                 self.portals[button])
-
+			
+			if button == 1 then
+				playSound("portalgun-shoot-blue")
+			elseif button == 2 then
+				playSound("portalgun-shoot-orange")
+			end
+			
             if portal then
                 if self.portals[button] then
                     self.portals[button].deleteMe = true
@@ -58,6 +67,8 @@ function portalGun:click(dt, actorEvent, button)
 
                     self.portals[button].timer = self.portals[button].connectsTo.timer
                 end
+				
+				playSound("portal-open1")
             end
 
             -- Create projectile
