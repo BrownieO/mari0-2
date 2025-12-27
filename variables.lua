@@ -121,12 +121,13 @@ local t = {
     },
 
 	collisionCategories = {
-		TILE = 1,
-		PLAYER = 2,
-		ENEMY = 4,
-		POWER_UP = 8,
-		GIZMO = 16,
-		HAZARD = 32,
+		ALWAYS_COLLIDE = 1,
+		TILE = 2,
+		PLAYER = 4,
+		ENEMY = 8,
+		POWER_UP = 16,
+		GIZMO = 32,
+		HAZARD = 64,
 	},
 
     editor = {
@@ -137,6 +138,7 @@ local t = {
 }
 
 t.collisionMasks = {
+	ALWAYS_COLLIDE = 127,
 	PLAYER = bit.bor(
 		t.collisionCategories.TILE,
 		t.collisionCategories.GIZMO
