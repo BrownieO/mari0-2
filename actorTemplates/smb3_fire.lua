@@ -11,7 +11,7 @@ return {
     dontAutoQuad = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,
-    noncollide = VAR("nonCollideTemplates").PLAYER,
+    collisionMask = VAR("collisionMasks").PLAYER,
 
     components = {
         ["misc.palettable"] = {

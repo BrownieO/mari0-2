@@ -152,14 +152,14 @@ function Actor:loadActorTemplate(actorTemplate)
     -- Load collision group properties from actor template
     if self.actorTemplate.collisionGroup then
         self.collisionGroup = self.actorTemplate.collisionGroup
+	else
+		self.collisionGroup = 0
     end
     
-    if self.actorTemplate.noncollide then
-        self.noncollide = self.actorTemplate.noncollide
-    end
-
-    if self.actorTemplate.noTileCollision then
-        self.noTileCollision = self.actorTemplate.noTileCollision
+    if self.actorTemplate.collisionMask then
+        self.collisionMask = self.actorTemplate.collisionMask
+	else
+		self.collisionMask = 0
     end
 
     self.components = {}
@@ -191,7 +191,7 @@ function Actor:loadActorTemplate(actorTemplate)
 end
 
 function Actor:topCollision(obj2)
-    self:event("topCollision", 0, obj2)
+    return self:event("topCollision", 0, obj2)
 end
 
 function Actor:bottomCollision(obj2)
@@ -207,19 +207,19 @@ function Actor:rightCollision(obj2)
 end
 
 function Actor:leftContact(obj2)
-    return self:event("leftContact", 0, obj2)
+    self:event("leftContact", 0, obj2)
 end
 
 function Actor:rightContact(obj2)
-    return self:event("rightContact", 0, obj2)
+    self:event("rightContact", 0, obj2)
 end
 
 function Actor:topContact(obj2)
-    return self:event("topContact", 0, obj2)
+    self:event("topContact", 0, obj2)
 end
 
 function Actor:bottomContact(obj2)
-    return self:event("bottomContact", 0, obj2)
+    self:event("bottomContact", 0, obj2)
 end
 
 function Actor:startFall()

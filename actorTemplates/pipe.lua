@@ -9,7 +9,8 @@ return {
     centerY = 26/2,
 	static = true,
 	
-    collisionGroup = 1,
+    collisionGroup = 0,
+    collisionMask = 0,
 
     components = {
 		["misc.warp"] = {
