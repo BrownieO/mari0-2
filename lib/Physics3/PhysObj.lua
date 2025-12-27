@@ -176,59 +176,67 @@ end
 
 function PhysObj:leftColResolve(obj, x, y)
 	self:leftContact(obj)
-	if not self:leftCollision(obj) and PhysObj:shouldCollide(obj, self) then
-		if x then
-			if obj.class:isSubclassOf(PhysObj) then
-				self.x = obj.x+obj.width
-			else
-				self.x = x+1
+	if PhysObj:shouldCollide(obj, self) then
+		if not self:leftCollision(obj) then
+			if x then
+				if obj.class:isSubclassOf(PhysObj) then
+					self.x = obj.x+obj.width
+				else
+					self.x = x+1
+				end
 			end
-		end
 
-		self.speed[1] = math.max(self.speed[1], 0)
+			self.speed[1] = math.max(self.speed[1], 0)
+		end
 	end
 end
 
 function PhysObj:rightColResolve(obj, x, y)
 	self:rightContact(obj)
-	if not self:rightCollision(obj) and PhysObj:shouldCollide(obj, self) then
-		if x then
-			if obj.class:isSubclassOf(PhysObj) then
-				self.x = obj.x-self.width
-			else
-				self.x = x-self.width
+	if PhysObj:shouldCollide(obj, self) then
+		if not self:rightCollision(obj) then
+			if x then
+				if obj.class:isSubclassOf(PhysObj) then
+					self.x = obj.x-self.width
+				else
+					self.x = x-self.width
+				end
 			end
-		end
 
-		self.speed[1] = math.min(self.speed[1], 0)
+			self.speed[1] = math.min(self.speed[1], 0)
+		end
 	end
 end
 
 function PhysObj:topColResolve(obj, x, y)
 	self:topContact(obj)
-	if not self:topCollision(obj) and PhysObj:shouldCollide(obj, self) then
-		if y then
-			self.y = y+1
-		end
+	if PhysObj:shouldCollide(obj, self) then
+		if not self:topCollision(obj) then
+			if y then
+				self.y = y+1
+			end
 
-		self.speed[2] = math.max(self.speed[2], 0)
+			self.speed[2] = math.max(self.speed[2], 0)
+		end
 	end
 end
 
 function PhysObj:bottomColResolve(obj, x, y)
 	self:bottomContact(obj)
-	if not self:bottomCollision(obj) and PhysObj:shouldCollide(obj, self) then
-		if not self.onGround then
-			self.onGround = true
+	if PhysObj:shouldCollide(obj, self) then
+		if not self:bottomCollision(obj) then
+			if not self.onGround then
+				self.onGround = true
+			end
+
+			if y then
+				self.y = y-self.height
+			end
+
+			self.speed[2] = math.min(self.speed[2], 0)
+
+			return true
 		end
-
-		if y then
-			self.y = y-self.height
-		end
-
-		self.speed[2] = math.min(self.speed[2], 0)
-
-		return true
 	end
 
 	return false
@@ -310,7 +318,6 @@ function PhysObj:resolveCollisions()
 
 		if x then -- resolve the right collision
 			self:topColResolve(obj, x, y)
-
 			obj:bottomColResolve(self)
 		end
 	end
