@@ -223,20 +223,19 @@ end
 
 function PhysObj:bottomColResolve(obj, x, y)
 	self:bottomContact(obj)
-	if PhysObj:shouldCollide(obj, self) then
-		if not self:bottomCollision(obj) then
-			if not self.onGround then
-				self.onGround = true
-			end
 
-			if y then
-				self.y = y-self.height
-			end
-
-			self.speed[2] = math.min(self.speed[2], 0)
-
-			return true
+	if not self:bottomCollision(obj) then
+		if not self.onGround then
+			self.onGround = true
 		end
+
+		if y then
+			self.y = y-self.height
+		end
+
+		self.speed[2] = math.min(self.speed[2], 0)
+
+		return true
 	end
 
 	return false
