@@ -159,7 +159,7 @@ function PhysObj:bottomColCheck()
 	local colX, colY, colObj
 
 	for _, tracer in ipairs(self.tracers.down) do
-		local traceX, traceY, traceObj = tracer:trace()
+		local traceX, traceY, traceObj = tracer:trace(true)
 
 		if traceX and (not colX or traceY < colY) then
 			colX, colY, colObj = traceX, traceY, traceObj
@@ -222,7 +222,7 @@ function PhysObj:topColResolve(obj, x, y)
 end
 
 function PhysObj:bottomColResolve(obj, x, y)
-	self:bottomContact(obj)
+	--self:bottomContact(obj)
 
 	if not self:bottomCollision(obj) then
 		if not self.onGround then

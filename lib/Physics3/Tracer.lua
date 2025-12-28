@@ -47,8 +47,12 @@ function Tracer:trace(checkMasks)
 		end
 
 		local col = self.physObj.world:checkCollision(xRounded, yRounded, self.physObj, self.vectorNormalized)
-				
+
 		if col then
+			if checkMasks then
+				self.physObj:bottomContact(col)
+			end
+
 			if not checkMasks or self.physObj:shouldCollide(col, self.physObj) then
 				self.tracedLength = i
 				return xRounded, yRounded, col
