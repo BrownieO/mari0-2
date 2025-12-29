@@ -3,7 +3,7 @@ local Component = require "class.Component"
 local portalGun = class("misc.portalGun", Component)
 
 portalGun.defaultColors = {
-    Color3.fromHSV(207/360, 0.99, 0.98),
+    Color3.fromHSV(207/360, 0.84, 0.96),
     Color3.fromHSV(31/360, 1, 0.98),
 }
 
@@ -64,10 +64,11 @@ function portalGun:click(dt, actorEvent, button)
 				
 				if button == 1 then
 					playSound("portalgun-shoot-blue")
+					playSound("portal-open1")
 				elseif button == 2 then
 					playSound("portalgun-shoot-orange")
+					playSound("portal-open2")
 				end
-				playSound("portal-open1")
             else
 				playSound("portal-invalid-surface")
 			end
