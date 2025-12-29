@@ -251,16 +251,19 @@ function updateGroup(group, dt)
 end
 
 function playMusic(music)
-    playSound(music)
+    playSound(music, 1)
 end
 
-function playSound(sound)
+function playSound(sound, volume)
+	volume = volume or 1
+
     if not sound then
         print("Sound not specified")
         return
     end
 
     sounds[sound]:stop()
+	sounds[sound]:setVolume(volume)
     sounds[sound]:play()
 end
 

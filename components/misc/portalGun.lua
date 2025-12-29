@@ -17,7 +17,7 @@ end
 
 function portalGun:closePortals()
 	if #self.portals > 0 then
-		playSound("portal-fizzle")
+		playSound("portal-fizzle", 0.8)
 	end
     for i = 1, 2 do
         if self.portals[i] then
@@ -63,14 +63,14 @@ function portalGun:click(dt, actorEvent, button)
                 end
 				
 				if button == 1 then
-					playSound("portalgun-shoot-blue")
-					playSound("portal-open1")
+					playSound("portalgun-shoot-blue", 0.5)
+					playSound("portal-open1", 0.5)
 				elseif button == 2 then
-					playSound("portalgun-shoot-orange")
-					playSound("portal-open2")
+					playSound("portalgun-shoot-orange", 0.5)
+					playSound("portal-open2", 0.5)
 				end
             else
-				playSound("portal-invalid-surface")
+				playSound("portal-invalid-surface", 0.8)
 			end
 
             -- Create projectile
