@@ -29,6 +29,7 @@ function Tracer:trace(checkMasks)
 	local i = 1
 
 	while i <= self.len do
+		if not self.physObj.world then return end
 		local x = self.coordinateCache[i][1] + self.physObj.x
 		local y = self.coordinateCache[i][2] + self.physObj.y
 
