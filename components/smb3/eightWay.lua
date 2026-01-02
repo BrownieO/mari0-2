@@ -1,4 +1,5 @@
 local Component = require "class.Component"
+local ActorState = require "class.ActorState"
 local eightWay = class("category.eightWay", Component)
 
 local ACCELERATION = 150
@@ -10,6 +11,12 @@ function eightWay:initialize(actor, args)
     Component.initialize(self, actor, args)
 	
 	self.actor.gravity = 0
+	
+    self.actor:registerState("flying", function(actor)
+
+    end)
+
+	self.actor.state = ActorState:new(self.actor, "flying", self.actor.states.flying)
 end
 
 local maxSpeed
