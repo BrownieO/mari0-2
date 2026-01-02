@@ -33,11 +33,13 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
+        ["misc.bounceOnBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
 		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
+		["misc.isWarped"] = {},
     }
 }
