@@ -2,19 +2,21 @@
 
 ![Picture of the game](other/pixel_tile_bug.png)
 
-This is a prototype of the sequel to Mari0. The software would combine Super Mario Bros 3 with elements from the Portal franchise.
+This fork aims to expand the original prototype of Mari0 2.
 
-This fork is also a prototype, so it may undergo multiple iterations. Don't use it for production.
+However, it's still in the iteration phase. Do not use it for production yet.
 
 Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to get started.
+
+External tools for content creation are available [here](https://github.com/BrownieO/mari0-2-utilities).
 
 Developed for LÖVE 11.5
 
 ## Additions
 - 4 classic levels
-- Python utilities
 - New GUIs
-- Damage and progression
+- Level switching
+- Damage and power-ups
 - Bug fixes
 - Basic documentation
 - And more
