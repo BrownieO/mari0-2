@@ -16,8 +16,8 @@ return {
     components = {
         ["misc.palettable"] = {
             imgPalette = {
-                {252, 188, 176},
-                {216,  40,   0},
+                {255, 204, 197},
+                {181,  49,  32},
                 {  0,   0,   0}
             },
         },
