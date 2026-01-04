@@ -1,7 +1,10 @@
+local templates = VAR("tileTemplates")
+
 local tiles = {
+	{},
     {
         name = "ground",
-        collision = true
+        collision = templates.cube
     },
     
     {
@@ -22,15 +25,16 @@ local tiles = {
     
     {
         name = "block",
-        cube = true,
+        collision = templates.cube,
         breakable = true
     },
     
     {
         name = "coinBlock",
-        cube = true,
+        collision = templates.cube,
         coinBlock = true,
-        img = "img/coinBlock.png"
+        img = "coinBlock.png",
+		delays = {8/60},
     },
     
     {
@@ -45,7 +49,7 @@ local tiles = {
     
     {
         name = "bowserbridge",
-        cube = true,
+        collision = templates.cube,
         bowserbridge = true
     },
     
@@ -59,47 +63,47 @@ local tiles = {
     
     {
         name = "whitepipetopleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whitepipetopright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipetopleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipetopright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipetopleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipetopright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "mushroomleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "mushroomcenter",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "mushroomright",
-        cube = true
+        collision = templates.cube
     },
     
     
@@ -138,7 +142,7 @@ local tiles = {
     
     {
         name = "castleground",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -167,37 +171,37 @@ local tiles = {
     
     {
         name = "whitepipebottomleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whitepipebottomright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipebottomleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipebottomright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipebottomleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipebottomright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "cannontop",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -233,13 +237,13 @@ local tiles = {
     
     {
         name = "blockunderground",
-        cube = true,
+        collision = templates.cube,
         breakable = true
     },
     
     {
         name = "groundunderground",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -272,37 +276,37 @@ local tiles = {
     
     {
         name = "greenpipelefttopleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipelefttopright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "greenpipemiddletop",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "underwaterpipetop",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whitepipetopleft",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "whitepipetopright",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "cannonbottom",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -339,17 +343,17 @@ local tiles = {
 
     {
         name = "treeplatformleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "treeplatformmiddle",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "treeplatformright",
-        cube = true
+        collision = templates.cube
     },
 
     {
@@ -366,7 +370,7 @@ local tiles = {
 
     {
         name = "underwaterplant",
-        cube = true
+        collision = templates.cube
     },
 
     {
@@ -375,42 +379,42 @@ local tiles = {
 
     {
         name = "blockalt",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "cloudplatform",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "greenpipeleftbottomleft",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "greenpipeleftbottomright",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "greenpipemiddlebottom",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "underwaterpipebottom",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "whitepipebottomleft",
-        cube = true
+        collision = templates.cube
     },
 
     {
         name = "whitepipebottomright",
-        cube = true
+        collision = templates.cube
     },
 
     {
@@ -440,22 +444,22 @@ local tiles = {
     
     {
         name = "whitetreeplatformleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whitetreeplatformmiddle",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whitetreeplatformright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "whiteground",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -528,7 +532,7 @@ local tiles = {
     
     {
         name = "bridge",
-        cube = true
+        collision = templates.cube
     },
     
 
@@ -547,7 +551,7 @@ local tiles = {
 
     {
         name = "undergroundblockalt",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -556,7 +560,7 @@ local tiles = {
     
     {
         name = "coinblockempty",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -581,7 +585,7 @@ local tiles = {
     
     {
         name = "cannonlong",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -594,7 +598,7 @@ local tiles = {
     
     {
         name = "whiteblock",
-        cube = true
+        collision = templates.cube
     },
     
     {
@@ -603,27 +607,27 @@ local tiles = {
     
     {
         name = "redpipebottomleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipebottomright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipetopleft",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "redpipetopright",
-        cube = true
+        collision = templates.cube
     },
     
     {
         name = "underwaterblock",
-        cube = true
+        collision = templates.cube
     },
     
     {
