@@ -142,22 +142,28 @@ t.collisionMasks = {
 	ALWAYS_COLLIDE = 255,
 	TILE = 255,
 	PLAYER = bit.bor(
+		t.collisionCategories.ALWAYS_COLLIDE,
 		t.collisionCategories.TILE,
 		t.collisionCategories.GIZMO
 	),
 	ENEMY = bit.bor(
+		t.collisionCategories.ALWAYS_COLLIDE,
 		t.collisionCategories.TILE,
 		t.collisionCategories.ENEMY,
 		t.collisionCategories.GIZMO
 	),
 	POWER_UP = bit.bor(
+		t.collisionCategories.ALWAYS_COLLIDE,
 		t.collisionCategories.TILE,
 		t.collisionCategories.POWER_UP,
 		t.collisionCategories.GIZMO
 	),
 	GIZMO = 127,
 	HAZARD = 0,
-	SHELL = t.collisionCategories.TILE
+	SHELL = bit.bor(
+		t.collisionCategories.ALWAYS_COLLIDE,
+		t.collisionCategories.TILE
+	)
 }
 
 return t
