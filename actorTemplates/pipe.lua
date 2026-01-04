@@ -4,7 +4,7 @@ return {
 
     img = "img/actors/pipe.png",
     quadWidth = 16,
-    quadHeight = 26,
+    quadHeight = 16,
     centerX = 16/2,
     centerY = 26/2,
 	static = true,
