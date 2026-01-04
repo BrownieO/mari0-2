@@ -378,5 +378,6 @@ return {
 				  {type= 'goomba', x= 175, y= 13},
 				  {type= 'goomba', x= 176, y= 13},
 				  {type= 'goal_block', x= 199, y= 13}},
-	backgroundColor= {92, 148, 252}
+	backgroundColor= {92, 148, 252},
+	music = "overworld-classic"
 }

@@ -31,10 +31,12 @@ local tiles = {
     
     {
         name = "coinBlock",
-        collision = templates.cube,
-        coinBlock = true,
-        img = "coinBlock.png",
+		collision = templates.cube,
+		img = "coinblock.png",
 		delays = {8/60},
+		holdsItems = true,
+		defaultItem = "coin", -- ?
+		turnsInto = 113,
     },
     
     {
