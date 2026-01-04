@@ -28,5 +28,6 @@ return {
             dontTurnAnimation = true,
             maxSpeed = 32,
         },
+		["misc.unrotate"] = {},
     }
 }
