@@ -230,10 +230,14 @@ return {
         {type="koopa_red", x=74, y=2},
         {type="goomba", x=80, y=3},
 		
+        {type="platform_solid", x=88, y=7},
+        {type="platform_solid", x=96, y=8},
+		
         {type="koopa_red", x=110, y=4},
         {type="koopa_red", x=114, y=3},
 		
         {type="koopa_red", x=133, y=10},
+        {type="platform_solid", x=133, y=5},
 		
         {type="goal_block", x=184, y=6, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
     },
