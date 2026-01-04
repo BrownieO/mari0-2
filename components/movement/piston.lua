@@ -9,7 +9,7 @@ piston.argList = {
 	{"pistonextendtime", "number", 2},
 	{"pistonretracttime", "number", 1.8},
 	{"dontpistonnearplayer", "boolean", true},
-	{"dontpistondist", "number", 3},
+	{"dontpistondist", "number", 3*16},
 	{"inactiveonretracted", "boolean", true},
 }
 
@@ -112,10 +112,10 @@ function piston:update(dt)
 			for i = 1, #game.players do
 				local v = game.players[i]
 				if self:inrange(
-				v.actor.x+v.actor.width/2,
-				self.actor.x+self.actor.width/2-(self.dontpistondist or 3),
-				self.actor.cache.x+self.actor.width/2+(self.dontpistondist or 3),
-				false) then
+				v.actor.x + v.actor.width/2,
+				self.actor.cache.x + self.actor.width/2 - (self.dontpistondist or 3*16),
+				self.actor.cache.x + self.actor.width/2 + (self.dontpistondist or 3*16)
+				) then
 					playernear = true
 					break
 				end
