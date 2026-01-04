@@ -55,10 +55,13 @@ function Level:loadLevel(data)
                 end
             end
             
+			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
+			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
+			
             table.insert(self.spawnList, {
                 actorTemplate = actorTemplate,
-                x = entity.x,
-                y = entity.y,
+                x = entity.x + spawnOffsetX,
+                y = entity.y + spawnOffsetY,
                 customProperties = customProperties,
             })
         elseif entity.type == "spawn" then
