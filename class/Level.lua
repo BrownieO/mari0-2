@@ -30,7 +30,8 @@ function Level:loadLevel(data)
     love.graphics.setBackgroundColor(self.backgroundColor)
 	
 	self.background = self.data.background or nil
-	
+	self.wrapX = self.data.wrapX or false	
+	self.wrapY = self.data.wrapY or false	
 	self.music = self.data.music or nil
 	love.audio.stop()
 	playMusic(self.music)
@@ -150,9 +151,18 @@ function Level:update(dt)
     end
     prof.pop()
 
-	--Level boundary wrap-around
+	--Level boundary/border wrap-around
     if #self.players > 0 and self.players[1].actor.y > self:getYEnd()*self.tileSize+.5 then
-        self.players[1].actor.y = -1
+		if self.wrapY then
+			self.players[1].actor.y = -1
+		else
+			self.players[1].actor:event("getKilled")
+			self.players[1].actor:event("getHurt")
+		end
+    end
+	
+    if self.wrapX and #self.players > 0 and self.players[1].actor.x > self:getXEnd()*self.tileSize then
+		self.players[1].actor.x = -1
     end
 
     local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")+2

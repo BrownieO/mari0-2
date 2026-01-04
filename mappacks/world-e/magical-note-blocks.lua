@@ -38,5 +38,6 @@ return {
     },
 	
 	backgroundColor = {0, 0, 0},
-	music = "underground-world"
+	music = "underground-world",
+	wrapX = true
 }
