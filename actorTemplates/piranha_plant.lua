@@ -28,12 +28,13 @@ return {
         ["animation.frames"] = {
             frames = {1, 2}
         },
+		["movement.piston"] = {},
         ["misc.unrotate"] = {},
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
-			top = false,
+			top = true,
 			group = VAR("collisionCategories").PLAYER
 		},
 		["misc.isHurtByStar"] = {},
