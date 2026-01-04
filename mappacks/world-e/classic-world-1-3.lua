@@ -239,6 +239,6 @@ return {
     },
 	
 	background = "img/backgrounds/classic-1-3.png",
-	backgroundColor = {100, 176, 255},
+	backgroundColor = {146, 144, 255},
 	music = "overworld-classic"
 }
