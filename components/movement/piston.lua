@@ -19,7 +19,7 @@ function piston:initialize(actor, args)
 	self.startx = self.actor.x
 	self.starty = self.actor.y
 	self.pistontimer = 0
-	self.pistonstate = "extending"
+	self.pistonstate = "retracting"
 end
 
 function piston:inrange(i, a, b, include)
