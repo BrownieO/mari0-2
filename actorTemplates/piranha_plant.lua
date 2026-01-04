@@ -1,16 +1,19 @@
 return {
     width = 13,
-    height = 18,
+    height = 21,
 
     img = "img/actors/piranha_plant.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,
-    centerY = 24,
+    centerY = 11.5,
+	spawnOffsetX = 1/2,
+	spawnOffsetY = -10/16,
+	
+	static = true,
 
     collisionGroup = 0,
     collisionMask = 0,
-	static = true,
 
     components = {
         ["misc.palettable"] = {
