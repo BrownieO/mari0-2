@@ -236,8 +236,8 @@ return {
 		{type="goomba", x=62, y=13},
 		{type="goomba", x=64, y=13},
 		{type="goomba", x=73, y=5},
-		{type="goomba", x=76, y=9},
-		{type="goomba", x=77.5, y=9},
+		{type="goomba", x=76, y=11},
+		{type="goomba", x=77.5, y=10},
 		
 		{type="goomba", x=99, y=13},
 		{type="goomba", x=100.5, y=13},
