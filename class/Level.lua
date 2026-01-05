@@ -224,7 +224,7 @@ function Level:spawnActors(untilX)
         self.spawnI = self.spawnI + 1
 
         -- Update untilX so enemies spawn in groups
-        untilX = untilX + 2
+        untilX = untilX-- + 2
     end
 
     self.spawnLine = untilX
