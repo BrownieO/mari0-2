@@ -58,13 +58,21 @@ function Level:loadLevel(data)
             
 			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
+
+			local tileOverlap = self:getTile(entity.x, entity.y)
 			
-            table.insert(self.spawnList, {
-                actorTemplate = actorTemplate,
-                x = entity.x + spawnOffsetX,
-                y = entity.y + spawnOffsetY,
-                customProperties = customProperties,
-            })
+			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
+				--tileOverlap.props.breakable = false
+				--tileOverlap.props.holdsItems = true
+				--tileOverlap.props.defaultItem = entity.type
+			else
+				table.insert(self.spawnList, {
+					actorTemplate = actorTemplate,
+					x = entity.x + spawnOffsetX,
+					y = entity.y + spawnOffsetY,
+					customProperties = customProperties,
+				})
+			end
         elseif entity.type == "spawn" then
             self.spawnX = entity.x
             self.spawnY = entity.y

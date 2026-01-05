@@ -210,6 +210,7 @@ function Layer:getCell(x, y)
 end
 
 function Layer:getTile(x, y)
+	if not self.map[x-self.x] or not self.map[x-self.x][y-self.y] then return end
     return self.map[x-self.x][y-self.y].tile
 end
 
