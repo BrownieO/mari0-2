@@ -17,7 +17,7 @@ local t = {
     blockBounceHeight = 0.4,
     blockHitForce = 2,
 
-    enemiesSpawnAhead = 0,
+    enemiesSpawnAhead = 1,
 
     portalSize = 32,
     portalReverseRange = math.pi/4+.001,

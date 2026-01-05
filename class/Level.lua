@@ -165,7 +165,7 @@ function Level:update(dt)
 		self.players[1].actor.x = -1
     end
 
-    local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")+2
+    local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")
     if newSpawnLine > self.spawnLine then
         self:spawnActors(newSpawnLine)
     end
@@ -224,7 +224,7 @@ function Level:spawnActors(untilX)
         self.spawnI = self.spawnI + 1
 
         -- Update untilX so enemies spawn in groups
-        untilX = untilX-- + 2
+        --untilX = untilX + 2
     end
 
     self.spawnLine = untilX
