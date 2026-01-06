@@ -62,6 +62,7 @@ function Level:loadLevel(data)
 			local tileOverlap = self:getTile(entity.x, entity.y)
 			
 			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
+				tileOverlap.item = entity.type
 				--tileOverlap.props.breakable = false
 				--tileOverlap.props.holdsItems = true
 				--tileOverlap.props.defaultItem = entity.type
@@ -248,15 +249,28 @@ function Level:bumpBlock(cell, actor, dontBreak)
 				self:collectCoin(actor, cell.layer, cell.x, cell.y - 1)
 			end
 		end
+
+        -- Check what's inside
+        local item = tile.props.defaultItem
 		
-		-- Break it
-		if tile.props.breakable and not dontBreak then
-			cell.layer:setCoordinate(cell.x, cell.y, nil)
-			cell.layer.map[cell.x][cell.y].tile = nil
-			playSound("block-break")
-			return
+		if item then
+			if item == "coin" then
+				self:collectCoin(actor)
+			elseif item then
+				local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
+				table.insert(self.actors, sprout)
+				playSound("mushroom-appear")
+			end
 		else
-			playSound("block")
+			-- Break it
+			if tile.props.breakable and not dontBreak then
+				cell.layer:setCoordinate(cell.x, cell.y, nil)
+				cell.layer.map[cell.x][cell.y].tile = nil
+				playSound("block-break")
+				return
+			else
+				playSound("block")
+			end
 		end
 
         -- Make it bounce
@@ -267,16 +281,6 @@ function Level:bumpBlock(cell, actor, dontBreak)
             local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
 
             cell.layer:setCoordinate(cell.x, cell.y, turnIntoTile)
-        end
-
-        -- Check what's inside
-        local item = tile.props.defaultItem
-        if item == "coin" then
-            self:collectCoin(actor)
-		elseif item then
-			local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
-			table.insert(self.actors, sprout)
-			playSound("mushroom-appear")
         end
 	else
 		playSound("block")
