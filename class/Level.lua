@@ -63,9 +63,8 @@ function Level:loadLevel(data)
 			local tileOverlap = self:getTile(entity.x, entity.y)
 			
 			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
-				-- local newTile = Physics3.Tile:new(tileOverlap.tileMap, tileOverlap.tileMap.img, tileOverlap.x, tileOverlap.y, tileOverlap.num, tileOverlap.props, tileOverlap.path)
-				-- newTile.props.defaultItem = entity.type
-				-- table.insert(self.itemBlocks, {newTile, entity.x, entity.y})
+				self.itemBlocks[entity.x] = self.itemBlocks[entity.x] or {}
+				self.itemBlocks[entity.x][entity.y] = entity.type
 			else
 				table.insert(self.spawnList, {
 					actorTemplate = actorTemplate,
@@ -126,10 +125,6 @@ function Level:loadLevel(data)
     self.camera = self.viewports[1].camera
 
     self:spawnActors(self.viewports[1].camera.x+CAMERAWIDTH/16+VAR("enemiesSpawnAhead")+2)
-	
-	-- for _, item in ipairs(self.itemBlocks) do
-		-- self.layers[1]:setCoordinate(item[2],item[3],item[1])
-	-- end
 end
 
 function Level:update(dt)
@@ -256,6 +251,9 @@ function Level:bumpBlock(cell, actor, dontBreak)
 
         -- Check what's inside
         local item = tile.props.defaultItem
+		if self.itemBlocks[cell.x] and self.itemBlocks[cell.x][cell.y] then
+			item = self.itemBlocks[cell.x][cell.y]
+		end
 		
 		if item then
 			if item == "coin" then
