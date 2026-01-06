@@ -24,9 +24,10 @@ local tiles = {
     },
     
     {
-        name = "block",
+        name = "brickBlock",
         collision = templates.cube,
-        breakable = true
+        breakable = true,
+		turnsInto = 113
     },
     
     {
@@ -36,7 +37,7 @@ local tiles = {
 		delays = {8/60},
 		holdsItems = true,
 		defaultItem = "coin", -- ?
-		turnsInto = 113,
+		turnsInto = 113
     },
     
     {
@@ -238,9 +239,10 @@ local tiles = {
     },
     
     {
-        name = "blockunderground",
+        name = "brickblockunderground",
         collision = templates.cube,
-        breakable = true
+        breakable = true,
+		turnsInto = 113
     },
     
     {
@@ -380,7 +382,7 @@ local tiles = {
     },
 
     {
-        name = "blockalt",
+        name = "hardblock",
         collision = templates.cube
     },
 
@@ -552,7 +554,7 @@ local tiles = {
 
 
     {
-        name = "undergroundblockalt",
+        name = "undergroundhardblock",
         collision = templates.cube
     },
     
@@ -570,7 +572,12 @@ local tiles = {
     },
     
     {
-        name = "unused"
+        name = "invisibleCoinBlock",
+		collision = templates.cube,
+		invisible = true,
+		holdsItems = true,
+		defaultItem = "coin",
+		turnsInto = 113
     },
     
     {
@@ -599,8 +606,10 @@ local tiles = {
     },
     
     {
-        name = "whiteblock",
-        collision = templates.cube
+        name = "whitebrickblock",
+        collision = templates.cube,
+		breakable = true,
+		turnsInto = 113
     },
     
     {
