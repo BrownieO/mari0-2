@@ -62,7 +62,6 @@ function Level:loadLevel(data)
 			local tileOverlap = self:getTile(entity.x, entity.y)
 			
 			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
-				tileOverlap.item = entity.type
 				--tileOverlap.props.breakable = false
 				--tileOverlap.props.holdsItems = true
 				--tileOverlap.props.defaultItem = entity.type
