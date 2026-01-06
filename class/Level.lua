@@ -62,9 +62,11 @@ function Level:loadLevel(data)
 			local tileOverlap = self:getTile(entity.x, entity.y)
 			
 			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
-				--tileOverlap.props.breakable = false
-				--tileOverlap.props.holdsItems = true
-				--tileOverlap.props.defaultItem = entity.type
+				local newTile = Physics3.Tile:new(tileOverlap.tileMap, tileOverlap.tileMap.img, tileOverlap.x, tileOverlap.y, tileOverlap.num, tileOverlap.props, tileOverlap.path)
+				
+				newTile.props.defaultItem = entity.type
+				
+				--tileOverlap.layer:setCoordinate(entity.x, entity.y, newTile)
 			else
 				table.insert(self.spawnList, {
 					actorTemplate = actorTemplate,
