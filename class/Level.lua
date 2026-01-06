@@ -43,7 +43,7 @@ function Level:loadLevel(data)
 
     self.spawnList = {}
 	self.exitList = {}
-	self.itemBlocks = {}
+	self.entitiesInBlocks = {}
     -- Parse entities
     for _, entity in ipairs(self.data.entities) do
         local actorTemplate = actorTemplates[entity.type]
@@ -63,8 +63,8 @@ function Level:loadLevel(data)
 			local tileOverlap = self:getTile(entity.x, entity.y)
 			
 			if tileOverlap and (tileOverlap.props.holdsItems or tileOverlap.props.breakable) then
-				self.itemBlocks[entity.x] = self.itemBlocks[entity.x] or {}
-				self.itemBlocks[entity.x][entity.y] = entity.type
+				self.entitiesInBlocks[entity.x] = self.entitiesInBlocks[entity.x] or {}
+				self.entitiesInBlocks[entity.x][entity.y] = entity.type
 			else
 				table.insert(self.spawnList, {
 					actorTemplate = actorTemplate,
@@ -251,17 +251,24 @@ function Level:bumpBlock(cell, actor, dontBreak)
 
         -- Check what's inside
         local item = tile.props.defaultItem
-		if self.itemBlocks[cell.x] and self.itemBlocks[cell.x][cell.y] then
-			item = self.itemBlocks[cell.x][cell.y]
+		if self.entitiesInBlocks[cell.x] and self.entitiesInBlocks[cell.x][cell.y] then
+			item = self.entitiesInBlocks[cell.x][cell.y]
 		end
 		
 		if item then
+			-- Give the item
 			if item == "coin" then
 				self:collectCoin(actor)
-			elseif item then
+			else
 				local sprout = Actor:new(self, cell.x*16-8, (cell.y-1)*16, actorTemplates[item])
 				table.insert(self.actors, sprout)
 				playSound("mushroom-appear")
+			end
+			-- Turn it into another tile
+			if tile.props.turnsInto then
+				local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
+
+				cell.layer:setCoordinate(cell.x, cell.y, turnIntoTile)
 			end
 		else
 			-- Break it
@@ -277,13 +284,6 @@ function Level:bumpBlock(cell, actor, dontBreak)
 
         -- Make it bounce
         cell.layer:bounceCell(cell.x, cell.y)
-		
-		-- Turn it into another tile
-        if tile.props.turnsInto then
-            local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
-
-            cell.layer:setCoordinate(cell.x, cell.y, turnIntoTile)
-        end
 	else
 		playSound("block")
     end
