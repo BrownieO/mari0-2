@@ -574,6 +574,7 @@ local tiles = {
     {
         name = "invisibleCoinBlock",
 		collision = templates.cube,
+		exclusiveCollision = 3,
 		invisible = true,
 		holdsItems = true,
 		defaultItem = "coin",
