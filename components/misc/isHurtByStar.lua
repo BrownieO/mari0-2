@@ -18,7 +18,7 @@ function isHurtByStar:bottomContact(dt, actorEvent, obj2)
 end
 
 function isHurtByStar:resolve(dir, obj2)
-	if obj2.starred then
+	if obj2.starred or obj2.metal then
 		self.actor:event("getHurt", dt)
 	end
 end
