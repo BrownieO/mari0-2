@@ -1,13 +1,13 @@
 return {
-    tileMaps = {"smb3-fortress", "smb3-castle", "smb3-q-blocks"},
+    tileMaps = {"smb3-fortress", "smb3-castle", "smb3-blocks"},
     lookups = {
 		{1, 1},  --1. Floor
 		{2, 55},  --2. Lava center
 		{2, 64},  --3. Lava top
 		{1, 3},  --4. Bridge
 		{2, 29},  --5. Roto Disc orb
-		{3, 60},  --6. Invisible Q block with coin
-		{3, 33},  --7. Q block with fire flower
+		{3, 6},  --6. Invisible Q block with coin
+		{3, 4},  --7. Q block
 
 	},
     layers = {
@@ -178,6 +178,7 @@ return {
     },
     entities = {
 		{type="spawn",x=2,y=4},
+		{type="fire_flower",x=31,y=5},
 		{type="roto_disc",x=31,y=9},
 		{type="roto_disc",x=50,y=5},
 		{type="roto_disc",x=61,y=5},
