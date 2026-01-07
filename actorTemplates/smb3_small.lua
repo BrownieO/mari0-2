@@ -101,6 +101,7 @@ return {
 
 		["misc.losesLife"] = {on = "getHurt"},
 		["smb3.star"] = {},
+		["sm64.metal"] = {},
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
 		["misc.isWarped"] = {},
