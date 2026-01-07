@@ -223,24 +223,24 @@ return {
     },
     entities = {
         {type="spawn", x=2, y=10},
-        {type="koopa_red", x=30, y=2},
+        {type="koopa_red", x=31, y=3},
 		
-        {type="goomba", x=44, y=2},
-        {type="goomba", x=46, y=2},
+        {type="goomba", x=45, y=3},
+        {type="goomba", x=47, y=3},
 
 		{type="platform_solid", x=56, y=3.5, components = {["movement.platform"] = {platformtime = 6.4, distancex = 0, distancey = 8.6*16}}},
         {type="fire_flower", x=60, y=9},
 		
-        {type="koopa_red", x=74, y=2},
-        {type="goomba", x=80, y=3},
+        {type="koopa_red_winged", x=75, y=3},
+        {type="goomba", x=81, y=4},
 		
         {type="platform_solid", x=88, y=7},
         {type="platform_solid", x=96, y=8},
 		
-        {type="koopa_red", x=110, y=4},
-        {type="koopa_red", x=114, y=3},
+        {type="koopa_red", x=111, y=5},
+        {type="koopa_red_winged", x=115, y=4},
 		
-        {type="koopa_red", x=133, y=10},
+        {type="koopa_red", x=134, y=11},
         {type="platform_solid", x=133, y=5},
 		
         {type="goal_block", x=184, y=6, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
