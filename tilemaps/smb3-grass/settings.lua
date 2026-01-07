@@ -16,6 +16,19 @@ tiles[18] = templates.smallSlopeRight2
 
 tiles[19] = templates.bigSlopeRight
 
+tiles[22] = {
+    collision = templates.cube,
+    exclusiveCollision = 1,
+}
+tiles[23] = {
+    collision = templates.cube,
+    exclusiveCollision = 1,
+}
+tiles[24] = {
+    collision = templates.cube,
+    exclusiveCollision = 1,
+}
+
 tiles[25] = templates.smallSlopeLeft1
 tiles[26] = templates.smallSlopeLeft2
 

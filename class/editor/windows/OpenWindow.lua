@@ -27,6 +27,7 @@ function OpenWindow:goToMenu()
 
     self.element.background = {0.5, 0.5, 0.5, 1}
 
+	self.element:addChild(Gui3.Text:new("appdata", 0, 0))
     self:createTree("/mappacks")
 
     self.element.autoArrangeChildren = true
