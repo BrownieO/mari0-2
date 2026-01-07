@@ -15,7 +15,6 @@ function metal:getMetalCap()
     if not self.metalActive then
         self.metalActive = true
         self.actor.metal = true
-		self.actor.palette = METALPALETTES[1]
 
         love.audio.stop()
         playMusic("metal-mario")
@@ -42,6 +41,10 @@ function metal:update(dt, actorEvent)
     end
 
     self.actor.metalTimer = self.actor.metalTimer + dt
+	
+	if not self.starred then
+		self.actor.palette = METALPALETTES[1]	
+	end
 
     if self.actor.metalTimer >= METALTIME then
         self:loseMetalCap()
