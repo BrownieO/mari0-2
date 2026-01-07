@@ -2,7 +2,7 @@ local tiles = {}
 
 local templates = VAR("tileTemplates")
 
-local cubes = {1,2,3}
+local cubes = {1,2,3,8,9}
 
 for _, v in ipairs(cubes) do
     tiles[v] = {collision = templates.cube}
