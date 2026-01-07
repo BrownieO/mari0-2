@@ -31,7 +31,7 @@ return {
         ["animation.frames"] = {
 			frames = {1, 2, 3, 4}
         },
-
+		["movement.flyVertical"] = {},
         ["misc.unrotate"] = {},
         ["misc.stompable"] = {},
 		["misc.hurtsByContact"] = {
