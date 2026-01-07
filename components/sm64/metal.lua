@@ -42,7 +42,7 @@ function metal:update(dt, actorEvent)
 
     self.actor.metalTimer = self.actor.metalTimer + dt
 	
-	if not self.starred then
+	if not self.actor.starred then
 		self.actor.palette = METALPALETTES[1]	
 	end
 
