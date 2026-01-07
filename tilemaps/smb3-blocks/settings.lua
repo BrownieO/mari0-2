@@ -206,7 +206,7 @@ tiles[27] = {
     delays = {8/60},
     holdsItems = true,
 	breakable = true,
-    turnsInto = 17
+    turnsInto = 25
 }
 
 tiles[28] = {
@@ -216,7 +216,7 @@ tiles[28] = {
     delays = {8/60},
     holdsItems = true,
     defaultItem = "coin",
-    turnsInto = 17
+    turnsInto = 25
 }
 
 tiles[29] = {
@@ -233,7 +233,7 @@ tiles[30] = {
 	invisible = true,
 	holdsItems = true,
 	defaultItem = "coin",
-	turnsInto = 17
+	turnsInto = 25
 }
 
 tiles[31] = {
