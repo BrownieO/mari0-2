@@ -1,5 +1,5 @@
 return {
-    tileMaps = {"smb3-overworld-blue", "smb3-general", "smb3-q-blocks"},
+    tileMaps = {"smb3-overworld-blue", "smb3-general"},
     lookups = {
 		{2, 21},  --1. Bricks
 		{1, 100},  --2. Ground
@@ -8,7 +8,6 @@ return {
 		{2,19},--5. Pipe flare bottom	
 		{2,12},--6. Pipe top
 		{2,11},--7. Pipe flare top
-		{3, 50}, --8. Bricks with coins
 	},
     layers = {
         {
@@ -27,7 +26,7 @@ return {
 {1,1,1,1,0,0,3,1,0,0,3,2},
 {1,1,1,1,0,0,3,1,0,0,3,2},
 {1,1,1,1,0,0,3,1,0,0,3,2},
-{1,1,1,1,0,0,0,8,0,0,0,2},
+{1,1,1,1,0,0,0,1,0,0,0,2},
 {1,1,1,1,1,1,1,1,1,7,5,2},
 {1,1,1,1,1,1,1,1,1,6,4,2},
 {2,2,2,2,2,2,2,2,2,2,2,2},

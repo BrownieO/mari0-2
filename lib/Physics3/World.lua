@@ -390,7 +390,7 @@ function World:loadLevel(data)
         local tileMap = lookup[1]
         local tileNo = lookup[2]
 
-        assert(self.tileMaps[tileMap], "The map file has no tilemap with the number" .. tileMap)
+        assert(self.tileMaps[tileMap], "The map file has no tilemap with the number " .. tileMap)
         table.insert(self.tileLookups, self.tileMaps[tileMap].tiles[tileNo])
     end
 
