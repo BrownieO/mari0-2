@@ -228,6 +228,7 @@ return {
         {type="goomba", x=44, y=2},
         {type="goomba", x=46, y=2},
 
+		{type="platform_solid", x=56, y=3.5, components = {["movement.platform"] = {platformtime = 6.4, distancex = 0, distancey = 8.6*16}}},
         {type="fire_flower", x=60, y=9},
 		
         {type="koopa_red", x=74, y=2},
