@@ -24,7 +24,11 @@ function DebugWindow:initialize(editor)
     self.element.title = "debug"
     self.editor.canvas:addChild(self.element)
 
-    self.element:addChild(Gui3.Text:new("powerup state", 0, 0))
+    self.element:addChild(Gui3.Text:new("state", 0, 0))
+	self.element:addChild(Gui3.TextButton:new(0, 0, "star", true, 0, function(button) game.players[1].actor:event("getStar") end))
+	self.element:addChild(Gui3.TextButton:new(0, 0, "metal", true, 0, function(button) game.players[1].actor:event("getMetalCap") end))
+
+    self.element:addChild(Gui3.Text:new("power-up", 0, 0))
     self.element:addChild(Gui3.TextButton:new(0, 0, "small", true, 0, function(button) changeTemplate("small") end))
     self.element:addChild(Gui3.TextButton:new(0, 0, "fire", true, 0, function(button) changeTemplate("fire") end))
     self.element:addChild(Gui3.TextButton:new(0, 0, "hammer", true, 0, function(button) changeTemplate("hammer") end))

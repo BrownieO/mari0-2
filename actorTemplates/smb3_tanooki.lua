@@ -141,6 +141,7 @@ return {
 		["misc.shrinksWhenHurt"] = {},
 		["misc.losesLife"] = {on = "getKilled"},
 		["smb3.star"] = {},
+		["sm64.metal"] = {},
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
 		["misc.isWarped"] = {},
