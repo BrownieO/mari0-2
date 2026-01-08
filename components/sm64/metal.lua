@@ -12,8 +12,8 @@ local METALPALETTES = {
 }
 
 function metal:getMetalCap()
-    if not self.metalActive then
-        self.metalActive = true
+    if not self.effectActive then
+        self.effectActive = true
         self.actor.metal = true
 
         love.audio.stop()
@@ -25,7 +25,7 @@ end
 
 function metal:loseMetalCap()
     if self.actor.metal then
-        self.metalActive = false
+        self.effectActive = false
         self.actor.metal = false
         self.actor.metalTimer = 0
         self.actor.palette = self.actor.defaultPalette
