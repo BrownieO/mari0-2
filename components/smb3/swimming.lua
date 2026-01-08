@@ -89,12 +89,6 @@ end
 -- @param underWater Boolean used to avoid redundant updates.
 function swimming:setUnderWater(underWater)
     if underWater ~= self.actor.underWater then
-        -- If actor has metal powerup, disable swimming behavior while underwater.
-        if self.actor.metal then
-            self.actor.underWater = false
-            return
-        end
-
         self.actor.underWater = underWater
 
         if self.actor.underWater then
@@ -116,7 +110,7 @@ end
 -- Triggers state change to "swimming".
 -- @param actorEvent The event dispatcher for binding post-jump physics.
 function swimming:jump(dt, actorEvent)
-    if self.actor.underWater and not self.actor.metal then
+    if self.actor.underWater then
         self.actor.onGround = false
 
         -- Apply upward force after current update frame.
@@ -157,7 +151,7 @@ function swimming:bottomCollision()
 end
 
 function swimming:startFall()
-    if self.actor.underWater and not self.actor.metal then
+    if self.actor.underWater then
         self.actor:switchState("swimming")
     end
 end
@@ -165,7 +159,6 @@ end
 -- Used on setUnderWater()
 function swimming:enterWater()
     self.actor.speed[2] = math.min(0, self.actor.speed[2])
-    if self.actor.metal then return end
     self.actor:switchState("swimming")
 end
 
