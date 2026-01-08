@@ -48,9 +48,12 @@ function World:update(dt)
         obj.prevX = obj.x
         obj.prevY = obj.y
 
-        -- Add half of gravity
-        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+        -- Gravity application (skipped for static actors)
+        if not (obj.actorTemplate and obj.actorTemplate.static) then
+            -- Add half of gravity
+            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+        end
 
         local oldX, oldY = obj.x, obj.y
 
@@ -60,9 +63,11 @@ function World:update(dt)
         obj.x = obj.x + obj.frameMovementX
         obj.y = obj.y + obj.frameMovementY
 
-		-- Add other half of gravity
-        obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-        obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+        if not (obj.actorTemplate and obj.actorTemplate.static) then
+            -- Add other half of gravity
+            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+        end
 
         self:checkPortaling(obj, oldX, oldY)
 
