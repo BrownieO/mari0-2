@@ -20,6 +20,9 @@ function PhysObj:initialize(world, x, y, width, height)
 	self.isGroundFor = {}
 	self.inPortals = {}
 
+	-- active flag: when false, PhysObj calculations are skipped
+	self.active = true
+
 	-- register yourself with the world
 	world:addObject(self)
 
@@ -249,6 +252,7 @@ function PhysObj:checkCollisions()
 end
 
 function PhysObj:resolveCollisions()
+	if self.active == false then return end
 	if VAR("debug").tracerDebug then
 		for _, group in pairs(self.tracers) do
 			for _, tracer in ipairs(group) do
@@ -323,11 +327,13 @@ function PhysObj:resolveCollisions()
 end
 
 function PhysObj:preMovement()
+	if self.active == false then return end
 	self.standingOn = nil
 	iClearTable(self.isGroundFor)
 end
 
 function PhysObj:postMovement()
+	if self.active == false then return end
 	if self.standingOn and self.standingOn.class:isSubclassOf(PhysObj) then
 		local mx, my = recursivelyGetFrameMovement(self.standingOn)
 

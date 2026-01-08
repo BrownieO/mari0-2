@@ -15,6 +15,13 @@ function Actor:initialize(world, x, y, actorTemplate, customProperties)
 
     Physics3.PhysObj.initialize(self, world, x-width/2, y-height, width, height)
 
+    -- Respect actorTemplate.active if provided (default true)
+    if self.actorTemplate.active ~= nil then
+        self.active = self.actorTemplate.active
+    else
+        self.active = true
+    end
+
     self.actorEvent = {}
 
     self.debug = {

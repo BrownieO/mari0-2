@@ -37,51 +37,57 @@ function World:update(dt)
 
     prof.push("Objects")
     for _, obj in ipairs(self.objects) do
-        obj:preMovement()
+        if obj.active ~= false then
+            obj:preMovement()
+        end
     end
 
     for _, obj in ipairs(self.objects) do
-        prof.push("Think")
-		obj:update(dt)
-        prof.pop()
+        if obj.active ~= false then
+            prof.push("Think")
+			obj:update(dt)
+            prof.pop()
 
-        obj.prevX = obj.x
-        obj.prevY = obj.y
+            obj.prevX = obj.x
+            obj.prevY = obj.y
 
-        -- Gravity application (skipped for static actors)
-        if not (obj.actorTemplate and obj.actorTemplate.static) then
-            -- Add half of gravity
-            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+            -- Gravity application (skipped for static actors)
+            if not (obj.actorTemplate and obj.actorTemplate.static) then
+                -- Add half of gravity
+                obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+                obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+            end
+
+            local oldX, oldY = obj.x, obj.y
+
+            obj.frameMovementX = obj.speed[1] * dt
+            obj.frameMovementY = obj.speed[2] * dt
+
+            obj.x = obj.x + obj.frameMovementX
+            obj.y = obj.y + obj.frameMovementY
+
+            if not (obj.actorTemplate and obj.actorTemplate.static) then
+                -- Add other half of gravity
+                obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
+                obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
+            end
+
+            self:checkPortaling(obj, oldX, oldY)
+
+            local oldX, oldY = obj.x, obj.y
+
+            prof.push("Collisions")
+            obj:resolveCollisions()
+            prof.pop()
+
+            self:checkPortaling(obj, oldX, oldY)
         end
-
-        local oldX, oldY = obj.x, obj.y
-
-        obj.frameMovementX = obj.speed[1] * dt
-        obj.frameMovementY = obj.speed[2] * dt
-
-        obj.x = obj.x + obj.frameMovementX
-        obj.y = obj.y + obj.frameMovementY
-
-        if not (obj.actorTemplate and obj.actorTemplate.static) then
-            -- Add other half of gravity
-            obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
-            obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
-        end
-
-        self:checkPortaling(obj, oldX, oldY)
-
-        local oldX, oldY = obj.x, obj.y
-
-        prof.push("Collisions")
-        obj:resolveCollisions()
-        prof.pop()
-
-        self:checkPortaling(obj, oldX, oldY)
     end
 
     for _, obj in ipairs(self.objects) do
-        obj:postMovement()
+        if obj.active ~= false then
+            obj:postMovement()
+        end
     end
     prof.pop()
 end
