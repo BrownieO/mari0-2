@@ -9,8 +9,8 @@ return {
     centerY = 22,
 	static = true,
 
-    collisionGroup = VAR("collisionCategories").ENEMY,
-    collisionMask = VAR("collisionMasks").ENEMY,
+    collisionGroup = 0,
+    collisionMask = 0,
 
     components = {
         ["misc.palettable"] = {
