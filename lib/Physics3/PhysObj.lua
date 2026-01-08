@@ -253,6 +253,8 @@ end
 
 function PhysObj:resolveCollisions()
 	if self.active == false then return end
+	-- Skip collision calculations entirely if collisionMask is 0 (no collisions)
+	if self.collisionMask == 0 then return end
 	if VAR("debug").tracerDebug then
 		for _, group in pairs(self.tracers) do
 			for _, tracer in ipairs(group) do
