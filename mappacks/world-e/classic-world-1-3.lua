@@ -238,7 +238,7 @@ return {
         {type="platform_solid", x=96, y=8},
 		
         {type="koopa_red", x=111, y=5},
-        {type="koopa_red_winged", x=115, y=3},
+        {type="koopa_red_winged", x=115, y=4},
 		
         {type="koopa_red", x=134, y=11},
         {type="platform_solid", x=133, y=5},
