@@ -8,6 +8,7 @@ return {
     centerX = 16/2,
     centerY = 26/2,
 	static = true,
+	active = false,
 	
     collisionGroup = 0,
     collisionMask = 0,

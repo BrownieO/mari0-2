@@ -8,6 +8,7 @@ return {
     centerX = 13,
     centerY = 13,
 	static = true,
+	active = false,
 
     components = {
 		["misc.warp"] = {}
