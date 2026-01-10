@@ -298,10 +298,10 @@ function PhysObj:resolveCollisions()
 	if x then
 		if self.onGround or y <= self.y + self.height then
 			if self:bottomColResolve(obj, x, y) then
-				--self.standingOn = obj
+				self.standingOn = obj
 
 				if obj.class:isSubclassOf(PhysObj) then
-					--obj:getStoodOn(self)
+					obj:getStoodOn(self)
 				end
 			end
 			obj:topColResolve(self)
@@ -334,14 +334,13 @@ function PhysObj:preMovement()
 end
 
 function PhysObj:postMovement()
-	return
-	--if self.active == false then return end
-	-- if self.standingOn and self.standingOn.class:isSubclassOf(PhysObj) then
-		-- local mx, my = recursivelyGetFrameMovement(self.standingOn)
+	if self.active == false then return end
+	if self.standingOn and self.standingOn.class:isSubclassOf(PhysObj) then
+		local mx, my = recursivelyGetFrameMovement(self.standingOn)
 
-		-- self.x = self.x + mx
-		-- self.y = self.y + my
-	-- end
+		self.x = self.x + mx
+		self.y = self.y + my
+	end
 end
 
 function PhysObj:checkCollision(x, y)

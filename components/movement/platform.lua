@@ -16,8 +16,7 @@ function platform:initialize(actor, args)
 end
 
 function platform:func(i) -- 0-1 in please
-	return -math.abs(2*i-1)+1
-	--return (-math.cos(i*math.pi*2)+1)/2
+	return (-math.cos(i*math.pi*2)+1)/2
 end
 
 function platform:update(dt)
