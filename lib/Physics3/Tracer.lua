@@ -23,7 +23,7 @@ function Tracer:cacheCoordinates()
 	end
 end
 
-function Tracer:trace(checkMasks)
+function Tracer:trace(doExtraChecks)
 	if not self.physObj.world then return end
 
 	local i = 1
@@ -50,11 +50,11 @@ function Tracer:trace(checkMasks)
 		local col = self.physObj.world:checkCollision(xRounded, yRounded, self.physObj, self.vectorNormalized)
 
 		if col then
-			if checkMasks then
+			if doExtraChecks then
 				self.physObj:bottomContact(col)
 			end
 
-			if not checkMasks or self.physObj:shouldCollide(col, self.physObj) then
+			if not doExtraChecks or self.physObj:shouldCollide(col, self.physObj) then
 				self.tracedLength = i
 				return xRounded, yRounded, col
 			end
