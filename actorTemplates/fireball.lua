@@ -15,7 +15,7 @@ return {
     components = {
         ["animation.frames"] = {
             frames = {1, 2, 3, 4},
-			times = {1/60}
+			times = {1/30}
         },
 		["misc.hurtsByContact"] = {
 			left = true,
