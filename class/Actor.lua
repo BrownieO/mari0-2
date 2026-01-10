@@ -152,7 +152,7 @@ function Actor:loadActorTemplate(actorTemplate)
     self.state = nil
     self.states = {}
 
-    -- Load collision group properties from actor template
+    -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
         self.collisionGroup = self.actorTemplate.collisionGroup
 	else
@@ -163,6 +163,18 @@ function Actor:loadActorTemplate(actorTemplate)
         self.collisionMask = self.actorTemplate.collisionMask
 	else
 		self.collisionMask = 0
+    end
+	
+    if self.actorTemplate.static == true then
+        self.static = true
+	else
+		self.static = false
+    end
+	
+    if self.actorTemplate.active == false then
+        self.active = false
+	else
+		self.active = true
     end
 
     self.components = {}
