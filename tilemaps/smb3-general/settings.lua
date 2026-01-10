@@ -23,6 +23,7 @@ tiles[3] = {
     delays = {8/60},
     holdsItems = true,
 	breakable = true,
+	turnsInto = 5,
 }
 
 
@@ -73,6 +74,7 @@ tiles[21] = {
     delays = {8/60},
     holdsItems = true,
 	breakable = true,
+	turnsInto = 23,
 }
 
 local cubes = {4, 5, 9, 10, 11, 12, 17, 18, 19, 20, 22, 23}
