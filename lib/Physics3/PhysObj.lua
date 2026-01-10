@@ -222,7 +222,6 @@ function PhysObj:topColResolve(obj, x, y)
 end
 
 function PhysObj:bottomColResolve(obj, x, y)
-
 	if not self:bottomCollision(obj) then
 		if not self.onGround then
 			self.onGround = true
