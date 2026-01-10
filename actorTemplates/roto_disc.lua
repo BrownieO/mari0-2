@@ -1,6 +1,6 @@
 return {
-    width = 6,
-    height = 1,
+    width = 11,
+    height = 11,
 
     img = "img/actors/roto_disc.png",
     quadWidth = 16,
