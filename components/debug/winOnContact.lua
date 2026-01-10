@@ -1,10 +1,6 @@
 local Component = require "class.Component"
 local winOnContact = class("misc.winOnContact", Component)
 
-function winOnContact:initialize(actor, args)
-    Component.initialize(self, actor, args)
-end
-
 function winOnContact:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
@@ -22,8 +18,7 @@ function winOnContact:bottomContact(dt, actorEvent, obj2)
 end
 
 function winOnContact:resolve(dir, obj2)
-    local collectsCoins = obj2:hasComponent("misc.collectsCoins")
-    if collectsCoins then
+    if obj2.player then
 		self.actor:destroy()
 		exitEditor = true
     end

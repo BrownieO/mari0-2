@@ -1,10 +1,6 @@
 local Component = require "class.Component"
 local removeOnMarioContact = class("misc.removeOnMarioContact", Component)
 
-function removeOnMarioContact:initialize(actor, args)
-    Component.initialize(self, actor, args)
-end
-
 function removeOnMarioContact:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
 end
@@ -22,8 +18,7 @@ function removeOnMarioContact:bottomContact(dt, actorEvent, obj2)
 end
 
 function removeOnMarioContact:resolve(dir, obj2)
-    local collectsCoins = obj2:hasComponent("misc.collectsCoins")
-    if collectsCoins then
+    if obj2.player then
 		self.actor:destroy()
     end
 end

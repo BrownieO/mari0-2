@@ -1,7 +1,7 @@
 local Component = require "class.Component"
 local isKilledByLava = class("misc.isKilledByLava", Component)
 
-function isKilledByLava:update(dt, actorEvent)
+function isKilledByLava:update(dt)
     local charCenterX, charCenterY = self.actor.world:worldToCoordinate(
         self.actor.x + self.actor.width / 2,
         self.actor.y + self.actor.height / 2
