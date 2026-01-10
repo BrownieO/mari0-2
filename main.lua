@@ -251,6 +251,7 @@ function updateGroup(group, dt)
 end
 
 function playMusic(music)
+	if VAR("musicDisabled") then return end
     playSound(music, 1)
 end
 

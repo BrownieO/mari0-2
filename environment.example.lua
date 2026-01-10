@@ -32,7 +32,7 @@ return {
         jprof = false, -- logs frame data into a file on quit
         lovebird = false, -- enable lövebird debugging (localhost:8000)
         noEnemies = false, -- disables enemy spawning
-        musicDisabled = true, -- disables the music
+        musicDisabled = false, -- disables the music
         skipTitle = false, -- skips title screen
     },
 
