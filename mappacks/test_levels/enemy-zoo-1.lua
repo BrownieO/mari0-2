@@ -156,6 +156,6 @@ layers= {{x= 0,
                       {0, 0, 0, 0, 0, 78, 0, 0, 0, 78, 0, 0, 0, 2, 2},
                       {0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 2, 2},
                       {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}}}},
-entities= {{type= 'spawn', x= 2, y= 13}, {type= 'starman', x= 3, y= 13}, {type= 'goomba', x= 5, y= 13}, {type= 'koopa', x= 8, y= 13}, {type= 'piranha_plant', x= 10, y= 12}, {type= 'koopa_red', x= 12, y= 12},{type= 'platform_solid', x= 12, y= 8}},
+entities= {{type= 'spawn', x= 2, y= 13}, {type= 'starman', x= 3, y= 13}, {type= 'coin', x= 4, y= 9}, {type= 'goomba', x= 5, y= 13}, {type= 'koopa', x= 8, y= 13}, {type= 'piranha_plant', x= 10, y= 12}, {type= 'koopa_red', x= 12, y= 12},{type= 'platform_solid', x= 12, y= 8}},
 backgroundColor= {92, 148, 252}
 }

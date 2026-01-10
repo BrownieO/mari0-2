@@ -23,4 +23,27 @@ function collectsCoins:checkPos(x, y)
     end
 end
 
+function collectsCoins:rightContact(dt, actorEvent, obj2)
+    self:resolve("left", obj2)
+end
+
+function collectsCoins:leftContact(dt, actorEvent, obj2)
+    self:resolve("right", obj2)
+end
+
+function collectsCoins:topContact(dt, actorEvent, obj2)
+    self:resolve("bottom", obj2)
+end
+
+function collectsCoins:bottomContact(dt, actorEvent, obj2)
+    self:resolve("top", obj2)
+end
+
+function collectsCoins:resolve(dir, obj2)
+	if obj2.coin then
+		obj2:destroy()
+		self.actor.world:collectCoin(self.actor)
+	end
+end
+
 return collectsCoins
