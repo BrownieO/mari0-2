@@ -158,7 +158,7 @@ t.collisionMasks = {
 		t.collisionCategories.POWER_UP,
 		t.collisionCategories.GIZMO
 	),
-	GIZMO = 127,
+	GIZMO = 255,
 	HAZARD = 0,
 	SHELL = bit.bor(
 		t.collisionCategories.ALWAYS_COLLIDE,
