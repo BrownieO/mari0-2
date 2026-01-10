@@ -194,7 +194,7 @@ local bg
 function World:draw()
     prof.push("Background")
 		if bg then
-			for i = 0, math.ceil(self:getWidth()*16/bg:getWidth()) do
+			for i = 0, 8 do
 				love.graphics.draw(bg, i * bg:getWidth(), 0)
 			end
 		end
