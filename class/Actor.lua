@@ -151,6 +151,8 @@ function Actor:loadActorTemplate(actorTemplate)
 
     self.state = nil
     self.states = {}
+	
+	self.coin = self.actorTemplate.coin
 
     -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
