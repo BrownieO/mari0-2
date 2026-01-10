@@ -13,6 +13,10 @@ return {
     collisionMask = VAR("collisionMasks").PLAYER,
 
     components = {
+        ["animation.frames"] = {
+            frames = {1, 2, 3, 4},
+			times = {1/60}
+        },
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
