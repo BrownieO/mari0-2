@@ -19,6 +19,7 @@ function shootsFireballs:action()
 		fireball.speed[2] = SHOOTSPEEDY
 		fireball.speed[1] = self.actor.animationDirection * FIREBALLSPEED
 		fireball.animationDirection = self.actor.animationDirection
+		playSound("fireball")
 	end
 end
 

@@ -42,6 +42,7 @@ function fireball:resolve(dir, obj2)
 			self.actor.speed[2] = FIREBALLJUMPFORCE
 		end
 	else
+		playSound("block")
 		self.actor:destroy()
 	end
 end
