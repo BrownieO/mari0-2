@@ -21,6 +21,10 @@ function Actor:initialize(world, x, y, actorTemplate, customProperties)
     else
         self.active = true
     end
+	
+    if self.actorTemplate.gravity then
+        self.gravity = self.actorTemplate.gravity
+    end
 
     self.actorEvent = {}
 
