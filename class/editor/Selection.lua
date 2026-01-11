@@ -149,8 +149,6 @@ function Selection:delete()
             layer:setCoordinate(tile[1], tile[2], nil)
         end
     end
-
-    layer:optimizeSize()
 end
 
 function Selection:getStampMap()
