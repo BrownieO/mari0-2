@@ -1,13 +1,13 @@
 return {
-    tileMaps = {"smb3-overworld-blue", "smb3-general"},
+    tileMaps = {"smb3-overworld-blue", "smb3-general", "smb3-pipes"},
     lookups = {
-		{2, 21},  --1. Bricks
-		{1, 100},  --2. Ground
-		{2, 13},  --3. Coin
-		{2,20},--4. Pipe bottom
-		{2,19},--5. Pipe flare bottom	
-		{2,12},--6. Pipe top
-		{2,11},--7. Pipe flare top
+		{2, 3},  --1. Bricks
+		{1, 94},  --2. Ground
+		{2, 1},  --3. Coin
+		{3,86},--4. Pipe bottom
+		{3,85},--5. Pipe flare bottom	
+		{3,80},--6. Pipe top
+		{3,79},--7. Pipe flare top
 	},
     layers = {
         {
