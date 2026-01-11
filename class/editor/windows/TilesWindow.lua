@@ -71,11 +71,17 @@ function TilesWindow:goToTileMap(tileMap)
     backButton.ignoreForParentSize = true
     self.element:addChild(backButton)
 
+	local idLabel = Gui3.Text:new("0", 60, 1)
+	self.element:addChild(idLabel)
+
     self.tileGrid = Gui3.TileGrid:new(1, 16, self.tileMap,
         function(TileGrid, i)
             TileGrid:setSelected(i)
 
             self.editor:selectTile(self.tileMap.tiles[i])
+			
+			print(i)
+			idLabel:setString(tostring(i))
         end
     )
 
