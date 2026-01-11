@@ -6,9 +6,9 @@ return {
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,
-    centerY = 11.5,
+    centerY = 12.5,
 	spawnOffsetX = 1/2,
-	spawnOffsetY = -10/16,
+	spawnOffsetY = -9/16,
 	
 	static = true,
 
