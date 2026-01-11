@@ -209,6 +209,9 @@ function Actor:loadActorTemplate(actorTemplate)
 
         self:addComponent(components[name], finalArgs)
     end
+	if self.actorTemplate.spawnSound then
+		playSound(self.actorTemplate.spawnSound)
+	end
 end
 
 function Actor:topCollision(obj2)

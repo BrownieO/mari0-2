@@ -29,10 +29,12 @@ return {
 			left = true,
 			right = true,
 			bottom = true,
-			top = true
+			top = true,
+			group = VAR("collisionCategories").PLAYER
 		},
 		["misc.isHurtByStar"] = {},
 		["misc.isHurtByContact"] = {},
 		["misc.enemyHealth"] = {health = 5},
+		["misc.spawnsEnemy"] = {},
     }
 }
