@@ -33,7 +33,6 @@ return {
 		},
 		["misc.isHurtByStar"] = {},
 		["misc.isHurtByContact"] = {},
-		["misc.knockedWhenHurt"] = {
-		},
+		["misc.enemyHealth"] = {health = 5},
     }
 }
