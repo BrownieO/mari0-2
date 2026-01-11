@@ -4,7 +4,7 @@ local jump = class("movement.jump", Component)
 jump.argList = {
     {"jumptime", "number", 3},
     {"jumpforce", "number", getRequiredSpeed(5*16)},
-    {"jumpforceDown", "number", 6*16},
+    {"jumpforceDown", "number", 2*16},
 }
 
 function jump:initialize(actor, args)

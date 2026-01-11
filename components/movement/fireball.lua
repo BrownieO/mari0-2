@@ -2,7 +2,7 @@ local Component = require "class.Component"
 local fireball = class("misc.fireball", Component)
 
 local FIREBALLJUMPFORCE = -140
-local LIFETIME = 2
+local LIFETIME = 1.2
 
 function fireball:initialize(actor, args)
     Component.initialize(self, actor, args)

@@ -113,8 +113,8 @@ function piston:update(dt)
 				local v = game.players[i]
 				if self:inrange(
 				v.actor.x + v.actor.width/2,
-				self.actor.cache.x + self.actor.width/2 - (self.dontpistondist or 3*16),
-				self.actor.cache.x + self.actor.width/2 + (self.dontpistondist or 3*16)
+				self.actor.cache.x + self.actor.width/2 - (self.dontpistondist),
+				self.actor.cache.x + self.actor.width/2 + (self.dontpistondist)
 				) then
 					playernear = true
 					break

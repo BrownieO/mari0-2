@@ -35,6 +35,6 @@ return {
 		["misc.isHurtByStar"] = {},
 		["misc.isHurtByContact"] = {},
 		["misc.enemyHealth"] = {health = 5},
-		["misc.spawnsEnemy"] = {},
+		["misc.spawnsEnemy"] = {spawnsenemyspeedx = 4.69*16},
     }
 }

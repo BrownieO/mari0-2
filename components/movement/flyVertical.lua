@@ -4,8 +4,6 @@ local flyVertical = class("movement.flyVertical", Component)
 flyVertical.argList = {
     {"flyingtime", "number", 7},
     {"flyingdistance", "number", 7.5*16},
-    {"circleRadiusY", "number"},
-    {"circleTime", "number", 3},
 }
 
 function flyVertical:initialize(actor, args)
