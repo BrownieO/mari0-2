@@ -6,9 +6,9 @@ spawnsEnemy.argList = {
     {"type", "string", "bowser_fire"},
     {"spawnenemydelay", "number", 3},
     {"spawnenemyspeedy", "number", 0},
-    {"spawnenemyspeedx", "number", 4.69*16},
+    {"spawnenemyspeedx", "number", 0},
 	{"maxenemycount", "number"},
-	{"radius", "number", 35}
+	{"radius", "number"}
 }
 
 function spawnsEnemy:initialize(actor, args)
