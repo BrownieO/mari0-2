@@ -12,7 +12,7 @@ return {
 	
 	static = true,
 
-    collisionGroup = 0,
+    collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = 0,
 
     components = {

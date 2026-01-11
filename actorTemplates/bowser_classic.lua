@@ -29,6 +29,7 @@ return {
 			top = true
 		},
 		["misc.isHurtByStar"] = {},
+		["misc.isHurtByContact"] = {},
 		["misc.knockedWhenHurt"] = {
 		},
     }
