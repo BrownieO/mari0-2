@@ -9,7 +9,7 @@ return {
     centerY = 22,
 	static = true,
 
-    collisionGroup = 0,
+    collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = 0,
 
     components = {
