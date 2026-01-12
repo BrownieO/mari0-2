@@ -13,4 +13,9 @@ function enemyHealth:getHurt()
 	end
 end
 
+function enemyHealth:getKilled()
+	playSound("knock")
+	self.actor:destroy()
+end
+
 return enemyHealth

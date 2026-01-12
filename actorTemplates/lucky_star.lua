@@ -16,7 +16,7 @@ return {
 		["misc.powerUp"] = {},
 		["misc.broadcastEvent"] = {
 			on = "destroy",
-			fire = "getHurt",
+			fire = {"getHurt", "getKilled"},
 			collisionBlacklist = VAR("collisionCategories").PLAYER
 		}
     }
