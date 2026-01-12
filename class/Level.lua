@@ -251,8 +251,10 @@ function Level:bumpBlock(cell, actor, dontBreak)
 
         -- Check what's inside
         local item = tile.props.defaultItem
+		local entityInBlock = false
 		if self.entitiesInBlocks[cell.x] and self.entitiesInBlocks[cell.x][cell.y] then
 			item = self.entitiesInBlocks[cell.x][cell.y]
+			entityInBlock = true
 		end
 		
 		if item then
@@ -269,6 +271,9 @@ function Level:bumpBlock(cell, actor, dontBreak)
 				local turnIntoTile = tile.tileMap.tiles[tile.props.turnsInto]
 
 				cell.layer:setCoordinate(cell.x, cell.y, turnIntoTile)
+			end
+			if entityInBlock then
+				self.entitiesInBlocks[cell.x][cell.y] = nil
 			end
 		else
 			-- Break it
