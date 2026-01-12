@@ -23,7 +23,6 @@ function isHurtByContact:resolve(dir, obj2)
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
             if not hurtsByContactComponent.group or bit.band(self.actor.collisionGroup, hurtsByContactComponent.group) ~= 0 then
-				print("oof")
 				self.actor:event("getHurt", dt)
 				if hurtsByContactComponent.kamikaze then
 					obj2:destroy()
