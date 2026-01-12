@@ -20,6 +20,7 @@ return {
             frames = {1, 2},
 			times = {1/15}
         },
+		["movement.targetPlayerY"] = {},
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
