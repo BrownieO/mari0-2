@@ -263,7 +263,7 @@ return {
 		
 		{type="goal_block", x=165, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
-		{type="goal_block", x=182.5, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
+		{type="goal_block", x=183.5, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
     },
 	
