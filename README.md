@@ -1,6 +1,6 @@
 # Mari0 2
 
-![Picture of the game](other/pixel_tile_bug.png)
+<img width="400" height="224" alt="v010_thumb" src="https://github.com/user-attachments/assets/cc458d88-95ca-453b-8661-d0646f21a4e8" />
 
 This fork aims to expand the original prototype of Mari0 2.
 
