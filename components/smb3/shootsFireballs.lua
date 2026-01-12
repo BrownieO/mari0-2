@@ -4,7 +4,7 @@ local shootsFireballs = class("smb3.shootsFireballs", Component)
 
 local FIREBALLSPEED = 15*16
 local MAXFIREBALLS = 2
-local SHOOTSPEEDY = 6*16
+local SHOOTSPEEDY = getRequiredSpeed(16)
 
 function shootsFireballs:initialize(actor, args)
     Component.initialize(self, actor, args)
