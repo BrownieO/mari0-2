@@ -7,6 +7,8 @@ spawnsEnemy.argList = {
     {"spawnenemydelay", "number", 3},
     {"spawnenemyspeedy", "number", 0},
     {"spawnenemyspeedx", "number", 0},
+	{"spawnenemyoffsetx", "number", 0},
+	{"spawnenemyoffsety", "number", 0},
 	{"maxenemycount", "number"},
 	{"radius", "number"}
 }
@@ -19,7 +21,12 @@ end
 
 function spawnsEnemy:action()
 	if not self.maxenemycount or self.enemyCount < self.maxenemycount then
-		local enemy = Actor:new(self.actor.world, self.actor.cache.x+(self.actor.width/2), self.actor.cache.y+(self.actor.height/2), actorTemplates[self.type])
+		local enemy = Actor:new(
+			self.actor.world,
+			self.actor.cache.x+self.spawnenemyoffsetx+((0.5*self.actor.animationDirection+0.5)*self.actor.width),
+			self.actor.cache.y+self.spawnenemyoffsety,
+			actorTemplates[self.type]
+		)
 		enemy.parent = self.actor
 		self.enemyCount = self.enemyCount + 1
 		enemy.speed[2] = self.spawnenemyspeedy
