@@ -161,7 +161,7 @@ function PhysObj:bottomColCheck()
 	for _, tracer in ipairs(self.tracers.down) do
 		local traceX, traceY, traceObj = tracer:trace(true)
 
-		if traceX and (not colX or traceY > colY) then
+		if traceX and (not colX or traceY < colY) then
 			colX, colY, colObj = traceX, traceY, traceObj
 		end
 	end
