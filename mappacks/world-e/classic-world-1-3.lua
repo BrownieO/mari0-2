@@ -243,7 +243,7 @@ return {
         {type="koopa_red", x=134, y=11},
         {type="platform_solid", x=133, y=5},
 		
-        {type="goal_block", x=184, y=6, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
+        {type="goal_block", x=185, y=6, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-4.lua"}}},
     },
 	
 	background = "img/backgrounds/classic-1-3.png",
