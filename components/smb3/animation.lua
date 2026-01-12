@@ -100,12 +100,12 @@ function animation:initialize(actor, args)
 end
 
 function animation:postUpdate(dt)
-    -- if self.actor.hasPortalGun then -- look towards portalGunAngle
-    --     if math.abs(self.actor.portalGunAngle-self.actor.angle) <= math.pi*.5 then
-    --         self.actor.animationDirection = 1
-    --     else
-    --         self.actor.animationDirection = -1
-    --     end
+    if self.actor.hasPortalGun then -- look towards portalGunAngle
+        if math.abs(self.actor.aimingAngle-self.actor.angle) <= math.pi*.5 then
+            self.actor.animationDirection = 1
+        else
+            self.actor.animationDirection = -1
+        end
 
     -- else -- look towards last pressed direction
         if controls3.cmdDown("left") then
@@ -113,7 +113,7 @@ function animation:postUpdate(dt)
         elseif controls3.cmdDown("right") then
             self.actor.animationDirection = 1
         end
-    -- end
+    end
 
     local frame = false
 
