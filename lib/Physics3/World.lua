@@ -51,8 +51,8 @@ function World:update(dt)
             obj.prevX = obj.x
             obj.prevY = obj.y
 
-            -- Gravity application (skipped for static actors)
-            if not (obj.actorTemplate and obj.actorTemplate.static) then
+            -- Gravity application
+            if not obj.static then
                 -- Add half of gravity
                 obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
                 obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
@@ -66,7 +66,7 @@ function World:update(dt)
             obj.x = obj.x + obj.frameMovementX
             obj.y = obj.y + obj.frameMovementY
 
-            if not (obj.actorTemplate and obj.actorTemplate.static) then
+            if not obj.static then
                 -- Add other half of gravity
                 obj.speed[2] = obj.speed[2] + (obj.gravity or VAR("gravity")) * dt * 0.5
                 obj.speed[2] = math.min((obj.maxSpeedY or VAR("maxYSpeed")), obj.speed[2]) -- Cap speed[2]
@@ -93,6 +93,8 @@ function World:update(dt)
 end
 
 function World:checkPortaling(obj, oldX, oldY)
+	if obj.static then return false end
+	
     for _, p in ipairs(self.portals) do
         if p.open then
             local iX, iY = linesIntersect(oldX+obj.width/2, oldY+obj.height/2, obj.x+obj.width/2, obj.y+obj.height/2, p.x1, p.y1, p.x2, p.y2)
@@ -249,10 +251,12 @@ function World:draw()
         -- Portal duplication
         iClearTable(inPortals)
 
-        for _, p in ipairs(self.portals) do
-            if p.open then
-                if  rectangleOnLine(quadX, quadY, quadWidth, quadHeight, p.x1, p.y1, p.x2, p.y2) and objectWithinPortalRange(p, x, y) then
-                    table.insert(inPortals, p)
+        if not obj.static then
+            for _, p in ipairs(self.portals) do
+                if p.open then
+                    if  rectangleOnLine(quadX, quadY, quadWidth, quadHeight, p.x1, p.y1, p.x2, p.y2) and objectWithinPortalRange(p, x, y) then
+                        table.insert(inPortals, p)
+                    end
                 end
             end
         end
