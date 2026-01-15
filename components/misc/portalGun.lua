@@ -11,8 +11,14 @@ function portalGun:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self.actor.hasPortalGun = true
+	
+	if self.actor.player then
+		self.portals = self.actor.player.portals
+	end
+end
 
-    self.portals = {}
+function portalGun:playerAssigned()
+	self.portals = self.actor.player.portals
 end
 
 function portalGun:closePortals()
