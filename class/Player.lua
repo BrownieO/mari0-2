@@ -8,6 +8,7 @@ function Player:initialize(i, settings)
     self.lives = 3
 	self.powerUp = "small"
 	self.exitId = 0
+	self.portals = {}
 
     if settings.palette then
         self.palette = convertPalette(settings.palette)

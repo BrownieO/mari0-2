@@ -106,6 +106,7 @@ function Level:loadLevel(data)
 
         mario.player = player
         player.actor = mario
+		mario:event("playerAssigned")
 
         -- apply settings like character palette and portal colors
         if player.palette then
