@@ -2,9 +2,9 @@ local Gui3 = ...
 Gui3.TextInput = class("Gui3.TextInput", Gui3.Element)
 
 Gui3.TextInput.padding = 2
-Gui3.TextInput.blinkInterval = 0.5
-Gui3.TextInput.charHeight = 8
-Gui3.TextInput.charWidth = 8
+Gui3.TextInput.blinkInterval = 1
+Gui3.TextInput.charHeight = 10
+Gui3.TextInput.charWidth = 7.583333
 
 local utf8 = utf8
 
