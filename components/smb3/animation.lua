@@ -146,7 +146,7 @@ function animation:postUpdate(dt)
 
         frame = math.ceil(self.actor.shootTimer/SHOOTTIME*self.actor.frameCounts.shoot)
 
-    elseif self.actor.ducking then
+    elseif self.actor.ducking and self.actor.frameCounts.duck then
         self.actor.animationState = "duck"
 
     elseif self.actor.state.name == "grounded" then
