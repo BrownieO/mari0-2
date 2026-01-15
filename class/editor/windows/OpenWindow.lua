@@ -16,7 +16,7 @@ function OpenWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "open"
+    self.element.title = "Open"
     self.editor.canvas:addChild(self.element)
 
     self:goToMenu()

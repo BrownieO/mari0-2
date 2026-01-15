@@ -14,7 +14,7 @@ function SaveWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "save as"
+    self.element.title = "Save as"
     self.editor.canvas:addChild(self.element)
 
     self.element.background = {0.5, 0.5, 0.5}
