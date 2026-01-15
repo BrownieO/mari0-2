@@ -260,12 +260,14 @@ function PhysObj:resolveCollisions()
 		end
 	end
 
-	-- update self.inPortals
+	-- update self.inPortals (skip for static actors)
 	clearTable(self.inPortals)
 
-	for _, portal in ipairs(self.world.portals) do
-		if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
-			self.inPortals[portal] = true
+	if not self.static then
+		for _, portal in ipairs(self.world.portals) do
+			if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
+				self.inPortals[portal] = true
+			end
 		end
 	end
 
