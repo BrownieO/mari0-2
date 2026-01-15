@@ -79,8 +79,8 @@ function Editor:load()
 
     self.menuBar:addChild(self.fileDropdown)
 
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "Open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "Save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "Open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "Save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, "Exit", false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
