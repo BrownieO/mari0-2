@@ -74,14 +74,14 @@ function Editor:load()
 
 
 
-    self.fileDropdown = Gui3.Dropdown:new(0, 0, "file", self.canvas)
+    self.fileDropdown = Gui3.Dropdown:new(0, 0, "File", self.canvas)
     self.fileDropdown.button.color.background = {0, 0, 0, 0}
 
     self.menuBar:addChild(self.fileDropdown)
 
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, "exit", false, nil, function(button) self:exitToMappacks() end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, "Open", false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, "Save", false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, "Exit", false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
 
@@ -89,17 +89,17 @@ function Editor:load()
 
     -- WINDOW
 
-    self.newWindowDropdown = Gui3.Dropdown:new(38, 0, "window", self.canvas)
+    self.newWindowDropdown = Gui3.Dropdown:new(38, 0, "Window", self.canvas)
     self.newWindowDropdown.button.color.background = {0, 0, 0, 0}
 
     self.menuBar:addChild(self.newWindowDropdown)
 
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 0, "tiles", false, nil, function(button) self:newWindow(self.windowClasses.tiles, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 10, "stamps", false, nil, function(button) self:newWindow(self.windowClasses.stamps, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 20, "layers", false, nil, function(button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, "minimap", false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, "map options", false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, "debug", false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 0, "Tiles", false, nil, function(button) self:newWindow(self.windowClasses.tiles, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 10, "Stamps", false, nil, function(button) self:newWindow(self.windowClasses.stamps, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 20, "Layers", false, nil, function(button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, "Minimap", false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, "Map options", false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, "Debug", false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
 
     self.newWindowDropdown:autoSize()
 
@@ -107,18 +107,18 @@ function Editor:load()
 
     -- VIEW
 
-    local viewDropdown = Gui3.Dropdown:new(92, 0, "view", self.canvas)
+    local viewDropdown = Gui3.Dropdown:new(92, 0, "View", self.canvas)
     viewDropdown.button.color.background = {0, 0, 0, 0}
 
     self.menuBar:addChild(viewDropdown)
 
-    self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, "free camera", 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
+    self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, "Free camera", 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
     viewDropdown.box:addChild(self.freeCameraCheckbox)
 
-    self.gridCheckbox = Gui3.Checkbox:new(0, 11, "draw grid", 1, function(checkbox) self:toggleGrid(checkbox.value) end)
+    self.gridCheckbox = Gui3.Checkbox:new(0, 11, "Draw grid", 1, function(checkbox) self:toggleGrid(checkbox.value) end)
     viewDropdown.box:addChild(self.gridCheckbox)
 
-    self.toggleUICheckbox = Gui3.Checkbox:new(0, 22, "hide ui", 1, function(checkbox) self:toggleUI(checkbox.value) end)
+    self.toggleUICheckbox = Gui3.Checkbox:new(0, 22, "Hide UI", 1, function(checkbox) self:toggleUI(checkbox.value) end)
     viewDropdown.box:addChild(self.toggleUICheckbox)
 
     viewDropdown:autoSize()
