@@ -357,22 +357,24 @@ function PhysObj:portalled()
 end
 
 function recursivelyGetFrameMovement(obj, x, y) -- god I hate recursion
-    if not x then
-        x = 0
-        y = 0
+	local totalX = 0
+    local totalY = 0
+    
+    local current = obj
+    
+    while current do
+        totalX = totalX + (current.frameMovementX or 0)
+        totalY = totalY + (current.frameMovementY or 0)
+        
+        current = current.standingOn
+        
+        if current == obj then
+			print(obj, "collided with itself. Stopping")
+            break
+        end
     end
-
-    x = x + obj.frameMovementX
-    y = y + obj.frameMovementY
-
-    if obj.standingOn and obj.standingOn.frameMovementX then
-        local mx, my = recursivelyGetFrameMovement(obj.standingOn)
-
-        x = x + mx
-        y = y + my
-    end
-
-    return x, y
+    
+    return totalX, totalY
 end
 
 function PhysObj:getStoodOn(obj)
