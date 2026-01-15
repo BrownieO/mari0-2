@@ -6,6 +6,35 @@ Gui3.TextInput.blinkInterval = 0.5
 Gui3.TextInput.charHeight = 8
 Gui3.TextInput.charWidth = 8
 
+local utf8 = utf8
+
+local function u8len(s)
+    if not s then return 0 end
+    local ok, l = pcall(utf8.len, s)
+    if ok and l then return l end
+    return #s
+end
+
+local function u8sub(s, i, j)
+    if s == nil then return "" end
+    local s_len = u8len(s)
+    i = i or 1
+    if i < 0 then i = s_len + 1 + i end
+    if j == nil then j = s_len end
+    if j < 0 then j = s_len + 1 + j end
+    if i < 1 then i = 1 end
+    if j > s_len then j = s_len end
+    if i > j then return "" end
+    local start_byte = utf8.offset(s, i)
+    local end_byte
+    if j == s_len then
+        end_byte = #s
+    else
+        end_byte = utf8.offset(s, j + 1) - 1
+    end
+    return string.sub(s, start_byte, end_byte)
+end
+
 function Gui3.TextInput:initialize(x, y, charW, lines)
     charW = charW or 16
     lines = lines or 1
@@ -31,12 +60,12 @@ end
 
 function Gui3.TextInput:updateDisplay()
     if self.lines == 1 then
-        self.text:set(string.sub(self.value, self.offset + 1, self.offset + self.charW))
+        self.text:set(u8sub(self.value, self.offset + 1, self.offset + self.charW))
     else
         local lines = {}
         local idx = 1
         for i = 1, self.lines do
-            lines[i] = string.sub(self.value, idx, idx + self.charW - 1)
+            lines[i] = u8sub(self.value, idx, idx + self.charW - 1)
             idx = idx + self.charW
         end
         self.text:set(table.concat(lines, "\n"))
@@ -110,9 +139,9 @@ function Gui3.TextInput:mousepressed(x, y, button)
 end
 
 function Gui3.TextInput:textinput(text)
-    if self.focus and (self.maxLength == 0 or #self.value < self.maxLength) then
-        self.value = self.value:sub(1, self.cursorPos - 1) .. text .. self.value:sub(self.cursorPos)
-        self.cursorPos = self.cursorPos + #text
+    if self.focus and (self.maxLength == 0 or u8len(self.value) < self.maxLength) then
+        self.value = u8sub(self.value, 1, self.cursorPos - 1) .. text .. u8sub(self.value, self.cursorPos)
+        self.cursorPos = self.cursorPos + u8len(text)
         self:updateOffset()
         self:updateRender()
         
@@ -129,7 +158,7 @@ function Gui3.TextInput:keypressed(key)
     
     if key == "backspace" then
         if self.cursorPos > 1 then
-            self.value = self.value:sub(1, self.cursorPos - 2) .. self.value:sub(self.cursorPos)
+            self.value = u8sub(self.value, 1, self.cursorPos - 2) .. u8sub(self.value, self.cursorPos)
             self.cursorPos = self.cursorPos - 1
             self:updateOffset()
             self:updateRender()
@@ -139,8 +168,8 @@ function Gui3.TextInput:keypressed(key)
             end
         end
     elseif key == "delete" then
-        if self.cursorPos <= #self.value then
-            self.value = self.value:sub(1, self.cursorPos - 1) .. self.value:sub(self.cursorPos + 1)
+        if self.cursorPos <= u8len(self.value) then
+            self.value = u8sub(self.value, 1, self.cursorPos - 1) .. u8sub(self.value, self.cursorPos + 1)
             self:updateRender()
             
             if self.onChange then
@@ -155,7 +184,7 @@ function Gui3.TextInput:keypressed(key)
             self:updateRender()
         end
     elseif key == "right" then
-        if self.cursorPos < #self.value + 1 then
+        if self.cursorPos < u8len(self.value) + 1 then
             self.cursorPos = self.cursorPos + 1
             self:resetBlink()
             self:updateOffset()
@@ -167,9 +196,9 @@ function Gui3.TextInput:keypressed(key)
         self:resetBlink()
         self:updateRender()
     elseif key == "end" then
-        self.cursorPos = #self.value + 1
+        self.cursorPos = u8len(self.value) + 1
         if self.lines == 1 then
-            self.offset = math.max(0, #self.value - self.charW + 1)
+            self.offset = math.max(0, u8len(self.value) - self.charW + 1)
         end
         self:resetBlink()
         self:updateRender()
@@ -189,7 +218,7 @@ end
 
 function Gui3.TextInput:setValue(value)
     self.value = tostring(value or "")
-    self.cursorPos = #self.value + 1
+    self.cursorPos = u8len(self.value) + 1
     self.offset = 0
     self:updateRender()
 end
