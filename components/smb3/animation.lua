@@ -46,6 +46,8 @@ function animation:initialize(actor, args)
 
     self.actor.swimAnimationFrame = 1
     self.actor.swimAnimationTimer = 0
+	
+	self.actor.spinning = false
 
     local lineBreak = actor.img:getWidth()/actor.quadWidth
 
