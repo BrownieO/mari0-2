@@ -22,10 +22,11 @@ function Level:loadLevel(data)
     Physics3.World.initialize(self)
     Physics3.World.loadLevel(self, self.data)
 
-    self.backgroundColor = self.data.backgroundColor or {181, 235, 242}
-    self.backgroundColor[1] = self.backgroundColor[1]/255
-    self.backgroundColor[2] = self.backgroundColor[2]/255
-    self.backgroundColor[3] = self.backgroundColor[3]/255
+    self.backgroundColor = {
+        (self.data.backgroundColor and self.data.backgroundColor[1] or 181)/255,
+        (self.data.backgroundColor and self.data.backgroundColor[2] or 235)/255,
+        (self.data.backgroundColor and self.data.backgroundColor[3] or 242)/255
+    }
 
     love.graphics.setBackgroundColor(self.backgroundColor)
 	
