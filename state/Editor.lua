@@ -661,45 +661,6 @@ function Editor:resize(w, h)
     self.scaleBar.x = x
 end
 
-
-function Editor:showTree(path, level)
-    path = path or "."
-    level = level or 0
-
-    local files = love.filesystem.getDirectoryItems(path)
-
-    for i, file in ipairs(files) do
-        local fullPath = path .. "/" .. file
-        local info = love.filesystem.getInfo(fullPath)
-
-        local indent = string.rep("  ", level)
-
-        print(indent .. file)
-
-        if info and info.type == "directory" then
-            self:showTree(fullPath, level + 1)
-        end
-    end
-end
-
-function Editor:askForInput(prompt)
-	love.window.showMessageBox("Notice", "Please enter the value in the console.", "info", true)
-	print(prompt)
-	local input = io.read()
-	input = string.gsub(input, '\\', "/")
-	return input
-end
-
-function Editor:askForLevel()
-	print("\nLevels in root (" .. love.filesystem.getAppdataDirectory() .. ")")
-	self:showTree(love.filesystem.getAppdataDirectory())
-	print("")
-	print("\nLevels in mappacks/")
-	self:showTree("mappacks/")
-	local input = self:askForInput("\nType full level path:")
-	return input
-end
-
 function Editor:saveLevel(path)
 	if not path then print("Can't save: no path specified") return end
 	if path == "" then return end
