@@ -246,6 +246,11 @@ function World:draw()
             quadX = quadX + obj.centerX*2-obj.quadWidth
         end
 
+		local flipConstant = -1
+		if obj.player then
+			flipConstant = 1
+		end
+			
         love.graphics.stencil(emptyStencil, "replace")
 
         -- Portal duplication
@@ -288,7 +293,7 @@ function World:draw()
                 a = a + (obj.angle or 0)
             end
 
-            drawObject(obj, cX, cY, a, (obj.animationDirection or 1)*xScale, 1, obj.centerX, obj.centerY)
+            drawObject(obj, cX, cY, a, (obj.animationDirection or 1)*xScale*flipConstant, 1, obj.centerX, obj.centerY)
 
             love.graphics.setStencilTest()
 
@@ -313,7 +318,7 @@ function World:draw()
 
         love.graphics.setStencilTest("equal", 0)
 
-        drawObject(obj, x, y, obj.angle or 0, obj.animationDirection or 1, 1, obj.centerX, obj.centerY)
+        drawObject(obj, x, y, obj.angle or 0, (obj.animationDirection or 1)*flipConstant, 1, obj.centerX, obj.centerY)
 
         love.graphics.setStencilTest()
 
