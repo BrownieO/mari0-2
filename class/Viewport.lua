@@ -4,7 +4,7 @@ local Viewport = class("Viewport")
 
 function Viewport:initialize(level, x, y, w, h, target)
     self.level = level
-    self.camera = Camera.new(0, 0, w, h, x, y)
+    self.camera = Camera.new(0, 0, w, h, x, y, 1, 0, Camera.smooth.linear(VAR("cameraScrollRate")))
     self.target = target
 
     if self.target then
@@ -22,50 +22,37 @@ function Viewport:update(dt)
         local pX = self.target.x + self.target.width/2
         local pXr = pX - self.camera.x
 
+        local targetX = self.camera.x
         if pXr > RIGHTSCROLLBORDER then
-            self.camera.x = self.camera.x + VAR("cameraScrollRate")*dt
-
-            if pX - self.camera.x < RIGHTSCROLLBORDER then
-                self.camera.x = pX - RIGHTSCROLLBORDER
-            end
-
+            targetX = pX - RIGHTSCROLLBORDER
         elseif pXr < LEFTSCROLLBORDER then
-            self.camera.x = self.camera.x - VAR("cameraScrollRate")*dt
-
-            if pX - self.camera.x > LEFTSCROLLBORDER then
-                self.camera.x = pX - LEFTSCROLLBORDER
-            end
+            targetX = pX - LEFTSCROLLBORDER
         end
 
         -- Vertical
         local pY = self.target.y + self.target.height/2
         local pYr = pY - self.camera.y
 
+        local targetY = self.camera.y
         if pYr > DOWNSCROLLBORDER then
-            self.camera.y = self.camera.y + VAR("cameraScrollRate")*dt
-
-            if pY - self.camera.y < DOWNSCROLLBORDER then
-                self.camera.y = pY - DOWNSCROLLBORDER
-            end
+            targetY = pY - DOWNSCROLLBORDER
         end
 
         -- Only scroll up in flight mode
         if self.target.flying or self.camera.y < self.level:getYEnd()*16-CAMERAHEIGHT or true then -- Always enabled for now
             if pYr < UPSCROLLBORDER then
-                self.camera.y = self.camera.y - VAR("cameraScrollRate")*dt
-
-                if pY - self.camera.y > UPSCROLLBORDER then
-                    self.camera.y = pY - UPSCROLLBORDER
-                end
+                targetY = pY - UPSCROLLBORDER
             end
         end
 
-        -- -- And clamp it to level boundaries
-        self.camera.x = math.min(self.camera.x, self.level:getXEnd()*16-self.camera.w/2)
-        self.camera.x = math.max(self.camera.x, (self.level:getXStart()-1)*16+self.camera.w/2)
+        -- Clamp to level boundaries
+        targetX = math.min(targetX, self.level:getXEnd()*16-self.camera.w/2)
+        targetX = math.max(targetX, (self.level:getXStart()-1)*16+self.camera.w/2)
 
-        self.camera.y = math.min(self.camera.y, self.level:getYEnd()*16-self.camera.h/2)
-        self.camera.y = math.max(self.camera.y, (self.level:getYStart()-1)*16+self.camera.h/2)
+        targetY = math.min(targetY, self.level:getYEnd()*16-self.camera.h/2)
+        targetY = math.max(targetY, (self.level:getYStart()-1)*16+self.camera.h/2)
+
+        self.camera:lockPosition(targetX, targetY)
     end
 end
 
