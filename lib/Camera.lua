@@ -191,7 +191,15 @@ function camera:attach(noclip)
 	love.graphics.translate(cx, cy)
 	love.graphics.scale(self.scale)
 	love.graphics.rotate(self.rot)
-	love.graphics.translate(-self.x, -self.y)
+	if self.rot == 0 then
+		local rx = math.floor(cx - self.x)
+		local ry = math.floor(cy - self.y)
+		local tx = rx - cx
+		local ty = ry - cy
+		love.graphics.translate(tx, ty)
+	else
+		love.graphics.translate(-self.x, -self.y)
+	end
 end
 
 function camera:detach()
