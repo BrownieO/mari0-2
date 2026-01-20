@@ -6,9 +6,11 @@ stomps.argList = {
 }
 
 function stomps:bottomContact(dt, actorEvent, obj2)
+	if self.stomping then return end
 	if obj2:hasComponent("misc.stompable") and not self.actor.starred and not self.actor.metal then
 		if self.actor.cache.speed[2] > 0 or not self.actor.iFramed then
-			-- self.actor.y = obj2.y-self.actor.height
+			self.stomping = true
+			self.actor.y = obj2.y-self.actor.height
 			self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
 
 			actorEvent:bind("after", function(actor)
@@ -21,6 +23,10 @@ function stomps:bottomContact(dt, actorEvent, obj2)
 			self.actor:event("stomp")
 		end
 	end
+end
+
+function stomps:postUpdate(dt)
+	self.stomping = false
 end
 
 return stomps

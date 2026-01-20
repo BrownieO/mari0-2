@@ -420,6 +420,11 @@ function PhysObj:leftCollision() end
 function PhysObj:rightCollision() end
 function PhysObj:bottomCollision() end
 function PhysObj:topCollision() end
+
+function PhysObj:leftContact() end
+function PhysObj:rightContact() end
+function PhysObj:topContact() end
+
 function PhysObj:startFall() end
 
 return PhysObj
