@@ -235,7 +235,7 @@ return {
 		{type="koopa", x=60, y=14},
 		{type="goomba", x=63, y=14},
 		{type="goomba", x=65, y=14},
-		{type="coin", x=70, y=10},
+		{type="fire_flower", x=70, y=10},
 		{type="coin", x=74, y=10},
 		{type="goomba", x=74, y=6},
 		{type="goomba", x=77, y=10},
