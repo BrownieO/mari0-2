@@ -74,6 +74,38 @@ function camera.smooth.sinusoidal(stiffness)
 	end
 end
 
+function camera.smooth.sinusoidalCapped(stiffness, maxSpeed)
+	assert(type(stiffness) == "number", "Invalid parameter: stiffness")
+	assert(type(maxSpeed) == "number", "Invalid parameter: maxSpeed")
+
+	return function(dx, dy, s)
+		if dx*dx + dy*dy < 0.01 then
+			return dx, dy
+		end
+		local dt = love.timer.getDelta()
+		local k = math.min(dt * (s or stiffness), 1)
+
+		-- sinusoidal ease factor
+		local t = math.sin(k * math.pi * 0.5)
+
+		-- proposed movement
+		local mx = dx * t
+		local my = dy * t
+
+		-- cap velocity (units/sec)
+		local maxMove = maxSpeed * dt
+		local len2 = mx*mx + my*my
+
+		if len2 > maxMove * maxMove then
+			local len = math.sqrt(len2)
+			mx = mx / len * maxMove
+			my = my / len * maxMove
+		end
+
+		return mx, my
+	end
+end
+
 
 function camera.smooth.critical(frequency)
 	assert(type(frequency) == "number", "Invalid parameter: frequency")

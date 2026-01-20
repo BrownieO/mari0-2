@@ -32,7 +32,7 @@ local t = {
     cameraScrollUpBorder = -53,
     cameraScrollDownBorder = 25,
 
-    cameraScrollRate = 300,
+    cameraScrollRate = 668,
 
     minimapType = "realistic", -- realistic, blocky
     blockyMinimapSource = "prominent", -- average, prominent
