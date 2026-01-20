@@ -53,13 +53,47 @@ function camera.smooth.linear(speed)
 	end
 end
 
-function camera.smooth.damped(stiffness)
+function camera.smooth.damped(stiffness) -- exponential
 	assert(type(stiffness) == "number", "Invalid parameter: stiffness = "..tostring(stiffness))
 	return function(dx,dy, s)
 		local dts = love.timer.getDelta() * (s or stiffness)
 		return dx*dts, dy*dts
 	end
 end
+
+function camera.smooth.sinusoidal(stiffness)
+	assert(type(stiffness) == "number", "Invalid parameter: stiffness = "..tostring(stiffness))
+
+	return function(dx, dy, s)
+		local dt = love.timer.getDelta()
+		local k = math.min(dt * (s or stiffness), 1)
+
+		local t = math.sin(k * math.pi * 0.5)
+
+		return dx * t, dy * t
+	end
+end
+
+
+function camera.smooth.critical(frequency)
+	assert(type(frequency) == "number", "Invalid parameter: frequency")
+
+	local vx, vy = 0, 0
+
+	return function(dx, dy, f)
+		local dt = love.timer.getDelta()
+		local w = (f or frequency) * 2 * math.pi  -- angular frequency
+
+		local k1 = w * w
+		local k2 = 2 * w
+
+		vx = vx + (dx * k1 - vx * k2) * dt
+		vy = vy + (dy * k1 - vy * k2) * dt
+
+		return vx * dt, vy * dt
+	end
+end
+
 
 
 local function new(x,y, w, h, offsetX, offsetY, zoom, rot, smoother)
