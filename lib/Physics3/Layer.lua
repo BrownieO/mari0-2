@@ -137,8 +137,15 @@ function Layer:draw()
     end
 
 
-    local x = math.ceil(self.xOffset)
-    local y = math.ceil(self.yOffset)
+    local cam = self.world and self.world.camera
+    local x = self.xOffset
+    local y = self.yOffset
+
+    -- Snap layer draw position to device pixels when camera is unrotated to avoid gaps
+    if cam and cam.rot == 0 and cam.scale then
+        x = math.floor(x * cam.scale + 0.5) / cam.scale
+        y = math.floor(y * cam.scale + 0.5) / cam.scale
+    end
 
     -- draw the spritebatch
     for _, spriteBatch in pairs(self.spriteBatches) do
