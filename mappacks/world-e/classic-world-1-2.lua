@@ -256,10 +256,10 @@ return {
 		{type="goomba", x=136, y=11},
 		{type="goomba", x=137.5, y=10},
 		
-		{type="platform_solid", x=142, y=4.5, components = {["movement.platform"] = {platformtime = 6.4, distancex = 0, distancey = 9*16}}},
+		{type="platform_solid", x=142, y=4.5, components = {["movement.platform"] = {platformTime = 6.4, distanceX = 0, distanceY = 9*16}}},
 		{type="koopa_red", x=147, y=14},
 		{type="fire_flower", x=151, y=10},
-		{type="platform_solid", x=157, y=13.5, components = {["movement.platform"] = {platformtime = 6.4, distancex = 0, distancey = -9*16}}},
+		{type="platform_solid", x=157, y=13.5, components = {["movement.platform"] = {platformTime = 6.4, distanceX = 0, distanceY = -9*16}}},
 		
 		{type="goal_block", x=165, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		

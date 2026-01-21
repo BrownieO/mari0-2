@@ -23,7 +23,7 @@ return {
 			maxSpeed = 14,
 			turnAroundOnCliff = true
 		},
-		["movement.jump"] = {jumpforce = getRequiredSpeed(2*16, VAR("gravityJumping"))},
+		["movement.jump"] = {jumpForce = getRequiredSpeed(2*16, VAR("gravityJumping"))},
         ["misc.unrotate"] = {},
 		["misc.hurtsByContact"] = {
 			left = true,

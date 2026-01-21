@@ -2,20 +2,20 @@ local Component = require "class.Component"
 local jump = class("movement.jump", Component)
 
 jump.argList = {
-    {"jumptime", "number", 3},
-    {"jumpforce", "number", getRequiredSpeed(5*16)},
+    {"jumpTime", "number", 3},
+    {"jumpForce", "number", getRequiredSpeed(5*16)},
     {"jumpforceDown", "number", 2*16},
 }
 
 function jump:initialize(actor, args)
     Component.initialize(self, actor, args)
-	self.jumptimer = 0
+	self.jumpTimer = 0
 end
 
 function jump:update(dt)
-	self.jumptimer = self.jumptimer + dt
-	if self.jumptimer > self.jumptime then
-		self.jumptimer = self.jumptimer - self.jumptime
+	self.jumpTimer = self.jumpTimer + dt
+	if self.jumpTimer > self.jumpTime then
+		self.jumpTimer = self.jumpTimer - self.jumpTime
 		--decide whether up or down
 		local dir = "up"
 		-- if self.y+self.height-0.01 > (mapheight-(self.jumponlyupdistfrombottom or 4)) then
@@ -31,12 +31,12 @@ function jump:update(dt)
 		-- end
 		
 		if dir == "up" then
-			self.actor.speed[2] = -self.jumpforce
+			self.actor.speed[2] = -self.jumpForce
 			--self.mask[2] = true
 			self.jumping = "up"
 			--self.falling = true
 		else
-			self.actor.speed[2] = -self.jumpforcedown
+			self.actor.speed[2] = -self.jumpForceDown
 			--self.mask[2] = true
 			self.jumping = "down"
 			self.jumpingy = self.y
