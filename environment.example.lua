@@ -38,7 +38,7 @@ return {
 
     volume = 1,
     scale = 3,
-    vsync = true,
+    vsync = false,
     msaa = 0,
 
     ffKeys = {
