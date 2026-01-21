@@ -55,7 +55,7 @@ function collectsPowerUps:resolve(dir, obj2)
 			self.actor:event(powerUpComponent["powerUpEvent"])
 		end
 	end
-	playSound("mushroom-eat")
+	playSound("mushroom_eat")
 	obj2:destroy()
 end
 

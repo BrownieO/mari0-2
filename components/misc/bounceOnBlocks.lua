@@ -24,12 +24,12 @@ function bounceOnBlocks:bottomCollision(dt, actorEvent, obj2)
 				if obj2.tile.props.noteblockForceX then
 					self.actor.speed[1] = obj2.tile.props.noteblockForceX*2*3
 				end
-				playSound("note-block-long")
+				playSound("note_block_long")
 			else
 				if obj2.tile.props.noteblockForceX then
 					self.actor.speed[1] = obj2.tile.props.noteblockForceX*3
 				end
-				playSound("note-block")
+				playSound("note_block")
 			end
 		end
 	end
