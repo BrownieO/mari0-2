@@ -193,5 +193,5 @@ return {
     },
 	
 	backgroundColor = {0, 0, 0},
-	music = "castle-classic"
+	music = "castle_classic"
 }

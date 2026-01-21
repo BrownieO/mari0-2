@@ -310,5 +310,5 @@ return {
     },
 	
 	background = "img/backgrounds/classic-1-1.png",
-	music = "overworld-classic"
+	music = "overworld_classic"
 }
