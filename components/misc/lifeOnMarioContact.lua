@@ -20,7 +20,7 @@ end
 function lifeOnMarioContact:resolve(dir, obj2)
     if obj2.player then
 		obj2.player.lives = obj2.player.lives + 1
-		playSound("one-up")
+		playSound("one_up")
     end
 end
 

@@ -258,7 +258,7 @@ end
 function Actor:portalled()
     self:event("portalled")
     Physics3.PhysObj.portalled(self)
-	playSound("portal-exit2", 0.8)
+	playSound("portal_exit2", 0.8)
 end
 
 function Actor:friction(dt, friction, min)
