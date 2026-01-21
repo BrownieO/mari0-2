@@ -24,12 +24,18 @@ function love.load()
     class = require "lib.middleclass"
     sandbox = require "lib.sandbox"
     Easing = require "lib.Easing"
+	i18n = require "lib.i18n"
     paletteShader = require "lib.paletteShader"
     if VAR("debug").jprof then
         PROF_CAPTURE = true
     end
     prof = require "lib.jprof.jprof"
     prof.enabled(false)
+	i18n.load()
+	i18n.configure({
+	  currentLocale = VAR("locale")
+	})
+	print(i18n.t("startMsg"))
 
     -- Self written libs
     Color3 = require "lib.Color3"
