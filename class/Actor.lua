@@ -153,6 +153,7 @@ function Actor:loadActorTemplate(actorTemplate)
     self.quad = nil
     self.quads = self.actorTemplate.quads
 
+    local previousStateName = self.state and self.state.name or nil
     self.state = nil
     self.states = {}
 	
@@ -211,6 +212,10 @@ function Actor:loadActorTemplate(actorTemplate)
     end
 	if self.actorTemplate.spawnSound then
 		playSound(self.actorTemplate.spawnSound)
+	end
+
+	if previousStateName and self.states[previousStateName] then
+		self:switchState(previousStateName)
 	end
 end
 
