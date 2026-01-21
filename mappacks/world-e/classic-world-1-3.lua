@@ -228,7 +228,7 @@ return {
         {type="goomba", x=45, y=3},
         {type="goomba", x=47, y=3},
 
-		{type="platform_solid", x=56, y=3.5, components = {["movement.platform"] = {platformtime = 6.4, distancex = 0, distancey = 8.6*16}}},
+		{type="platform_solid", x=56, y=3.5, components = {["movement.platform"] = {platformTime = 6.4, distanceX = 0, distanceY = 8.6*16}}},
         {type="fire_flower", x=60, y=9},
 		
         {type="koopa_red_winged", x=75, y=3},
