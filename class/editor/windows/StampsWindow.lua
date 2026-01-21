@@ -15,7 +15,7 @@ function StampsWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "Stamps"
+    self.element.title = i18n.t("editor.stamps")
     self.editor.canvas:addChild(self.element)
 
     self.element.background = {0.5, 0.5, 0.5}

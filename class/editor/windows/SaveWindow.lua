@@ -14,13 +14,13 @@ function SaveWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "Save as"
+    self.element.title = i18n.t("editor.saveAs")
     self.editor.canvas:addChild(self.element)
 
     self.element.background = {0.5, 0.5, 0.5}
 
 	self.element:addChild(Gui3.Text:new(love.filesystem.getSaveDirectory(), 0, 0))
-	self.element:addChild(Gui3.Text:new("level name:", 0, 16))
+	self.element:addChild(Gui3.Text:new(i18n.t("editor.levelName"), 0, 16))
 
 	self.saveMsg = Gui3.Text:new(" ", 0, 36)
 	self.element:addChild(self.saveMsg)

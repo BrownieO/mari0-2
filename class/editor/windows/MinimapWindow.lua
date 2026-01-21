@@ -22,7 +22,7 @@ function MinimapWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "Minimap"
+    self.element.title = i18n.t("editor.minimap")
     self.editor.canvas:addChild(self.element)
 
     self.element.background = self.editor.checkerboardImg

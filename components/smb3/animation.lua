@@ -324,7 +324,7 @@ function animation:postUpdate(dt)
     end
 
     assert(type(self.actor.quad) == "userdata", string.format(
-        [[The state "%s" on actorTemplate %s has a faulty quad. (attempted frame was "%s")]],
+        i18n.t("assertions.faultyQuad"),
         self.actor.animationState,
         self.actor.actorTemplate.name,
         tostring(frame)))

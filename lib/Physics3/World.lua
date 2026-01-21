@@ -410,7 +410,7 @@ function World:loadLevel(data)
         local tileMap = lookup[1]
         local tileNo = lookup[2]
 
-        assert(self.tileMaps[tileMap], "The map file has no tilemap with the number " .. tileMap)
+        assert(self.tileMaps[tileMap], string.format(i18n.t("assertions.tilemapNotPassed"), tileMap))
         table.insert(self.tileLookups, self.tileMaps[tileMap].tiles[tileNo])
     end
 
@@ -434,7 +434,7 @@ function World:loadLevel(data)
                 if unresolvedTile ~= 0 then -- 0 means no tile
                     local tile = self.tileLookups[unresolvedTile] -- convert from the saved file's specific tile lookup to the actual tileMap's number
 
-                    assert(tile, string.format("Couldn't load real tile at x=%s, y=%s for requested lookup \"%s\". This may mean that the map is corrupted.", x, y, unresolvedTile))
+                    assert(tile, string.format(string.format(i18n.t("assertions.tileLoadError"), x, y, unresolvedTile))
 
                     map[x][y] = Cell:new(x, y, dataLayer, tile)
                 else

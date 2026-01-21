@@ -21,22 +21,22 @@ function DebugWindow:initialize(editor)
     self.element.closeable = true
     self.element.background = {0.5, 0.5, 0.5, 1}
     self.element.scrollable = {true, true}
-    self.element.title = "Debug"
+    self.element.title = i18n.t("editor._debug")
     self.editor.canvas:addChild(self.element)
 
-    self.element:addChild(Gui3.Text:new("State", 0, 0))
-	self.element:addChild(Gui3.TextButton:new(0, 0, "Star", true, 0, function(button) game.players[1].actor:event("getStar") end))
-	self.element:addChild(Gui3.TextButton:new(0, 0, "Metal", true, 0, function(button) game.players[1].actor:event("getMetalCap") end))
+    self.element:addChild(Gui3.Text:new(i18n.t("state"), 0, 0))
+	self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("invincible"), true, 0, function(button) game.players[1].actor:event("getStar") end))
+	self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("metal"), true, 0, function(button) game.players[1].actor:event("getMetalCap") end))
 
-    self.element:addChild(Gui3.Text:new("Power-up", 0, 0))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Small", true, 0, function(button) changeTemplate("small") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Fire", true, 0, function(button) changeTemplate("fire") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Hammer", true, 0, function(button) changeTemplate("hammer") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Big", true, 0, function(button) changeTemplate("big") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Raccoon", true, 0, function(button) changeTemplate("raccoon") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Tanooki", true, 0, function(button) changeTemplate("tanooki") end))
-    self.element:addChild(Gui3.TextButton:new(0, 0, "Frog", true, 0, function(button) changeTemplate("frog") end))
-	self.element:addChild(Gui3.TextButton:new(0, 0, "Balloon", true, 0, function(button) changeTemplate("balloon") end))
+    self.element:addChild(Gui3.Text:new(i18n.t("powerUp"), 0, 0))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("small"), true, 0, function(button) changeTemplate("small") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("big"), true, 0, function(button) changeTemplate("big") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("fire"), true, 0, function(button) changeTemplate("fire") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("hammer"), true, 0, function(button) changeTemplate("hammer") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("raccoon"), true, 0, function(button) changeTemplate("raccoon") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("tanooki"), true, 0, function(button) changeTemplate("tanooki") end))
+    self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("frog"), true, 0, function(button) changeTemplate("frog") end))
+	self.element:addChild(Gui3.TextButton:new(0, 0, i18n.t("balloon"), true, 0, function(button) changeTemplate("balloon") end))
 
     self.element.autoArrangeChildren = true
     self.element:sizeChanged()

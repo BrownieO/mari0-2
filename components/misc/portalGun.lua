@@ -37,7 +37,7 @@ function portalGun:click(dt, actorEvent, button)
     if button == 1 or button == 2 then
         local hasCrosshair = self.actor:hasComponent("misc.crosshair")
 
-        assert(hasCrosshair, "Actor tried to fire a portal without having a crosshair.")
+        assert(hasCrosshair, i18n.t("assertions.noCrosshair"))
 
         local crosshair = hasCrosshair.crosshair
 

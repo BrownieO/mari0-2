@@ -57,7 +57,7 @@ function Gui3.Element:resize(w, h)
 end
 
 function Gui3.Element:addChild(element)
-    assert(self ~= element, "You can't add an element to itself. That's stupid.")
+    assert(self ~= element, i18n.t("assertions.elementToItself"))
     element.gui = self.gui
     element.parent = self
     table.insert(self.children, element)

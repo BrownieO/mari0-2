@@ -7,7 +7,7 @@ function TileMap:initialize(path, name)
 
 	local tileMapCode = love.filesystem.read(self.path .. "settings.lua")
 
-	assert(tileMapCode, string.format("Map tried to tell me that it uses the tilemap \"%s\" but we all know that's bullshit because that tilemap's settings.lua doesn't exist.", name))
+	assert(tileMapCode, string.format(i18n.t("assertions.tilemapNonexistent"), name))
 
     self.data = sandbox.run(tileMapCode, {env={
 		VAR = VAR
@@ -60,7 +60,7 @@ function TileMap:initialize(path, name)
 						compareTo = h
 					end
 
-					assert(stampMap.paddings[i] <= compareTo, string.format("StampMap \"%s\" from the TileMap \"%s\" had a padding[%s] bigger than its own size. I hope I don't have to explain how nonsensical that is.", stampMap.name, name, i))
+					assert(stampMap.paddings[i] <= compareTo, string.format(i18n.t("assertions.paddingBigger"), stampMap.name, name, i))
 				end
 			end
 
