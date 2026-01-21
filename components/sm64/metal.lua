@@ -17,7 +17,7 @@ function metal:getMetalCap()
         self.actor.metal = true
 
         love.audio.stop()
-        playMusic("metal-mario")
+        playMusic("metal_mario")
     end
 
     self.actor.metalTimer = 0
