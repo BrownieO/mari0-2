@@ -8,7 +8,33 @@ function Viewport:initialize(level, x, y, w, h, target)
     self.target = target
 
     if self.target then
-        self.camera:lookAt(self.target.x, self.target.y)
+		local targetX = self.target.x
+		local targetY = self.target.y
+		
+        local pX = self.target.x + self.target.width/2
+        local pXr = pX - self.camera.x
+
+        if pXr > RIGHTSCROLLBORDER then
+            targetX = pX - RIGHTSCROLLBORDER
+        elseif pXr < LEFTSCROLLBORDER then
+            targetX = pX - LEFTSCROLLBORDER
+        end
+
+        -- Vertical
+        local pY = self.target.y + self.target.height/2
+        local pYr = pY - self.camera.y
+
+        if pYr > DOWNSCROLLBORDER then
+            targetY = pY - DOWNSCROLLBORDER
+        end
+
+        targetX = math.min(targetX, self.level:getXEnd()*16-self.camera.w/2)
+        targetX = math.max(targetX, (self.level:getXStart()-1)*16+self.camera.w/2)
+
+        targetY = math.min(targetY, self.level:getYEnd()*16-self.camera.h/2)
+        targetY = math.max(targetY, (self.level:getYStart()-1)*16+self.camera.h/2)
+
+        self.camera:lookAt(targetX, targetY)
     end
 end
 
