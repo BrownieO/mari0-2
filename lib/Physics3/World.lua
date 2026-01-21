@@ -434,7 +434,7 @@ function World:loadLevel(data)
                 if unresolvedTile ~= 0 then -- 0 means no tile
                     local tile = self.tileLookups[unresolvedTile] -- convert from the saved file's specific tile lookup to the actual tileMap's number
 
-                    assert(tile, string.format(string.format(i18n.t("assertions.tileLoadError"), x, y, unresolvedTile))
+                    assert(tile, string.format(string.format(i18n.t("assertions.tileLoadError"), x, y, unresolvedTile)))
 
                     map[x][y] = Cell:new(x, y, dataLayer, tile)
                 else
