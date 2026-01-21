@@ -16,7 +16,7 @@ function TilesWindow:initialize(editor)
     self.element.resizeable = true
     self.element.closeable = true
     self.element.scrollable = {true, true}
-    self.element.title = "Tiles"
+    self.element.title = i18n.t("editor.tiles")
     self.editor.canvas:addChild(self.element)
 
     self:goToMenu()
@@ -26,7 +26,7 @@ function TilesWindow:goToMenu()
     self.element:clearChildren()
 
     self.element.background = {0.5, 0.5, 0.5, 1}
-    self.element.title = "Tiles"
+    self.element.title = i18n.t("editor.tiles")
 
     -- populate element with a button for each tileMap
     self.reRenderFunctions = {}
@@ -67,7 +67,7 @@ function TilesWindow:goToTileMap(tileMap)
 
     self.element.background = self.editor.checkerboardImg
 
-    local backButton = Gui3.TextButton:new(1, 1, "< Back", true, 0, function() self:goToMenu() end)
+    local backButton = Gui3.TextButton:new(1, 1, i18n.t("back"), true, 0, function() self:goToMenu() end)
     backButton.ignoreForParentSize = true
     self.element:addChild(backButton)
 

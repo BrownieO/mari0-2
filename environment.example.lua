@@ -40,6 +40,7 @@ return {
     scale = 3,
     vsync = false,
     msaa = 0,
+	locale = "en",
 
     ffKeys = {
         {
