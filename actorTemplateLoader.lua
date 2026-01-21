@@ -1,14 +1,35 @@
 actorTemplates = {}
 
+local function getAllFiles(path, files, root)
+    files = files or {}
+    root = root or path
+
+    for _, item in ipairs(love.filesystem.getDirectoryItems(path)) do
+        local itemPath = path .. "/" .. item
+        local info = love.filesystem.getInfo(itemPath)
+
+        if info then
+            if info.type == "file" then
+                local relativePath = itemPath:sub(#root + 2)
+                files[#files + 1] = {relativePath, item}
+            elseif info.type == "directory" then
+                getAllFiles(itemPath, files, root)
+            end
+        end
+    end
+
+    return files
+end
+
 local dir = "actorTemplates/"
 
-local files = love.filesystem.getDirectoryItems(dir)
+local files = getAllFiles(dir)
 
 for _, file in ipairs(files) do
-    if string.sub(file, -3) == "lua" then
-        local name = string.sub(file, 1, -5)
+    if string.sub(file[2], -3) == "lua" then
+        local name = string.sub(file[2], 1, -5)
 
-        local templateCode = love.filesystem.read(dir .. file)
+        local templateCode = love.filesystem.read(dir .. file[1])
         local template = sandbox.run(templateCode, {env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed}})
 
         template.name = name
