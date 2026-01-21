@@ -4,7 +4,7 @@ local Viewport = class("Viewport")
 
 function Viewport:initialize(level, x, y, w, h, target)
     self.level = level
-    self.camera = Camera.new(0, 0, w, h, x, y, 1, 0, Camera.smooth.sinusoidalCapped(VAR("cameraStiffness"), VAR("cameraScrollRate")))
+    self.camera = Camera.new(0, 0, w, h, x, y, 1, 0, Camera.smooth.linear(VAR("cameraScrollRate")))
     self.target = target
 
     if self.target then
