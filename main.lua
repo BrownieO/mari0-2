@@ -75,8 +75,11 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
+	mappack = VAR("debug").mappack
+	editorEnabled = false
+
 	if not VAR("debug").skipTitle then
-		gameStateManager:addState(Menus:new("mappackSelector"))
+		gameStateManager:addState(Menus:new("mainMenu"))
     else
         game = Game:new(VAR("debug").mappack, 1)
         gameStateManager:loadState(game)
@@ -116,7 +119,7 @@ function love.update(dt)
 	if exitEditor then
 		table.remove(gameStateManager.activeStates, 1)
 		table.remove(gameStateManager.activeStates, 1)
-		gameStateManager:addState(Menus:new("mappackSelector"))
+		gameStateManager:addState(Menus:new("mainMenu"))
 		
 		exitEditor = false
 	end
