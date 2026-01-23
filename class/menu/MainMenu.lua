@@ -3,7 +3,6 @@ local MainMenu = class("MainMenu")
 function MainMenu:initialize(parent)
     self.parent = parent
 	
-	love.graphics.setBackgroundColor({181/255, 235/255, 242/255})
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
 	self.parent.canvas:addChild(self.canvas)
 	

@@ -43,10 +43,12 @@ end
 
 function MappackSelector:populateSelector(mappacks, element)
 	for i, mappack in ipairs(mappacks) do
+		local backgroundColor = mappack.backgroundColor
 		local icon = MappackSelector.paths[i] .. "/" .. mappack.icon
 		
 		local button = Gui3.ImageButton:new(0, (i-1)*64, icon, false, false, function()
 			selectedMappackPath = MappackSelector.folders[i]
+			love.graphics.setBackgroundColor(backgroundColor)
 			self.parent:changeWindow(self.canvas, "mainMenu")
 		end)
 		element:addChild(button)

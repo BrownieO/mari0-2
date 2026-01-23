@@ -22,7 +22,7 @@ end
 function Menus:load()
 	self.windows = {}
 
-	love.graphics.setBackgroundColor({1, 0, 0})
+	love.graphics.setBackgroundColor({181/255, 235/255,242/255})
 	love.audio.stop()
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
     self.canvas.gui = defaultUI
