@@ -2,7 +2,7 @@
 -- require "errorhandler"
 require "loop"
 
-local Game, Editor, Mappacks
+local Game, Editor, Menus
 
 function love.load()
     require "util"
@@ -58,7 +58,7 @@ function love.load()
     -- States
     Game = require "state.Game"
     Editor = require "state.Editor"
-	Mappacks = require "state.Mappacks"
+	Menus = require "state.Menus"
 
     fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
         [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~▯▯¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔]])
@@ -76,7 +76,7 @@ function love.load()
 
     -- Alright let's go do the stuff
 	if not VAR("debug").skipTitle then
-		gameStateManager:addState(Mappacks:new())
+		gameStateManager:addState(Menus:new("mappackSelector"))
     else
         game = Game:new(VAR("debug").mappack, 1)
         gameStateManager:loadState(game)
@@ -116,7 +116,7 @@ function love.update(dt)
 	if exitEditor then
 		table.remove(gameStateManager.activeStates, 1)
 		table.remove(gameStateManager.activeStates, 1)
-		gameStateManager:addState(Mappacks:new())
+		gameStateManager:addState(Menus:new("mappackSelector"))
 		
 		exitEditor = false
 	end
