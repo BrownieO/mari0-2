@@ -6,10 +6,17 @@ function MainMenu:initialize(parent)
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
 	self.parent.canvas:addChild(self.canvas)
 	
-	self.canvas:addChild(Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2, i18n.t("mainMenu.onePlayerGame"), false, 0, function(button) newGame(selectedMappackPath, false) end))
-	self.canvas:addChild(Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18, i18n.t("mainMenu.selectMappack"), false, 0, function(button) self.parent:changeWindow(self.canvas, "mappackSelector") end))
-	self.canvas:addChild(Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*2, i18n.t("mainMenu.levelEditor"), false, 0, function(button) newGame(selectedMappackPath, true) end))
-	self.canvas:addChild(Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*3, i18n.t("mainMenu.options"), false, 0, function(button) end))
+	local elements = {}
+	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2, i18n.t("mainMenu.onePlayerGame"), false, 0, function(button) newGame(selectedMappackPath, false) end))
+	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18, i18n.t("mainMenu.selectMappack"), false, 0, function(button) self.parent:changeWindow(self.canvas, "mappackSelector") end))
+	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*2, i18n.t("mainMenu.levelEditor"), false, 0, function(button) newGame(selectedMappackPath, true) end))
+	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*3, i18n.t("mainMenu.options"), false, 0, function(button) end))
+	
+	for _, element in pairs(elements) do
+		element.color.background = {0,0,0,0}
+		self.canvas:addChild(element)
+	end
+	
 	self.canvas:addChild(Gui3.Text:new("© 2017-2025 Stabyourself.net", SCREENWIDTH/2-104, SCREENHEIGHT/2+18*4+8))
 	self.canvas:addChild(Gui3.Image:new("other/logo.png", 109, 16))
 end
