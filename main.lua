@@ -75,8 +75,7 @@ function love.load()
     love.resize(400*VAR("scale"), 224*VAR("scale"))
 
     -- Alright let's go do the stuff
-	mappack = VAR("debug").mappack
-	editorEnabled = false
+	selectedMappackPath = VAR("debug").mappack
 
 	if not VAR("debug").skipTitle then
 		gameStateManager:addState(Menus:new("mainMenu"))
@@ -91,6 +90,23 @@ function love.load()
     prof.enabled(true)
 end
 
+function newGame(mappack, editorEnabled, players)
+	local players = players or 1
+    if mappack then
+        table.remove(gameStateManager.activeStates, 1)
+        game = Game:new(selectedMappackPath, 1)
+        gameStateManager:loadState(game)
+		
+		if editorEnabled then
+			gameStateManager:addState(Editor:new(game.level))
+		end
+		
+        gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
+		
+        selectedMappackPath = nil
+    end
+end
+
 function love.update(dt)
     if VAR("debug").lovebird then
         require("lib/lovebird").update()
@@ -102,18 +118,6 @@ function love.update(dt)
 
     if not dt then
         return
-    end
-
-    -- Check if Mappacks selected a mappack
-    if selectedMappackPath then
-        table.remove(gameStateManager.activeStates, 1)
-        game = Game:new(selectedMappackPath, 1)
-        gameStateManager:loadState(game)
-        gameStateManager:addState(Editor:new(game.level))
-		
-        gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
-		
-        selectedMappackPath = nil
     end
 
 	if exitEditor then
