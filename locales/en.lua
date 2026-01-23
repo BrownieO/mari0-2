@@ -1,6 +1,13 @@
 return {
 	startMsg = "english localization working",
 	
+	mainMenu = {
+		onePlayerGame = "1 player game",
+		selectMappack = "Select game",
+		levelEditor = "Level editor",
+		options = "Options"
+	},
+	
 	editor = {
 		open = "Open",
 		save = "Save",
