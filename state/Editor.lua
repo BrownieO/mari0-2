@@ -724,8 +724,7 @@ end
 
 function Editor:exitToMappacks()
     self.fileDropdown:toggle(false)
-    
-	exitEditor = true
+	returnToMenu()
 end
 
 function Editor:undo()

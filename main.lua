@@ -102,9 +102,13 @@ function newGame(mappack, editorEnabled, players)
 		end
 		
         gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
-		
-        selectedMappackPath = nil
     end
+end
+
+function returnToMenu()
+	table.remove(gameStateManager.activeStates, 1)
+	table.remove(gameStateManager.activeStates, 1)
+	gameStateManager:addState(Menus:new("mainMenu"))
 end
 
 function love.update(dt)
@@ -119,14 +123,6 @@ function love.update(dt)
     if not dt then
         return
     end
-
-	if exitEditor then
-		table.remove(gameStateManager.activeStates, 1)
-		table.remove(gameStateManager.activeStates, 1)
-		gameStateManager:addState(Menus:new("mainMenu"))
-		
-		exitEditor = false
-	end
 
     gameStateManager:event("update", dt)
 end
@@ -172,8 +168,7 @@ function love.keypressed(key)
     local cmds, any = controls3.getCmdsForKey(key)
 
     if cmds["quit"] then
-        love.event.quit()
-        return
+        returnToMenu()
     end
 
     -- debug

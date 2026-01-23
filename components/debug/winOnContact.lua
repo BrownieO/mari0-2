@@ -19,8 +19,7 @@ end
 
 function winOnContact:resolve(dir, obj2)
     if obj2.player then
-		self.actor:destroy()
-		exitEditor = true
+		returnToMenu()
     end
 end
 
