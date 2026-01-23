@@ -310,5 +310,6 @@ return {
     },
 	
 	background = "img/backgrounds/classic-1-1.png",
+	backgroundColor = {146,144,255},
 	music = "overworld_classic"
 }
