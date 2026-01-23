@@ -31,6 +31,8 @@ function GameStateManager3:event(event, ...)
 
     for i = from, to, step do
         local state = self.activeStates[i]
+		
+		if not state then return end
 
         if type(state[event]) == "function" then
             prof.push(state.class.name)
