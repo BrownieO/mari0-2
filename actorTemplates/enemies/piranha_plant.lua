@@ -1,14 +1,14 @@
 return {
     width = 13,
-    height = 21,
+    height = 24,
 
     img = "img/actors/piranha_plant.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,
-    centerY = 12.5,
+    centerY = 12,
 	spawnOffsetX = 1/2,
-	spawnOffsetY = -9/16,
+	spawnOffsetY = -8/16,
 	
 	static = true,
 
