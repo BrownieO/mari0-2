@@ -31,6 +31,13 @@ function fireball:bottomCollision(dt, actorEvent, obj2)
     self:resolve("top", obj2)
 end
 
+function fireball:bottomContact(dt, actorEvent, obj2)
+    if obj2.collisionGroup == VAR("collisionCategories").ENEMY then
+		obj2:event("getHurt")
+		self.actor:destroy()
+	end
+end
+
 function fireball:resolve(dir, obj2)
 	if dir == "top" then
 		self.actor.speed[2] = FIREBALLJUMPFORCE
