@@ -31,7 +31,6 @@ end
 
 function MappackSelector:initialize(parent)
     self.parent = parent
-	love.audio.stop()
 	love.graphics.setBackgroundColor({0, 0, 0})
 	
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)

@@ -2,14 +2,18 @@ local Menus = class("Menus")
 
 Menus.windowClasses = {
     mappackSelector = require("class.menu.MappackSelector"),
-	debug = require("class.editor.windows.DebugWindow"),
+    mainMenu = require("class.menu.MainMenu"),
 }
 
 function Menus:newWindow(windowClass)
 	table.insert(self.windows, windowClass:new(self))
 end
 
-
+function Menus:changeWindow(oldWindow, windowClass)
+	table.remove(self.windows, 1)
+	self.canvas:removeChild(oldWindow)
+	self:newWindow(self.windowClasses[windowClass])
+end
 
 function Menus:initialize(selectedMenu)
 	self.selectedMenu = selectedMenu
@@ -18,7 +22,8 @@ end
 function Menus:load()
 	self.windows = {}
 
-	love.graphics.setBackgroundColor({181/255, 235/255, 242/255})
+	love.graphics.setBackgroundColor({1, 0, 0})
+	love.audio.stop()
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
     self.canvas.gui = defaultUI
 	self:newWindow(self.windowClasses[self.selectedMenu])
