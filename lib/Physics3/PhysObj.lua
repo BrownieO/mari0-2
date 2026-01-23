@@ -322,7 +322,9 @@ function PhysObj:resolveCollisions()
 
 		if x then -- resolve the right collision
 			self:topColResolve(obj, x, y)
-			obj:bottomColResolve(self)
+			if self:shouldCollide(obj, self) then
+				obj:bottomColResolve(self)
+			end
 		end
 	end
 end
