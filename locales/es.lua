@@ -1,6 +1,13 @@
 return {
 	startMsg = "localización al español funcionando",
 	
+	mainMenu = {
+		onePlayerGame = "Juego de 1 jugador",
+		selectMappack = "Seleccionar juego",
+		levelEditor = "Editor de niveles",
+		options = "Opciones"
+	},
+	
 	editor = {
 		open = "Abrir",
 		save = "Guardar",
