@@ -21,7 +21,7 @@ return {
 			left = true,
 			right = true,
 			bottom = true,
-			top = false,
+			top = true,
 			group = VAR("collisionCategories").ENEMY,
 			kamikaze = true
 		},
