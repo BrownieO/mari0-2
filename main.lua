@@ -106,6 +106,7 @@ end
 
 function returnToMenu()
 	love.audio.stop()
+	love.mouse.setCursor(love.mouse.getSystemCursor("arrow"))
 	table.remove(gameStateManager.activeStates, 1)
 	table.remove(gameStateManager.activeStates, 1)
 	gameStateManager:addState(Menus:new("mainMenu"))
