@@ -415,6 +415,7 @@ function Editor:selectTool(toolName)
     end
 
     self.toolButtons[toolName].color.background = {0, 0, 0, 0.5}
+	love.mouse.setCursor(Gui3.cursors[toolName])
 end
 
 function Editor:newWindow(windowClass, button)

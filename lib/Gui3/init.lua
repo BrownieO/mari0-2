@@ -117,6 +117,15 @@ function Gui3:initialize(folder)
         on = love.graphics.newImage(folder .. "/checkbox-on-active.png"),
         off = love.graphics.newImage(folder .. "/checkbox-off-active.png"),
     }
+
+	Gui3.cursors = {
+		paint = love.mouse.newCursor(folder .. "/cursors/paint.png", 0, 0),
+		erase = love.mouse.newCursor(folder .. "/cursors/erase.png", 0, 0),
+		move = love.mouse.newCursor(folder .. "/cursors/move.png", 8, 8),
+		select = love.mouse.newCursor(folder .. "/cursors/select.png", 16, 16),
+		wand = love.mouse.newCursor(folder .. "/cursors/wand.png", 4, 4),
+		fill = love.mouse.newCursor(folder .. "/cursors/fill.png", 2, 15)
+	}
 end
 
 function Gui3.drawBox(img, quads, x, y, w, h)
