@@ -46,7 +46,7 @@ function LevelEdit:loadLevel(data)
         if actorTemplate then -- is enemy
 			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
-			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX-1,entity.y+spawnOffsetY-1)
+			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX+.5-1,entity.y+spawnOffsetY)
 			
 			ActorEdit:new(self, x, y, actorTemplate)
 		end
@@ -62,7 +62,6 @@ end
 
 function LevelEdit:update(dt)
     prof.push("World")
-    --Physics3.World.update(self, dt)
     prof.pop()
 
     updateGroup(self.viewports, dt)
@@ -78,11 +77,7 @@ function LevelEdit:draw()
     end
 end
 
-function LevelEdit:mousepressed(x, y, button)
-    for _, obj in ipairs(self.objects) do
-        obj:event("click", 0, button)
-    end
-end
+function LevelEdit:mousepressed(x, y, button) end
 
 function LevelEdit:cmdpressed(cmds) end
 
