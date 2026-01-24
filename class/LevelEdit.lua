@@ -1,4 +1,4 @@
-local Actor = require("class.Actor")
+local ActorEdit = require("class.ActorEdit")
 local LevelEdit = class("LevelEdit", Physics3.World)
 local BlockBounce = require("class.BlockBounce")
 local Viewport = require("class.Viewport")
@@ -46,13 +46,9 @@ function LevelEdit:loadLevel(data)
         if actorTemplate then -- is enemy
 			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
+			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX-1,entity.y+spawnOffsetY-1)
 			
-			table.insert(self.spawnList, {
-				actorTemplate = actorTemplate,
-				x = entity.x + spawnOffsetX,
-				y = entity.y + spawnOffsetY,
-				customProperties = customProperties,
-			})
+			ActorEdit:new(self, x, y, actorTemplate)
 		end
 	end
 	
@@ -66,7 +62,7 @@ end
 
 function LevelEdit:update(dt)
     prof.push("World")
-    Physics3.World.update(self, dt)
+    --Physics3.World.update(self, dt)
     prof.pop()
 
     updateGroup(self.viewports, dt)
