@@ -106,6 +106,7 @@ function newGame(mappack, editorEnabled, players)
 end
 
 function returnToMenu()
+	love.audio.stop()
 	table.remove(gameStateManager.activeStates, 1)
 	table.remove(gameStateManager.activeStates, 1)
 	gameStateManager:addState(Menus:new("mainMenu"))
