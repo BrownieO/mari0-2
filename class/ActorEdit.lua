@@ -10,8 +10,11 @@ function ActorEdit:initialize(world, x, y, actorTemplate)
 	self.actorTemplate = actorTemplate
 	self:loadActorTemplate(self.actorTemplate)
 	
-	self.x = x
-	self.y = y
+	self.width = self.actorTemplate.width
+	self.height = self.actorTemplate.height
+	self.x = x-self.width/2
+	self.y = y-self.height
+	
 	self.world = world
 	world:addObject(self)
 end
@@ -20,11 +23,9 @@ function ActorEdit:loadActorTemplate(actorTemplate)
     self.actorTemplate = actorTemplate
 	
 	self.active = false
+	self.alpha = 0.75
 
     self.img = self.actorTemplate.img
-	
-	self.width = self.actorTemplate.width
-	self.height = self.actorTemplate.height
 
     self.quadWidth = self.actorTemplate.quadWidth
     self.quadHeight = self.actorTemplate.quadHeight
@@ -32,8 +33,9 @@ function ActorEdit:loadActorTemplate(actorTemplate)
     self.centerX = self.actorTemplate.centerX
     self.centerY = self.actorTemplate.centerY
 
-    self.quad = nil
     self.quads = self.actorTemplate.quads
+    self.quad = self.quads[1]
+	self.animationDirection = -1
 end
 
 function ActorEdit:draw() end

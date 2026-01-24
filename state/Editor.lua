@@ -176,7 +176,7 @@ function Editor:load()
     end
 
 
-    self:selectTool("entity")
+    self:selectTool("move")
 
     self.gridImg = love.graphics.newImage("img/grid.png")
     self.gridImg:setWrap("repeat", "repeat")
