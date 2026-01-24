@@ -1,4 +1,5 @@
 local Level = require "class.Level"
+local LevelEdit = require "class.LevelEdit"
 local Mappack = class("Mappack")
 
 function Mappack:initialize(name)
@@ -15,6 +16,10 @@ end
 
 function Mappack:startLevel(players)
     return Level:new(self.path .. self.settings.main, players)
+end
+
+function Mappack:startLevelEdit(players)
+    return LevelEdit:new(self.path .. self.settings.main, players)
 end
 
 return Mappack

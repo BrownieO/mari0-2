@@ -6,13 +6,15 @@ local Mappack = require "class.Mappack"
 
 local Game = class("Game")
 
-function Game:initialize(mappack, playerCount)
+function Game:initialize(mappack, playerCount, editorEnabled)
     -- Create player objects
     self.players = {}
     for i = 1, playerCount do
         table.insert(self.players, Player:new(i, SETTINGS.players[i]))
     end
-
+	
+	self.editorEnabled = editorEnabled
+	
     -- Load the mappack
     self.mappack = Mappack:new(mappack)
 end
@@ -21,9 +23,13 @@ function Game:load()
     gameState = "game"
 
     -- Load the first level with players
-    self.level = self.mappack:startLevel(self.players)
-
-    self.uiVisible = true -- should this be part of Game?
+	if self.editorEnabled then
+		self.level = self.mappack:startLevelEdit(self.players)
+		self.uiVisible = false -- should this be part of Game?
+	else
+		self.level = self.mappack:startLevel(self.players)
+		self.uiVisible = true
+	end
 
     ui = Smb3Ui:new()
     updateSizes()
@@ -33,7 +39,7 @@ function Game:update(dt)
     self.level:update(dt)
 
     prof.push("UI")
-    if self.uiVisible then
+    if self.uiVisible and self.players[1].actor then
         if VAR("debug").showFPSInTime then
             ui.time = love.timer.getFPS()
         else
