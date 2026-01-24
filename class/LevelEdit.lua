@@ -35,7 +35,9 @@ function LevelEdit:loadLevel(data)
 	self.wrapY = self.data.wrapY or false	
 	self.music = self.data.music or nil
 	love.audio.stop()
-	playMusic(self.music)
+	if VAR("debug").musicInEditor then
+		playMusic(self.music)
+	end
 
     self.spawnLine = 0
     self.spawnI = 1

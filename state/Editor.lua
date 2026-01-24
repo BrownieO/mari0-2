@@ -112,8 +112,8 @@ function Editor:load()
 
     self.menuBar:addChild(viewDropdown)
 
-    self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
-    viewDropdown.box:addChild(self.freeCameraCheckbox)
+    --self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
+    --viewDropdown.box:addChild(self.freeCameraCheckbox)
 
     self.gridCheckbox = Gui3.Checkbox:new(0, 11, i18n.t("editor.drawGrid"), 1, function(checkbox) self:toggleGrid(checkbox.value) end)
     viewDropdown.box:addChild(self.gridCheckbox)
@@ -191,8 +191,8 @@ function Editor:load()
 
     self:mapChanged()
     self:toggleGrid(false)
-    self:toggleFreeCam(false)
-    self:toggleUI(false)
+    self:toggleFreeCam(true)
+    self:toggleUI(true)
 end
 
 function Editor:update(dt)
@@ -351,7 +351,6 @@ function Editor:changeScale(val)
     if self.level then
         self.level.camera:zoomTo(val)
         self.scaleSlider:setValue(val)
-        self:toggleFreeCam(true)
     end
 end
 
@@ -360,7 +359,7 @@ function Editor:sliderChanged(val)
 end
 
 function Editor:toggleFreeCam(on)
-    self.freeCameraCheckbox.value = on
+    --self.freeCameraCheckbox.value = on
 
     if self.level then
         if on then
@@ -381,6 +380,7 @@ function Editor:toggleGrid(on)
 end
 
 function Editor:toggleUI(hidden)
+	self.toggleUICheckbox.value = hidden
     if game and game.uiVisible ~= not hidden then
         game.uiVisible = not hidden
         updateSizes()
@@ -640,7 +640,6 @@ function Editor:zoom(i, toMouse)
 
     self.level.camera:zoom(zoom, x, y)
     self.scaleSlider:setValue(self.level.camera.scale)
-    self:toggleFreeCam(true)
 end
 
 function Editor:resetZoom()
