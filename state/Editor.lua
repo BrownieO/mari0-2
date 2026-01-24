@@ -74,6 +74,8 @@ function Editor:load()
 
 
 
+	-- FILE
+
     self.fileDropdown = Gui3.Dropdown:new(0, 0, i18n.t("editor.file"), self.canvas)
     self.fileDropdown.button.color.background = {0, 0, 0, 0}
 
@@ -89,7 +91,7 @@ function Editor:load()
 
     -- WINDOW
 
-    self.newWindowDropdown = Gui3.Dropdown:new(38, 0, i18n.t("editor.window"), self.canvas)
+    self.newWindowDropdown = Gui3.Dropdown:new(fontOutlined:getWidth(i18n.t("editor.file"))+8, 0, i18n.t("editor.window"), self.canvas)
     self.newWindowDropdown.button.color.background = {0, 0, 0, 0}
 
     self.menuBar:addChild(self.newWindowDropdown)
@@ -107,7 +109,7 @@ function Editor:load()
 
     -- VIEW
 
-    local viewDropdown = Gui3.Dropdown:new(92, 0, i18n.t("editor.view"), self.canvas)
+    local viewDropdown = Gui3.Dropdown:new(fontOutlined:getWidth(i18n.t("editor.file"))+fontOutlined:getWidth(i18n.t("editor.window"))+16, 0, i18n.t("editor.view"), self.canvas)
     viewDropdown.button.color.background = {0, 0, 0, 0}
 
     self.menuBar:addChild(viewDropdown)
