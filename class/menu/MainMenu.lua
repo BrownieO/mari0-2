@@ -6,19 +6,38 @@ function MainMenu:initialize(parent)
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
 	self.parent.canvas:addChild(self.canvas)
 	
-	local elements = {}
-	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2, i18n.t("mainMenu.onePlayerGame"), false, 0, function(button) newGame(selectedMappackPath, false) end))
-	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18, i18n.t("mainMenu.selectMappack"), false, 0, function(button) self.parent:changeWindow(self.canvas, "mappackSelector") end))
-	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*2, i18n.t("mainMenu.levelEditor"), false, 0, function(button) newGame(selectedMappackPath, true) end))
-	table.insert(elements, Gui3.TextButton:new(SCREENWIDTH/2-52, SCREENHEIGHT/2+18*3, i18n.t("mainMenu.options"), false, 0, function(button) end))
+	local textStrings = {
+		i18n.t("mainMenu.onePlayerGame"),
+		i18n.t("mainMenu.selectMappack"),
+		i18n.t("mainMenu.levelEditor"),
+		i18n.t("mainMenu.options"),
+	}
 	
-	for _, element in pairs(elements) do
+	local functions = {
+		function() newGame(selectedMappackPath, false) end,
+		function() self.parent:changeWindow(self.canvas, "mappackSelector") end,
+		function() newGame(selectedMappackPath, true) end,
+		function() end
+	}
+	
+	local copyright = "© 2017-2025 Stabyourself.net"
+	local logo = "other/logo.png"
+		
+	for i, text in pairs(textStrings) do
+		local element = Gui3.TextButton:new(
+			SCREENWIDTH/2-love.graphics.getFont():getWidth(text)/2,
+			SCREENHEIGHT/2+18*(i-1),
+			text,
+			false, -- Outline
+			0, -- Padding
+			functions[i]
+			)
 		element.color.background = {0,0,0,0}
 		self.canvas:addChild(element)
 	end
 	
-	self.canvas:addChild(Gui3.Text:new("© 2017-2025 Stabyourself.net", SCREENWIDTH/2-104, SCREENHEIGHT/2+18*4+8))
-	self.canvas:addChild(Gui3.Image:new("other/logo.png", 109, 16))
+	self.canvas:addChild(Gui3.Text:new(copyright, SCREENWIDTH/2-love.graphics.getFont():getWidth(copyright)/2, SCREENHEIGHT/2+18*4+8))
+	self.canvas:addChild(Gui3.Image:new(logo, SCREENWIDTH/2-185/2, 16))
 end
 
 
