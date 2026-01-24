@@ -31,9 +31,10 @@ return {
         input = true, -- shows a little input display in the bottom left
         jprof = false, -- logs frame data into a file on quit
         lovebird = false, -- enable lövebird debugging (localhost:8000)
-        noEnemies = false, -- disables enemy spawning
-        musicDisabled = false, -- disables the music
-        skipTitle = false, -- skips title screen
+        noEnemies = false,
+        musicDisabled = false,
+		musicInEditor = false,
+        skipTitle = false,
     },
 
     volume = 1,
