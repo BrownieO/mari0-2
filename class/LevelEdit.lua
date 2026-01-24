@@ -10,12 +10,12 @@ function LevelEdit:initialize(path, players)
     local data = sandbox.run(mapCode)
 	self.currentLevelEdit = data
 
-    self:loadLevelEdit(data)
+    self:loadLevel(data)
 
     self.timeLeft = 400
 end
 
-function LevelEdit:loadLevelEdit(data)
+function LevelEdit:loadLevel(data)
     self.data = data
 	self.currentLevelEdit = data
 
