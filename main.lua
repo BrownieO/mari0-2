@@ -80,9 +80,8 @@ function love.load()
 	if not VAR("debug").skipTitle then
 		gameStateManager:addState(Menus:new("mainMenu"))
     else
-        game = Game:new(VAR("debug").mappack, 1)
-        gameStateManager:loadState(game)
-        gameStateManager:addState(Editor:new(game.level))
+		editorEnabled = true
+        newGame(VAR("debug").mappack, editorEnabled, 1)
     end
 
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
@@ -94,7 +93,7 @@ function newGame(mappack, editorEnabled, players)
 	local players = players or 1
     if mappack then
         table.remove(gameStateManager.activeStates, 1)
-        game = Game:new(selectedMappackPath, 1)
+        game = Game:new(selectedMappackPath, 1, editorEnabled)
         gameStateManager:loadState(game)
 		
 		if editorEnabled then
