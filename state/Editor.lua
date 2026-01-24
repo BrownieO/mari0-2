@@ -3,7 +3,7 @@ local Selection = require "class.editor.Selection"
 local FloatingSelection = require "class.editor.FloatingSelection"
 local Editor = class("Editor")
 
-Editor.toolbarOrder = {"Entity", "Paint", "Erase", "Move", "Select", "Wand", "Fill", "Stamp", "Portal"}
+Editor.toolbarOrder = {"Entity", "Paint", "Erase", "Move", "Select", "Wand", "Fill", "Stamp"}
 Editor.toolbarImg = {}
 Editor.toolClasses = {}
 
@@ -176,7 +176,7 @@ function Editor:load()
     end
 
 
-    self:selectTool("portal")
+    self:selectTool("entity")
 
     self.gridImg = love.graphics.newImage("img/grid.png")
     self.gridImg:setWrap("repeat", "repeat")
