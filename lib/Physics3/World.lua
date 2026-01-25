@@ -576,7 +576,15 @@ function World:saveLevel(outPath)
     end
 
     -- Entities
-    out.entities = self.data.entities
+    out.entities = {}
+
+    table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
+	
+	for _, obj in ipairs(self.objects) do
+		if obj.actorTemplate.name:sub(1, 3) ~= "smb" then
+			table.insert(out.entities, {type=obj.actorTemplate.name, x=obj.x/16,y=obj.y/16})
+		end
+	end
 
     -- Preserve level properties
     if self.data.backgroundColor then
