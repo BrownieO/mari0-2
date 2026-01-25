@@ -576,9 +576,7 @@ function World:saveLevel(outPath)
     end
 
     -- Entities
-    out.entities = {}
-
-    table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
+    out.entities = self.data.entities
 
     -- Preserve level properties
     if self.data.backgroundColor then

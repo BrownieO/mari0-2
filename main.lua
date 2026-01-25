@@ -81,7 +81,10 @@ function love.load()
 		gameStateManager:addState(Menus:new("mainMenu"))
     else
 		editorEnabled = true
-        newGame(VAR("debug").mappack, editorEnabled, 1)
+		game = Game:new(selectedMappackPath, 1)
+
+		gameStateManager:loadState(game)
+		gameStateManager:addState(Editor:new(game.level))
     end
 
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
