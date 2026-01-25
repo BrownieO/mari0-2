@@ -3,7 +3,7 @@ local Selection = require "class.editor.Selection"
 local FloatingSelection = require "class.editor.FloatingSelection"
 local Editor = class("Editor")
 
-Editor.toolbarOrder = {"Entity", "Paint", "Erase", "Move", "Select", "Wand", "Fill", "Stamp"}
+Editor.toolbarOrder = {"Move", "Paint", "Erase", "Placer", "Entity", "Select", "Wand", "Fill", "Stamp"}
 Editor.toolbarImg = {}
 Editor.toolClasses = {}
 
@@ -75,7 +75,6 @@ function Editor:load()
 
 
 	-- FILE
-
     self.fileDropdown = Gui3.Dropdown:new(0, 0, i18n.t("editor.file"), self.canvas)
     self.fileDropdown.button.color.background = {0, 0, 0, 0}
 
@@ -90,7 +89,6 @@ function Editor:load()
 
 
     -- WINDOW
-
     self.newWindowDropdown = Gui3.Dropdown:new(fontOutlined:getWidth(i18n.t("editor.file"))+8, 0, i18n.t("editor.window"), self.canvas)
     self.newWindowDropdown.button.color.background = {0, 0, 0, 0}
 
@@ -108,7 +106,6 @@ function Editor:load()
 
 
     -- VIEW
-
     local viewDropdown = Gui3.Dropdown:new(fontOutlined:getWidth(i18n.t("editor.file"))+fontOutlined:getWidth(i18n.t("editor.window"))+16, 0, i18n.t("editor.view"), self.canvas)
     viewDropdown.button.color.background = {0, 0, 0, 0}
 
