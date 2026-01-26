@@ -49,7 +49,9 @@ function LevelEdit:loadLevel(data)
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
 			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX+.5-1,entity.y+spawnOffsetY)
 			
-			ActorEdit:new(self, x, y, actorTemplate)
+			local newActor = ActorEdit:new(self, x, y, actorTemplate)
+			newActor.spawnX = entity.x
+			newActor.spawnY = entity.y
 		end
 	end
 	
