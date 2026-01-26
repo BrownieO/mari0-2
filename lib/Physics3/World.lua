@@ -196,7 +196,7 @@ local bg
 function World:draw()
     prof.push("Background")
 		if bg then
-			for i = 0, math.ceil(self:getWidth()*16/bg:getWidth()) do
+			for i = 0, math.ceil(self:getWidth()*self.tileSize/bg:getWidth()) do
 				love.graphics.draw(bg, i * bg:getWidth(), 0)
 			end
 		end
@@ -582,7 +582,7 @@ function World:saveLevel(outPath)
 	
 	for _, obj in ipairs(self.objects) do
 		if obj.actorTemplate.name:sub(1, 3) ~= "smb" then
-			table.insert(out.entities, {type=obj.actorTemplate.name, x=obj.x/16,y=obj.y/16})
+			table.insert(out.entities, {type=obj.actorTemplate.name, x = obj.spawnX or obj.x/self.tileSize, y = obj.spawnY or obj.y/self.tileSize})
 		end
 	end
 
