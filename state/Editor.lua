@@ -81,8 +81,15 @@ function Editor:load()
     self.menuBar:addChild(self.fileDropdown)
 
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 0, i18n.t("editor.open"), false, nil, function(button) self:newWindow(self.windowClasses.openWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
+	self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 10, i18n.t("editor.save"), false, nil, function(button)
+		if self.lastPath then
+			self:saveLevel(self.lastPath)
+		else
+			self:newWindow(self.windowClasses.saveWindow, button)
+		end
+	end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
 
@@ -504,7 +511,14 @@ function Editor:cmdpressed(cmd)
             self:mapChanged()
         end
 
-    elseif cmd["editor.save"] then
+	elseif cmd["editor.save"] then
+		if self.lastPath then
+			self:saveLevel(self.lastPath)
+		else
+			self:newWindow(self.windowClasses.saveWindow, button)
+		end
+
+    elseif cmd["editor.saveAs"] then
         self:newWindow(self.windowClasses.saveWindow)
 
     elseif cmd["editor.load"] then
@@ -666,7 +680,9 @@ function Editor:saveLevel(path)
     if not self.level then print("No level loaded") return end
     
     self.fileDropdown:toggle(false)
-    return self.level:saveLevel("/mappacks/" .. path .. ".lua")
+	self.lastPath = path
+	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
+    return self.level:saveLevel("/mappacks/" .. path)
 end
 
 function Editor:loadLevel(path)
@@ -680,6 +696,7 @@ function Editor:loadLevel(path)
     if self.level then
         self.level:loadLevel(data)
         self.activeLayer = self.level.layers[1]
+		self.lastPath = nil
     end
 end
 
