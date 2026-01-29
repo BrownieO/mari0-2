@@ -1,4 +1,6 @@
 actorTemplates = {}
+actorTemplates.list = {}
+actorTemplates.map = {}
 
 local function getAllFiles(path, files, root)
     files = files or {}
@@ -59,5 +61,11 @@ for _, file in ipairs(files) do
         end
 
         actorTemplates[name] = template
+		
+		if not template.dontShowOnEditor then
+			assert(not template.dontShowOnEditor, template.name .. " has dontAutoQuad enabled and dontShowOnEditor disabled. Actors currently need quads to appear on the editor.")
+			table.insert(actorTemplates.list, name)
+			actorTemplates.map[name] = #actorTemplates.list
+		end
     end
 end
