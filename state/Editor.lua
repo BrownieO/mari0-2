@@ -627,6 +627,22 @@ function Editor:wheelmoved(x, y)
 
         self:selectTile(tileMap.tiles[num])
     end
+	
+	if self.tool == self.tools.placer then
+		local num = self.tools.placer.tile.num
+		local max = #actorTemplates.list
+		
+		num = num - y
+		
+        if num < 1 then
+            num = max
+        elseif num > max then
+            num = 1
+        end
+		
+		self.tools.placer.tile = actorTemplates[actorTemplates.list[num]]
+		self.tools.placer.tile.num = num
+	end
 end
 
 function Editor:zoom(i, toMouse)

@@ -8,6 +8,7 @@ return {
     centerX = 4,
     centerY = 4,
 	resistsStar = true,
+	dontShowOnEditor = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,
     collisionMask = VAR("collisionMasks").PLAYER,

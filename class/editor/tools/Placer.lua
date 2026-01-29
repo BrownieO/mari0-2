@@ -6,8 +6,8 @@ function Placer:initialize(editor)
 
     self.level = self.editor.level
     self.penDown = false
-    self.tileI = 1
     self.tile = actorTemplates["goomba"]
+	self.tile.num = actorTemplates.map["goomba"]
 end
 
 function Placer:update()
@@ -16,6 +16,7 @@ function Placer:update()
 		local spawnX, spawnY = self.level:coordinateToWorld(x+.5-1,y)
 
         if x ~= self.lastX or y ~= self.lastY then
+			assert(self.level.ActorEdit, "The actor placer doesn't work on play mode yet. Maybe I should've told you earlier.")
 			self.level.ActorEdit:new(self.level, spawnX, spawnY, self.tile)
 
             self.lastX = x
@@ -30,6 +31,7 @@ function Placer:draw()
 	love.graphics.setColor(1, 1, 1, 0.5)
 
 	local worldX, worldY = self.level:coordinateToWorld(coordX-1, coordY-1)
+	assert(self.tile.quads, self.tile.name .. " needs quads to be drawn on the editor, but it still got included on the editor table somehow.")
 	love.graphics.draw(self.tile.img, self.tile.quads[1], worldX, worldY+1)
 
 	love.graphics.setColor(1, 1, 1)

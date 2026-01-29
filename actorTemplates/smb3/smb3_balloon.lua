@@ -9,6 +9,7 @@ return {
     centerY = 16,
 
     dontAutoQuad = true,
+	dontShowOnEditor = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,
     collisionMask = VAR("collisionMasks").PLAYER,
