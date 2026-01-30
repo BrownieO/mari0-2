@@ -47,7 +47,7 @@ function LevelEdit:loadLevel(data)
         if actorTemplate then -- is enemy
 			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
-			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX+.5-1,entity.y+spawnOffsetY)
+			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX-.5,entity.y+spawnOffsetY)
 			
 			local newActor = ActorEdit:new(self, x, y, actorTemplate)
 			newActor.spawnX = entity.x

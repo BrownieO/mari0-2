@@ -63,7 +63,7 @@ for _, file in ipairs(files) do
         actorTemplates[name] = template
 		
 		if not template.dontShowOnEditor then
-			assert(not template.dontShowOnEditor, template.name .. " has dontAutoQuad enabled and dontShowOnEditor disabled. Actors currently need quads to appear on the editor.")
+			assert(not template.dontAutoQuad, template.name .. " has dontAutoQuad enabled and dontShowOnEditor disabled. Actors currently need quads to appear on the editor.")
 			table.insert(actorTemplates.list, name)
 			actorTemplates.map[name] = #actorTemplates.list
 		end
