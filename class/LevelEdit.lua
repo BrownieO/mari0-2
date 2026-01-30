@@ -53,6 +53,10 @@ function LevelEdit:loadLevel(data)
 			newActor.spawnX = entity.x
 			newActor.spawnY = entity.y
 		end
+		if entity.type == "spawn" then
+			self.spawnX = entity.x
+			self.spawnY = entity.y
+		end
 	end
 	
 	table.sort(self.spawnList, function(a, b) return a.x<b.x end)
