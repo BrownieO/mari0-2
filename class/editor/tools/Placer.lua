@@ -13,7 +13,7 @@ end
 function Placer:update()
     if self.penDown then
         local x, y = self.level:mouseToCoordinate()
-		local spawnX, spawnY = self.level:coordinateToWorld(x+.5-1,y)
+		local spawnX, spawnY = self.level:coordinateToWorld(x+.5,y)
 
         if x ~= self.lastX or y ~= self.lastY then
 			assert(self.level.ActorEdit, "The actor placer doesn't work on play mode yet. Maybe I should've told you earlier.")
