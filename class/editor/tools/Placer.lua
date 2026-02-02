@@ -13,7 +13,7 @@ end
 function Placer:update()
     if self.penDown then
         local x, y = self.level:mouseToCoordinate()
-		local pixelX, pixelY = self.level:coordinateToWorld(x-.5,y)
+		local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) -.5, y + (self.tile.spawnOffsetX or 0))
 
         if x ~= self.lastX or y ~= self.lastY then
 			assert(self.level.ActorEdit, "The actor placer doesn't work on play mode yet. Maybe I should've told you earlier.")
@@ -32,9 +32,9 @@ function Placer:draw()
 
 	love.graphics.setColor(1, 1, 1, 0.5)
 
-	local pixelX, pixelY = self.level:coordinateToWorld(x-1, y-1)
+	local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) - .5, y + (self.tile.spawnOffsetY or 0) - .5)
 	assert(self.tile.quads, self.tile.name .. " needs quads to be drawn on the editor, but it still got included on the editor table somehow.")
-	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX, pixelY+1)
+	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX-self.tile.centerX, pixelY-self.tile.centerY)
 
 	love.graphics.setColor(1, 1, 1)
 end
