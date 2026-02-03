@@ -35,7 +35,7 @@ function Placer:draw()
 
 	local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) - .5, y + (self.tile.spawnOffsetY or 0))
 	assert(self.tile.quads, self.tile.name .. " needs quads to be drawn on the editor, but it still got included on the editor table somehow.")
-	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX-self.tile.centerX, pixelY-self.tile.centerY)
+	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX, pixelY-self.tile.height/2, 0, 1, 1, self.tile.centerX, self.tile.centerY)
 
 	love.graphics.setColor(1, 1, 1)
 end
