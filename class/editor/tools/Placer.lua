@@ -34,7 +34,7 @@ function Placer:draw()
 	love.graphics.setColor(1, 1, 1, 0.5)
 
 	local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) - .5, y + (self.tile.spawnOffsetY or 0))
-	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX, pixelY-self.tile.height/2, 0, 1, 1, self.tile.centerX, self.tile.centerY)
+	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX, pixelY-self.tile.height/2, 0, 1, 1, self.tile.centerX, self.tile.centerY) --TODO: make this use the drawing method from World
 
 	love.graphics.setColor(1, 1, 1)
 end

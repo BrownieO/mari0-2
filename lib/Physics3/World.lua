@@ -639,59 +639,60 @@ function World:portalVectorDebug()
     end
 end
 
-function World:checkCollision(x, y, obj, vector, portalled)
-    if obj and not portalled then -- don't re-portal points because that's still
-        -- Portal hijacking
-        for _, portal in ipairs(self.portals) do
-            if portal.open and obj.inPortals[portal] then -- only if the player is "in front" of the portal
-                -- check if pixel is inside portal wallspace
-                -- rotate x, y around portal origin
-                local nx, ny = pointAroundPoint(x, y, portal.x1, portal.y1, -portal.angle)
+function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
+	if not onlyActors then
+		if obj and not portalled then -- don't re-portal points because that's still
+			-- Portal hijacking
+			for _, portal in ipairs(self.portals) do
+				if portal.open and obj.inPortals[portal] then -- only if the player is "in front" of the portal
+					-- check if pixel is inside portal wallspace
+					-- rotate x, y around portal origin
+					local nx, ny = pointAroundPoint(x, y, portal.x1, portal.y1, -portal.angle)
 
-                -- comments use an up-pointing portal as example
-                if nx > portal.x1 and nx < portal.x1+portal.size then -- point is horizontally within the portal
-                    if ny > portal.y1 then
-                        if ny < portal.y1 + 1 then -- first pixel's free, because bumpy conversion from vector positions to pixel collision can create some bad effects
-                            return false
-                        else -- point is inside portal
-                            local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
+					-- comments use an up-pointing portal as example
+					if nx > portal.x1 and nx < portal.x1+portal.size then -- point is horizontally within the portal
+						if ny > portal.y1 then
+							if ny < portal.y1 + 1 then -- first pixel's free, because bumpy conversion from vector positions to pixel collision can create some bad effects
+								return false
+							else -- point is inside portal
+								local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
 
-                            return self:checkCollision(newX, newY, obj, vector, true)
-                        end
+								return self:checkCollision(newX, newY, obj, vector, true)
+							end
 
-                    elseif ny > portal.y1 - 0.00000001 then -- stops a thin line covering 45° portals
-                        return false
-                    end
-                else
-                    if ny > portal.y1 then
+						elseif ny > portal.y1 - 0.00000001 then -- stops a thin line covering 45° portals
+							return false
+						end
+					else
+						if ny > portal.y1 then
 
-                        if ny < portal.y1 + 2 then -- add a thin line of collision to the portal's edges
-                            return fakeCellInstance
-                        else
-                            local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
+							if ny < portal.y1 + 2 then -- add a thin line of collision to the portal's edges
+								return fakeCellInstance
+							else
+								local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
 
-                            return self:checkCollision(newX, newY, obj, vector, true)
-                        end
-                    end
-                end
-            end
-        end
-    end
+								return self:checkCollision(newX, newY, obj, vector, true)
+							end
+						end
+					end
+				end
+			end
+		end
 
-    -- level boundaries
-    if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
-        return fakeCellInstance
-    end
+		-- level boundaries
+		if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
+			return fakeCellInstance
+		end
 
-    -- World
-    for _, layer in ipairs(self.layers) do
-        local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
+		-- World
+		for _, layer in ipairs(self.layers) do
+			local cell = layer:checkCollision(math.round(x), math.round(y), obj, vector)
 
-        if cell then
-            return cell
-        end
-    end
-
+			if cell then
+				return cell
+			end
+		end
+	end
     -- Actors
     -- todo: quad tree magic
 

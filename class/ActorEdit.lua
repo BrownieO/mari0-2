@@ -40,4 +40,21 @@ end
 
 function ActorEdit:draw() end
 
+function ActorEdit:destroy()
+    self.destroyed = true
+    self.deleteMe = true
+    -- Trigger destruction event for components
+    -- Remove from physics world
+    if self.world and self.world.removeObject then
+        self.world:removeObject(self)
+    end
+    -- Clear references
+    self.world = nil
+    self.components = {}
+end
+
+function ActorEdit:isDestroyed()
+    return self.destroyed or false
+end
+
 return ActorEdit
