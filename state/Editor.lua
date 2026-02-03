@@ -3,7 +3,7 @@ local Selection = require "class.editor.Selection"
 local FloatingSelection = require "class.editor.FloatingSelection"
 local Editor = class("Editor")
 
-Editor.toolbarOrder = {"Move", "Paint", "Erase", "Placer", "Entity", "Select", "Wand", "Fill", "Stamp"}
+Editor.toolbarOrder = {"Move", "Paint", "Erase", "Placer", "Deleter", "Entity", "Select", "Wand", "Fill", "Stamp"}
 Editor.toolbarImg = {}
 Editor.toolClasses = {}
 
