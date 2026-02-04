@@ -12,6 +12,7 @@ return {
 		open = "Open",
 		save = "Save",
 		saveAs = "Save as",
+		play = "Play",
 		_exit = "Exit",
 		
 		file = "File",

@@ -91,7 +91,8 @@ function Editor:load()
 		end
 	end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button) newGame(nil, false, 1) end))
+	self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 42, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
 

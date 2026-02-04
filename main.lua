@@ -96,7 +96,7 @@ function newGame(mappack, editorEnabled, players)
 	local players = players or 1
     if mappack then
         table.remove(gameStateManager.activeStates, 1)
-        game = Game:new(selectedMappackPath, 1, editorEnabled)
+        game = Game:new(mappack, 1, editorEnabled)
         gameStateManager:loadState(game)
 		
 		if editorEnabled then
@@ -104,6 +104,8 @@ function newGame(mappack, editorEnabled, players)
 		end
 		
         gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
+	else
+		print("No mappack")
     end
 end
 
