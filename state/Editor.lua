@@ -30,6 +30,8 @@ Editor.selectQuad = {
     love.graphics.newQuad(3, 3, 2, 2, 5, 5),
 }
 
+Editor.deleterPreview = love.graphics.newImage("img/editor/deleter-preview.png")
+
 Gui3.boxCache[Editor.selectQuad] = Gui3.makeBoxCache(Editor.selectQuad)
 
 -- load windows

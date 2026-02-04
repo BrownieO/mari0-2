@@ -125,7 +125,9 @@ function Gui3:initialize(folder)
 		select = love.mouse.newCursor(folder .. "/cursors/select.png", 16, 16),
 		wand = love.mouse.newCursor(folder .. "/cursors/wand.png", 4, 4),
 		fill = love.mouse.newCursor(folder .. "/cursors/fill.png", 2, 15),
-		stamp = love.mouse.newCursor(folder .. "/cursors/stamp.png", 0, 0)
+		stamp = love.mouse.newCursor(folder .. "/cursors/stamp.png", 0, 0),
+		placer = love.mouse.newCursor(folder .. "/cursors/placer.png", 0, 0),
+		deleter = love.mouse.newCursor(folder .. "/cursors/deleter.png", 0, 0),
 	}
 end
 
