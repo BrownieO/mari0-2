@@ -91,7 +91,7 @@ function Editor:load()
 		end
 	end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button) newGame(nil, false, 1) end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button) playLevel(self.lastPath, 1) end))
 	self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 42, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
 	
     self.fileDropdown:autoSize()
@@ -699,8 +699,8 @@ function Editor:saveLevel(path)
     if not self.level then print("No level loaded") return end
     
     self.fileDropdown:toggle(false)
-	self.lastPath = path
 	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
+	self.lastPath = path
     return self.level:saveLevel("/mappacks/" .. path)
 end
 
