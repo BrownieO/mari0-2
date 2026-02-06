@@ -95,8 +95,8 @@ end
 function newGame(mappack, editorEnabled, players)
 	local players = players or 1
     if mappack then
-        table.remove(gameStateManager.activeStates, 1)
-        game = Game:new(mappack, 1, editorEnabled)
+        table.remove(gameStateManager.activeStates, players)
+        game = Game:new(mappack, players, editorEnabled)
         gameStateManager:loadState(game)
 		
 		if editorEnabled then
@@ -107,6 +107,19 @@ function newGame(mappack, editorEnabled, players)
 	else
 		print("No mappack")
     end
+end
+
+function playLevel(path, players)
+	local players = players or 1
+	if path then
+        table.remove(gameStateManager.activeStates, players)
+        game = Game:new(nil, players, false, path)
+        gameStateManager:loadState(game)
+		
+		gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
+	else
+		print("No level")
+	end
 end
 
 function returnToMenu()

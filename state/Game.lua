@@ -2,11 +2,12 @@ local Smb3Ui = require "class.Smb3Ui"
 local Mari02UI = require "class.Mari02UI"
 local Player = require "class.Player"
 local Level = require "class.Level"
+local LevelEdit = require "class.LevelEdit"
 local Mappack = require "class.Mappack"
 
 local Game = class("Game")
 
-function Game:initialize(mappack, playerCount, editorEnabled)
+function Game:initialize(mappack, playerCount, editorEnabled, levelPath)
     -- Create player objects
     self.players = {}
     for i = 1, playerCount do
@@ -16,7 +17,14 @@ function Game:initialize(mappack, playerCount, editorEnabled)
 	self.editorEnabled = editorEnabled
 	
     -- Load the mappack
-    self.mappack = Mappack:new(mappack)
+	assert(mappack or levelPath, "Something tried to create a game without passing any level.")
+	if mappack then
+		self.mappack = Mappack:new(mappack)
+		self.levelPath = self.mappack.path .. self.mappack.settings.main
+	elseif levelPath then
+		self.levelPath = "mappacks/" .. levelPath
+	end
+		print(self.levelPath)
 end
 
 function Game:load()
@@ -24,10 +32,10 @@ function Game:load()
 
     -- Load the first level with players
 	if self.editorEnabled then
-		self.level = self.mappack:startLevelEdit(self.players)
+		self.level = LevelEdit:new(self.levelPath, self.players)
 		self.uiVisible = false -- should this be part of Game?
 	else
-		self.level = self.mappack:startLevel(self.players)
+		self.level = Level:new(self.levelPath, self.players)
 		self.uiVisible = true
 	end
 
