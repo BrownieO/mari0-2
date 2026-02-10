@@ -594,7 +594,8 @@ function World:saveLevel(outPath)
         out.music = self.data.music
     end
 
-    success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
+    local success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
+	
     if success then
         print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
 		return "Saved to " .. outPath

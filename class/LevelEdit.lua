@@ -6,6 +6,7 @@ local Viewport = require("class.Viewport")
 function LevelEdit:initialize(path, players)
     self.players = {}
 	self.ActorEdit = ActorEdit
+	self.path = path
     
     local mapCode = love.filesystem.read(path)
     local data = sandbox.run(mapCode)
