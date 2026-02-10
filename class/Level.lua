@@ -36,6 +36,7 @@ function Level:loadLevel(data)
 	self.music = self.data.music or nil
 	love.audio.stop()
 	playMusic(self.music)
+	love.mouse.setCursor(love.mouse.getSystemCursor("arrow"))
 
     self.spawnLine = 0
     self.spawnI = 1
