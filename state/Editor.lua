@@ -715,7 +715,7 @@ function Editor:loadLevel(path)
     if self.level then
         self.level:loadLevel(data)
         self.activeLayer = self.level.layers[1]
-		self.lastPath = nil
+		self.lastPath = path
     end
 end
 
