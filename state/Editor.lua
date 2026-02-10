@@ -55,6 +55,7 @@ function Editor:load()
     if self.level then
         self:setActiveLayer(1)
         self:setActiveTileMap(1)
+		self.lastPath = self.level.path
     end
 
     self.tools = {}

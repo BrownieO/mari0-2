@@ -5,6 +5,7 @@ local Viewport = require("class.Viewport")
 
 function Level:initialize(path, players)
     self.players = players or (game and game.players) or {}
+	self.path = path
     
     local mapCode = love.filesystem.read(path)
     local data = sandbox.run(mapCode)
