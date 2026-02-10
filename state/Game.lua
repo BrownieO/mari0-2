@@ -22,7 +22,7 @@ function Game:initialize(mappack, playerCount, editorEnabled, levelPath)
 		self.mappack = Mappack:new(mappack)
 		self.levelPath = self.mappack.path .. self.mappack.settings.main
 	elseif levelPath then
-		self.levelPath = "mappacks/" .. levelPath
+		self.levelPath = levelPath
 	end
 end
 

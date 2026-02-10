@@ -701,7 +701,7 @@ function Editor:saveLevel(path)
     self.fileDropdown:toggle(false)
 	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
 	self.lastPath = path
-    return self.level:saveLevel("/mappacks/" .. path)
+    return self.level:saveLevel(path)
 end
 
 function Editor:loadLevel(path)
