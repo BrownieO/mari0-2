@@ -707,6 +707,7 @@ function Editor:saveLevel(path)
 	if not success then
 		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
 	end
+	return success, errorMsg
 end
 
 function Editor:loadLevel(path)
