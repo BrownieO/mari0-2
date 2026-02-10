@@ -27,7 +27,12 @@ function SaveWindow:initialize(editor)
 
     self.textInput = Gui3.TextInput:new(0, 24, 64, 1)
     self.textInput.onSubmit = function()
-        self.saveMsg:setString(self.editor:saveLevel("/mappacks/" .. self.textInput:getValue()))
+		local success, errorMsg = self.editor:saveLevel("/mappacks/" .. self.textInput:getValue())
+		if success then
+			self.saveMsg:setString("Saved to /mappacks/" .. self.textInput:getValue())
+		else
+			self.saveMsg:setString(errorMsg)
+		end
     end
     self.element:addChild(self.textInput)
 end

@@ -43,6 +43,7 @@ Editor.windowClasses = {
 	openWindow = require("class.editor.windows.OpenWindow"),
 	saveWindow = require("class.editor.windows.SaveWindow"),
     debug = require("class.editor.windows.DebugWindow"),
+	errorWindow = require("class.editor.windows.ErrorWindow"),
 }
 
 function Editor:initialize(level)
@@ -702,7 +703,10 @@ function Editor:saveLevel(path)
     self.fileDropdown:toggle(false)
 	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
 	self.lastPath = path
-    return self.level:saveLevel(path)
+    local success, errorMsg = self.level:saveLevel(path)
+	if not success then
+		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
+	end
 end
 
 function Editor:loadLevel(path)
@@ -710,7 +714,11 @@ function Editor:loadLevel(path)
 	if not path then print("No path") return end
 
     local mapCode, errorMsg = love.filesystem.read(path)
-	if not mapCode then print(errorMsg) return end
+	if not mapCode then
+		print(errorMsg)
+		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
+		return
+	end
 	
     local data = sandbox.run(mapCode)
     if self.level then
