@@ -598,11 +598,10 @@ function World:saveLevel(outPath)
 	
     if success then
         print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
-		return "Saved to " .. outPath
     else
         print(errorMsg)
-		return errorMsg
     end
+	return success, errorMsg
 end
 
 function World:advancedPhysicsDebug()
