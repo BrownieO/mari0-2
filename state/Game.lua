@@ -24,7 +24,6 @@ function Game:initialize(mappack, playerCount, editorEnabled, levelPath)
 	elseif levelPath then
 		self.levelPath = "mappacks/" .. levelPath
 	end
-		print(self.levelPath)
 end
 
 function Game:load()
