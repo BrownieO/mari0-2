@@ -453,6 +453,15 @@ function World:loadLevel(data)
     end
 end
 
+local function getDirectoryFromPath(path)
+    path = path:gsub("\\", "/")
+    path = path:gsub("/+$", "")
+    local dir = path:match("^(.*)/[^/]+$")
+
+    return dir
+end
+
+
 function World:saveLevel(outPath)
     print("SAVING...")
     local out = {}
@@ -594,7 +603,15 @@ function World:saveLevel(outPath)
         out.music = self.data.music
     end
 
-    local success, errorMsg = love.filesystem.write(outPath, serialize.tstr(out))
+	local success, errorMsg
+	
+	love.filesystem.createDirectory(getDirectoryFromPath(outPath))
+	local file = love.filesystem.newFile(outPath)
+	success, errorMsg = file:open("w")
+	if success then
+		success, errorMsg = file:write(serialize.tstr(out))
+	end
+	file:close()
 	
     if success then
         print("Saved to " .. outPath .. " (" .. love.filesystem.getSaveDirectory() .. ")")
