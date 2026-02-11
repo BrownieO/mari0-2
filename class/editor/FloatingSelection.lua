@@ -102,11 +102,11 @@ function FloatingSelection:unFloat()
     local layer = self.editor.activeLayer
 
     if self.pos[1] < layer:getXStart() or self.pos[2] < layer:getYStart() then
-        layer:expandTo(self.pos[1], self.pos[2])
+        
     end
 
     if self.pos[1]+self.width-1 > layer:getXEnd() or self.pos[2]+self.height-1 > layer:getYEnd() then
-        layer:expandTo(self.pos[1]+self.width-1, self.pos[2]+self.height-1)
+        
     end
 
     for x = 1, self.width do

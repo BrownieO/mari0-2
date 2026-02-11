@@ -215,6 +215,7 @@ function Layer:getTile(x, y)
 end
 
 function Layer:setCoordinate(x, y, tile)
+	if not self.map[x-self.x] or not self.map[x-self.x][y-self.y] then return end
     self.map[x-self.x][y-self.y].tile = tile
 
     -- check if that tile has a pending update callback
@@ -229,7 +230,7 @@ function Layer:setCoordinate(x, y, tile)
     if tile then -- need to update our spriteBatches!
         if  x >= self.viewport[1] and x <= self.viewport[3] and
             y >= self.viewport[2] and y <= self.viewport[4] then -- but only if it's in the active region
-            if self.sprites[x][y] then -- check if there's already a sprite at that position and if so, deal with it
+            if self.sprites and self.sprites[x] and self.sprites[x][y] then -- check if there's already a sprite at that position and if so, deal with it
                 local match = false
 
                 -- figure out whether the existing tile's spriteBatch matches the new one's
@@ -250,7 +251,7 @@ function Layer:setCoordinate(x, y, tile)
             end
         end
     else -- may need to delete an existing tile.
-        if self.sprites[x][y] then
+        if self.sprites and self.sprites[x] and self.sprites[x][y] then
             self:removeBatchCoordinate(x, y)
         end
     end
