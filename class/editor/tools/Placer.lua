@@ -15,6 +15,7 @@ function Placer:update()
     if self.penDown then
         local x, y = self.level:mouseToCoordinate()
 		local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) -.5, y + (self.tile.spawnOffsetY or 0))
+		local eraseX, eraseY = self.level:coordinateToWorld(x-.5, y-.5)
 
         if x ~= self.lastX or y ~= self.lastY then
 			local newActor = self.level.ActorEdit:new(self.level, pixelX, pixelY, self.tile)
@@ -23,6 +24,11 @@ function Placer:update()
 
             self.lastX = x
             self.lastY = y
+			
+			local obj2 = self.level.checkCollision(self.level,eraseX,eraseY,newActor,0,true,true)
+			if obj2 then
+				obj2:destroy()
+			end
         end
     end
 end
