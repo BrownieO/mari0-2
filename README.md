@@ -4,7 +4,7 @@
 
 This fork aims to expand the original prototype of Mari0 2.
 
-Currently, the first world of Super Mario Bros is feature complete. The editor also works without entities. However, the software is still in the iteration phase. Do not use it for production yet.
+Currently, the first world of Super Mario Bros and the level editor are working. However, the software is still in the iteration phase. Do not use it for production yet.
 
 - Download the latest release [here](https://github.com/BrownieO/mari0-2/releases).
 - Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to start contibuting.
