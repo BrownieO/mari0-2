@@ -599,6 +599,9 @@ function World:saveLevel(outPath)
     if self.data.backgroundColor then
         out.backgroundColor = self.data.backgroundColor
     end
+    if self.data.background then
+        out.background = self.data.background
+    end
     if self.data.music then
         out.music = self.data.music
     end
