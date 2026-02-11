@@ -93,8 +93,19 @@ function Editor:load()
 		end
 	end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
-    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button) playLevel(self.lastPath, 1) end))
-	self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 42, i18n.t("editor._exit"), false, nil, function(button) self:exitToMappacks() end))
+    self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button)
+		if self.lastPath then
+			local success, errorMsg = self:saveLevel(self.lastPath)
+		else
+			self.windowClasses.errorWindow:new(self, "", "Save the level first", "_error")
+		end
+		if success then
+			playLevel(self.lastPath, 1)
+		end
+	end))
+	self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 42, i18n.t("editor._exit"), false, nil, function(button)
+		self:exitToMappacks()
+	end))
 	
     self.fileDropdown:autoSize()
 
