@@ -17,7 +17,7 @@ function Paint:update()
             local layer = self.editor.activeLayer
 
             if not layer:inMap(x, y) then
-                layer:expandTo(x, y)
+                return
             end
 
             local tiles
@@ -82,7 +82,7 @@ function Paint:mousepressed(x, y, button)
         local layer = self.editor.activeLayer
 
         if not layer:inMap(coordX, coordY) then
-            layer:expandTo(coordX, coordY)
+            return
         end
 
         local tiles = tilesInLine(self.lastX, self.lastY, coordX, coordY)
