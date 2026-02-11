@@ -7,7 +7,7 @@ function Gui3.Text:initialize(s, x, y)
     self.s = s
     self.text = love.graphics.newText(fontOutlined, s)
 
-    Gui3.Element.initialize(self, x, y, #self.s*8, 10)
+    Gui3.Element.initialize(self, x, y, fontOutlined:getWidth(s), fontOutlined:getHeight(s))
 end
 
 function Gui3.Text:setString(s)
@@ -17,8 +17,8 @@ function Gui3.Text:setString(s)
 
         self:updateRender()
 
-        if self.w ~= #self.s*8 then
-            self.w = #self.s*10
+        if self.w ~= fontOutlined:getWidth(s) then
+            self.w = fontOutlined:getWidth(s)
             self:sizeChanged()
         end
     end
