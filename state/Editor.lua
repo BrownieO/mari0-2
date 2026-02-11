@@ -704,7 +704,9 @@ function Editor:saveLevel(path)
 	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
 	self.lastPath = path
     local success, errorMsg = self.level:saveLevel(path)
-	if not success then
+	if success then
+		playSound("correct")
+	elseif errorMsg then
 		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
 	end
 	return success, errorMsg
