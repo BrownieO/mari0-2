@@ -4,13 +4,12 @@ local spawnsEnemy = class("smb3.spawnsEnemy", Component)
 
 spawnsEnemy.argList = {
     {"type", "string", "bowser_fire"},
-    {"spawnenemydelay", "number", 3},
+    {"spawnenemydelay", "number"},
     {"spawnenemyspeedy", "number", 0},
     {"spawnenemyspeedx", "number", 0},
 	{"spawnenemyoffsetx", "number", 0},
 	{"spawnenemyoffsety", "number", 0},
 	{"maxenemycount", "number"},
-	{"radius", "number"}
 }
 
 function spawnsEnemy:initialize(actor, args)
@@ -23,7 +22,7 @@ function spawnsEnemy:action()
 	if not self.maxenemycount or self.enemyCount < self.maxenemycount then
 		local enemy = Actor:new(
 			self.actor.world,
-			self.actor.cache.x+self.spawnenemyoffsetx+((0.5*self.actor.animationDirection+0.5)*self.actor.width),
+			self.actor.cache.x+self.spawnenemyoffsetx*self.actor.animationDirection+((0.5*self.actor.animationDirection+0.5)*self.actor.width),
 			self.actor.cache.y+self.spawnenemyoffsety,
 			actorTemplates[self.type]
 		)
@@ -39,24 +38,15 @@ function spawnsEnemy:childDestroyed()
 	self.enemyCount = self.enemyCount - 1
 end
 
-function spawnsEnemy:inrange(i, a, b, include)
-	if a > b then
-		b, a = a, b
-	end
-	
-	if include then
-		return i >= a and i <= b
-	else
-		return i > a and i < b
-	end
-end
-
 function spawnsEnemy:update(dt)
-	self.actor.timer = self.actor.timer + dt
-    if self.actor.timer >= self.spawnenemydelay then
-        self.actor:event("action")
-		self.actor.timer = 0
-    end
+	if self.spawnenemydelay then
+		print(self.spawnenemydelay)
+		self.actor.timer = self.actor.timer + dt
+		if self.actor.timer >= self.spawnenemydelay then
+			self.actor:event("action")
+			self.actor.timer = 0
+		end
+	end
 end
 
 return spawnsEnemy

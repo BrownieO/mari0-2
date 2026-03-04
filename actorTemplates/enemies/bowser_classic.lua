@@ -36,8 +36,9 @@ return {
 		["misc.isHurtByContact"] = {},
 		["misc.enemyHealth"] = {health = 5},
 		["misc.spawnsEnemy"] = {
-		spawnenemyspeedx = 4.69*16,
-		spawnenemyoffsety = 8,
+			spawnenemydelay = 3,
+			spawnenemyspeedx = 4.69*16,
+			spawnenemyoffsety = 8,
 		},
     }
 }
