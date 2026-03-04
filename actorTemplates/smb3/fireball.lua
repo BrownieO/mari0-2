@@ -12,12 +12,15 @@ return {
 
     collisionGroup = VAR("collisionCategories").PLAYER,
     collisionMask = VAR("collisionMasks").PLAYER,
+	
+	spawnSound = "fireball",
 
     components = {
         ["animation.frames"] = {
             frames = {1, 2, 3, 4},
 			times = {1/30}
         },
+		["movement.fireball"] = {},
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
@@ -25,7 +28,6 @@ return {
 			top = true,
 			group = VAR("collisionCategories").ENEMY,
 			kamikaze = true
-		},
-		["movement.fireball"] = {}
+		}
 	}
 }

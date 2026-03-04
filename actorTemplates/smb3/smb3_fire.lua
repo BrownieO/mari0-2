@@ -143,6 +143,11 @@ return {
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
 		["misc.isWarped"] = {},
-		["smb3.shootsFireballs"] = {},
+		["misc.spawnsEnemy"] = {
+			type = "fireball",
+			spawnenemyspeedx = 15*16,
+			spawnenemyoffsety = 12,
+			maxenemycount = 2
+		},
     }
 }

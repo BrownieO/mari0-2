@@ -27,6 +27,6 @@ return {
 			bottom = true,
 			top = false,
 			group = VAR("collisionCategories").PLAYER,
-		},
+		}
 	}
 }
