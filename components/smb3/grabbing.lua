@@ -46,7 +46,7 @@ function grabbing:updateGrabbedActorPositions()
         if actor and actor.grabbable then
             local offsetX = self.actor.animationDirection * (GRAB_RANGE / 2)
             actor.x = self.actor.x + offsetX
-            actor.y = self.actor.y
+            actor.y = self.actor.y + 8
             actor.speed[1] = 0
             actor.speed[2] = 0
         end
