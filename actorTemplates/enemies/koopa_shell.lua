@@ -46,11 +46,11 @@ return {
             onlyWhen = "stopped",
             time = 6.9,
             wiggles = true,
-            wiggleAfter = 5.233333,
+            wiggleAfter = 5+7/30,
             wiggleDistance = 1,
-            wiggleTime = 0.016666667,
+            wiggleTime = 1/60,
             wiggleFrames = {1, 5},
-            wiggleFrameTime = {0.03333333}
+            wiggleFrameTime = {1/30}
         },
         ["misc.transforms"] = {
             on = "wakeUp",
