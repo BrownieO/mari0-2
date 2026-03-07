@@ -149,5 +149,6 @@ return {
 			spawnenemyoffsety = 12,
 			maxenemycount = 2
 		},
+		["smb3.grabbing"] = {}
     }
 }

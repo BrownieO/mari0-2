@@ -137,5 +137,6 @@ return {
 		["smb3.iFrames"] = {},
 		["misc.isKilledByLava"] = {},
 		["misc.isWarped"] = {},
+		["smb3.grabbing"] = {}
     }
 }

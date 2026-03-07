@@ -8,20 +8,18 @@ function grabbing:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self.actor.grabbing = false
-    self.grabbedActors = {}
+    self.grabbedActor = nil
 end
 
 function grabbing:update(dt)
-    if controls3.cmdDown("run") and not self.actor.grabbing then
-        self.actor.grabbing = true
+    if controls3.cmdDown("run") and not self.grabbedActor then
         self:grabActorsInFront()
-    elseif not controls3.cmdDown("run") and self.actor.grabbing then
-        self.actor.grabbing = false
+    elseif not controls3.cmdDown("run") and self.grabbedActor then
         self:releaseGrabbedActors()
     end
 
-    if self.actor.grabbing then
-        self:updateGrabbedActorPositions()
+    if self.grabbedActor then
+        self:updateGrabbedActorPosition()
     end
 end
 
@@ -33,32 +31,25 @@ function grabbing:grabActorsInFront()
         if actor.grabbable and actor ~= self.actor then
             local dist = math.sqrt((actor.x - frontX) ^ 2 + (actor.y - frontY) ^ 2)
             if dist < GRAB_RANGE then
-                table.insert(self.grabbedActors, actor)
                 actor.speed[1] = 0
                 actor.speed[2] = 0
+                self.grabbedActor = actor
             end
         end
     end
 end
 
-function grabbing:updateGrabbedActorPositions()
-    for _, actor in ipairs(self.grabbedActors) do
-        if actor and actor.grabbable then
-            local offsetX = self.actor.animationDirection * (GRAB_RANGE / 2)
-            actor.x = self.actor.x + offsetX
-            actor.y = self.actor.y + 8
-            actor.speed[1] = 0
-            actor.speed[2] = 0
-        end
-    end
+function grabbing:updateGrabbedActorPosition()
+	local offsetX = self.actor.animationDirection * (GRAB_RANGE / 2)
+	self.grabbedActor.x = self.actor.x + offsetX
+	self.grabbedActor.y = self.actor.y + self.actor.width / 2
+	self.grabbedActor.speed[1] = 0
+	self.grabbedActor.speed[2] = 0
 end
 
+
 function grabbing:releaseGrabbedActors()
-    for _, actor in ipairs(self.grabbedActors) do
-        if actor and actor.grabbable then
-        end
-    end
-    self.grabbedActors = {}
+	self.grabbedActor = nil
 end
 
 return grabbing
