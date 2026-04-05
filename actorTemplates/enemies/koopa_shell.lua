@@ -12,6 +12,7 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 	
 	grabbable = true,
+	kickable = true,
 
     ["components"] = {
         ["misc.palettable"] = {
@@ -25,7 +26,7 @@ return {
 
         ["animation.frames"] = {
             frames = {1, 2, 3, 4},
-            times = {0.03333333},
+            times = {1/30},
             dontAnimateWhenStill = true,
             useFrameWhenStill = 1
         },
@@ -36,11 +37,10 @@ return {
             canStop = true
         },
         ["misc.unrotate"] = {},
-        ["misc.kickable"] = {},
         ["misc.hurtsByContact"] = {
             left = true,
             right = true,
-            onlyWhenMoving = true
+            onlyWhenMoving = true,
         },
         ["misc.wakesUp"] = {
             onlyWhen = "stopped",
