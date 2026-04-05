@@ -159,6 +159,7 @@ function Actor:loadActorTemplate(actorTemplate)
 	
 	self.coin = self.actorTemplate.coin
 	self.grabbable = self.actorTemplate.grabbable
+	self.kickable = self.actorTemplate.kickable
 
     -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
@@ -172,7 +173,7 @@ function Actor:loadActorTemplate(actorTemplate)
 	else
 		self.collisionMask = 0
     end
-	
+		
     if self.actorTemplate.static == true then
         self.static = true
 	else
