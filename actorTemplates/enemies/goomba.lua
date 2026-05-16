@@ -26,7 +26,7 @@ return {
             maxSpeed = 32,
         },
         ["misc.unrotate"] = {},
-        ["misc.stompable"] = {},
+        ["misc.stompable"] = {dies = true},
 		["misc.hurtsByContact"] = {
 			left = true,
 			right = true,
@@ -37,11 +37,5 @@ return {
 		["misc.isHurtByStar"] = {},
 		["misc.knockedWhenHurt"] = {},
         ["misc.isHurtByContact"] = {},
-		["misc.defeatEffects"] = {
-			mappings = {
-				collapseEffect = {"getHurt", "getKilled"},
-				squashEffect = {"getStomped"}
-			}
-		}
 	}
 }

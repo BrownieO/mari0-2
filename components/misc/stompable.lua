@@ -7,6 +7,7 @@ stompable.argList = {
 }
 
 function stompable:getStomped()
+	playSound("stomp")
 	if self.dies then
 		self.actor:destroy()
 	end
