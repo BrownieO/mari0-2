@@ -10,11 +10,6 @@ return {
 
     collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = VAR("collisionMasks").ENEMY,
-<<<<<<< HEAD
-=======
-	
-	grabbable = true,
->>>>>>> parent of 75fe8fb (Continue work on shell grabbing)
 
     ["components"] = {
         ["misc.palettable"] = {
