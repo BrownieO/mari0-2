@@ -2,21 +2,21 @@ local Component = require "class.Component"
 local kicks = class("misc.kicks", Component)
 
 function kicks:leftContact(dt, actorEvent, obj2)
-    if obj2.kickable and obj2.cache.speed[1] == 0 then
+    if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
         obj2:event("kicked", 0, -1)
         actorEvent.returns = true
     end
 end
 
 function kicks:rightContact(dt, actorEvent, obj2)
-    if obj2.kickable and obj2.cache.speed[1] == 0 then
+    if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
         obj2:event("kicked", 0, 1)
         actorEvent.returns = true
     end
 end
 
 function kicks:bottomContact(dt, actorEvent, obj2)
-    if obj2.kickable then
+    if obj2:hasComponent("misc.kickable") then
         if obj2.cache.speed[1] == 0 then -- kick it
             local selfX = self.actor.x + self.actor.width*.5
             local obj2X = obj2.x + obj2.width*.5

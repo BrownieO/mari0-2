@@ -8,8 +8,6 @@ return {
     centerX = 8,
     centerY = 9,
 
-	kickable = true,
-
     collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = VAR("collisionMasks").ENEMY,
 
@@ -42,6 +40,7 @@ return {
             canStop = true
         },
         ["misc.unrotate"] = {},
+        ["misc.kickable"] = {},
         ["misc.hurtsByContact"] = {
             left = true,
             right = true,
