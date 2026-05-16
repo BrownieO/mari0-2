@@ -10,6 +10,11 @@ return {
 
     collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = VAR("collisionMasks").ENEMY,
+<<<<<<< HEAD
+=======
+	
+	grabbable = true,
+>>>>>>> parent of 75fe8fb (Continue work on shell grabbing)
 
     ["components"] = {
         ["misc.palettable"] = {
@@ -23,7 +28,7 @@ return {
 
         ["animation.frames"] = {
             frames = {1, 2, 3, 4},
-            times = {1/30},
+            times = {0.03333333},
             dontAnimateWhenStill = true,
             useFrameWhenStill = 1
         },
@@ -34,10 +39,11 @@ return {
             canStop = true
         },
         ["misc.unrotate"] = {},
+        ["misc.kickable"] = {},
         ["misc.hurtsByContact"] = {
             left = true,
             right = true,
-            onlyWhenMoving = true,
+            onlyWhenMoving = true
         },
         ["misc.wakesUp"] = {
             onlyWhen = "stopped",

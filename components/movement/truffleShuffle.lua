@@ -17,8 +17,6 @@ function truffleShuffle:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self.kickSpeed = self.maxSpeed
-	self.actor.kickSpeed = self.kickSpeed
-	self.kicked = false
 
     if self.actor.speed[1] == 0 then
         self.shuffleDir = -1
@@ -92,13 +90,11 @@ function truffleShuffle:rightCollision()
 end
 
 function truffleShuffle:kicked(dt, actorEvent, dir)
-	self.kicked = true
     self.actor.speed[1] = self.kickSpeed*dir
 	playSound("knock")
 end
 
 function truffleShuffle:unkicked()
-	self.kicked = false
     self.actor.speed[1] = 0
 end
 
