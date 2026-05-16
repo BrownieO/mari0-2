@@ -158,8 +158,6 @@ function Actor:loadActorTemplate(actorTemplate)
     self.states = {}
 	
 	self.coin = self.actorTemplate.coin
-	self.grabbable = self.actorTemplate.grabbable
-	self.kickable = self.actorTemplate.kickable
 
     -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
