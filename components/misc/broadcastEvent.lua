@@ -7,8 +7,8 @@ broadcastEvent.argList = {
 	{"collisionBlacklist", "number"}
 }
 
-function broadcastEvent:initialize(actor)
-    Component.initialize(self, actor)
+function broadcastEvent:initialize(actor, args)
+    Component.initialize(self, actor, args)
 
     self[self.on] = function(self)
         for _, actor in ipairs(self.actor.world.actors) do
