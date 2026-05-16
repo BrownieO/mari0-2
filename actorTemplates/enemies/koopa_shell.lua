@@ -10,9 +10,6 @@ return {
 
     collisionGroup = VAR("collisionCategories").ENEMY,
     collisionMask = VAR("collisionMasks").ENEMY,
-	
-	grabbable = true,
-	kickable = true,
 
     ["components"] = {
         ["misc.palettable"] = {
