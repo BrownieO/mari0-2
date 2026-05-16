@@ -158,10 +158,6 @@ function Actor:loadActorTemplate(actorTemplate)
     self.states = {}
 	
 	self.coin = self.actorTemplate.coin
-<<<<<<< HEAD
-=======
-	self.grabbable = self.actorTemplate.grabbable
->>>>>>> parent of 75fe8fb (Continue work on shell grabbing)
 
     -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
