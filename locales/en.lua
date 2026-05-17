@@ -3,7 +3,7 @@ return {
 	
 	mainMenu = {
 		onePlayerGame = "1 player game",
-		selectMappack = "Select game",
+		selectMappack = "Select mappack",
 		levelEditor = "Level editor",
 		options = "Options"
 	},
@@ -49,6 +49,20 @@ return {
 
 		invincible = "invincible",
 		metal = "metal",
+	},
+	
+	window = {
+		openFile = "Open file",
+		saveFile = "Save file",
+		playtest = "Playtest",
+		editor = "Editor",
+		saveFirst = "Save the changes first!",
+		saveChanges = "Save changes before quitting?",
+		
+		ok = "OK",
+		cancel = "Cancel",
+		yes = "Yes",
+		no = "No"		
 	},
 	
 	assertions = {

@@ -97,7 +97,7 @@ function Editor:load()
 		if self.lastPath then
 			success, errorMsg = self:saveLevel(self.lastPath)
 		else
-			love.window.showMessageBox("Playtest", "Save the level first!", "info")
+			love.window.showMessageBox(i18n.t("window.playtest"), i18n.t("window.saveFirst"), "info")
 		end
 		if success then
 			playLevel(self.lastPath, 1)
@@ -721,7 +721,7 @@ function Editor:saveLevel(path)
 	if success then
 		playSound("correct")
 	elseif errorMsg then
-		love.window.showMessageBox("Level save", errorMsg, "error")
+		love.window.showMessageBox(i18n.t("window.saveFile"), errorMsg, "error")
 	end
 	return success, errorMsg
 end
@@ -733,7 +733,7 @@ function Editor:loadLevel(path)
 
     local mapCode, errorMsg = love.filesystem.read(path)
 	if not mapCode then
-		love.window.showMessageBox("Level load", errorMsg, "error")
+		love.window.showMessageBox(i18n.t("window.openFile"), errorMsg, "error")
 		return
 	end
 	
@@ -785,7 +785,7 @@ end
 
 function Editor:exitToMappacks()
     self.fileDropdown:toggle(false)
-	local pressedButton = love.window.showMessageBox("Editor", "Save changes before quitting?", {"Yes", "No", "Cancel", escapebutton = 3}, "warning")
+	local pressedButton = love.window.showMessageBox(i18n.t("window.editor"), i18n.t("window.saveChanges"), {i18n.t("window.yes"), i18n.t("window.no"), i18n.t("window.cancel"), escapebutton = 3}, "warning")
 	if pressedButton == 1 then
 		local success, errorMsg = self:saveLevel(self.lastPath)
 		if success then
