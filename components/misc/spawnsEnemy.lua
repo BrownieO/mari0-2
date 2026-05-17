@@ -40,7 +40,6 @@ end
 
 function spawnsEnemy:update(dt)
 	if self.spawnenemydelay then
-		print(self.spawnenemydelay)
 		self.actor.timer = self.actor.timer + dt
 		if self.actor.timer >= self.spawnenemydelay then
 			self.actor:event("action")
