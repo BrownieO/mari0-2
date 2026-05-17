@@ -51,13 +51,27 @@ return {
 		metal = "metal",
 	},
 	
+	window = {
+		openFile = "Abrir archivo",
+		saveFile = "Guardar archivo",
+		playtest = "Prueba de juego",
+		editor = "Editor",
+		saveFirst = "Se deben guardar los cambios antes de continuar.",
+		saveChanges = "¿Guardar cambios antes de salir?",
+		
+		ok = "Aceptar",
+		cancel = "Cancelar",
+		yes = "Sí",
+		no = "No"		
+	},
+	
 	assertions = {
 		tilemapNonexistent = "El tileset \"%s\" no existe.",
-		paddingBigger = "El estampado \"%s\" del tileset \"%s\" tiene protección [%s] más grande que su propio tamaño. Mala idea.",
+		paddingBigger = "El estampado \"%s\" del tileset \"%s\" tiene un margen [%s] más grande que su propio tamaño. Mala idea.",
 		tileLoadError = "No se pudo cargar el tile en x=%s, y=%s con ID \"%s\". El nivel puede estar corrupto.",
 		tilemapNotPassed = "El archivo del nivel no especifica ningún tileset con número %s",
 		elementToItself = "No se puede emparentar un elemento consigo mismo.",
-		noCrosshair = "Un actor intentó abrir un portal sin tener retícula.",
-		faultyQuad = [[El estado "%s" en actorTemplate %s tiene un cuadro falto. (fotograma "%s")]]
+		noCrosshair = "Un actor intentó abrir un portal sin tener una retícula.",
+		faultyQuad = [[El estado "%s" en actorTemplate %s tiene un cuadro malo. (fotograma "%s")]]
 	}
 }
