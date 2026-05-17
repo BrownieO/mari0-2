@@ -9,6 +9,7 @@ local JUMPTABLE = {
     {vel = math.huge, jumpForce = -236.25},
 }
 local JUMPGRAVITYUNTIL = -120
+local MAXYSPEED = 258.75
 
 function jumping:initialize(actor, args)
     Component.initialize(self, actor, args)
@@ -24,6 +25,9 @@ function jumping:update(dt, actorEvent)
     if self.actor.state.name == "jumping" then
         actorEvent:setValue("gravity", VAR("gravityJumping"), 10)
     end
+	if controls3.cmdDown("jump") then
+		self.actor.speed[2] = math.min(MAXYSPEED, self.actor.speed[2])
+	end
 end
 
 function jumping:jump(dt, actorEvent)
