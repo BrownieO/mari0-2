@@ -785,7 +785,15 @@ end
 
 function Editor:exitToMappacks()
     self.fileDropdown:toggle(false)
-	returnToMenu()
+	local pressedButton = love.window.showMessageBox("Editor", "Save changes before quitting?", {"Yes", "No", "Cancel", escapebutton = 3}, "warning")
+	if pressedButton == 1 then
+		local success, errorMsg = self:saveLevel(self.lastPath)
+		if success then
+			returnToMenu()
+		end
+	elseif pressedButton == 2 then
+		returnToMenu()
+	end
 end
 
 function Editor:undo()
