@@ -608,7 +608,8 @@ function World:saveLevel(outPath)
 
 	local success, errorMsg
 	
-	love.filesystem.createDirectory(getDirectoryFromPath(outPath))
+	local directory = getDirectoryFromPath(outPath)	
+	if directory then love.filesystem.createDirectory(directory) end
 	local file = love.filesystem.newFile(outPath)
 	success, errorMsg = file:open("w")
 	if success then

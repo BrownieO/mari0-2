@@ -43,7 +43,6 @@ Editor.windowClasses = {
 	openWindow = require("class.editor.windows.OpenWindow"),
 	saveWindow = require("class.editor.windows.SaveWindow"),
     debug = require("class.editor.windows.DebugWindow"),
-	errorWindow = require("class.editor.windows.ErrorWindow"),
 }
 
 function Editor:initialize(level)
@@ -94,10 +93,11 @@ function Editor:load()
 	end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.saveAs"), false, nil, function(button) self:newWindow(self.windowClasses.saveWindow, button) end))
     self.fileDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.play"), false, nil, function(button)
+		local success, errorMsg
 		if self.lastPath then
-			local success, errorMsg = self:saveLevel(self.lastPath)
+			success, errorMsg = self:saveLevel(self.lastPath)
 		else
-			self.windowClasses.errorWindow:new(self, "", "Save the level first", "_error")
+			love.window.showMessageBox("Playtest", "Save the level first!", "info")
 		end
 		if success then
 			playLevel(self.lastPath, 1)
@@ -706,10 +706,13 @@ function Editor:resize(w, h)
     self.scaleBar.x = x
 end
 
+local simulateFailure = false
+
 function Editor:saveLevel(path)
 	if not path then print("Can't save: no path specified") return end
 	if path == "" then return end
     if not self.level then print("No level loaded") return end
+	if simulateFailure then path = "con/con" end
     
     self.fileDropdown:toggle(false)
 	if path:sub(-#".lua") ~= ".lua" then path = path .. ".lua" end
@@ -718,7 +721,7 @@ function Editor:saveLevel(path)
 	if success then
 		playSound("correct")
 	elseif errorMsg then
-		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
+		love.window.showMessageBox("Level save", errorMsg, "error")
 	end
 	return success, errorMsg
 end
@@ -726,11 +729,11 @@ end
 function Editor:loadLevel(path)
     self.fileDropdown:toggle(false)
 	if not path then print("No path") return end
+	if simulateFailure then path = "con/con" end
 
     local mapCode, errorMsg = love.filesystem.read(path)
 	if not mapCode then
-		print(errorMsg)
-		table.insert(self.windows, self.windowClasses.errorWindow:new(self, "", errorMsg, "_error"))
+		love.window.showMessageBox("Level load", errorMsg, "error")
 		return
 	end
 	
