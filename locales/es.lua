@@ -8,6 +8,11 @@ return {
 		options = "Opciones"
 	},
 	
+	options = {
+		options = "OPCIONES",
+		language = "🌐 Idioma"
+	},
+	
 	editor = {
 		open = "Abrir",
 		save = "Guardar",

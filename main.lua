@@ -60,9 +60,10 @@ function love.load()
     Editor = require "state.Editor"
 	Menus = require "state.Menus"
 
+	fontBig = love.graphics.newFont(16)
     fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
-        [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~▯▯¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔]])
-    love.graphics.setFont(fontOutlined)
+        [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔★⛫𓉴🔫🌐🌱🍄🏜️🏰🔨🚢🛦]])
+	love.graphics.setFont(fontOutlined)
 
     debugCandyImg = love.graphics.newImage("img/debug-candy.png")
     debugCandyImg:setWrap("repeat")
