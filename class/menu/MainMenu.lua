@@ -17,7 +17,7 @@ function MainMenu:initialize(parent)
 		function() newGame(selectedMappackPath, false) end,
 		function() self.parent:changeWindow(self.canvas, "mappackSelector") end,
 		function() newGame(selectedMappackPath, true) end,
-		function() end
+		function() self.parent:changeWindow(self.canvas, "optionsMenu") end,
 	}
 	
 	local copyright = "© 2017-2025 Stabyourself.net"
@@ -39,6 +39,5 @@ function MainMenu:initialize(parent)
 	self.canvas:addChild(Gui3.Text:new(copyright, SCREENWIDTH/2-love.graphics.getFont():getWidth(copyright)/2, SCREENHEIGHT/2+18*4+8))
 	self.canvas:addChild(Gui3.Image:new(logo, SCREENWIDTH/2-185/2, 16))
 end
-
 
 return MainMenu

@@ -3,6 +3,7 @@ local Menus = class("Menus")
 Menus.windowClasses = {
     mappackSelector = require("class.menu.MappackSelector"),
     mainMenu = require("class.menu.MainMenu"),
+	optionsMenu = require("class.menu.OptionsMenu")
 }
 
 function Menus:newWindow(windowClass)

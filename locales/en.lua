@@ -8,6 +8,11 @@ return {
 		options = "Options"
 	},
 	
+	options = {
+		options = "OPTIONS",
+		language = "🌐 Language"
+	},
+	
 	editor = {
 		open = "Open",
 		save = "Save",
