@@ -2,7 +2,7 @@ return {
     width = 12,
     height = 32,
 
-    img = "img/actors/fire_piranha.png",
+    img = "img/actors/test_actor.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,

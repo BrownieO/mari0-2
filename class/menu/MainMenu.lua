@@ -1,10 +1,19 @@
 local MainMenu = class("MainMenu")
+local Mappack = require "class.Mappack"
 
 function MainMenu:initialize(parent)
     self.parent = parent
 	
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
 	self.parent.canvas:addChild(self.canvas)
+	
+	local mappack = Mappack:new(selectedMappackPath)
+	
+	if mappack and mappack.settings and mappack.settings.backgroundColor then
+		love.graphics.setBackgroundColor(mappack.settings.backgroundColor)
+	else
+		love.graphics.setBackgroundColor(0,0,0)
+	end
 	
 	local textStrings = {
 		i18n.t("mainMenu.onePlayerGame"),
