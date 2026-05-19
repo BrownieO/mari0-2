@@ -36,13 +36,32 @@ end
 function Placer:draw()
 	--Actor preview cursor
     local x, y = self.level:mouseToCoordinate()
+	local palettable = self.tile.components["misc.palettable"]
+	local imgPalette, defaultPalette
+	if palettable then
+		imgPalette, defaultPalette = palettable.imgPalette, palettable.defaultPalette
+		if imgPalette then
+			imgPalette = convertPalette(imgPalette)
+		end
+		if defaultPalette then
+			defaultPalette = convertPalette(defaultPalette)
+		end
+	end
 
 	love.graphics.setColor(1, 1, 1, 0.5)
+
+    if imgPalette and defaultPalette then
+        paletteShader.on(imgPalette, defaultPalette)
+    end
 
 	local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) - .5, y + (self.tile.spawnOffsetY or 0))
 	love.graphics.draw(self.tile.img, self.tile.quads[1], pixelX, pixelY-self.tile.height/2, 0, 1, 1, self.tile.centerX, self.tile.centerY) --TODO: make this use the drawing method from World
 
 	love.graphics.setColor(1, 1, 1)
+	
+    if imgPalette and defaultPalette then
+        paletteShader.off(imgPalette, defaultPalette)
+    end
 end
 
 function Placer:mousepressed(x, y, button)

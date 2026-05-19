@@ -8,15 +8,15 @@ function MainMenu:initialize(parent)
 	
 	local textStrings = {
 		i18n.t("mainMenu.onePlayerGame"),
-		i18n.t("mainMenu.selectMappack"),
 		i18n.t("mainMenu.levelEditor"),
+		i18n.t("mainMenu.selectMappack"),
 		i18n.t("mainMenu.options"),
 	}
 	
 	local functions = {
 		function() newGame(selectedMappackPath, false) end,
-		function() self.parent:changeWindow(self.canvas, "mappackSelector") end,
 		function() newGame(selectedMappackPath, true) end,
+		function() self.parent:changeWindow(self.canvas, "mappackSelector") end,
 		function() self.parent:changeWindow(self.canvas, "optionsMenu") end,
 	}
 	

@@ -1,9 +1,17 @@
+[[
+	Cell initializes tile layer variables and also handles the block bump animation.
+]]
 local Cell = class("Physics3.Cell")
 Cell:include(Physics3collisionMixin)
 
 Cell.bounceTime = 10/60
 Cell.bounceHeight = 10
 
+-- Returns a position given time using a quadratic function.
+--- @param t number A timer variable
+--- @param b Number The initial position
+--- @param d The change in position
+--- @param c The duration of the effect
 function Cell.bounceEase(t, b, c, d)
     if t < d/2 then
         return Easing.outQuad(t, b, c, d/2)
@@ -64,6 +72,7 @@ function Cell:drawFrame(frame)
     end
 end
 
+-- Sets the animation timer to zero and updates its orthogonal direction
 function Cell:bounce(direction)
 	self.direction = direction or "up"
     self.bounceTimer = 0
