@@ -1,6 +1,5 @@
-[[
-	Cell initializes tile layer variables and also handles the block bump animation.
-]]
+--- Cell initializes tile layer variables and also handles the block bump animation.
+
 local Cell = class("Physics3.Cell")
 Cell:include(Physics3collisionMixin)
 
