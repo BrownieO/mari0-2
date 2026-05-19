@@ -19,8 +19,8 @@ return {
 		},
         ["movement.truffleShuffle"] = {
             dontTurnAnimation = true,
-            maxSpeed = 32,
-			startSpeed = -32,
+            maxSpeed = 57.6,
+			startSpeed = -57.6,
         },
     }
 }
