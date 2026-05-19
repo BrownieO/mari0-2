@@ -10,7 +10,8 @@ return {
 	
 	options = {
 		options = "OPTIONS",
-		language = "🌐 Language"
+		language = "🌐 Language",
+		resetMappacks = "Reset included mappacks"
 	},
 	
 	editor = {
