@@ -43,6 +43,7 @@ Editor.windowClasses = {
 	openWindow = require("class.editor.windows.OpenWindow"),
 	saveWindow = require("class.editor.windows.SaveWindow"),
     debug = require("class.editor.windows.DebugWindow"),
+	entities = require("class.editor.windows.EntitiesWindow"),
 }
 
 function Editor:initialize(level)
@@ -118,11 +119,11 @@ function Editor:load()
     self.menuBar:addChild(self.newWindowDropdown)
 
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 0, i18n.t("editor.tiles"), false, nil, function(button) self:newWindow(self.windowClasses.tiles, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 10, i18n.t("editor.stamps"), false, nil, function(button) self:newWindow(self.windowClasses.stamps, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.layers"), false, nil, function(button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.minimap"), false, nil, function(button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, i18n.t("editor.mapOptions"), false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
-    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 10, i18n.t("editor.entities"), false, nil, function(button) self:newWindow(self.windowClasses.entities, button)  end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.stamps"), false, nil, function(button) self:newWindow(self.windowClasses.stamps, button) end))
+    --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.layers"), false, nil, function(button) end))
+    self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.mapOptions"), false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
+    --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
 
     self.newWindowDropdown:autoSize()
 
