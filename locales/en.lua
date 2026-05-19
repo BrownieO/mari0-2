@@ -31,6 +31,7 @@ return {
 		minimap = "Minimap",
 		stamps = "Stamps",
 		tiles = "Tiles",
+		entities = "Entities",
 		
 		freeCamera = "Free camera",
 		drawGrid = "Draw grid",
