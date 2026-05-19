@@ -2,30 +2,15 @@ actorTemplates = {}
 actorTemplates.list = {}
 actorTemplates.map = {}
 
-local function getAllFiles(path, files, root)
-    files = files or {}
-    root = root or path
-
-    for _, item in ipairs(love.filesystem.getDirectoryItems(path)) do
-        local itemPath = path .. "/" .. item
-        local info = love.filesystem.getInfo(itemPath)
-
-        if info then
-            if info.type == "file" then
-                local relativePath = itemPath:sub(#root + 2)
-                files[#files + 1] = {relativePath, item}
-            elseif info.type == "directory" then
-                getAllFiles(itemPath, files, root)
-            end
-        end
-    end
-
-    return files
-end
-
 local dir = "actorTemplates/"
 
-local files = getAllFiles(dir)
+local rawFiles = recursiveEnumerate("actorTemplates")
+local files = {}
+for _, filePath in ipairs(rawFiles) do
+    local relativePath = filePath:sub(#"actorTemplates" + 2)
+    local item = filePath:match("([^/]+)$")
+    files[#files + 1] = {relativePath, item}
+end
 
 for _, file in ipairs(files) do
     if string.sub(file[2], -3) == "lua" then
