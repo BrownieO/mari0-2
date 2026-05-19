@@ -10,7 +10,8 @@ return {
 	
 	options = {
 		options = "OPCIONES",
-		language = "🌐 Idioma"
+		language = "🌐 Idioma",
+		resetMappacks = "Reestablecer juegos incluidos"
 	},
 	
 	editor = {

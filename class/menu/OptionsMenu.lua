@@ -11,7 +11,7 @@ function OptionsMenu:initialize(parent)
 	self.frame = Gui3.Image:new("img/ui/frame.png", 0, 0)
 	self.canvas:addChild(self.frame)
 	
-	self.canvas:addChild(Gui3.Text:new(i18n.t("options.options"), SCREENWIDTH/2-love.graphics.getFont():getWidth("OPTIONS")/2, 38))
+	self.canvas:addChild(Gui3.Text:new(i18n.t("options.options"), SCREENWIDTH/2-love.graphics.getFont():getWidth(i18n.t("options.options"))/2, 38))
 
 	self.language = Gui3.Dropdown:new(82, 84, i18n.t("options.language"), self.canvas)
 	for i, v in pairs(i18n.getLocales()) do
@@ -19,6 +19,13 @@ function OptionsMenu:initialize(parent)
 	end
 	self.canvas:addChild(self.language)
 	self.language:autoSize()
+	
+	self.resetMappacks = Gui3.TextButton:new(82, 84+18, i18n.t("options.resetMappacks"), false, 0, function()	
+		for _, file in ipairs(VAR("includedMappacks")) do
+			recursivelyDelete(file)
+		end
+	end)
+	self.canvas:addChild(self.resetMappacks)
 end
 
 return OptionsMenu

@@ -362,6 +362,18 @@ function recursiveEnumerate(folder, files) -- What's with all the recursion in t
 	return files
 end
 
+function recursivelyDelete( item )
+	if love.filesystem.getInfo( item , "directory" ) then
+		for _, child in ipairs( love.filesystem.getDirectoryItems( item )) do
+			recursivelyDelete( item .. '/' .. child )
+			love.filesystem.remove( item .. '/' .. child )
+		end
+	elseif love.filesystem.getInfo( item ) then
+		love.filesystem.remove( item )
+	end
+	love.filesystem.remove( item )
+end
+
 function clearTable(t)
     for k in pairs (t) do
         t[k] = nil

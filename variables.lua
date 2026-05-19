@@ -38,6 +38,12 @@ local t = {
     minimapType = "realistic", -- realistic, blocky
     blockyMinimapSource = "prominent", -- average, prominent
 
+	includedMappacks = {
+		"mappacks/smb3",
+		"mappacks/test_levels",
+		"mappacks/world-e"
+	},
+
     tileTemplates = {
         cube = {
             0,  0,
