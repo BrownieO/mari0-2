@@ -23,7 +23,7 @@ end
 function Menus:load()
 	self.windows = {}
 
-	love.graphics.setBackgroundColor({181/255, 235/255,242/255})
+	love.graphics.setBackgroundColor({181/255, 235/255,242/255}) --What's the purpose of this, Brownie?
 	self.canvas = Gui3.Canvas:new(0, 0, SCREENWIDTH, SCREENHEIGHT)
     self.canvas.gui = defaultUI
 	self:newWindow(self.windowClasses[self.selectedMenu])
