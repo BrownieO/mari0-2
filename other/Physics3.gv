@@ -1,0 +1,37 @@
+digraph G {
+	subgraph cluster0 {
+		label = "Physics3";
+		color = black;
+		Cell;
+		Layer;
+		PhysObj;
+		Tile;
+		Tilemap;
+		Tracer;
+		World;
+		
+		Cell -> Layer;
+		Cell -> World;
+		Tile -> World;
+		Tilemap -> World;
+		Tracer -> PhysObj [style = dotted];
+		Portal -> World;
+		Layer -> World [style = dashed];
+		World -> Layer [style = dotted];
+	}
+	subgraph cluster1 {
+		label = "class";
+		color = black;
+		World -> Level [style = dashed];
+		PhysObj -> Actor [style = dashed];
+		Actor -> Level;
+	}
+	subgraph cluster2 {
+		label = "state";
+		Level -> Game
+	}
+	init -> Main;
+	Game -> Main;
+	actorTemplateLoader -> Main;
+	actorTemplateLoader -> Level [style = dotted];
+}

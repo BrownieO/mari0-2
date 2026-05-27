@@ -30,7 +30,7 @@ function MainMenu:initialize(parent)
 	}
 	
 	local copyright = "© 2017-2025 Stabyourself.net"
-	local logo = "other/logo.png"
+	local logo = "img/title.png"
 		
 	for i, text in pairs(textStrings) do
 		local element = Gui3.TextButton:new(
