@@ -44,6 +44,10 @@ for _, file in ipairs(files) do
                 end
             end
         end
+		
+		if template.icon then
+			template.icon = love.graphics.newImage(template.icon)
+		end
 
         actorTemplates[name] = template
 		

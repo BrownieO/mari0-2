@@ -3,6 +3,7 @@ return {
     height = 8,
 
     img = "img/actors/platform_solid.png",
+    icon = "img/icons/platform_solid.png",
     quadWidth = 48,
     quadHeight = 16,
     centerX = 24,
