@@ -662,6 +662,17 @@ function Editor:wheelmoved(x, y)
 	end
 end
 
+function Editor:selectEntity(tile)
+    if not tile then
+        self:selectTool("deleter")
+        return
+	else
+		self:selectTool("placer")
+    end
+
+    self.tools.placer.tile = tile
+end
+
 function Editor:zoom(i, toMouse)
     if not self.level then return end
     
