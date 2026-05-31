@@ -69,9 +69,6 @@ function LevelEdit:loadLevel(data)
 end
 
 function LevelEdit:update(dt)
-    prof.push("World")
-    prof.pop()
-
     updateGroup(self.viewports, dt)
 end
 
