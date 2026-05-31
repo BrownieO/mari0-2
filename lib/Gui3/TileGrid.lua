@@ -10,6 +10,7 @@ function Gui3.TileGrid:initialize(x, y, tileMap, func, fixedSize, columns, rows)
     self.tiles = tileMap.tiles or tileMap
     self.func = func
     self.fixedSize = fixedSize or false
+	self.iconQuad = love.graphics.newQuad(0, 0, 16, 16, 16, 16)
     local w = 0
     local h = 0
 
@@ -136,9 +137,16 @@ function Gui3.TileGrid:draw()
                 local y = (tileY-1)*(self.size[2] + self.gutter[2])
 				
 				local currentTile = self.tiles[tileNum]
-				local currentQuad = currentTile.quad or currentTile.quads[1]
+				local currentImage, currentQuad
+				if currentTile.icon then
+					currentImage = currentTile.icon
+					currentQuad = self.iconQuad
+				else
+					currentImage = currentTile.img
+					currentQuad = currentTile.quad or currentTile.quads[1]
+				end
 				
-				love.graphics.draw(currentTile.img, currentQuad, x, y)
+				love.graphics.draw(currentImage, currentQuad, x, y)
 
                 if tileNum == self.hoveringTile then
                     love.graphics.setColor(1, 1, 1, 0.7)

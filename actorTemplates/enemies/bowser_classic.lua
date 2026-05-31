@@ -3,6 +3,7 @@ return {
     height = 32,
 
     img = "img/actors/bowser_classic.png",
+    icon = "img/icons/bowser_classic.png",
     quadWidth = 32,
     quadHeight = 48,
     centerX = 16,

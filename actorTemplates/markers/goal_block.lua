@@ -3,6 +3,7 @@ return {
     height = 16,
 
     img = "img/actors/goal_block.png",
+    icon = "img/icons/goal_block.png",
     quadWidth = 26,
     quadHeight = 26,
     centerX = 13,

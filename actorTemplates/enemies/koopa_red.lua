@@ -3,6 +3,7 @@ return {
     height = 12,
 
     img = "img/actors/koopa.png",
+	icon = "img/icons/koopa_red.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,
