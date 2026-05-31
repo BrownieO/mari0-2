@@ -27,8 +27,8 @@ local t = {
     pMeterBlinkTime = 8/60,
 
     -- These are all from the center of the screen and towards the center of the player
-    cameraScrollLeftBorder = -85,
-    cameraScrollRightBorder = 85,
+    cameraScrollLeftBorder = -24,
+    cameraScrollRightBorder = 12,
     cameraScrollUpBorder = -53,
     cameraScrollDownBorder = 25,
 
