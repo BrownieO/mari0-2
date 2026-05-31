@@ -7,7 +7,7 @@ Gui3.TileGrid.gutter = {1, 1}
 
 function Gui3.TileGrid:initialize(x, y, tileMap, func, fixedSize, columns, rows)
     self.tileMap = tileMap
-    self.tiles = tileMap.tiles
+    self.tiles = tileMap.tiles or tileMap
     self.func = func
     self.fixedSize = fixedSize or false
     local w = 0
@@ -38,7 +38,7 @@ function Gui3.TileGrid:initialize(x, y, tileMap, func, fixedSize, columns, rows)
         self:updateRender()
     end
 
-    for _, tile in ipairs(self.tileMap.tiles) do
+    for _, tile in ipairs(self.tiles) do
         if tile.animated then
             tile:addFrameChangedCallback(self.animatedTileCallback)
         end
@@ -52,7 +52,7 @@ end
 function Gui3.TileGrid:deleted()
     Gui3.Element.deleted(self)
 
-    for _, tile in ipairs(self.tileMap.tiles) do
+    for _, tile in ipairs(self.tiles) do
         if tile.animated then
             tile:removeFrameChangedCallback(self.animatedTileCallback)
         end
@@ -134,8 +134,11 @@ function Gui3.TileGrid:draw()
             if self.tiles[tileNum] then
                 local x = (tileX-1)*(self.size[1] + self.gutter[1])
                 local y = (tileY-1)*(self.size[2] + self.gutter[2])
-
-                self.tiles[tileNum]:draw(x, y)
+				
+				local currentTile = self.tiles[tileNum]
+				local currentQuad = currentTile.quad or currentTile.quads[1]
+				
+				love.graphics.draw(currentTile.img, currentQuad, x, y)
 
                 if tileNum == self.hoveringTile then
                     love.graphics.setColor(1, 1, 1, 0.7)

@@ -30,7 +30,6 @@ digraph G {
 		label = "state";
 		Level -> Game
 	}
-	init -> Main;
 	Game -> Main;
 	actorTemplateLoader -> Main;
 	actorTemplateLoader -> Level [style = dotted];
