@@ -40,18 +40,12 @@ function Placer:draw()
 	local imgPalette, defaultPalette
 	if palettable then
 		imgPalette, defaultPalette = palettable.imgPalette, palettable.defaultPalette
-		if imgPalette then
-			imgPalette = convertPalette(imgPalette)
-		end
-		if defaultPalette then
-			defaultPalette = convertPalette(defaultPalette)
-		end
 	end
 
 	love.graphics.setColor(1, 1, 1, 0.5)
 
     if imgPalette and defaultPalette then
-        paletteShader.on(imgPalette, defaultPalette)
+        paletteShader.on(convertPalette(imgPalette), convertPalette(defaultPalette))
     end
 
 	local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) - .5, y + (self.tile.spawnOffsetY or 0))
@@ -60,7 +54,7 @@ function Placer:draw()
 	love.graphics.setColor(1, 1, 1)
 	
     if imgPalette and defaultPalette then
-        paletteShader.off(imgPalette, defaultPalette)
+        paletteShader.off(convertPalette(imgPalette), convertPalette(defaultPalette))
     end
 end
 

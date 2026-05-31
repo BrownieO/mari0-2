@@ -36,6 +36,16 @@ function ActorEdit:loadActorTemplate(actorTemplate)
     self.quads = self.actorTemplate.quads
     self.quad = self.quads[1]
 	self.animationDirection = -1
+	
+	local palettable = self.actorTemplate.components["misc.palettable"]
+	if palettable then
+		if palettable.imgPalette then
+			self.imgPalette = convertPalette(palettable.imgPalette)
+		end
+		if palettable.defaultPalette then
+			self.palette = convertPalette(palettable.defaultPalette)
+		end
+	end
 end
 
 function ActorEdit:draw() end
