@@ -105,25 +105,25 @@ function Tile:checkCollision(x, y, obj, vector, cellX, cellY)
 
 	if self.props.exclusiveCollision and vector then -- override collision with a false maybe
 		if self.props.exclusiveCollision == 1 then
-			if  obj.prevY+obj.height > (cellY-1)*16 or
+			if  obj.prevY and obj.prevY+obj.height > (cellY-1)*16 or
 				vector.x ~= 0 or
 				vector.y ~= 1 then
 				return false
 			end
 		elseif self.props.exclusiveCollision == 2 then
-			if  obj.prevX < (cellX)*16 or
+			if  obj.prevX and obj.prevX < (cellX)*16 or
 				vector.x ~= -1 or
 				vector.y ~= 0 then
 				return false
 			end
 		elseif self.props.exclusiveCollision == 3 then
-			if  obj.prevY < (cellY)*16 or
+			if  obj.prevY and obj.prevY < (cellY)*16 or
 				vector.x ~= 0 or
 				vector.y ~= -1 then
 				return false
 			end
 		elseif self.props.exclusiveCollision == 4 then
-			if  obj.prevX+obj.width > (cellX-1)*16 or
+			if  obj.prevX and obj.prevX+obj.width > (cellX-1)*16 or
 				vector.x ~= 1 or
 				vector.y ~= 0 then
 				return false
