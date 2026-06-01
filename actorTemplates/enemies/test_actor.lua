@@ -3,6 +3,7 @@ return {
     height = 32,
 
     img = "img/actors/test_actor.png",
+    icon = "img/icons/test_actor.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,
@@ -14,8 +15,6 @@ return {
     components = {
         ["misc.palettable"] = {
             ["imgPalette"] = {
-                {181,  49,  32},
-                { 92, 228,  48},
                 {255, 255, 255},
                 {  0,   0,   0}
             }

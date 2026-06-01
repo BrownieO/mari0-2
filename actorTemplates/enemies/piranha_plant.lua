@@ -3,6 +3,7 @@ return {
     height = 24,
 
     img = "img/actors/piranha_plant.png",
+    icon = "img/icons/piranha_plant.png",
     quadWidth = 16,
     quadHeight = 32,
     centerX = 8,

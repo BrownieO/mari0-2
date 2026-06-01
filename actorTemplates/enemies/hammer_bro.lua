@@ -3,6 +3,7 @@ return {
     height = 24,
 
     img = "img/actors/hammer_bro.png",
+    icon = "img/icons/hammer_bro.png",
     quadWidth = 16,
     quadHeight = 24,
     centerX = 8,
