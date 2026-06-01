@@ -671,6 +671,7 @@ function Editor:selectEntity(tile)
     end
 
     self.tools.placer.tile = tile
+	self.tools.placer.tile.num = actorTemplates.map[tile.name]
 end
 
 function Editor:zoom(i, toMouse)
