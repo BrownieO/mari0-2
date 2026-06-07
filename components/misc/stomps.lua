@@ -26,7 +26,7 @@ function stomps:resolve(dir, obj2, actorEvent)
 	if not obj2:hasComponent("misc.stompable") then return end
 	if self.actor.starred or self.actor.metal then return end
 	
-	if not self.actor.iFramed and dir == "top" or (self.actor.cache.speed and self.actor.cache.speed[2]) > 0 then
+	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
 		self.stomping = true
 		self.actor.y = obj2.y-self.actor.height
 		self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
