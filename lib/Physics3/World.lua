@@ -445,6 +445,10 @@ function World:loadLevel(data)
 
         self.layers[i] = Layer:new(self, layerX, layerY, width, height, map)
 
+        if dataLayer.movement then
+            self.layers[i].movement = dataLayer.movement
+        end
+
         for x = 1, #dataLayer.map do
             for y = 1, #dataLayer.map[1] do
                 self.layers[i].map[x][y].layer = self.layers[i]
@@ -555,6 +559,10 @@ function World:saveLevel(outPath)
         out.layers[i].map = {}
         out.layers[i].x = layer.x
         out.layers[i].y = layer.y
+        
+        if layer.movement then
+            out.layers[i].movement = layer.movement
+        end
 
         for x = 1, layer.width do
             out.layers[i].map[x] = {}
