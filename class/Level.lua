@@ -173,8 +173,12 @@ function Level:update(dt)
 		end
     end
 	
-    if self.wrapX and #self.players > 0 and self.players[1].actor.x > self:getXEnd()*self.tileSize then
-		self.players[1].actor.x = -1
+    if self.wrapX and #self.players > 0 then
+		if self.players[1].actor.x > self:getXEnd()*self.tileSize then
+			self.players[1].actor.x = -1
+		elseif self.players[1].actor.x < -1 then
+			self.players[1].actor.x = self:getXEnd()*self.tileSize
+		end
     end
 
     local newSpawnLine = self.camera.x/self.tileSize+self.camera.w/16+VAR("enemiesSpawnAhead")

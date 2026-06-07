@@ -16,6 +16,7 @@ function World:initialize()
 	self.objects = {}
     self.portals = {}
     self.portalVectorDebugs = {}
+	self.wrapX = false
 end
 
 function World:update(dt)
@@ -399,6 +400,7 @@ function World:loadLevel(data)
 	else
 		bg = nil
 	end
+	self.wrapX = data.wrapX
 
     -- Load used tileMaps
     for _, tileMap in ipairs(data.tileMaps) do
@@ -709,8 +711,10 @@ function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
 		end
 
 		-- level boundaries
-		if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
-			return fakeCellInstance
+		if not self.wrapX then
+			if x < 0 or x >= self:getXEnd()*16 then -- todo: bad for performance due to recalculation of XEnd!
+				return fakeCellInstance
+			end
 		end
 
 		-- World
