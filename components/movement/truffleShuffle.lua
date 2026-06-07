@@ -94,6 +94,7 @@ end
 
 function truffleShuffle:unkicked()
     self.actor.speed[1] = 0
+	playSound("stomp")
 end
 
 return truffleShuffle
