@@ -174,10 +174,10 @@ function Level:update(dt)
     end
 	
     if self.wrapX and #self.players > 0 then
-		if self.players[1].actor.x > self:getXEnd()*self.tileSize then
-			self.players[1].actor.x = -1
-		elseif self.players[1].actor.x < -1 then
-			self.players[1].actor.x = self:getXEnd()*self.tileSize
+		if self.players[1].actor.x > self:getXEnd()*self.tileSize - 8 then
+			self.players[1].actor.x = -8
+		elseif self.players[1].actor.x < -8 then
+			self.players[1].actor.x = self:getXEnd()*self.tileSize - 8
 		end
     end
 
