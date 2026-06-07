@@ -615,6 +615,9 @@ function World:saveLevel(outPath)
     if self.data.music then
         out.music = self.data.music
     end
+	if self.data.wrapX then
+		out.wrapX = self.data.wrapX
+	end
 
 	local success, errorMsg
 	
