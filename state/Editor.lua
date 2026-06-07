@@ -121,7 +121,7 @@ function Editor:load()
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 0, i18n.t("editor.tiles"), false, nil, function(button) self:newWindow(self.windowClasses.tiles, button) end))
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 10, i18n.t("editor.entities"), false, nil, function(button) self:newWindow(self.windowClasses.entities, button)  end))
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 20, i18n.t("editor.stamps"), false, nil, function(button) self:newWindow(self.windowClasses.stamps, button) end))
-	self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.minimap"), false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) end))
+	self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.minimap"), false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) self:updateMinimap() end))
     --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.layers"), false, nil, function(button) end))
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, i18n.t("editor.mapOptions"), false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
     --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
@@ -796,6 +796,8 @@ function Editor:mapChanged()
     prof.push("new editorState")
     table.insert(self.editorStates, 1, EditorState:new(self))
     prof.pop("new editorState")
+	
+	self:updateMinimap()
 end
 
 function Editor:exitToMappacks()
@@ -896,7 +898,7 @@ end
 
 function Editor:updateMinimap()
     if not self.level then return end
-    
+
     prof.push("updateMinimap")
     if VAR("minimapType") == "realistic" then
         local minimapScale = 8/3*VAR("scale")
