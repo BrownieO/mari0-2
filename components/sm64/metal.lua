@@ -15,6 +15,7 @@ function metal:getMetalCap()
     if not self.effectActive then
         self.effectActive = true
         self.actor.metal = true
+        self.actor.invincibility = true
 
         love.audio.stop()
         playMusic("metal_mario")
@@ -27,6 +28,7 @@ function metal:loseMetalCap()
     if self.actor.metal then
         self.effectActive = false
         self.actor.metal = false
+        self.actor.invincibility = self.actor.starred or false
         self.actor.metalTimer = 0
         self.actor.palette = self.actor.defaultPalette
 

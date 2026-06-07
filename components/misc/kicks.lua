@@ -20,7 +20,7 @@ end
 function kicks:resolve(dir, obj2, actorEvent)
 	if self.kickDebounce then return end
 	if not obj2:hasComponent("misc.kickable") then return end
-	if self.actor.starred or self.actor.metal then return end
+	if self.actor.invincibility then return end
 	
 	if obj2.cache.speed[1] == 0 then
 		self.kickDebounce = true
