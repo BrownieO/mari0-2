@@ -45,7 +45,7 @@ function Actor:initialize(world, x, y, actorTemplate, customProperties)
         "speed"
     }
 
-    self.cache = {speed={}}
+    self.cache = {speed={0, 0}}
 
     self:loadActorTemplate(self.actorTemplate)
 end

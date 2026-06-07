@@ -74,7 +74,6 @@ function truffleShuffle:update(dt)
 end
 
 function truffleShuffle:leftCollision()
-	if not self.actor.cache.speed[1] then return end
     if self.actor.cache.speed[1] < 0 then
         self.actor.speed[1] = -self.actor.cache.speed[1]
         self.shuffleDir = 1
@@ -82,7 +81,6 @@ function truffleShuffle:leftCollision()
 end
 
 function truffleShuffle:rightCollision()
-	if not self.actor.cache.speed[1] then return end
     if self.actor.cache.speed[1] > 0 then
         self.actor.speed[1] = -self.actor.cache.speed[1]
         self.shuffleDir = -1
