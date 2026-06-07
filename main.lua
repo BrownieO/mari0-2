@@ -1,5 +1,5 @@
 --Mari0 2 - MIT License.
--- require "errorhandler"
+require "errorhandler"
 require "loop"
 
 local Game, Editor, Menus
