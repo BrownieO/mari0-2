@@ -29,6 +29,7 @@ function star:getStar()
     if not self.effectActive then
         self.effectActive = true
         self.actor.starred = true
+        self.actor.invincibility = true
         self.actor.somerSaultFrame = 2
         self.actor.somerSaultFrameTimer = 0
 
@@ -43,6 +44,7 @@ function star:loseStar()
     if self.actor.starred then
         self.effectActive = false
         self.actor.starred = false
+        self.actor.invincibility = self.actor.metal or false
         self.actor.starTimer = 0
         self.actor.palette = self.actor.defaultPalette
 
