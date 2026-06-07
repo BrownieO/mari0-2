@@ -2,22 +2,38 @@ local Component = require "class.Component"
 local kicks = class("misc.kicks", Component)
 
 function kicks:leftContact(dt, actorEvent, obj2)
-    if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
-        obj2:event("kicked", 0, -1)
-        actorEvent.returns = true
-    end
+	self:resolve("left", obj2, actorEvent)
 end
 
 function kicks:rightContact(dt, actorEvent, obj2)
-    if obj2:hasComponent("misc.kickable") and obj2.cache.speed[1] == 0 then
-        obj2:event("kicked", 0, 1)
-        actorEvent.returns = true
-    end
+	self:resolve("right", obj2, actorEvent)
+end
+
+function kicks:topContact(dt, actorEvent, obj2)
+    self:resolve("bottom", obj2, actorEvent)
 end
 
 function kicks:bottomContact(dt, actorEvent, obj2)
-    if obj2:hasComponent("misc.kickable") then
-        if obj2.cache.speed[1] == 0 then -- kick it
+	self:resolve("top", obj2, actorEvent)
+end
+
+function kicks:resolve(dir, obj2, actorEvent)
+	if self.kickDebounce then return end
+	if not obj2:hasComponent("misc.kickable") then return end
+	if self.actor.starred or self.actor.metal then return end
+	
+	if obj2.cache.speed[1] == 0 then
+		self.kickDebounce = true
+		if dir == "left" then
+			obj2:event("kicked", 0, -1)
+		elseif dir == "right" then
+			obj2:event("kicked", 0, 1)
+		end
+	end
+	
+	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
+		self.kickDebounce = true
+        if obj2.cache.speed[1] == 0 then-- kick it
             local selfX = self.actor.x + self.actor.width*.5
             local obj2X = obj2.x + obj2.width*.5
 
@@ -44,10 +60,14 @@ function kicks:bottomContact(dt, actorEvent, obj2)
             end)
 
             obj2:event("unkicked")
-        end -- bop it
+        end
+	end
+	
+	actorEvent.returns = true
+end
 
-        actorEvent.returns = true
-    end
+function kicks:postUpdate(dt)
+	self.kickDebounce = false
 end
 
 return kicks
