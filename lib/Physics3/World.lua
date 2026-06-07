@@ -860,7 +860,10 @@ function World:rayCast(x, y, dir) -- Uses code from http://lodev.org/cgtutor/ray
     local firstCheck = true
 
     -- perform DDA
-    while not hit do
+    local maxIterations = 10000
+    local iterations = 0
+    while not hit and iterations < maxIterations do
+        iterations = iterations + 1
         -- Check if ray has hit something (or went outside the map)
         for i, layer in ipairs(self.layers) do
             if not layer.movement then
