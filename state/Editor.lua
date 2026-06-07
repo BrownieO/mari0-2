@@ -139,10 +139,10 @@ function Editor:load()
     --self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
     --viewDropdown.box:addChild(self.freeCameraCheckbox)
 
-    self.gridCheckbox = Gui3.Checkbox:new(0, 11, i18n.t("editor.drawGrid"), 1, function(checkbox) self:toggleGrid(checkbox.value) end)
+    self.gridCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.drawGrid"), 1, function(checkbox) self:toggleGrid(checkbox.value) end)
     viewDropdown.box:addChild(self.gridCheckbox)
 
-    self.toggleUICheckbox = Gui3.Checkbox:new(0, 22, i18n.t("editor.hideUi"), 1, function(checkbox) self:toggleUI(checkbox.value) end)
+    self.toggleUICheckbox = Gui3.Checkbox:new(0, 11, i18n.t("editor.hideUi"), 1, function(checkbox) self:toggleUI(checkbox.value) end)
     viewDropdown.box:addChild(self.toggleUICheckbox)
 
     viewDropdown:autoSize()
