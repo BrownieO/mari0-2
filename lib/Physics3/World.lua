@@ -601,7 +601,13 @@ function World:saveLevel(outPath)
 	
 	for _, obj in ipairs(self.objects) do
 		if obj.actorTemplate.name:sub(1, 3) ~= "smb" then
-			table.insert(out.entities, {type=obj.actorTemplate.name, x = obj.spawnX or obj.x/self.tileSize, y = obj.spawnY or obj.y/self.tileSize})
+			local entity = {type=obj.actorTemplate.name, x = obj.spawnX or obj.x/self.tileSize, y = obj.spawnY or obj.y/self.tileSize}
+			
+			if obj.components then
+				entity.components = obj.components
+			end
+			
+			table.insert(out.entities, entity)
 		end
 	end
 

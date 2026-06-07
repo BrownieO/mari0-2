@@ -53,6 +53,10 @@ function LevelEdit:loadLevel(data)
 			local newActor = ActorEdit:new(self, x, y, actorTemplate)
 			newActor.spawnX = entity.x
 			newActor.spawnY = entity.y
+
+			if entity.components then
+				newActor.components = entity.components
+			end
 		end
 		if entity.type == "spawn" then
 			self.spawnX = entity.x
