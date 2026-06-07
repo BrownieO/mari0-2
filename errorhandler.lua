@@ -38,7 +38,7 @@ function love.errorhandler(msg)
 	if love.audio then love.audio.stop() end
 
 	love.graphics.reset()
-	local font = love.graphics.setNewFont(14)
+	local font = love.graphics.setNewFont(16)
 
 	love.graphics.setColor(1, 1, 1, 1)
 
@@ -77,7 +77,7 @@ function love.errorhandler(msg)
 
 	local function draw()
 		local pos = 70
-		love.graphics.clear(89/255, 157/255, 220/255)
+		love.graphics.clear(0, 0, 0)
 		love.graphics.printf(p, pos, pos, love.graphics.getWidth() - pos)
 		love.graphics.present()
 	end
