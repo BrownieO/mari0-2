@@ -797,7 +797,11 @@ function Editor:mapChanged()
     table.insert(self.editorStates, 1, EditorState:new(self))
     prof.pop("new editorState")
 	
-	self:updateMinimap()
+	for _, window in ipairs(self.windows) do
+		if window:isInstanceOf(self.windowClasses.minimap) then
+			self:updateMinimap()
+		end
+	end
 end
 
 function Editor:exitToMappacks()
