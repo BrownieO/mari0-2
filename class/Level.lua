@@ -102,10 +102,10 @@ function Level:loadLevel(data)
 		if player.exitId and self.exitList[player.exitId] then
 			local exitX, exitY = self:coordinateToWorld(self.exitList[player.exitId].x, self.exitList[player.exitId].y)
 			mario = Actor:new(self, exitX, exitY, actorTemplates["smb3_" .. player.powerUp])
-			player.exitId = 0
 		else
 			mario = Actor:new(self, x, y, actorTemplates["smb3_" .. player.powerUp])
 		end
+		player.exitId = 0
 
         mario.player = player
         player.actor = mario
