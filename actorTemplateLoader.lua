@@ -12,6 +12,25 @@ for _, filePath in ipairs(rawFiles) do
     files[#files + 1] = {relativePath, item}
 end
 
+-- create quads
+local function autoQuad(template)
+	-- Check if image can be nicely divided into quadWidth/Height sized quads
+	template.quads = {}
+
+	for y = 1, template.img:getHeight()/template.quadHeight do
+		for x = 1, template.img:getWidth()/template.quadWidth do
+			table.insert(template.quads, love.graphics.newQuad(
+				(x-1)*template.quadWidth,
+				(y-1)*template.quadHeight,
+				template.quadWidth,
+				template.quadHeight,
+				template.img:getWidth(),
+				template.img:getHeight()
+			))
+		end
+	end
+end
+
 for _, file in ipairs(files) do
     if string.sub(file[2], -3) == "lua" then
         local name = string.sub(file[2], 1, -5)
@@ -26,22 +45,7 @@ for _, file in ipairs(files) do
             template.img = love.graphics.newImage(template.img) -- todo: replace with some smart-ass directory thing
 
             if not template.dontAutoQuad then
-                -- create quads
-                -- Check if image can be nicely divided into quadWidth/Height sized quads
-                template.quads = {}
-
-                for y = 1, template.img:getHeight()/template.quadHeight do
-                    for x = 1, template.img:getWidth()/template.quadWidth do
-                        table.insert(template.quads, love.graphics.newQuad(
-                            (x-1)*template.quadWidth,
-                            (y-1)*template.quadHeight,
-                            template.quadWidth,
-                            template.quadHeight,
-                            template.img:getWidth(),
-                            template.img:getHeight()
-                        ))
-                    end
-                end
+				autoQuad(template)
             end
         end
 		
