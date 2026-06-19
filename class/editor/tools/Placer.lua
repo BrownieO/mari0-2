@@ -36,7 +36,9 @@ end
 function Placer:draw()
 	--Actor preview cursor
     local x, y = self.level:mouseToCoordinate()
-	local palettable = self.tile.components["misc.palettable"]
+	if self.tile.components then
+		local palettable = self.tile.components["misc.palettable"]
+	end
 	local imgPalette, defaultPalette
 	if palettable then
 		imgPalette, defaultPalette = palettable.imgPalette, palettable.defaultPalette

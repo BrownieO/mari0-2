@@ -269,7 +269,7 @@ return {
         }
     },
     entities = {
-        {type="spawn", x=3, y=13},
+        {type="spawn", x=3, y=12},
         {type="goomba", x=22, y=12},
 		{type="mushroom", x=21, y=9},
 		

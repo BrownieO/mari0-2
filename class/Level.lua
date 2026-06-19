@@ -51,7 +51,12 @@ function Level:loadLevel(data)
     for _, entity in ipairs(self.data.entities) do
         local actorTemplate = actorTemplates[entity.type]
 
-        if actorTemplate and not VAR("debug").noEnemies then -- is enemy
+        if entity.type == "spawn" then
+            self.spawnX = entity.x
+            self.spawnY = entity.y
+		elseif entity.type == "pipe_exit" then
+			self.exitList[entity.exitId] = entity
+        elseif actorTemplate and not VAR("debug").noEnemies then -- is entity
             -- Extract custom properties
             local customProperties = {}
             for propertyKey, propertyValue in pairs(entity) do
@@ -76,11 +81,6 @@ function Level:loadLevel(data)
 					customProperties = customProperties,
 				})
 			end
-        elseif entity.type == "spawn" then
-            self.spawnX = entity.x
-            self.spawnY = entity.y
-		elseif entity.type == "pipe_exit" then
-			self.exitList[entity.exitId] = entity
         end
     end
 

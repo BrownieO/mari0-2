@@ -596,8 +596,6 @@ function World:saveLevel(outPath)
 
     -- Entities
     out.entities = {}
-
-    table.insert(out.entities, {type="spawn", x=self.spawnX, y=self.spawnY})
 	
 	for _, obj in ipairs(self.objects) do
 		if obj.actorTemplate.name:sub(1, 3) ~= "smb" then

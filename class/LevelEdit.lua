@@ -45,7 +45,7 @@ function LevelEdit:loadLevel(data)
     for _, entity in ipairs(self.data.entities) do
 		local actorTemplate = actorTemplates[entity.type]
 
-        if actorTemplate then -- is enemy
+        if actorTemplate then -- is entity
 			local spawnOffsetX = actorTemplate.spawnOffsetX or 0
 			local spawnOffsetY = actorTemplate.spawnOffsetY or 0
 			local x, y = self:coordinateToWorld(entity.x+spawnOffsetX-.5,entity.y+spawnOffsetY)
@@ -57,10 +57,6 @@ function LevelEdit:loadLevel(data)
 			if entity.components then
 				newActor.components = entity.components
 			end
-		end
-		if entity.type == "spawn" then
-			self.spawnX = entity.x
-			self.spawnY = entity.y
 		end
 	end
 	
