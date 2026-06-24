@@ -30,9 +30,9 @@ function Entity:mousepressed(x, y, button, istouch, presses)
 				end
 			end
 		end
+		self.editor.canvas:updateRender()
+        return true
     end
-	self.editor.canvas:updateRender()
-    return true
 end
 
 function Entity:unSelect()
