@@ -25,12 +25,13 @@ function Entity:mousepressed(x, y, button, istouch, presses)
 					local label = Gui3.Text:new(arg, 0, 2*(i-1)*10)
 					self.dropdown:addChild(label)
 					local input = Gui3.TextInput:new(0,2*i*10-12, 21, nil, obj2.components[component][arg])
-					input.exclusiveMouse = true
 					self.dropdown:addChild(input)
 				end
 			end
 		end
+		self.editor.canvas:updateMouseRegions()
 		self.editor.canvas:updateRender()
+		
         return true
     end
 end

@@ -130,12 +130,12 @@ function Gui3.TextInput:update(dt)
 end
 
 function Gui3.TextInput:mousepressed(x, y, button)
-    if button == 1 then
-        self.focus = true
-        self:updateRender()
-    end
+	self.pressing = true
+	self.exclusiveMouse = true
+	self.focus = true
+	self:updateRender()
     
-    Gui3.Element.mousepressed(self, x, y, button)
+    return Gui3.Element.mousepressed(self, x, y, button)
 end
 
 function Gui3.TextInput:textinput(text)
