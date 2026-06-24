@@ -37,6 +37,8 @@ function ActorEdit:loadActorTemplate(actorTemplate)
     self.quad = self.quads[1]
 	self.animationDirection = -1
 	
+	self.rightClickMenu = self.actorTemplate.rightClickMenu
+	
 	if self.actorTemplate.components then
 		local palettable = self.actorTemplate.components["misc.palettable"]
 		if palettable then

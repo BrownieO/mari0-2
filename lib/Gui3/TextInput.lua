@@ -35,7 +35,7 @@ local function u8sub(s, i, j)
     return string.sub(s, start_byte, end_byte)
 end
 
-function Gui3.TextInput:initialize(x, y, charW, lines)
+function Gui3.TextInput:initialize(x, y, charW, lines, value)
     charW = charW or 16
     lines = lines or 1
     
@@ -43,7 +43,7 @@ function Gui3.TextInput:initialize(x, y, charW, lines)
     self.lines = lines
     self.maxLength = 0
     
-    self.value = ""
+    self.value = value or ""
     self.text = love.graphics.newText(fontOutlined, "")
     
     self.cursorPos = 1

@@ -16,6 +16,12 @@ return {
     components = {
 		["misc.warp"] = {}
 	},
-	
-	rightClickMenu = {"misc.warp"}
+
+	rightClickMenu = {
+		["misc.warp"] = {
+			"level",
+			"key",
+			"exitId"
+		}
+	}
 }

@@ -153,11 +153,11 @@ function Actor:loadActorTemplate(actorTemplate)
     self.quad = nil
     self.quads = self.actorTemplate.quads
 
+	self.coin = self.actorTemplate.coin
+
     local previousStateName = self.state and self.state.name or nil
     self.state = nil
     self.states = {}
-	
-	self.coin = self.actorTemplate.coin
 
     -- Load collision properties from actor template
     if self.actorTemplate.collisionGroup then
