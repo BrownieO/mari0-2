@@ -26,7 +26,7 @@ function piston:inrange(i, a, b, include)
 	if a > b then
 		b, a = a, b
 	end
-	
+
 	if include then
 		return i >= a and i <= b
 	else
@@ -36,8 +36,8 @@ end
 
 function piston:update(dt)
 	self.pistontimer = self.pistontimer + dt
-	
-	if self.pistonstate == "extending" then		
+
+	if self.pistonstate == "extending" then
 		--move X
 		if self.actor.x > self.startx + self.pistonDistX then
 			self.actor.x = self.actor.x - self.pistonSpeedX*dt
@@ -50,7 +50,7 @@ function piston:update(dt)
 				self.actor.x = self.startx + self.pistonDistX
 			end
 		end
-		
+
 		--move Y
 		if self.actor.y > self.starty + self.pistonDistY then
 			self.actor.y = self.actor.y - self.pistonSpeedY*dt
@@ -63,20 +63,20 @@ function piston:update(dt)
 				self.actor.y = self.starty + self.pistonDistY
 			end
 		end
-		
+
 		if self.actor.x == self.startx + self.pistonDistX and self.actor.y == self.starty + self.pistonDistY and not self.spawnallow then
 			self.spawnallow = true
 			self.spawnenemytimer = self.spawnenemydelay
 		end
-		
+
 		if self.pistontimer > self.pistonExtendTime then
 			self.pistontimer = 0
 			self.spawnallow = false
 			self.pistonstate = "retracting"
 		end
-		
-		
-	else --retracting			
+
+
+	else --retracting
 		--move X
 		if self.actor.x > self.startx then
 			self.actor.x = self.actor.x - self.pistonSpeedX*dt
@@ -89,7 +89,7 @@ function piston:update(dt)
 				self.actor.x = self.startx
 			end
 		end
-		
+
 		--move Y
 		if self.actor.y > self.starty then
 			self.actor.y = self.actor.y - self.pistonSpeedY*dt
@@ -102,11 +102,11 @@ function piston:update(dt)
 				self.actor.y = self.starty
 			end
 		end
-		
+
 		if self.inactiveOnRetracted and self.actor.x == self.startx and self.actor.y == self.starty then
 			self.active = false
 		end
-		
+
 		if self.pistontimer > self.pistonRetractTime then
 			local playernear = false
 			for i = 1, #game.players do
@@ -120,7 +120,7 @@ function piston:update(dt)
 					break
 				end
 			end
-			
+
 			if not self.dontPistonNearPlayer or not playernear then
 				self.pistontimer = 0
 				self.pistonstate = "extending"

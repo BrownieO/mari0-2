@@ -11,7 +11,7 @@ function iFrames:getIFrames()
 	if not self.actor.iFramed then
 		self.actor.iFramed = true
 	end
-	
+
 	self.actor.iFramesTimer = 0
 end
 
@@ -32,9 +32,9 @@ function iFrames:update(dt, actorEvent)
 
     local frameTime = (self.actor.iFramesTimer >= IFRAMESTIME - IFRAMESSLOWTIME)
         and IFRAMETIMETIMESLOW or IFRAMETIME
-	
+
 	local isTransparent = math.fmod(self.actor.iFramesTimer, frameTime) < frameTime/2
-	
+
 	if isTransparent then
 		self.actor.alpha = 0
 	else

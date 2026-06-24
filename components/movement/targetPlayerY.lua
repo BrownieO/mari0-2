@@ -7,10 +7,10 @@ targetPlayerY.argList = {
 
 function targetPlayerY:initialize(actor, args)
     Component.initialize(self, actor, args)
-	
+
 	local closestPlayerY = nil
 	local smallestDiff = math.huge
-	
+
 	for i = 1, #game.players do
 		local player = game.players[i]
 		if player.actor then

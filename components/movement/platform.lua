@@ -24,7 +24,7 @@ function platform:update(dt)
 	while self.timer > self.time do
 		self.timer = self.timer - self.time
 	end
-	
+
 	if self.distanceX ~= 0 then
 		local newx = self:func(self.timer/self.time) * self.distanceX + self.startx
 		self.actor.speed[1] = (newx-self.actor.x)/dt

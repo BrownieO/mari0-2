@@ -9,9 +9,9 @@ local RUN_MAX_SPEED = 120
 
 function eightWay:initialize(actor, args)
     Component.initialize(self, actor, args)
-	
+
 	self.actor.gravity = 0
-	
+
     self.actor:registerState("flying", function(actor)
 
     end)

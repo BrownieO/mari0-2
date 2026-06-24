@@ -14,8 +14,8 @@ return {
     collisionMask = 0,
 
     components = {
-		["misc.warp"] = {
-			key = "down"
-		}
-	}
+		["misc.warp"] = {}
+	},
+	
+	rightClickMenu = {"misc.warp"}
 }

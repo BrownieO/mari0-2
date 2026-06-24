@@ -23,7 +23,7 @@ function flyVertical:update(dt)
 	while self.flyingTimer > self.flyingTime do
 		self.flyingTimer = self.flyingTimer - self.flyingTime
 	end
-			
+
 	local newy = self:func(self.flyingTimer/self.flyingTime)*self.flyingDistance + self.starty
 	self.actor.y = newy
 end

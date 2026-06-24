@@ -10,7 +10,7 @@ changeCollisionGroup.argList = {
 
 function changeCollisionGroup:initialize(actor, args)
     Component.initialize(self, actor, args)
-	
+
 	self.originalGroup = self.actor.collisionGroup
 	self.originalMask = self.actor.collisionMask
 
@@ -18,7 +18,7 @@ function changeCollisionGroup:initialize(actor, args)
         self.actor.collisionGroup = self.group
         self.actor.collisionMask = self.collisionMask
     end
-	
+
     self[self.off] = function(self)
         self.actor.collisionGroup = self.originalGroup
         self.actor.collisionMask = self.originalMask

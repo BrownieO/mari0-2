@@ -17,11 +17,11 @@ end
 
 function circle:update(dt)
 	self.circletimer = self.circletimer + dt
-	
+
 	while self.circletimer > math.abs(self.circleTime) do
 		self.circletimer = self.circletimer - math.abs(self.circleTime)
 	end
-	
+
 	local v = ((self.circletimer/(self.circleTime))*math.pi*2)
 	local newx = math.sin(v)*(self.circleRadiusX or self.circleRadius) + self.startx
 	local newy = math.cos(v)*(self.circleRadiusY or self.circleRadius) + self.starty

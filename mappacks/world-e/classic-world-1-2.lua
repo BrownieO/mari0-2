@@ -246,7 +246,7 @@ return {
 		{type="goomba", x=101.5, y=14},
 		{type="goomba", x=103, y=14},
 
-		{type="pipe", x=104.5, y=12+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2-1.lua"}}},
+		{type="pipe", x=104.5, y=12+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2-1.lua", key = "down"}}},
 		{type="goomba", x=114, y=14},
 		{type="piranha_plant", x=104, y=11},
 		{type="piranha_plant", x=110, y=10},

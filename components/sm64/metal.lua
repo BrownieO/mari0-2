@@ -43,9 +43,9 @@ function metal:update(dt, actorEvent)
     end
 
     self.actor.metalTimer = self.actor.metalTimer + dt
-	
+
 	if not self.actor.starred then
-		self.actor.palette = METALPALETTES[1]	
+		self.actor.palette = METALPALETTES[1]
 	end
 
     if self.actor.metalTimer >= METALTIME then

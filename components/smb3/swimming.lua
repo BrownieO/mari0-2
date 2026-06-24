@@ -12,7 +12,7 @@ local UW_GRAVITY = 112.5            --applied when moving downwards
 local UW_SWIMGRAVITY = 225          -- applied when moving upwards
 local UW_SWIMFORCE = -116.25        -- Upward force after a swim. Can be done every other frame
 local UW_MAXUPSWIMSPEED = 0         -- how fast mario can be moving DOWN after a swim
-local UW_MINUPSWIMSPEED = -120      -- how fast mario can be moving UP after a swim 
+local UW_MINUPSWIMSPEED = -120      -- how fast mario can be moving UP after a swim
 
 local UW_MAXSWIMSPEED = 90
 local UW_SWIMACCELERATION = 42.1875
@@ -30,31 +30,31 @@ function swimming:initialize(actor, args)
 end
 
 -- Calls setUnderWater() when on water.
--- Also applies friction, acceleration, skid, and sets gravity based on motion direction. 
+-- Also applies friction, acceleration, skid, and sets gravity based on motion direction.
 -- @param actorEvent The event dispatcher for modifying physics values.
 function swimming:update(dt, actorEvent)
     local charCenterX, charCenterY = self.actor.world:worldToCoordinate(
         self.actor.x + self.actor.width / 2,
         self.actor.y + self.actor.height / 2
     )
-	
+
     local tile
     if self.actor.world:inMap(charCenterX, charCenterY) then
         tile = self.actor.world:getTile(charCenterX, charCenterY)
     end
-	
+
 	local tileAbove
     if self.actor.world:inMap(charCenterX, charCenterY - 1) then
         tileAbove = self.actor.world:getTile(charCenterX, charCenterY - 1)
     end
-	
+
 	-- Calls if water tile is detected
     if tile then
         self:setUnderWater(tile.props.water == true)
     else
         self:setUnderWater(false)
     end
-	
+
     if not tileAbove then
         self:setEmptyAbove(tileAbove == nil)
     else
@@ -117,7 +117,7 @@ function swimming:jump(dt, actorEvent)
 		if self.actor.emptyAbove and controls3.cmdDown("up") then
 			actorEvent:bind("after", function(actor)
 				actor.speed[2] = actor.cache.speed[2] + UW_SURFACEJUMPFORCE
-			end)		
+			end)
 		else
 			actorEvent:bind("after", function(actor)
 				actor.speed[2] = math.clamp(
@@ -125,7 +125,7 @@ function swimming:jump(dt, actorEvent)
 					UW_MINUPSWIMSPEED,
 					UW_MAXUPSWIMSPEED
 				)
-			end)	
+			end)
 		end
 
         -- Reset or update swimming animation cycle.

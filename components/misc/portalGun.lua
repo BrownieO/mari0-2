@@ -53,7 +53,7 @@ function portalGun:click(dt, actorEvent, button)
                 crosshair.target.worldY,
                 color,
                 self.portals[button])
-			
+
             if portal then
                 if self.portals[button] then
                     self.portals[button].deleteMe = true
@@ -67,7 +67,7 @@ function portalGun:click(dt, actorEvent, button)
 
                     self.portals[button].timer = self.portals[button].connectsTo.timer
                 end
-				
+
 				if button == 1 then
 					playSound("portalgun_shoot_blue", 0.5)
 					playSound("portal_open1", 0.5)

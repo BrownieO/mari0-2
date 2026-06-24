@@ -21,7 +21,7 @@ function kicks:resolve(dir, obj2, actorEvent)
 	if self.kickDebounce then return end
 	if not obj2:hasComponent("misc.kickable") then return end
 	if self.actor.invincibility then return end
-	
+
 	if obj2.cache.speed[1] == 0 then
 		self.kickDebounce = true
 		if dir == "left" then
@@ -30,7 +30,7 @@ function kicks:resolve(dir, obj2, actorEvent)
 			obj2:event("kicked", 0, 1)
 		end
 	end
-	
+
 	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
 		self.kickDebounce = true
         if obj2.cache.speed[1] == 0 then-- kick it
@@ -62,7 +62,7 @@ function kicks:resolve(dir, obj2, actorEvent)
             obj2:event("unkicked")
         end
 	end
-	
+
 	actorEvent.returns = true
 end
 

@@ -29,7 +29,7 @@ function jump:update(dt)
 				-- dir = "down"
 			-- end
 		-- end
-		
+
 		if dir == "up" then
 			self.actor.speed[2] = -self.jumpForce
 			--self.mask[2] = true
@@ -43,7 +43,7 @@ function jump:update(dt)
 			--self.falling = true
 		end
 	end
-	
+
 	if self.jumping then
 		if self.jumping == "up" then
 			if self.actor.cache.speed[2] > 0 then

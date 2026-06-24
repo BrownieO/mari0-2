@@ -25,7 +25,7 @@ function stomps:resolve(dir, obj2, actorEvent)
 	if self.stompDebounce then return end
 	if not obj2:hasComponent("misc.stompable") then return end
 	if self.actor.invincibility then return end
-	
+
 	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
 		self.stompDebounce = true
 		self.actor.y = obj2.y-self.actor.height
