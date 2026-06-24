@@ -9,22 +9,40 @@ Gui3.TextInput.charWidth = 7.583333
 local utf8 = utf8
 
 local function u8len(s)
-    if not s then return 0 end
+    if not s then
+        return 0
+    end
     local ok, l = pcall(utf8.len, s)
-    if ok and l then return l end
+    if ok and l then
+        return l
+    end
     return #s
 end
 
 local function u8sub(s, i, j)
-    if s == nil then return "" end
+    if s == nil then
+        return ""
+    end
     local s_len = u8len(s)
     i = i or 1
-    if i < 0 then i = s_len + 1 + i end
-    if j == nil then j = s_len end
-    if j < 0 then j = s_len + 1 + j end
-    if i < 1 then i = 1 end
-    if j > s_len then j = s_len end
-    if i > j then return "" end
+    if i < 0 then
+        i = s_len + 1 + i
+    end
+    if j == nil then
+        j = s_len
+    end
+    if j < 0 then
+        j = s_len + 1 + j
+    end
+    if i < 1 then
+        i = 1
+    end
+    if j > s_len then
+        j = s_len
+    end
+    if i > j then
+        return ""
+    end
     local start_byte = utf8.offset(s, i)
     local end_byte
     if j == s_len then
@@ -38,23 +56,23 @@ end
 function Gui3.TextInput:initialize(x, y, charW, lines, value)
     charW = charW or 16
     lines = lines or 1
-    
+
     self.charW = charW
     self.lines = lines
     self.maxLength = 0
-    
+
     self.value = value or ""
     self.text = love.graphics.newText(fontOutlined, "")
-    
+
     self.cursorPos = 1
     self.focus = false
     self.blinkTimer = 0
     self.cursorVisible = true
     self.offset = 0
-    
+
     local w = self.charW * Gui3.TextInput.charWidth + self.padding * 2
     local h = self.lines * Gui3.TextInput.charHeight + self.padding * 2
-    
+
     Gui3.Element.initialize(self, x, y, w, h)
 end
 
@@ -91,14 +109,14 @@ function Gui3.TextInput:draw()
     local borderColor = self.focus and 1 or 0.7
     love.graphics.setColor(borderColor, borderColor, borderColor)
     love.graphics.rectangle("line", 0.5, 0.5, self.w - 1, self.h - 1)
-    
+
     love.graphics.setColor(0.2, 0.2, 0.2)
     love.graphics.rectangle("fill", 1, 1, self.w - 2, self.h - 2)
-    
+
     love.graphics.setColor(1, 1, 1)
     self:updateDisplay()
     love.graphics.draw(self.text, self.padding + 1, self.padding + 1)
-    
+
     if self.focus and self.cursorVisible then
         if self.lines == 1 then
             local cursorX = (self.cursorPos - self.offset - 1) * Gui3.TextInput.charWidth + self.padding + 1
@@ -106,7 +124,7 @@ function Gui3.TextInput:draw()
         else
             local line = math.floor((self.cursorPos - 1) / self.charW) + 1
             local col = (self.cursorPos - 1) % self.charW
-            
+
             if line <= self.lines then
                 local cursorX = col * Gui3.TextInput.charWidth + self.padding + 1
                 local cursorY = (line - 1) * Gui3.TextInput.charHeight + self.padding + 1
@@ -114,7 +132,7 @@ function Gui3.TextInput:draw()
             end
         end
     end
-    
+
     Gui3.Element.draw(self)
 end
 
@@ -130,11 +148,11 @@ function Gui3.TextInput:update(dt)
 end
 
 function Gui3.TextInput:mousepressed(x, y, button)
-	self.pressing = true
-	self.exclusiveMouse = true
-	self.focus = true
-	self:updateRender()
-    
+    self.pressing = true
+    self.exclusiveMouse = true
+    self.focus = true
+    self:updateRender()
+
     return Gui3.Element.mousepressed(self, x, y, button)
 end
 
@@ -144,7 +162,7 @@ function Gui3.TextInput:textinput(text)
         self.cursorPos = self.cursorPos + u8len(text)
         self:updateOffset()
         self:updateRender()
-        
+
         if self.onChange then
             self:onChange()
         end
@@ -155,14 +173,14 @@ function Gui3.TextInput:keypressed(key)
     if not self.focus then
         return
     end
-    
+
     if key == "backspace" then
         if self.cursorPos > 1 then
             self.value = u8sub(self.value, 1, self.cursorPos - 2) .. u8sub(self.value, self.cursorPos)
             self.cursorPos = self.cursorPos - 1
             self:updateOffset()
             self:updateRender()
-            
+
             if self.onChange then
                 self:onChange()
             end
@@ -171,7 +189,7 @@ function Gui3.TextInput:keypressed(key)
         if self.cursorPos <= u8len(self.value) then
             self.value = u8sub(self.value, 1, self.cursorPos - 1) .. u8sub(self.value, self.cursorPos + 1)
             self:updateRender()
-            
+
             if self.onChange then
                 self:onChange()
             end
@@ -212,7 +230,7 @@ function Gui3.TextInput:keypressed(key)
         self.focus = false
         self:updateRender()
     end
-    
+
     return true
 end
 
