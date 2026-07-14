@@ -75,10 +75,16 @@ function love.keypressed(key)
         draw.graphMean = draw.nextGraphMean[draw.graphMean]
         draw.notice("graph mean: " .. draw.graphMean)
     end
+
+    if key == "v" then
+      draw.graphView = draw.nextGraphView[draw.graphView]
+      draw.notice("graph show: " .. draw.graphView)
+    end
 end
 
 local function pickFrameIndex(x)
-    return math.floor(x / lg.getWidth() * #frames) + 1
+    local index = math.floor(x / lg.getWidth() * (#frames - 1)) + 1
+    return math.min(math.max(index, 1), #frames)
 end
 
 function love.mousepressed(x, y, button)
