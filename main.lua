@@ -1,10 +1,15 @@
 --Mari0 2 - MIT License.
+local lovetest = require "test/lovetest"
 require "errorhandler"
 require "loop"
 
 local Game, Editor, Menus
 
-function love.load()
+function love.load(arg)
+	if lovetest.detect(arg) then
+		lovetest.run()
+	end
+
     require "util"
 
     love.window.setMode(400*VAR("scale"), 224*VAR("scale"), {
@@ -24,18 +29,21 @@ function love.load()
     class = require "lib.middleclass"
     sandbox = require "lib.sandbox"
     Easing = require "lib.Easing"
+	paletteShader = require "lib.paletteShader"
 	i18n = require "lib.i18n"
-    paletteShader = require "lib.paletteShader"
-    if VAR("debug").jprof then
-        PROF_CAPTURE = true
-    end
-    prof = require "lib.jprof.jprof"
-    prof.enabled(false)
 	i18n.load()
 	i18n.configure({
 	  currentLocale = VAR("locale")
 	})
 	print(i18n.t("startMsg"))
+    if VAR("debug").jprof then
+        PROF_CAPTURE = true
+    end
+    prof = require "lib.jprof.jprof"
+    prof.enabled(false)
+    if VAR("debug").jprof then
+        PROF_CAPTURE = true
+    end	
 
     -- Self written libs
     Color3 = require "lib.Color3"
