@@ -5,7 +5,11 @@ function Placer:initialize(editor)
     self.editor = editor
 
     self.level = self.editor.level
-	assert(self.level.ActorEdit, "The actor placer doesn't work on play mode yet. Maybe I should've told you earlier.")
+	if self.level.ActorEdit then
+		self.actorClass = self.level.ActorEdit
+	else
+		self.actorClass = require("class.Actor")
+	end
     self.penDown = false
     self.tile = actorTemplates["goomba"]
 	self.tile.num = actorTemplates.map["goomba"]
@@ -18,7 +22,7 @@ function Placer:update()
 		local eraseX, eraseY = self.level:coordinateToWorld(x-.5, y-.5)
 
         if x ~= self.lastX or y ~= self.lastY then
-			local newActor = self.level.ActorEdit:new(self.level, pixelX, pixelY, self.tile)
+			local newActor = self.actorClass:new(self.level, pixelX, pixelY, self.tile)
 			newActor.spawnX = x
 			newActor.spawnY = y
 

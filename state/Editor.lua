@@ -124,7 +124,9 @@ function Editor:load()
 	self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.minimap"), false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) self:updateMinimap() end))
     --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.layers"), false, nil, function(button) end))
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, i18n.t("editor.mapOptions"), false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
-    --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
+	if game and game.players and game.players[1] then
+		self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
+	end
 
     self.newWindowDropdown:autoSize()
 
@@ -136,8 +138,10 @@ function Editor:load()
 
     self.menuBar:addChild(viewDropdown)
 
-    --self.freeCameraCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
-    --viewDropdown.box:addChild(self.freeCameraCheckbox)
+	if game and game.players and game.players[1] then
+		self.freeCameraCheckbox = Gui3.Checkbox:new(0, 22, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
+		viewDropdown.box:addChild(self.freeCameraCheckbox)
+	end
 
     self.gridCheckbox = Gui3.Checkbox:new(0, 0, i18n.t("editor.drawGrid"), 1, function(checkbox) self:toggleGrid(checkbox.value) end)
     viewDropdown.box:addChild(self.gridCheckbox)
