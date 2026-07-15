@@ -502,6 +502,6 @@ function intersectTiles(aTiles, bTiles)
     return newTiles
 end
 
-function hex_to_pps(val)
+function hexToPps(val)
 	return tonumber(val,16) * 60 / 16 / 16
 end

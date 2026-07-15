@@ -18,7 +18,7 @@ local echoBasic = {
 	spread = 0
 }
 
-success = love.audio.setEffect("echo", echoBasic)
+local success = love.audio.setEffect("echo", echoBasic)
 
 local toLoad = recursiveEnumerate("sound")
 

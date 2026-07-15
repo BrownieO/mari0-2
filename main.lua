@@ -298,6 +298,11 @@ function playSound(sound, volume)
         print("Sound not specified")
         return
     end
+	
+	if not sounds[sound] then
+        print("Sound not found")
+        return
+	end
 
     sounds[sound]:stop()
 	sounds[sound]:setVolume(volume)
