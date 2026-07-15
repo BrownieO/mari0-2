@@ -4,6 +4,11 @@ local ducking = class("smb3.ducking", Component)
 local BUTTACCELERATION = 225 -- this is per 1/8*pi of downhill slope
 local FRICTIONBUTT = 277+7/9
 
+ducking.argList = {
+    {"forbidDucking", "boolean", false},
+    {"forbidButtSliding", "boolean", false},
+}
+
 function ducking:initialize(actor, args)
     Component.initialize(self, actor, args)
 
@@ -24,7 +29,7 @@ function ducking:update(dt)
             not controls3.cmdDown("left") and
             not controls3.cmdDown("right") and
             self.actor.state.name ~= "buttSliding" then
-            if self.actor.surfaceAngle ~= 0 then -- check if buttslide
+            if self.actor.surfaceAngle ~= 0 and not self.forbidButtSliding then -- check if buttslide
                 self.actor:switchState("buttSliding")
 
                 if self.actor.surfaceAngle > 0 then
@@ -32,7 +37,7 @@ function ducking:update(dt)
                 else
                     self.actor.speed[1] = math.min(0, self.actor.speed[1])
                 end
-            else
+            elseif not self.forbidDucking then
                 self.actor.ducking = true
 
                 -- Stop spinning in case TODO: move this to an event or something

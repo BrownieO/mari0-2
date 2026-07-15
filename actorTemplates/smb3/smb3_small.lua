@@ -1,110 +1,77 @@
-return {
-    width = 12,
-    height = 12,
+local base = extend("smb3/smb3_big.lua")
 
-    img = "characters/smb3_mario/small.png",
-    quadWidth = 24,
-    quadHeight = 24,
-    centerX = 11.5,
-    centerY = 14,
+base.height = 12
 
-    dontAutoQuad = true,
-	dontShowOnEditor = true,
+base.img = "characters/smb3_mario/small.png"
+base.quadWidth = 24
+base.quadHeight = 24
+base.centerX = 11.5
+base.centerY = 14
 
-    collisionGroup = VAR("collisionCategories").PLAYER,
-    collisionMask = VAR("collisionMasks").PLAYER,
+base.components["smb3.animation"] = {
+    frames = {
+        {
+            type = "8-dir",
+            plusNoGun = true,
+            x = 1,
+            y = 1,
+            names = {
+                "idle",
 
-    components = {
-        ["misc.palettable"] = {
-            imgPalette = {
-                {255, 204, 197},
-                {181,  49,  32},
-                {  0,   0,   0}
+                "run",
+                "run",
+
+                "skid",
+
+                "jump",
+
+                "fall",
+
+                "swim",
+                "swim",
+
+                "swimUp",
+                "swimUp",
+                "swimUp",
             },
         },
 
-        ["smb3.animation"] = {
-            frames = {
-                {
-                    type = "8-dir",
-                    plusNoGun = true,
-                    x = 1,
-                    y = 1,
-                    names = {
-                        "idle",
+        {
+            type = "1-dir",
+            plusNoGun = true,
+            x = 1,
+            y = 10,
+            names = {
+                "sprint",
+                "sprint",
 
-                        "run",
-                        "run",
+                "fly",
 
-                        "skid",
+                "die",
 
-                        "jump",
+                "buttSlide",
 
-                        "fall",
+                "spin",
+                "spin",
+                "spin",
+                "spin",
 
-                        "swim",
-                        "swim",
+                "holdIdle",
 
-                        "swimUp",
-                        "swimUp",
-                        "swimUp",
-                    },
-                },
+                "holdRun",
+                "holdRun",
 
-                {
-                    type = "1-dir",
-                    plusNoGun = true,
-                    x = 1,
-                    y = 10,
-                    names = {
-                        "sprint",
-                        "sprint",
+                "kick",
 
-                        "fly",
-
-                        "die",
-
-                        "buttSlide",
-
-                        "spin",
-                        "spin",
-                        "spin",
-                        "spin",
-
-
-                        "holdIdle",
-
-                        "holdRun",
-                        "holdRun",
-
-                        "kick",
-
-                        "climb",
-                        "climb",
-                    }
-                }
-            }
+                "climb",
+                "climb",
+            },
         },
-        ["smb3.movement"] = {},
-        ["smb3.jumping"] = {},
-        ["smb3.swimming"] = {},
-		
-        ["misc.unrotate"] = {},
-        ["misc.crosshair"] = {},
-        ["misc.portalGun"] = {},
-        ["misc.stomps"] = {},
-        ["misc.kicks"] = {},
-        ["misc.isHurtByContact"] = {},
-        ["misc.collectsCoins"] = {},
-        ["misc.bumpsBlocks"] = {dontBreak = true},
-        ["misc.bounceOnBlocks"] = {},
-		["misc.collectsPowerUps"] = {},
-
-		["misc.losesLife"] = {on = "getHurt"},
-		["smb3.star"] = {},
-		["sm64.metal"] = {},
-		["smb3.iFrames"] = {},
-		["misc.isKilledByLava"] = {},
-		["misc.isWarped"] = {},
-    }
+    },
 }
+base.components["smb3.ducking"] = { forbidDucking = true }
+base.components["misc.bumpsBlocks"] = { dontBreak = true }
+base.components["misc.losesLife"] = { on = "getHurt" }
+base.components["misc.shrinksWhenHurt"] = nil
+
+return base

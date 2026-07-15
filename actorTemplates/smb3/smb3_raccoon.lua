@@ -1,150 +1,109 @@
-return {
-    width = 12,
-    height = 24,
+local base = extend("smb3/smb3_big.lua")
 
-    img = "characters/smb3_mario/raccoon.png",
-    quadWidth = 40,
-    quadHeight = 40,
-    centerX = 23,
-    centerY = 24,
+base.img = "characters/smb3_mario/raccoon.png"
 
-    dontAutoQuad = true,
-	dontShowOnEditor = true,
+base["smb3.animation"] = {
+    frames = {
+        {
+            type = "8-dir",
+            plusNoGun = true,
+            x = 1,
+            y = 1,
+            names = {
+                "idle",
 
-    collisionGroup = VAR("collisionCategories").PLAYER,
-    collisionMask = VAR("collisionMasks").PLAYER,
+                "run",
+                "run",
+                "run",
+                "run",
 
-    components = {
-        ["misc.palettable"] = {
-            imgPalette = {
-                {255, 204, 197},
-                {181,  49,  32},
-                {  0,   0,   0}
+                "skid",
+
+                "jump",
+
+                "fall",
+
+                "float",
+                "float",
+                "float",
+
+                "duck",
+
+                "swim",
+                "swim",
+                "swim",
+                "swim",
+
+                "swimUp",
+                "swimUp",
+                "swimUp",
             },
         },
 
-        ["smb3.animation"] = {
-            frames = {
-                {
-                    type = "8-dir",
-                    plusNoGun = true,
-                    x = 1,
-                    y = 1,
-                    names = {
-                        "idle",
+        {
+            type = "1-dir",
+            plusNoGun = true,
+            x = 1,
+            y = 10,
+            names = {
+                "sprint",
+                "sprint",
+                "sprint",
+                "sprint",
 
-                        "run",
-                        "run",
-                        "run",
-                        "run",
+                "fly",
+                "fly",
+                "fly",
 
-                        "skid",
+                "die",
 
-                        "jump",
+                "buttSlide",
 
-                        "fall",
+                "spin",
+                "spin",
+                "spin",
+                "spin",
 
-                        "float",
-                        "float",
-                        "float",
+                "spinAir",
+                "spinAir",
+                "spinAir",
+                "spinAir",
 
-                        "duck",
+                "holdIdle",
 
-                        "swim",
-                        "swim",
-                        "swim",
-                        "swim",
+                "holdRun",
+                "holdRun",
+                "holdRun",
+                "holdRun",
 
-                        "swimUp",
-                        "swimUp",
-                        "swimUp",
-                    },
-                },
+                "kick",
 
-                {
-                    type = "1-dir",
-                    plusNoGun = true,
-                    x = 1,
-                    y = 10,
-                    names = {
-                        "sprint",
-                        "sprint",
-                        "sprint",
-                        "sprint",
+                "climb",
+                "climb",
 
-                        "fly",
-                        "fly",
-                        "fly",
+                "somerSault",
+                "somerSault",
+                "somerSault",
+                "somerSault",
+                "somerSault",
+                "somerSault",
+                "somerSault",
+                "somerSault",
 
-                        "die",
+                "shoot",
+                "shoot",
+                "shoot",
 
-                        "buttSlide",
-
-                        "spin",
-                        "spin",
-                        "spin",
-                        "spin",
-
-                        "spinAir",
-                        "spinAir",
-                        "spinAir",
-                        "spinAir",
-
-                        "holdIdle",
-
-                        "holdRun",
-                        "holdRun",
-                        "holdRun",
-                        "holdRun",
-
-                        "kick",
-
-                        "climb",
-                        "climb",
-
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-                        "somerSault",
-
-                        "shoot",
-                        "shoot",
-                        "shoot",
-
-                        "shootAir",
-                        "shootAir",
-                        "shootAir",
-                    }
-                }
-            }
+                "shootAir",
+                "shootAir",
+                "shootAir",
+            },
         },
-        ["smb3.movement"] = {},
-        ["smb3.jumping"] = {},
-        ["smb3.flying"] = {},
-        ["smb3.swimming"] = {},
-        ["smb3.ducking"] = {},
-        ["smb3.floating"] = {},
-        ["smb3.spinning"] = {},
-        ["misc.unrotate"] = {},
-        ["misc.crosshair"] = {},
-        ["misc.portalGun"] = {},
-        ["misc.stomps"] = {},
-        ["misc.kicks"] = {},
-        ["misc.isHurtByContact"] = {},
-        ["misc.collectsCoins"] = {},
-        ["misc.bumpsBlocks"] = {},
-        ["misc.bounceOnBlocks"] = {},
-		["misc.collectsPowerUps"] = {},
-		["misc.shrinksWhenHurt"] = {},
-		["misc.losesLife"] = {on = "getKilled"},
-		["smb3.star"] = {},
-		["sm64.metal"] = {},
-		["smb3.iFrames"] = {},
-		["misc.isKilledByLava"] = {},
-		["misc.isWarped"] = {},
-    }
+    },
 }
+
+base.components["smb3.flying"] = {}
+base.components["smb3.floating"] = {}
+base.components["smb3.spinning"] = {}
+
+return base
