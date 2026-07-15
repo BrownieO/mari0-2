@@ -1,5 +1,4 @@
 class = require("lib.middleclass")
-local util = require("util")
 local jumping = require("components.smb3.jumping")
 local ActorState = require("class.ActorState")
 function playSound(...)
@@ -42,6 +41,10 @@ function Actor:switchState(stateName)
             )
         end
     end
+end
+
+local function hexToPps(val)
+    return tonumber(val, 16) * 60 / 16 / 16
 end
 
 ---
