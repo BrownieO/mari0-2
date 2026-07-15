@@ -2,6 +2,8 @@ actorTemplates = {}
 actorTemplates.list = {}
 actorTemplates.map = {}
 
+local VAR, getRequiredSpeed = VAR, getRequiredSpeed
+
 local dir = "actorTemplates/"
 
 local rawFiles = recursiveEnumerate("actorTemplates")
@@ -31,12 +33,22 @@ local function autoQuad(template)
 	end
 end
 
+local env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed}
+
+local function extend(file)
+	local templateCode = love.filesystem.read(dir .. file)
+	return sandbox.run(templateCode, {env = env})
+end
+
+env.extend = extend
+
 for _, file in ipairs(files) do
     if string.sub(file[2], -3) == "lua" then
         local name = string.sub(file[2], 1, -5)
 
         local templateCode = love.filesystem.read(dir .. file[1])
-        local template = sandbox.run(templateCode, {env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed}})
+		assert(string.find(templateCode, file[2]) == nil, "The actor template " .. name .. " references itself!") -- this won't prevent circular references tho. TODO: add a visited array
+        local template = sandbox.run(templateCode, {env = env})
 
         template.name = name
 
