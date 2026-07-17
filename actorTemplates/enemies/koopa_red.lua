@@ -1,55 +1,16 @@
-return {
-    width = 12,
-    height = 12,
+local base = extend("enemies/koopa.lua")
 
-    img = "img/actors/koopa.png",
-	icon = "img/icons/koopa_red.png",
-    quadWidth = 16,
-    quadHeight = 32,
-    centerX = 8,
-    centerY = 25,
+base.icon = "img/icons/koopa_red.png"
 
-    collisionGroup = VAR("collisionCategories").ENEMY,
-    collisionMask = VAR("collisionMasks").ENEMY,
-
-    components = {
-        ["misc.palettable"] = {
-            imgPalette = {
-                {255, 204, 197},
-                {234, 158,  34},
-                {  0,   0,   0},
-                { 92, 228,  48}
-            },
-            defaultPalette = {
-                {255, 204, 197},
-                {234, 158,  34},
-                {  0,   0,   0},
-                {181,  49,  32}
-            },
-        },
-
-        ["animation.frames"] = {
-			frames = {1, 2}
-        },
-
-        ["movement.truffleShuffle"] = {
-            turnAroundOnCliff = true
-        },
-        ["misc.unrotate"] = {},
-        ["misc.stompable"] = {},
-		["misc.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = false,
-			group = VAR("collisionCategories").PLAYER
-		},
-        ["misc.transforms"] = {
-            on = "getStomped",
-            into = "koopa_red_shell"
-        },
-		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.isHurtByContact"] = {},
-    }
+base.components["misc.palettable"].defaultPalette = {
+	{255, 204, 197},
+	{234, 158,  34},
+	{  0,   0,   0},
+	{181,  49,  32}
 }
+
+base.components["movement.truffleShuffle"].turnAroundOnCliff = true
+
+base.components["misc.transforms"].into = "koopa_red_shell"
+
+return base

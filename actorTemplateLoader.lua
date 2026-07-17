@@ -50,6 +50,7 @@ for _, file in ipairs(files) do
 		assert(string.find(templateCode, file[2]) == nil, "The actor template " .. name .. " references itself!") -- this won't prevent circular references tho. TODO: add a visited array
         local template = sandbox.run(templateCode, {env = env})
 
+		assert(template, "The template " .. name .. " returned no code.")
         template.name = name
 
         -- Load images

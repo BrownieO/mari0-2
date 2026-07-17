@@ -1,6 +1,7 @@
 local Actor = class("Actor", Physics3.PhysObj)
 local ActorState = require "class.ActorState"
 local ActorEvent = require "class.ActorEvent"
+local width, height, modifier, modifiers
 
 function Actor:__tostring()
     return string.format("Actor (%s)", self.actorTemplate.name)
@@ -9,22 +10,24 @@ end
 function Actor:initialize(world, x, y, actorTemplate, customProperties)
     self.actorTemplate = actorTemplate
     self.customProperties = customProperties or {}
+	modifiers = self.actorTemplate.modifiers or {}
+	modifier = self.customProperties.modifier
 
-    local width = self.actorTemplate.width
-    local height = self.actorTemplate.height
+    width = self.actorTemplate.width
+    height = self.actorTemplate.height
+	
+	if modifier then
+		if modifiers then
+			if modifiers[modifier].width then
+				width = modifiers[modifier].width
+			end
+			if modifiers[modifier].height then
+				height = modifiers[modifier].height
+			end
+		end
+	end
 
     Physics3.PhysObj.initialize(self, world, x-width/2, y-height, width, height)
-
-    -- Respect actorTemplate.active if provided (default true)
-    if self.actorTemplate.active ~= nil then
-        self.active = self.actorTemplate.active
-    else
-        self.active = true
-    end
-	
-    if self.actorTemplate.gravity then
-        self.gravity = self.actorTemplate.gravity
-    end
 
     self.actorEvent = {}
 
@@ -140,7 +143,7 @@ end
 function Actor:loadActorTemplate(actorTemplate)
     self.actorTemplate = actorTemplate
 
-    self:changeSize(self.actorTemplate.width, self.actorTemplate.height)
+    self:changeSize(width, height)
 
     self.img = self.actorTemplate.img
 
@@ -154,6 +157,16 @@ function Actor:loadActorTemplate(actorTemplate)
     self.quads = self.actorTemplate.quads
 
 	self.coin = self.actorTemplate.coin
+
+    if self.actorTemplate.active ~= nil then
+        self.active = self.actorTemplate.active
+    else
+        self.active = true
+    end
+	
+    if self.actorTemplate.gravity then
+        self.gravity = self.actorTemplate.gravity
+    end
 
     local previousStateName = self.state and self.state.name or nil
     self.state = nil

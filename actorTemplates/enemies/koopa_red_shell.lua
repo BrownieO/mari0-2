@@ -1,74 +1,14 @@
-return {
-    width = 12,
-    height = 12,
+local base = extend("enemies/koopa_shell.lua")
 
-    img = "img/actors/koopa_shell.png",
-    icon = "img/icons/koopa_red_shell.png",
-    quadWidth = 16,
-    quadHeight = 16,
-    centerX = 8,
-    centerY = 9,
+base.icon = "img/icons/koopa_red_shell.png"
 
-    collisionGroup = VAR("collisionCategories").ENEMY,
-    collisionMask = VAR("collisionMasks").ENEMY,
-
-    ["components"] = {
-        ["misc.palettable"] = {
-            imgPalette = {
-                {255, 204, 197},
-                {234, 158,  34},
-                {  0,   0,   0},
-                { 92, 228,  48}
-            },
-            defaultPalette = {
-                {255, 204, 197},
-                {234, 158,  34},
-                {  0,   0,   0},
-                {181,  49,  32}
-            }
-        },
-
-        ["animation.frames"] = {
-            frames = {1, 2, 3, 4},
-            times = {0.03333333},
-            dontAnimateWhenStill = true,
-            useFrameWhenStill = 1
-        },
-
-        ["movement.truffleShuffle"] = {
-            maxSpeed = 236.25,
-            startSpeed = 0,
-            canStop = true
-        },
-        ["misc.unrotate"] = {},
-        ["misc.kickable"] = {},
-        ["misc.hurtsByContact"] = {
-            left = true,
-            right = true,
-            onlyWhenMoving = true
-        },
-        ["misc.wakesUp"] = {
-            onlyWhen = "stopped",
-            time = 6.9,
-            wiggles = true,
-            wiggleAfter = 5.233333,
-            wiggleDistance = 1,
-            wiggleTime = 0.016666667,
-            wiggleFrames = {1, 5},
-            wiggleFrameTime = {0.03333333}
-        },
-        ["misc.transforms"] = {
-            on = "wakeUp",
-            into = "koopa_red"
-        },
-		["misc.isHurtByStar"] = {},
-		["misc.isHurtByContact"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.changeCollisionGroup"] = {
-			on = "kicked",
-			group = VAR("collisionCategories").SHELL,
-			collisionMask = VAR("collisionMasks").SHELL,
-			off = "unkicked"
-		}
-    }
+base.components["misc.palettable"].defaultPalette = {
+	{255, 204, 197},
+	{234, 158,  34},
+	{  0,   0,   0},
+	{181,  49,  32}
 }
+
+base.components["misc.transforms"].into = "koopa_red"
+
+return base

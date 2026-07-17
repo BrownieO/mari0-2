@@ -270,7 +270,7 @@ return {
     },
     entities = {
         {type="spawn", x=3, y=12},
-        {type="goomba", x=22, y=12},
+        {type="koopa", x=22, y=12, modifier = "big"},
 		{type="mushroom", x=21, y=9},
 		
 		{type="goomba", x=40, y=12},

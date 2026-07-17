@@ -43,5 +43,18 @@ return {
 		["misc.isHurtByStar"] = {},
 		["misc.knockedWhenHurt"] = {},
 		["misc.isHurtByContact"] = {},
-    }
+    },
+	
+	modifiers = {
+		big = {
+			width = 24,
+			height = 24,
+			icon = nil,
+			img = "img/actors/koopa_big.png",
+			quadWidth = 24,
+			quadHeight = 32,
+			centerX = 12,
+			centerY = 20
+		}
+	}
 }
