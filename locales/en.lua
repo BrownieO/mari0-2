@@ -74,18 +74,18 @@ return {
 
     assertions = {
         -- Level
-        tilemapNonexistent = 'The tilemap "%s" requested by the map doesn\'t exist.',
-        tileLoadError = 'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". This may mean that the map is corrupted.',
-        tilemapNotPassed = "The map file requests a tileset numbered %s, but it also needs to have its name inside.",
+        tilemapNonexistent = 'The tilemap "%s" requested by the level doesn\'t exist. Someone should add the missing tileset or update the map.',
+        tileLoadError = 'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". This may mean that the level is corrupted.',
+        tilemapNotPassed = "A map file references a tileset numbered %s but doesn't mention its name. Someone should fix the level file.",
 
         -- Tileset
-        paddingBigger = 'StampMap "%s" from the TileMap "%s" had a padding[%s] bigger than its own size. Please decrease it.',
+        paddingBigger = 'StampMap "%s" from the TileMap "%s" had a padding [%s] bigger than its own size. Someone should fix the tileset.',
 
         -- Gui3
-        elementToItself = "You can't add an element to itself. That's stupid.",
+        elementToItself = "A programmer added a GUI element to itself. Please copy this error report and send it to us.",
 
         -- Components
-        faultyQuad = [[The state "%s" on actorTemplate %s has a faulty quad. (attempted frame was "%s)]],
-        noCrosshair = "Actor tried to fire a portal without having a crosshair.",
+        faultyQuad = [[The state "%s" on actorTemplate %s has a faulty quad. (attempted frame was "%s"). Please copy this error report and send it to us.]],
+        noCrosshair = "Actor tried to fire a portal without having a crosshair. Please copy this error report and send it to us.",
     },
 }
