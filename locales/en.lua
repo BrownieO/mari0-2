@@ -74,7 +74,7 @@ return {
 
     assertions = {
         -- Level
-        tilemapNonexistent = 'The tilemap "%s" requested by the level doesn\'t exist. Someone should add the missing tileset or update the map.',
+        tilemapNonexistent = 'The tilemap "%s" requested by the level doesn\'t exist. Someone should add the missing tileset or update the map file.',
         tileLoadError = 'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". This may mean that the level is corrupted.',
         tilemapNotPassed = "A map file references a tileset numbered %s but doesn't mention its name. Someone should fix the level file.",
 

@@ -74,18 +74,18 @@ return {
 
     assertions = {
         -- Level
-        tilemapNonexistent = 'El tileset "%s" requerido por el mapa no existe.',
+        tilemapNonexistent = 'El tileset "%s" requerido por el mapa no existe. Alguien debe añadir el tileset requerido o actualizar el archivo del nivel.',
         tileLoadError = 'No se pudo cargar el tile en x=%s, y=%s con ID "%s". El nivel puede estar corrupto.',
-        tilemapNotPassed = "El archivo del nivel solicita un tileset con número %s, pero falta escribir su nombre.",
+        tilemapNotPassed = "El archivo del nivel solicita un tileset con número %s, pero no menciona su nombre. Alguien debe arreglar el archivo del nivel.",
 
         -- Tileset
-        paddingBigger = 'El estampado "%s" del tileset "%s" tiene un margen [%s] más grande que su propio tamaño. Por favor achíquelo.',
+        paddingBigger = 'El estampado "%s" del tileset "%s" tiene un margen [%s] más grande que su propio tamaño. Alguien debe arreglar el tileset.',
 
         -- Gui3
-        elementToItself = "No se puede emparentar un elemento consigo mismo.",
+        elementToItself = "Un programador emparentó un elemento consigo mismo. Por favor copie este reporte de error y mándenoslo.",
 
         -- Components
-        faultyQuad = [[El estado "%s" en actorTemplate %s tiene un cuadro malo. (fotograma "%s")]],
-        noCrosshair = "Un actor intentó abrir un portal sin tener una retícula.",
+        faultyQuad = [[El estado "%s" en actorTemplate %s tiene un cuadro malo. (fotograma "%s"). Por favor copie este reporte de error y mándenoslo.]],
+        noCrosshair = "Un actor intentó abrir un portal sin tener una retícula. Por favor copie este reporte de error y mándenoslo.",
     },
 }

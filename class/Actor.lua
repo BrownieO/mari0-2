@@ -8,24 +8,14 @@ function Actor:__tostring()
 end
 
 function Actor:initialize(world, x, y, actorTemplate, customProperties)
-    self.actorTemplate = actorTemplate
     self.customProperties = customProperties or {}
-	modifiers = self.actorTemplate.modifiers or {}
+	modifiers = actorTemplate.modifiers or {}
 	modifier = self.customProperties.modifier
+
+	self.actorTemplate = actorTemplate
 
     width = self.actorTemplate.width
     height = self.actorTemplate.height
-	
-	if modifier then
-		if modifiers then
-			if modifiers[modifier].width then
-				width = modifiers[modifier].width
-			end
-			if modifiers[modifier].height then
-				height = modifiers[modifier].height
-			end
-		end
-	end
 
     Physics3.PhysObj.initialize(self, world, x-width/2, y-height, width, height)
 
