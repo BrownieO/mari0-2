@@ -505,3 +505,7 @@ end
 function hexToPps(val)
 	return tonumber(val,16) * 60 / 16 / 16
 end
+
+function ppsToHex(val)
+	return string.format("%X", val * 16 * 16 / 60)
+end

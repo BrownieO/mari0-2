@@ -71,6 +71,8 @@ function love.load(arg)
 	fontBig = love.graphics.newFont(16)
     fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
         [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔★⛫𓉴🔫🌐🌱🍄🏜️🏰🔨🚢🛦]])
+	local fontOutlinedCyrillic = love.graphics.newImageFont("img/font-outlined-cyrillic.png", [[АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ]])
+	fontOutlined:setFallbacks(fontOutlinedCyrillic)
 	love.graphics.setFont(fontOutlined)
 
     debugCandyImg = love.graphics.newImage("img/debug-candy.png")
