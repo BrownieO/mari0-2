@@ -3,13 +3,17 @@ local Selection = require "class.editor.Selection"
 local FloatingSelection = require "class.editor.FloatingSelection"
 local Editor = class("Editor")
 
+local function insertTool(toolName)
+    Editor.toolClasses[toolName] = require("class.editor.tools." .. toolName)
+    table.insert(Editor.toolbarImg, love.graphics.newImage("img/editor/" .. toolName:lower() .. ".png"))
+end
+
 Editor.toolbarOrder = {"Move", "Paint", "Erase", "Placer", "Deleter", "Select", "Wand", "Fill", "Stamp"}
 Editor.toolbarImg = {}
 Editor.toolClasses = {}
 
 for _, toolName in ipairs(Editor.toolbarOrder) do
-    Editor.toolClasses[toolName] = require("class.editor.tools." .. toolName)
-    table.insert(Editor.toolbarImg, love.graphics.newImage("img/editor/" .. toolName:lower() .. ".png"))
+	insertTool(toolName)
 end
 
 Editor.checkerboardImg = love.graphics.newImage("img/editor/checkerboard.png")
@@ -124,7 +128,7 @@ function Editor:load()
 	self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.minimap"), false, nil, function(button) self:newWindow(self.windowClasses.minimap, button) self:updateMinimap() end))
     --self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 30, i18n.t("editor.layers"), false, nil, function(button) end))
     self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 40, i18n.t("editor.mapOptions"), false, nil, function(button) self:newWindow(self.windowClasses.mapOptions, button) end))
-	if game and game.players and game.players[1] then
+	if game and game.players and game.players[1] and game.players[1].actor then
 		self.newWindowDropdown.box:addChild(Gui3.TextButton:new(0, 50, i18n.t("editor._debug"), false, nil, function(button) self:newWindow(self.windowClasses.debug, button) end))
 	end
 
@@ -138,7 +142,7 @@ function Editor:load()
 
     self.menuBar:addChild(viewDropdown)
 
-	if game and game.players and game.players[1] then
+	if game and game.players and game.players[1] and game.players[1].actor then
 		self.freeCameraCheckbox = Gui3.Checkbox:new(0, 22, i18n.t("editor.freeCamera"), 1, function(checkbox) self:toggleFreeCam(checkbox.value) end)
 		viewDropdown.box:addChild(self.freeCameraCheckbox)
 	end
@@ -388,7 +392,9 @@ function Editor:sliderChanged(val)
 end
 
 function Editor:toggleFreeCam(on)
-    --self.freeCameraCheckbox.value = on
+	if self.freeCameraCheckbox then
+		self.freeCameraCheckbox.value = on
+	end
 
     if self.level then
         if on then
