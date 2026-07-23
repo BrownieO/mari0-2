@@ -8,9 +8,7 @@ base.components["misc.palettable"].defaultPalette = {
 	{  0,   0,   0},
 	{181,  49,  32}
 }
-
 base.components["movement.truffleShuffle"].turnAroundOnCliff = true
-
 base.components["misc.transforms"].into = "koopa_red_shell"
 
 return base
