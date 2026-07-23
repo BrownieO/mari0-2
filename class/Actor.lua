@@ -1,7 +1,7 @@
 local Actor = class("Actor", Physics3.PhysObj)
 local ActorState = require "class.ActorState"
 local ActorEvent = require "class.ActorEvent"
-local width, height, modifier, modifiers
+local width, height
 
 function Actor:__tostring()
     return string.format("Actor (%s)", self.actorTemplate.name)
@@ -131,7 +131,7 @@ end
 function Actor:loadActorTemplate(actorTemplate)
     self.actorTemplate = actorTemplate
 
-    self:changeSize(width, height)
+    self:changeSize(self.actorTemplate.width, self.actorTemplate.height)
 
     self.img = self.actorTemplate.img
 
