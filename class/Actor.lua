@@ -9,8 +9,6 @@ end
 
 function Actor:initialize(world, x, y, actorTemplate, customProperties)
     self.customProperties = customProperties or {}
-	modifiers = actorTemplate.modifiers or {}
-	modifier = self.customProperties.modifier
 
 	self.actorTemplate = actorTemplate
 
