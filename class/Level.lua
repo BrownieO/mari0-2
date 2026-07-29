@@ -30,7 +30,7 @@ function Level:loadLevel(data)
     }
 
     love.graphics.setBackgroundColor(self.backgroundColor)
-	
+	self.levelCode = self.data.levelCode or ""
 	self.background = self.data.background or nil
 	self.wrapX = self.data.wrapX or false	
 	self.wrapY = self.data.wrapY or false	

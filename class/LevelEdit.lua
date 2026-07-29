@@ -30,6 +30,7 @@ function LevelEdit:loadLevel(data)
         (self.data.backgroundColor and self.data.backgroundColor[3] or 242)/255
     }
     love.graphics.setBackgroundColor(self.backgroundColor)
+	self.levelCode = self.data.levelCode or ""
 	self.background = self.data.background or nil
 	self.wrapX = self.data.wrapX or false	
 	self.wrapY = self.data.wrapY or false	

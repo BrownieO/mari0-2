@@ -1,3 +1,6 @@
+--[[
+Multiplayer UI similar to the one of SMB 1
+]]
 local Mari02UI = class("Mari02UI")
 local PlayerUI = class("PlayerUI")
 

@@ -1,4 +1,5 @@
 return {
+    levelCode = "w ★03",
     tileMaps = {"smb1-1-3", "smb3-blocks", "smb3-overworld"},
     lookups = {
 		{3, 107},  --1. Stage end

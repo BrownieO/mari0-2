@@ -1,5 +1,7 @@
+--[[
+Singleplayer UI identical to the one of SMB 3
+]]
 local Smb3Ui = class("Smb3Ui")
-
 
 local uiHeight = 38
 local uiLineHeight = 1
@@ -20,7 +22,7 @@ function Smb3Ui:initialize()
 
     self.skyColor = {181/255,235/255,242/255}
     self.time = 0
-    self.world = 1
+    self.world = ""
     self.score = 0
     self.coins = 0
     self.lives = 0
@@ -42,8 +44,8 @@ function Smb3Ui:initialize()
 
     self.element = {}
 
-    self.element.worldImg = Gui3.Image:new("img/ui/world.png", 1, 2)
-    self.element.world = Gui3.Text:new("", 33, 2)
+    --self.element.worldImg = Gui3.Image:new("img/ui/world.png", 1, 2)
+    self.element.world = Gui3.Text:new("", 1, 2)
 
     self.element.pMeter = Gui3.Text:new("", 49, 2)
     self.element.pMeterImg = Gui3.Image:new("img/ui/p_is_for_power.png", 97, 2, pMeterQuad[1])
@@ -58,7 +60,7 @@ function Smb3Ui:initialize()
     self.element.time = Gui3.Text:new("", 112, 10)
 
 
-    self.uiBox:addChild(self.element.worldImg)
+    --self.uiBox:addChild(self.element.worldImg)
     self.uiBox:addChild(self.element.world)
 
     self.uiBox:addChild(self.element.pMeter)

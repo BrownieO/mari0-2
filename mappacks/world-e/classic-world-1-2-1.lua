@@ -1,4 +1,5 @@
 return {
+    levelCode = "w ★02",
     tileMaps = {"smb3-overworld-blue", "smb3-general", "smb3-pipes"},
     lookups = {
 		{2, 3},  --1. Bricks

@@ -1,4 +1,5 @@
 return {
+    levelCode = "w ★01",
     tileMaps = {"smb3-overworld-blue", "smb3-general", "smb3-pipes"},
     lookups = {
 		{1, 94},  --1. Ground

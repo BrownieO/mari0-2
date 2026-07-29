@@ -39,6 +39,7 @@ function Game:load()
 	end
 
     ui = Smb3Ui:new()
+	ui.world = self.level.levelCode
     updateSizes()
 end
 
@@ -57,7 +58,6 @@ function Game:update(dt)
         ui:setLives(1, self.players[1].lives)
         ui.score = self.players[1].score
         ui.coins = self.players[1].coins
-        ui.world = 1
         ui:update(dt)
     end
     prof.pop("UI")
@@ -103,6 +103,7 @@ function Game:changeLevel(path)
 	
     local data = sandbox.run(mapCode)
     self.level:loadLevel(data)
+	ui.world = self.level.levelCode
 
     updateSizes()
 end
