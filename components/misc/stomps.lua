@@ -26,6 +26,10 @@ function stomps:resolve(dir, obj2, actorEvent)
 	if not obj2:hasComponent("misc.stompable") then return end
 	if self.actor.invincibility then return end
 
+	-- On real games, stomps succeed on either conditions.
+	-- Here, however, bottom collision detection is too generous
+	-- (you could even stomp enemies by walking into them!)
+	-- So, they are limited to the invincibility frames state.
 	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
 		self.stompDebounce = true
 		self.actor.y = obj2.y-self.actor.height
