@@ -55,7 +55,9 @@ function Level:loadLevel(data)
             self.spawnX = entity.x
             self.spawnY = entity.y
 		elseif entity.type == "pipe_exit" then
-			self.exitList[entity.exitId] = entity
+			if entity.exitId then
+				self.exitList[entity.exitId] = entity
+			end
         elseif actorTemplate and not VAR("debug").noEnemies then -- is entity
             -- Extract custom properties
             local customProperties = {}

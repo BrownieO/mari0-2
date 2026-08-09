@@ -1,4 +1,5 @@
 return {
+    levelCode = "w 🍄06",
     tileMaps = {"smb3-blocks", "smb3-pipes"},
     lookups = {
 		{1, 37},  --1. Note block
