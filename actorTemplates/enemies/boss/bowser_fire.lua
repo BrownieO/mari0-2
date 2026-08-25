@@ -21,7 +21,7 @@ return {
 			times = {1/15}
         },
 		["movement.targetPlayerY"] = {},
-		["misc.hurtsByContact"] = {
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,

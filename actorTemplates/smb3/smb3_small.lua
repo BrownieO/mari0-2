@@ -70,8 +70,8 @@ base.components["smb3.animation"] = {
     },
 }
 base.components["smb3.ducking"] = { forbidDucking = true }
-base.components["misc.bumpsBlocks"] = { dontBreak = true }
-base.components["misc.losesLife"] = { on = "getHurt" }
-base.components["misc.shrinksWhenHurt"] = nil
+base.components["actReact.act.bumpsBlocks"] = { dontBreak = true }
+base.components["actReact.react.losesLife"] = { on = "getHurt" }
+base.components["actReact.react.shrinksWhenHurt"] = nil
 
 return base

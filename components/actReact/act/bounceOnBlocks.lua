@@ -1,5 +1,5 @@
 local Component = require "class.Component"
-local bounceOnBlocks = class("misc.bounceOnBlocks", Component)
+local bounceOnBlocks = class("actReact.act.bounceOnBlocks", Component)
 
 bounceOnBlocks.argList = {
     {"dontBreak", "boolean", false},

@@ -1,20 +1,5 @@
-return {
-    width = 16,
-    height = 16,
+local base = extend("items/fire_flower.lua")
+base.img = "img/actors/tanooki_suit.png"
+base.components["actReact.tag.powerUp"] = {powerUpType = "tanooki"}
 
-    img = "img/actors/tanooki_suit.png",
-    quadWidth = 16,
-    quadHeight = 16,
-    centerX = 8,
-    centerY = 8,
-
-    collisionGroup = VAR("collisionCategories").POWER_UP,
-    collisionMask = VAR("collisionMasks").POWER_UP,
-
-    components = {
-        ["misc.unrotate"] = {},
-		["misc.powerUp"] = {
-			powerUpType = "tanooki",
-		},
-    }
-}
+return base

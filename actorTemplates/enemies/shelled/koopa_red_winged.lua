@@ -34,20 +34,20 @@ return {
         },
 		["movement.flyVertical"] = {},
         ["misc.unrotate"] = {},
-        ["misc.stompable"] = {},
-		["misc.hurtsByContact"] = {
+        ["actReact.tag.stompable"] = {},
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = false,
 			group = VAR("collisionCategories").PLAYER
 		},
-        ["misc.transforms"] = {
+        ["actReact.react.transforms"] = {
             on = "getStomped",
             into = "koopa_red"
         },
-		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.isHurtByContact"] = {},
+		["actReact.react.isHurtByStar"] = {},
+		["actReact.react.knockedWhenHurt"] = {},
+		["actReact.react.isHurtByContact"] = {},
     }
 }

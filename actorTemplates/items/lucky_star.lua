@@ -1,23 +1,10 @@
-return {
-    width = 16,
-    height = 16,
-
-    img = "img/actors/lucky_star.png",
-    quadWidth = 16,
-    quadHeight = 16,
-    centerX = 8,
-    centerY = 8,
-	
-    collisionGroup = VAR("collisionCategories").POWER_UP,
-    collisionMask = VAR("collisionMasks").POWER_UP,
-	
-    components = {
-        ["misc.unrotate"] = {},
-		["misc.powerUp"] = {},
-		["misc.broadcastEvent"] = {
+local base = extend("items/fire_flower.lua")
+base.img = "img/actors/lucky_star.png"
+base.components["actReact.tag.powerUp"] = {}
+base.components["misc.broadcastEvent"] = {
 			on = "destroy",
 			fire = {"getHurt", "getKilled"},
 			collisionBlacklist = VAR("collisionCategories").PLAYER
-		}
-    }
 }
+
+return base

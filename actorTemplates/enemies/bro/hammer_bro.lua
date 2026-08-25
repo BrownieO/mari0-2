@@ -18,16 +18,16 @@ return {
         },
 		["movement.jump"] = {},
         ["misc.unrotate"] = {},
-        ["misc.stompable"] = {dies = true},
-		["misc.hurtsByContact"] = {
+        ["actReact.tag.stompable"] = {dies = true},
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = false,
 			group = VAR("collisionCategories").PLAYER
 		},
-		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.isHurtByContact"] = {},
+		["actReact.react.isHurtByStar"] = {},
+		["actReact.react.knockedWhenHurt"] = {},
+		["actReact.react.isHurtByContact"] = {},
     }
 }

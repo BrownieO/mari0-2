@@ -15,6 +15,7 @@ return {
     collisionMask = VAR("collisionMasks").PLAYER,
 
     components = {
+		--Appearance
         ["misc.palettable"] = {
             imgPalette = {
                 {255, 204, 197},
@@ -22,7 +23,6 @@ return {
                 {  0,   0,   0}
             },
         },
-
         ["smb3.animation"] = {
             frames = {
                 {
@@ -116,26 +116,30 @@ return {
                 }
             }
         },
-        ["smb3.movement"] = {},
+        ["misc.unrotate"] = {},
+		
+		--Behavior
+		["smb3.movement"] = {},
         ["smb3.jumping"] = {},
         ["smb3.swimming"] = {},
         ["smb3.ducking"] = {},
-        ["misc.unrotate"] = {},
         ["misc.crosshair"] = {},
         ["misc.portalGun"] = {},
-        ["misc.stomps"] = {},
-        ["misc.kicks"] = {},
-        ["misc.isHurtByContact"] = {},
-        ["misc.collectsCoins"] = {},
-        ["misc.bumpsBlocks"] = {},
-        ["misc.bounceOnBlocks"] = {},
-		["misc.collectsPowerUps"] = {},
-		["misc.shrinksWhenHurt"] = {},
-		["misc.losesLife"] = {on = "getKilled"},
+		
+		--Actions
+        ["actReact.act.stomps"] = {},
+        ["actReact.act.kicks"] = {},
+        ["actReact.act.collectsCoins"] = {},
+        ["actReact.act.bumpsBlocks"] = {},
+        ["actReact.act.bounceOnBlocks"] = {},
+		["actReact.act.collectsPowerUps"] = {},
+		["actReact.act.isWarped"] = {},
+        ["actReact.react.isHurtByContact"] = {},
+		["actReact.react.shrinksWhenHurt"] = {},
+		["actReact.react.losesLife"] = {on = "getKilled"},
+		["actReact.react.isKilledByLava"] = {},
 		["smb3.star"] = {},
 		["sm64.metal"] = {},
 		["smb3.iFrames"] = {},
-		["misc.isKilledByLava"] = {},
-		["misc.isWarped"] = {},
     }
 }

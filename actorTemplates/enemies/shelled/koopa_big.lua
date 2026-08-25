@@ -1,4 +1,4 @@
-local base = extend("enemies/koopa.lua")
+local base = extend("enemies/shelled/koopa.lua")
 
 base.width = 24
 base.height = 24

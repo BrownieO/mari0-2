@@ -50,7 +50,7 @@ return {
             wiggleFrames = {1, 5},
             wiggleFrameTime = {1/30}
         },
-        ["misc.transforms"] = {
+        ["actReact.react.transforms"] = {
             on = "wakeUp",
             into = "koopa"
         },

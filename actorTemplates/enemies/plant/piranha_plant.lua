@@ -31,15 +31,15 @@ return {
         },
 		["movement.piston"] = {},
         ["misc.unrotate"] = {},
-		["misc.hurtsByContact"] = {
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = true,
 			group = VAR("collisionCategories").PLAYER
 		},
-		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {},
-        ["misc.isHurtByContact"] = {},
+		["actReact.react.isHurtByStar"] = {},
+		["actReact.react.knockedWhenHurt"] = {},
+        ["actReact.react.isHurtByContact"] = {},
 	}
 }

@@ -19,7 +19,7 @@ end
 
 function isHurtByStar:resolve(dir, obj2)
 	if obj2.starred or obj2.metal then
-		self.actor:event("getHurt", dt)
+		self.actor:event("getStarDamage", dt)
 	end
 end
 

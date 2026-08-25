@@ -13,7 +13,7 @@ return {
 
     components = {
         ["misc.unrotate"] = {},
-		["misc.powerUp"] = {
+		["actReact.tag.powerUp"] = {
 			powerUpType = "fire",
 		},
     }

@@ -1,26 +1,12 @@
-return {
-    width = 16,
-    height = 16,
-
-    img = "img/actors/mushroom.png",
-    quadWidth = 16,
-    quadHeight = 16,
-    centerX = 8,
-    centerY = 8,
-	
-    collisionGroup = VAR("collisionCategories").POWER_UP,
-    collisionMask = VAR("collisionMasks").POWER_UP,
-	
-    components = {
-        ["misc.unrotate"] = {},
-		["misc.powerUp"] = {
+local base = extend("items/fire_flower.lua")
+base.img = "img/actors/mushroom.png"
+base.components["actReact.tag.powerUp"] = {
 			powerUpType = "big",
 			whitelist = {"small"}
-		},
-        ["movement.truffleShuffle"] = {
+}
+base.components["movement.truffleShuffle"] = {
             dontTurnAnimation = true,
             maxSpeed = 57.6,
 			startSpeed = -57.6,
-        },
-    }
 }
+return base

@@ -13,6 +13,7 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 
     components = {
+		--Appearance
         ["misc.palettable"] = {
             imgPalette = {
                 {255, 204, 197},
@@ -21,27 +22,41 @@ return {
                 { 92, 228,  48}
             }
         },
-
         ["animation.frames"] = {
             frames = {1, 2}
         },
-
-        ["movement.truffleShuffle"] = {},
         ["misc.unrotate"] = {},
-        ["misc.stompable"] = {},
-		["misc.hurtsByContact"] = {
+		
+		--Behavior
+        ["movement.truffleShuffle"] = {},
+
+		--Transmittal
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = false,
-			group = VAR("collisionCategories").PLAYER
 		},
-        ["misc.transforms"] = {
+
+		--Reception
+        ["actReact.tag.stompable"] = {},
+        ["actReact.react.transforms"] = {
             on = "getStomped",
             into = "koopa_shell"
         },
-		["misc.isHurtByStar"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.isHurtByContact"] = {},
+		["actReact.react.isHurtByStar"] = {},
+		["actReact.react.sinksOnLava"] = {},
+		
+		--Reaction
+		["actReact.react.collapsesOnEvents"] = {
+			on = {
+				"getHurt",
+				"getThrownObject",
+				"getSquashed",
+				"getWeakPlayerAttack",
+				"getStrongPlayerAttack",
+				"getStarDamage"
+				}
+			},
     }
 }

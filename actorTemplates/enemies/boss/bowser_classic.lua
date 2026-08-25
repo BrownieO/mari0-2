@@ -26,15 +26,15 @@ return {
 		},
 		["movement.jump"] = {jumpForce = getRequiredSpeed(2*16, VAR("gravityJumping"))},
         ["misc.unrotate"] = {},
-		["misc.hurtsByContact"] = {
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = true,
 			group = VAR("collisionCategories").PLAYER
 		},
-		["misc.isHurtByStar"] = {},
-		["misc.isHurtByContact"] = {},
+		["actReact.react.isHurtByStar"] = {},
+		["actReact.react.isHurtByContact"] = {},
 		["misc.enemyHealth"] = {health = 5},
 		["misc.spawnsEnemy"] = {
 			spawnenemydelay = 3,

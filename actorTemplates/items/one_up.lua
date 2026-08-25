@@ -13,8 +13,8 @@ return {
 
     components = {
         ["misc.unrotate"] = {},
-		["misc.lifeOnMarioContact"] = {},
-		["misc.removeOnMarioContact"] = {},
+		["actReact.act.lifeOnMarioContact"] = {},
+		["actReact.act.removeOnMarioContact"] = {},
         ["movement.truffleShuffle"] = {
             dontTurnAnimation = true,
             maxSpeed = 57.6,

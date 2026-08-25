@@ -34,7 +34,7 @@ return {
         ["misc.isHurtByContact"] = {},
         ["misc.collectsCoins"] = {},
         ["misc.bumpsBlocks"] = {},
-        ["misc.bounceOnBlocks"] = {},
+        ["actReact.act.bounceOnBlocks"] = {},
 		["misc.collectsPowerUps"] = {},
 		["misc.shrinksWhenHurt"] = {},
 		["misc.losesLife"] = {on = "getKilled"},

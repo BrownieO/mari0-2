@@ -36,7 +36,10 @@ end
 local env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed}
 
 local function extend(file)
-	local templateCode = love.filesystem.read(dir .. file)
+	local templateCode, errorMsg = love.filesystem.read(dir .. file)
+	local failure = debug.getinfo(2, "Sl")
+	if failure then failure = failure.short_src end
+	assert(templateCode, "\nAn actor template failed to load its base:\n" .. failure .. "\n" .. errorMsg)
 	return sandbox.run(templateCode, {env = env})
 end
 
@@ -48,8 +51,9 @@ for _, file in ipairs(files) do
 
         local templateCode = love.filesystem.read(dir .. file[1])
 		assert(string.find(templateCode, file[2]) == nil, "The actor template " .. name .. " references itself!") -- this won't prevent circular references tho. TODO: add a visited array
-        local template = sandbox.run(templateCode, {env = env})
 
+		local template = sandbox.run(templateCode, {env = env})
+		
 		assert(template, "The template " .. name .. " returned no code.")
         template.name = name
 
