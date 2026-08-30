@@ -18,32 +18,32 @@ function collectsPowerUps:bottomContact(dt, actorEvent, obj2)
 end
 
 function collectsPowerUps:resolve(dir, obj2)
-	local powerUpComponent = obj2:hasComponent("misc.powerUp")
+	local powerUpComponent = obj2:hasComponent("actReact.tag.powerUp")
 	if not powerUpComponent then return	end
 
 	local currentPowerUp = self.actor.player.powerUp
-	local isWhitelisted = true
+	local allowed = true
 
 	if powerUpComponent["whitelist"] and next(powerUpComponent["whitelist"]) then
-		isWhitelisted = false
+		allowed = false
 		for _, whitelisted in ipairs(powerUpComponent["whitelist"]) do
 			if currentPowerUp == whitelisted then
-				isWhitelisted = true
+				allowed = true
 				break
 			end
 		end
 	end
 
-	if isWhitelisted and powerUpComponent["blacklist"] and next(powerUpComponent["blacklist"]) then
+	if allowed and powerUpComponent["blacklist"] and next(powerUpComponent["blacklist"]) then
 		for _, blacklisted in ipairs(powerUpComponent["blacklist"]) do
 			if currentPowerUp == blacklisted then
-				isWhitelisted = false
+				allowed = false
 				break
 			end
 		end
 	end
 
-	if isWhitelisted then
+	if allowed then
 		if powerUpComponent["powerUpType"] then
 			local templateKey = "smb3_" .. powerUpComponent["powerUpType"]
 			if actorTemplates[templateKey] then

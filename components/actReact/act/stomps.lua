@@ -23,7 +23,7 @@ end
 
 function stomps:resolve(dir, obj2, actorEvent)
 	if self.stompDebounce then return end
-	if not obj2:hasComponent("misc.stompable") then return end
+	if not obj2:hasComponent("actReact.tag.stompable") then return end
 	if self.actor.invincibility then return end
 
 	-- On real games, stomps succeed on either conditions.

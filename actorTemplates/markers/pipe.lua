@@ -14,11 +14,11 @@ return {
     collisionMask = 0,
 
     components = {
-		["misc.warp"] = {}
+		["actReact.tag.warp"] = {}
 	},
 
 	rightClickMenu = {
-		["misc.warp"] = {
+		["actReact.tag.warp"] = {
 			"level",
 			"key",
 			"exitId"

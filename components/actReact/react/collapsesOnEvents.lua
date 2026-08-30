@@ -7,13 +7,12 @@ collapsesOnEvents.argList = {
 
 function collapsesOnEvents:initialize(actor, args)
     Component.initialize(self, actor, args)
-	collapse = function(self)
-		playSound("knock")
-		self.actor:destroy()
-	end
-	
 	for _, v in ipairs(self.on) do
-		self[v] = collapse
+		self[v] = function(component, dt, actorEvent, obj2)
+			obj2:event("projectileSuccess")
+			playSound("knock")
+			component.actor:destroy()
+		end
 	end
 end
 

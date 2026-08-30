@@ -6,7 +6,7 @@ base.components["misc.palettable"].defaultPalette = {
     { 181, 49, 32 },
 }
 
-base.components["misc.spawnsEnemy"] = {
+base.components["actReact.react.spawnsEnemy"] = {
     type = "fireball",
     spawnenemyspeedx = 15 * 16,
     spawnenemyoffsety = 12,

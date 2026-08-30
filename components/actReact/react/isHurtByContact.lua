@@ -19,17 +19,10 @@ end
 
 function isHurtByContact:resolve(dir, obj2)
 	if self.actor.invincibility or self.actor.iFramed then return end
-    local hurtsByContactComponent = obj2:hasComponent("misc.hurtsByContact")
+    local hurtsByContactComponent = obj2:hasComponent("actReact.act.hurtsByContact")
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
-            if not hurtsByContactComponent.group
-			or bit.band(self.actor.collisionGroup, hurtsByContactComponent.group) ~= 0 then
-			-- FIXME: make hurt filter independent of collision masks
-				self.actor:event("getHurt", dt)
-				if hurtsByContactComponent.kamikaze then
-					obj2:destroy()
-				end
-			end
+			self.actor:event("getHurt")
         end
     end
 end

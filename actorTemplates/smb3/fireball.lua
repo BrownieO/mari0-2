@@ -21,13 +21,5 @@ return {
 			times = {1/30}
         },
 		["movement.fireball"] = {},
-		["misc.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = true,
-			group = VAR("collisionCategories").ENEMY,
-			kamikaze = true
-		}
 	}
 }
