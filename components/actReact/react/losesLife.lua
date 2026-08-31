@@ -1,18 +1,18 @@
-local Component = require "class.Component"
-local losesLife = class("misc.losesLife", Component)
+local Component = require("class.Component")
+local losesLife = class("actReact.react.losesLife", Component)
 
 losesLife.argList = {
-    {"on", "required|string"},
+    { "on", "required|string" },
 }
 
 function losesLife:initialize(actor, args)
     Component.initialize(self, actor, args)
 
     self[self.on] = function(self)
-		self.actor.player.lives = self.actor.player.lives - 1
-		self.actor.player.powerUp = "small"
-		game:resetLevel()
-		playSound("death")
+        self.actor.player.lives = self.actor.player.lives - 1
+        self.actor.player.powerUp = "small"
+        game:resetLevel()
+        playSound("death")
     end
 end
 

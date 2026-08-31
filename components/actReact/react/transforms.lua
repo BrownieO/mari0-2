@@ -1,9 +1,9 @@
-local Component = require "class.Component"
-local transforms = class("misc.transforms", Component)
+local Component = require("class.Component")
+local transforms = class("actReact.react.transforms", Component)
 
 transforms.argList = {
-    {"on", "required|string"},
-    {"into", "required|actorTemplate"},
+    { "on", "required|string" },
+    { "into", "required|actorTemplate" },
 }
 
 function transforms:initialize(actor, args)

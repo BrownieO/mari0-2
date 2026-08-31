@@ -7,23 +7,23 @@ return {
     quadHeight = 16,
     centerX = 8,
     centerY = 8,
-	static = true,
-	resistsStar = true,
-	noTileCollision = true,
+    static = true,
+    resistsStar = true,
+    noTileCollision = true,
 
     collisionGroup = 1,
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
-			times = {2/60}
+            frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 },
+            times = { 2 / 60 },
         },
-		["movement.circle"] = {},
-		["actReact.act.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = true
-		},
-	}
+        ["movement.circle"] = {},
+        ["actReact.act.hurtsByContact"] = {
+            left = true,
+            right = true,
+            bottom = true,
+            top = true,
+        },
+    },
 }

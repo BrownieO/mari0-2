@@ -7,19 +7,19 @@ return {
     quadHeight = 8,
     centerX = 4,
     centerY = 4,
-	resistsStar = true,
-	dontShowOnEditor = true,
+    resistsStar = true,
+    dontShowOnEditor = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,
     collisionMask = VAR("collisionMasks").PLAYER,
-	
-	spawnSound = "fireball",
+
+    spawnSound = "fireball",
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2, 3, 4},
-			times = {1/30}
+            frames = { 1, 2, 3, 4 },
+            times = { 1 / 30 },
         },
-		["movement.fireball"] = {},
-	}
+        ["movement.fireball"] = {},
+    },
 }

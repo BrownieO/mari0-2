@@ -1,8 +1,8 @@
-local Component = require "class.Component"
-local bumpsBlocks = class("misc.bumpsBlocks", Component)
+local Component = require("class.Component")
+local bumpsBlocks = class("actReact.act.bumpsBlocks", Component)
 
 bumpsBlocks.argList = {
-    {"dontBreak", "boolean", false},
+    { "dontBreak", "boolean", false },
 }
 
 function bumpsBlocks:topCollision(dt, actorEvent, obj2)

@@ -7,6 +7,6 @@ return {
     quadHeight = 16,
     centerX = 0,
     centerY = 8,
-	static = true,
-	active = false,
+    static = true,
+    active = false,
 }

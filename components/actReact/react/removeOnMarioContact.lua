@@ -1,5 +1,5 @@
-local Component = require "class.Component"
-local removeOnMarioContact = class("misc.removeOnMarioContact", Component)
+local Component = require("class.Component")
+local removeOnMarioContact = class("actReact.react.removeOnMarioContact", Component)
 
 function removeOnMarioContact:leftContact(dt, actorEvent, obj2)
     self:resolve("right", obj2)
@@ -19,7 +19,7 @@ end
 
 function removeOnMarioContact:resolve(dir, obj2)
     if obj2.player then
-		self.actor:destroy()
+        self.actor:destroy()
     end
 end
 

@@ -9,3 +9,5 @@ lua55.exe
 luac55.exe
 wlua55.exe
 luac.out
+luacheck.exe
+stylua.exe

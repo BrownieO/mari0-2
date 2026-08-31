@@ -8,10 +8,10 @@ return {
     quadHeight = 26,
     centerX = 13,
     centerY = 13,
-	static = true,
-	active = false,
+    static = true,
+    active = false,
 
     components = {
-		["actReact.tag.warp"] = {}
-	}
+        ["actReact.tag.warp"] = {},
+    },
 }

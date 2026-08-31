@@ -1,10 +1,10 @@
-local Component = require "class.Component"
-local collectsCoins = class("misc.collectsCoins", Component)
+local Component = require("class.Component")
+local collectsCoins = class("actReact.act.collectsCoins", Component)
 
 function collectsCoins:update(actor, args)
     for mX = 0, 1 do
-        for mY= 0, 1 do
-            self:checkPos(self.actor.x + (self.actor.width-1)*mX, self.actor.y + (self.actor.height-1)*mY)
+        for mY = 0, 1 do
+            self:checkPos(self.actor.x + (self.actor.width - 1) * mX, self.actor.y + (self.actor.height - 1) * mY)
         end
     end
 end
@@ -40,10 +40,10 @@ function collectsCoins:bottomContact(dt, actorEvent, obj2)
 end
 
 function collectsCoins:resolve(dir, obj2)
-	if obj2.coin then
-		obj2:destroy()
-		self.actor.world:collectCoin(self.actor)
-	end
+    if obj2.coin then
+        obj2:destroy()
+        self.actor.world:collectCoin(self.actor)
+    end
 end
 
 return collectsCoins

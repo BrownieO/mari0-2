@@ -1,8 +1,8 @@
-local Component = require "class.Component"
-local stomps = class("misc.stomps", Component)
+local Component = require("class.Component")
+local stomps = class("actReact.act.stomps", Component)
 
 stomps.argList = {
-    {"level", "number", 1},
+    { "level", "number", 1 },
 }
 
 function stomps:rightContact(dt, actorEvent, obj2)
@@ -18,36 +18,42 @@ function stomps:topContact(dt, actorEvent, obj2)
 end
 
 function stomps:bottomContact(dt, actorEvent, obj2)
-	self:resolve("top", obj2, actorEvent)
+    self:resolve("top", obj2, actorEvent)
 end
 
 function stomps:resolve(dir, obj2, actorEvent)
-	if self.stompDebounce then return end
-	if not obj2:hasComponent("actReact.tag.stompable") then return end
-	if self.actor.invincibility then return end
+    if self.stompDebounce then
+        return
+    end
+    if not obj2:hasComponent("actReact.tag.stompable") then
+        return
+    end
+    if self.actor.invincibility then
+        return
+    end
 
-	-- On real games, stomps succeed on either conditions.
-	-- Here, however, bottom collision detection is too generous
-	-- (you could even stomp enemies by walking into them!)
-	-- So, they are limited to the invincibility frames state.
-	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
-		self.stompDebounce = true
-		self.actor.y = obj2.y-self.actor.height
-		self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
+    -- On real games, stomps succeed on either conditions.
+    -- Here, however, bottom collision detection is too generous
+    -- (you could even stomp enemies by walking into them!)
+    -- So, they are limited to the invincibility frames state.
+    if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
+        self.stompDebounce = true
+        self.actor.y = obj2.y - self.actor.height
+        self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
 
-		actorEvent:bind("after", function(actor)
-			actor:switchState("falling") -- smb3.movement would love to set us to idle, but we can't have that
-		end)
+        actorEvent:bind("after", function(actor)
+            actor:switchState("falling") -- smb3.movement would love to set us to idle, but we can't have that
+        end)
 
-		actorEvent.returns = true
+        actorEvent.returns = true
 
-		obj2:event("getStomped")
-		self.actor:event("stomp")
-	end
+        obj2:event("getStomped")
+        self.actor:event("stomp")
+    end
 end
 
 function stomps:postUpdate(dt)
-	self.stompDebounce = false
+    self.stompDebounce = false
 end
 
 return stomps

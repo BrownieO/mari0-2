@@ -9,16 +9,16 @@ return {
     centerX = 8,
     centerY = 8,
 
-	static = true,
+    static = true,
 
     collisionGroup = 0,
     collisionMask = 0,
-	
-	coin = true,
+
+    coin = true,
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2, 3, 4}
+            frames = { 1, 2, 3, 4 },
         },
-    }
+    },
 }

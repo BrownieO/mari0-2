@@ -1,11 +1,9 @@
-local Component = require "class.Component"
-local isKilledByLava = class("misc.isKilledByLava", Component)
+local Component = require("class.Component")
+local isKilledByLava = class("actReact.react.isKilledByLava", Component)
 
 function isKilledByLava:update(dt)
-    local charCenterX, charCenterY = self.actor.world:worldToCoordinate(
-        self.actor.x + self.actor.width / 2,
-        self.actor.y + self.actor.height / 2
-    )
+    local charCenterX, charCenterY =
+        self.actor.world:worldToCoordinate(self.actor.x + self.actor.width / 2, self.actor.y + self.actor.height / 2)
 
     local tile
     if self.actor.world:inMap(charCenterX, charCenterY) then
@@ -14,9 +12,9 @@ function isKilledByLava:update(dt)
 
     if tile then
         if tile.props.lava == true then
-			self.actor:event("getKilled")
-			self.actor:event("getHurt")
-		end
+            self.actor:event("getKilled")
+            self.actor:event("getHurt")
+        end
     end
 end
 

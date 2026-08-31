@@ -12,43 +12,43 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 
     components = {
-		--Appearance
+        --Appearance
         ["misc.palettable"] = {
             ["imgPalette"] = {
-                {255, 204, 197},
-                {234, 158,  34},
-                {  0,   0,   0}
-            }
+                { 255, 204, 197 },
+                { 234, 158, 34 },
+                { 0, 0, 0 },
+            },
         },
         ["animation.mirror"] = {},
         ["misc.unrotate"] = {},
-		
-		--Behavior
+
+        --Behavior
         ["movement.truffleShuffle"] = {
             dontTurnAnimation = true,
             maxSpeed = 32,
         },
         ["misc.unrotate"] = {},
-		
-		--Interactions
-		["actReact.act.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = false,
-		},
-        ["actReact.tag.stompable"] = {dies = true},
-		["actReact.react.sinksOnLava"] = {},
-		["actReact.react.isHurtByStar"] = {},
-		["actReact.react.collapsesOnEvents"] = {
-			on = {
-				"getHurtEnemy",
-				"getKilledEnemy",
-				"getFireballDamage",
-				"getStarDamage",
-				"getProjectileDamage"
-				}
-			},
-        ["actReact.react.isHurtByContact"] = {}
-	}
+
+        --Interactions
+        ["actReact.act.hurtsByContact"] = {
+            left = true,
+            right = true,
+            bottom = true,
+            top = false,
+        },
+        ["actReact.tag.stompable"] = { dies = true },
+        ["actReact.react.sinksOnLava"] = {},
+        ["actReact.react.isHurtByStar"] = {},
+        ["actReact.react.collapsesOnEvents"] = {
+            on = {
+                "getHurtEnemy",
+                "getKilledEnemy",
+                "getFireballDamage",
+                "getStarDamage",
+                "getProjectileDamage",
+            },
+        },
+        ["actReact.react.isHurtByContact"] = {},
+    },
 }

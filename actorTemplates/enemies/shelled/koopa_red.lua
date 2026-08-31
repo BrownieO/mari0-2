@@ -3,10 +3,10 @@ local base = extend("enemies/shelled/koopa.lua")
 base.icon = "img/icons/koopa_red.png"
 
 base.components["misc.palettable"].defaultPalette = {
-	{255, 204, 197},
-	{234, 158,  34},
-	{  0,   0,   0},
-	{181,  49,  32}
+    { 255, 204, 197 },
+    { 234, 158, 34 },
+    { 0, 0, 0 },
+    { 181, 49, 32 },
 }
 base.components["movement.truffleShuffle"].turnAroundOnCliff = true
 base.components["actReact.react.transforms"].into = "koopa_red_shell"

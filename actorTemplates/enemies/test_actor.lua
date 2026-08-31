@@ -15,18 +15,18 @@ return {
     components = {
         ["misc.palettable"] = {
             ["imgPalette"] = {
-                {255, 255, 255},
-                {  0,   0,   0}
-            }
+                { 255, 255, 255 },
+                { 0, 0, 0 },
+            },
         },
 
         ["animation.frames"] = {
-            frames = {1, 2}
+            frames = { 1, 2 },
         },
         ["movement.truffleShuffle"] = {
             dontTurnAnimation = true,
             maxSpeed = 32,
         },
-		["misc.unrotate"] = {},
-    }
+        ["misc.unrotate"] = {},
+    },
 }

@@ -7,15 +7,15 @@ return {
     quadHeight = 16,
     centerX = 8,
     centerY = 8,
-	
+
     collisionGroup = 1,
     collisionMask = 127,
-	
+
     components = {
         ["animation.frames"] = {
-            frames = {1}
+            frames = { 1 },
         },
         ["misc.unrotate"] = {},
-		["debug.winOnContact"] = {},
-    }
+        ["debug.winOnContact"] = {},
+    },
 }

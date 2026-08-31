@@ -1,12 +1,12 @@
-local Component = require "class.Component"
-local hurtsByContact = class("misc.hurtsByContact", Component)
+local Component = require("class.Component")
+local hurtsByContact = class("actReact.act.hurtsByContact", Component)
 
 hurtsByContact.argList = {
-    {"left", "boolean", false},
-    {"right", "boolean", false},
-    {"top", "boolean", false},
-    {"bottom", "boolean", false},
-    {"onlyWhenMoving", "boolean", false},
+    { "left", "boolean", false },
+    { "right", "boolean", false },
+    { "top", "boolean", false },
+    { "bottom", "boolean", false },
+    { "onlyWhenMoving", "boolean", false },
 }
 
 return hurtsByContact

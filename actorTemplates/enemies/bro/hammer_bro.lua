@@ -13,34 +13,34 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 
     components = {
-		--Appearance
+        --Appearance
         ["animation.frames"] = {
-            frames = {1, 2}
+            frames = { 1, 2 },
         },
         ["misc.unrotate"] = {},
 
-		--Behavior
-		["movement.jump"] = {},
+        --Behavior
+        ["movement.jump"] = {},
 
-		--Interactions
+        --Interactions
         ["actReact.tag.stompable"] = {},
-		["actReact.act.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = false,
-		},
-		["actReact.react.sinksOnLava"] = {},
-		["actReact.react.isHurtByStar"] = {},
-		["actReact.react.collapsesOnEvents"] = {
-			on = {
-				"getHurtEnemy",
-				"getKilledEnemy",
-				"getStomped",
-				"getFireballDamage",
-				"getStarDamage",
-				"getProjectileDamage"
-				}
-    }
-}
+        ["actReact.act.hurtsByContact"] = {
+            left = true,
+            right = true,
+            bottom = true,
+            top = false,
+        },
+        ["actReact.react.sinksOnLava"] = {},
+        ["actReact.react.isHurtByStar"] = {},
+        ["actReact.react.collapsesOnEvents"] = {
+            on = {
+                "getHurtEnemy",
+                "getKilledEnemy",
+                "getStomped",
+                "getFireballDamage",
+                "getStarDamage",
+                "getProjectileDamage",
+            },
+        },
+    },
 }

@@ -1,12 +1,12 @@
-local Component = require "class.Component"
-local kicks = class("misc.kicks", Component)
+local Component = require("class.Component")
+local kicks = class("actReact.act.kicks", Component)
 
 function kicks:leftContact(dt, actorEvent, obj2)
-	self:resolve("left", obj2, actorEvent)
+    self:resolve("left", obj2, actorEvent)
 end
 
 function kicks:rightContact(dt, actorEvent, obj2)
-	self:resolve("right", obj2, actorEvent)
+    self:resolve("right", obj2, actorEvent)
 end
 
 function kicks:topContact(dt, actorEvent, obj2)
@@ -14,28 +14,34 @@ function kicks:topContact(dt, actorEvent, obj2)
 end
 
 function kicks:bottomContact(dt, actorEvent, obj2)
-	self:resolve("top", obj2, actorEvent)
+    self:resolve("top", obj2, actorEvent)
 end
 
 function kicks:resolve(dir, obj2, actorEvent)
-	if self.kickDebounce then return end
-	if not obj2:hasComponent("actReact.tag.kickable") then return end
-	if self.actor.invincibility then return end
+    if self.kickDebounce then
+        return
+    end
+    if not obj2:hasComponent("actReact.tag.kickable") then
+        return
+    end
+    if self.actor.invincibility then
+        return
+    end
 
-	if obj2.cache.speed[1] == 0 then
-		self.kickDebounce = true
-		if dir == "left" then
-			obj2:event("kicked", 0, -1)
-		elseif dir == "right" then
-			obj2:event("kicked", 0, 1)
-		end
-	end
+    if obj2.cache.speed[1] == 0 then
+        self.kickDebounce = true
+        if dir == "left" then
+            obj2:event("kicked", 0, -1)
+        elseif dir == "right" then
+            obj2:event("kicked", 0, 1)
+        end
+    end
 
-	if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
-		self.kickDebounce = true
-        if obj2.cache.speed[1] == 0 then-- kick it
-            local selfX = self.actor.x + self.actor.width*.5
-            local obj2X = obj2.x + obj2.width*.5
+    if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
+        self.kickDebounce = true
+        if obj2.cache.speed[1] == 0 then -- kick it
+            local selfX = self.actor.x + self.actor.width * 0.5
+            local obj2X = obj2.x + obj2.width * 0.5
 
             local dir = 1
 
@@ -50,9 +56,8 @@ function kicks:resolve(dir, obj2, actorEvent)
             end
 
             obj2:event("kicked", 0, dir)
-
         else -- stop it
-            self.actor.y = obj2.y-self.actor.height
+            self.actor.y = obj2.y - self.actor.height
             self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))
 
             actorEvent:bind("after", function(actor)
@@ -61,13 +66,13 @@ function kicks:resolve(dir, obj2, actorEvent)
 
             obj2:event("unkicked")
         end
-	end
+    end
 
-	actorEvent.returns = true
+    actorEvent.returns = true
 end
 
 function kicks:postUpdate(dt)
-	self.kickDebounce = false
+    self.kickDebounce = false
 end
 
 return kicks

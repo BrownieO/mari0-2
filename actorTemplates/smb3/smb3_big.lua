@@ -9,18 +9,18 @@ return {
     centerY = 24,
 
     dontAutoQuad = true,
-	dontShowOnEditor = true,
+    dontShowOnEditor = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,
     collisionMask = VAR("collisionMasks").PLAYER,
 
     components = {
-		--Appearance
+        --Appearance
         ["misc.palettable"] = {
             imgPalette = {
-                {255, 204, 197},
-                {181,  49,  32},
-                {  0,   0,   0}
+                { 255, 204, 197 },
+                { 181, 49, 32 },
+                { 0, 0, 0 },
             },
         },
         ["smb3.animation"] = {
@@ -112,34 +112,34 @@ return {
                         "shootAir",
                         "shootAir",
                         "shootAir",
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
         ["misc.unrotate"] = {},
-		
-		--Behavior
-		["smb3.movement"] = {},
+
+        --Behavior
+        ["smb3.movement"] = {},
         ["smb3.jumping"] = {},
         ["smb3.swimming"] = {},
         ["smb3.ducking"] = {},
         ["misc.crosshair"] = {},
         ["misc.portalGun"] = {},
-		
-		--Actions
+
+        --Actions
         ["actReact.act.stomps"] = {},
         ["actReact.act.kicks"] = {},
         ["actReact.act.collectsCoins"] = {},
         ["actReact.act.bumpsBlocks"] = {},
         ["actReact.act.bounceOnBlocks"] = {},
-		["actReact.act.collectsPowerUps"] = {},
-		["actReact.act.isWarped"] = {},
+        ["actReact.act.collectsPowerUps"] = {},
+        ["actReact.act.isWarped"] = {},
         ["actReact.react.isHurtByContact"] = {},
-		["actReact.react.shrinksWhenHurt"] = {},
-		["actReact.react.losesLife"] = {on = "getKilled"},
-		["actReact.react.isKilledByLava"] = {},
-		["smb3.star"] = {},
-		["sm64.metal"] = {},
-		["smb3.iFrames"] = {},
-    }
+        ["actReact.react.shrinksWhenHurt"] = {},
+        ["actReact.react.losesLife"] = { on = "getKilled" },
+        ["actReact.react.isKilledByLava"] = {},
+        ["smb3.star"] = {},
+        ["sm64.metal"] = {},
+        ["smb3.iFrames"] = {},
+    },
 }

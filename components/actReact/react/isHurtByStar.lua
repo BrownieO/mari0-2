@@ -1,5 +1,5 @@
-local Component = require "class.Component"
-local isHurtByStar = class("misc.isHurtByStar", Component)
+local Component = require("class.Component")
+local isHurtByStar = class("actReact.react.isHurtByStar", Component)
 
 function isHurtByStar:rightContact(dt, actorEvent, obj2)
     self:resolve("left", obj2)
@@ -18,9 +18,9 @@ function isHurtByStar:bottomContact(dt, actorEvent, obj2)
 end
 
 function isHurtByStar:resolve(dir, obj2)
-	if obj2.starred or obj2.metal then
-		self.actor:event("getStarDamage", dt)
-	end
+    if obj2.starred or obj2.metal then
+        self.actor:event("getStarDamage", dt)
+    end
 end
 
 return isHurtByStar

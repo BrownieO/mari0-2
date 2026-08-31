@@ -1,8 +1,8 @@
-local Component = require "class.Component"
-local selfDestroys = class("misc.selfDestroys", Component)
+local Component = require("class.Component")
+local selfDestroys = class("actReact.react.selfDestroys", Component)
 
 selfDestroys.argList = {
-    {"on", "required|string"},
+    { "on", "required|string" },
 }
 
 function selfDestroys:initialize(actor, args)

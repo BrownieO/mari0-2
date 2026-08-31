@@ -7,25 +7,25 @@ return {
     quadHeight = 16,
     centerX = 8,
     centerY = 8,
-	resistsStar = true,
-	static = true,
+    resistsStar = true,
+    static = true,
 
     collisionGroup = 0,
     collisionMask = 0,
-	
-	spawnSound = "fire",
+
+    spawnSound = "fire",
 
     components = {
         ["animation.frames"] = {
-            frames = {1, 2},
-			times = {1/15}
+            frames = { 1, 2 },
+            times = { 1 / 15 },
         },
-		["movement.targetPlayerY"] = {},
-		["actReact.act.hurtsByContact"] = {
-			left = true,
-			right = true,
-			bottom = true,
-			top = false,
-		}
-	}
+        ["movement.targetPlayerY"] = {},
+        ["actReact.act.hurtsByContact"] = {
+            left = true,
+            right = true,
+            bottom = true,
+            top = false,
+        },
+    },
 }
