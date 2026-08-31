@@ -19,7 +19,7 @@ return {
 			times = {2/60}
         },
 		["movement.circle"] = {},
-		["misc.hurtsByContact"] = {
+		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,

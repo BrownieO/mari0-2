@@ -26,7 +26,6 @@ return {
 			right = true,
 			bottom = true,
 			top = false,
-			group = VAR("collisionCategories").PLAYER,
 		}
 	}
 }

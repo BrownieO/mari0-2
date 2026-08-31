@@ -1,5 +1,5 @@
 local Component = require "class.Component"
-local isWarped = class("misc.isWarped", Component)
+local isWarped = class("actReact.act.isWarped", Component)
 
 function isWarped:rightContact(dt, actorEvent, obj2)
     self:resolve("left", obj2)
@@ -18,7 +18,7 @@ function isWarped:bottomContact(dt, actorEvent, obj2)
 end
 
 function isWarped:resolve(dir, obj2)
-    local warpComponent = obj2:hasComponent("misc.warp")
+    local warpComponent = obj2:hasComponent("actReact.tag.warp")
     if warpComponent then
 		if not warpComponent["key"] or controls3.cmdDown(warpComponent["key"]) then
 			if warpComponent["level"] then

@@ -17,6 +17,7 @@ return {
     collisionMask = 0,
 
     components = {
+		--Appearance
         ["misc.palettable"] = {
             ["imgPalette"] = {
                 {181,  49,  32},
@@ -25,21 +26,30 @@ return {
                 {  0,   0,   0}
             }
         },
-
         ["animation.frames"] = {
             frames = {1, 2}
         },
+		
+		--Behavior
 		["movement.piston"] = {},
-        ["misc.unrotate"] = {},
+		
+		--Interactions
 		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = true,
-			group = VAR("collisionCategories").PLAYER
 		},
+		["actReact.react.sinksOnLava"] = {},
 		["actReact.react.isHurtByStar"] = {},
-		["actReact.react.knockedWhenHurt"] = {},
-        ["actReact.react.isHurtByContact"] = {},
+		["actReact.react.collapsesOnEvents"] = {
+			on = {
+				"getHurtEnemy",
+				"getKilledEnemy",
+				"getFireballDamage",
+				"getStarDamage",
+				"getProjectileDamage"
+			}
+		}
 	}
 }

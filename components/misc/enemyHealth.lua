@@ -5,17 +5,14 @@ enemyHealth.argList = {
     {"health", "number", 5},
 }
 
-function enemyHealth:getHurt()
+function enemyHealth:getHurtEnemy()
 	self.health = self.health - 1
-	if self.health <= 0 then
+	if self.health > 0 then
+		playSound("subconHurt")
+	else
 		playSound("knock")
 		self.actor:destroy()
 	end
-end
-
-function enemyHealth:getKilled()
-	playSound("knock")
-	self.actor:destroy()
 end
 
 return enemyHealth

@@ -31,25 +31,27 @@ return {
         ["movement.truffleShuffle"] = {},
 
 		--Interactions
-        ["actReact.tag.stompable"] = {},
 		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = false,
 		},
+		["actReact.tag.stompable"] = {},
+		["actReact.react.sinksOnLava"] = {},
+		["actReact.react.isHurtByStar"] = {},
         ["actReact.react.transforms"] = {
             on = "getStomped",
             into = "koopa_shell"
         },
-		["actReact.react.isHurtByStar"] = {},
-		["actReact.react.sinksOnLava"] = {},
 		["actReact.react.collapsesOnEvents"] = {
 			on = {
-				"getHurt",
-				"getKilled",
-				"getStarDamage"
+				"getHurtEnemy",
+				"getKilledEnemy",
+				"getFireballDamage",
+				"getStarDamage",
+				"getProjectileDamage"
 				}
-			},
+			}
     }
 }

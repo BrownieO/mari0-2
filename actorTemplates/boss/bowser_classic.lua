@@ -15,31 +15,46 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 
     components = {
+		--Apperance
         ["animation.frames"] = {
             frames = {1, 2}
         },
-
+		["misc.unrotate"] = {},
+		
+		--Behavior
         ["movement.truffleShuffle"] = {
 			dontTurnAnimation = true,
 			maxSpeed = 14,
 			turnAroundOnCliff = true
 		},
 		["movement.jump"] = {jumpForce = getRequiredSpeed(2*16, VAR("gravityJumping"))},
-        ["misc.unrotate"] = {},
+		["actReact.react.spawnsEnemy"] = {
+			spawnenemydelay = 3,
+			spawnenemyspeedx = 4.69*16,
+			spawnenemyoffsety = 8,
+		},
+
+		--Interactions
 		["actReact.act.hurtsByContact"] = {
 			left = true,
 			right = true,
 			bottom = true,
 			top = true,
-			group = VAR("collisionCategories").PLAYER
 		},
+		["actReact.react.sinksOnLava"] = {},
 		["actReact.react.isHurtByStar"] = {},
-		["actReact.react.isHurtByContact"] = {},
 		["misc.enemyHealth"] = {health = 5},
-		["misc.spawnsEnemy"] = {
-			spawnenemydelay = 3,
-			spawnenemyspeedx = 4.69*16,
-			spawnenemyoffsety = 8,
+		["actReact.react.isHurtOnEvents"] = {
+			on = {
+				"getProjectileDamage",
+				"getFireballDamage"
+			}
 		},
+		["actReact.react.collapsesOnEvents"] = {
+			on = {
+				"getKilledEnemy",
+				"getStarDamage",
+				}
+		}
     }
 }

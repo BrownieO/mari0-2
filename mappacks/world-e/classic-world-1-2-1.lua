@@ -38,7 +38,7 @@ return {
 		{type="spawn",x=3,y=1},
 		{type="coin",x=13,y=8},
 		{type="pipe", x=13 + (15/16), y=11, components = {
-			["misc.warp"] = {
+			["actReact.tag.warp"] = {
 				level = "mappacks/world-e/classic-world-1-2.lua",
 				key = "right",
 				exitId = 1

@@ -1,10 +1,9 @@
 local base = extend("items/fire_flower.lua")
 base.img = "img/actors/lucky_star.png"
 base.components["actReact.tag.powerUp"] = {}
-base.components["misc.broadcastEvent"] = {
+base.components["actReact.react.broadcastEvent"] = {
 			on = "destroy",
-			fire = {"getHurt", "getKilled"},
-			collisionBlacklist = VAR("collisionCategories").PLAYER
+			fire = {"getKilledEnemy"},
 }
 
 return base

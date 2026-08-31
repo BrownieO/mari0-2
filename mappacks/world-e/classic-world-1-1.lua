@@ -279,7 +279,7 @@ return {
 		{type="goomba", x=51, y=12},
 		{type="goomba", x=52.5, y=12},
 
-		{type="pipe", x=57.5, y=9+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-1-1.lua", key = "down"}}},
+		{type="pipe", x=57.5, y=9+(5/16), components = {["actReact.tag.warp"] = {level = "mappacks/world-e/classic-world-1-1-1.lua", key = "down"}}},
 		
 		{type="one_up", x=64, y=8},
 		
@@ -307,7 +307,7 @@ return {
 		{type="goomba", x=174, y=12},
 		{type="goomba", x=175.5, y=12},
 		
-		{type="goal_block", x=232, y=7, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
+		{type="goal_block", x=232, y=7, components = {["actReact.tag.warp"] = {level = "mappacks/world-e/classic-world-1-2.lua"}}},
     },
 	
 	background = "img/backgrounds/classic-1-1.png",

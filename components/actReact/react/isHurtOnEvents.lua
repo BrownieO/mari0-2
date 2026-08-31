@@ -1,21 +1,20 @@
 local Component = require "class.Component"
-local collapsesOnEvents = class("misc.collapsesOnEvents", Component)
+local isHurtOnEvents = class("misc.isHurtOnEvents", Component)
 
-collapsesOnEvents.argList = {
+isHurtOnEvents.argList = {
     {"on", "required|table"},
 }
 
-function collapsesOnEvents:initialize(actor, args)
+function isHurtOnEvents:initialize(actor, args)
     Component.initialize(self, actor, args)
 	for _, v in ipairs(self.on) do
 		self[v] = function(component, dt, actorEvent, obj2)
 			if obj2 then
 				obj2:event("shotSuccess") --TODO: fix jank
 			end
-			playSound("knock")
-			component.actor:destroy()
+			self.actor:event("getHurtEnemy", nil, self.actor)
 		end
 	end
 end
 
-return collapsesOnEvents
+return isHurtOnEvents

@@ -247,7 +247,7 @@ return {
 		{type="goomba", x=101.5, y=14},
 		{type="goomba", x=103, y=14},
 
-		{type="pipe", x=104.5, y=12+(5/16), components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-2-1.lua", key = "down"}}},
+		{type="pipe", x=104.5, y=12+(5/16), components = {["actReact.tag.warp"] = {level = "mappacks/world-e/classic-world-1-2-1.lua", key = "down"}}},
 		{type="goomba", x=114, y=14},
 		{type="piranha_plant", x=104, y=11},
 		{type="piranha_plant", x=110, y=10},
@@ -262,9 +262,9 @@ return {
 		{type="fire_flower", x=151, y=10},
 		{type="platform_solid", x=157, y=13.5, components = {["movement.platform"] = {platformTime = 6.4, distanceX = 0, distanceY = -9*16}}},
 		
-		{type="goal_block", x=165, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
+		{type="goal_block", x=165, y=10, components = {["actReact.tag.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
-		{type="goal_block", x=183.5, y=10, components = {["misc.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
+		{type="goal_block", x=183.5, y=10, components = {["actReact.tag.warp"] = {level = "mappacks/world-e/classic-world-1-3.lua"}}},
 		
     },
 	

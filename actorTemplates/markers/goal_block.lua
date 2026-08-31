@@ -12,6 +12,6 @@ return {
 	active = false,
 
     components = {
-		["misc.warp"] = {}
+		["actReact.tag.warp"] = {}
 	}
 }

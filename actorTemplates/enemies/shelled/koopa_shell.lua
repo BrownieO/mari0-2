@@ -12,6 +12,7 @@ return {
     collisionMask = VAR("collisionMasks").ENEMY,
 
     ["components"] = {
+		--Appearance
         ["misc.palettable"] = {
             imgPalette = {
                 {255, 204, 197},
@@ -20,27 +21,29 @@ return {
                 { 92, 228,  48}
             }
         },
-
         ["animation.frames"] = {
             frames = {1, 2, 3, 4},
-            times = {0.03333333},
+            times = {1/30},
             dontAnimateWhenStill = true,
             useFrameWhenStill = 1
         },
-
+        ["misc.unrotate"] = {},
+		
+		--Behavior
         ["movement.truffleShuffle"] = {
             maxSpeed = 236.25,
             startSpeed = 0,
             canStop = true
         },
-        ["misc.unrotate"] = {},
-        ["misc.kickable"] = {},
-        ["misc.hurtsByContact"] = {
+
+		--Interactions
+        ["actReact.act.hurtsByContact"] = {
             left = true,
             right = true,
             onlyWhenMoving = true
         },
-        ["misc.wakesUp"] = {
+		["actReact.act.projectileDamage"] = {onlyWhenMoving = true},
+        ["actReact.act.wakesUp"] = {
             onlyWhen = "stopped",
             time = 6.9,
             wiggles = true,
@@ -50,18 +53,27 @@ return {
             wiggleFrames = {1, 5},
             wiggleFrameTime = {1/30}
         },
+        ["actReact.tag.kickable"] = {},
+		["actReact.react.sinksOnLava"] = {},
+		["actReact.react.isHurtByStar"] = {},
         ["actReact.react.transforms"] = {
             on = "wakeUp",
             into = "koopa"
         },
-		["misc.isHurtByStar"] = {},
-		["misc.isHurtByContact"] = {},
-		["misc.knockedWhenHurt"] = {},
-		["misc.changeCollisionGroup"] = {
+		["actReact.react.changeCollisionGroup"] = {
 			on = "kicked",
 			group = VAR("collisionCategories").SHELL,
 			collisionMask = VAR("collisionMasks").SHELL,
 			off = "unkicked"
+		},
+		["actReact.react.collapsesOnEvents"] = {
+			on = {
+				"getHurtEnemy",
+				"getKilledEnemy",
+				"getFireballDamage",
+				"getStarDamage",
+				"getProjectileDamage"
+			}
 		}
     }
 }

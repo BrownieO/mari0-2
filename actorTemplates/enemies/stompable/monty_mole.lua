@@ -19,7 +19,7 @@ return {
         ["misc.unrotate"] = {},
 		
 		--Behavior
-        ["movement.truffleShuffle"] = {},
+        ["movement.truffleShuffle"] = {maxSpeed = 32},
 		
 		--Interactions
 		["actReact.act.hurtsByContact"] = {
@@ -29,6 +29,7 @@ return {
 			top = false,
 		},
         ["actReact.tag.stompable"] = {},
+		["actReact.react.sinksOnLava"] = {},
 		["actReact.react.isHurtByStar"] = {},
 		["actReact.react.collapsesOnEvents"] = {
 			on = {
@@ -36,9 +37,9 @@ return {
 				"getKilledEnemy",
 				"getStomped",
 				"getFireballDamage",
-				"getStarDamage"
+				"getStarDamage",
+				"getProjectileDamage"
 				}
-			},
-		["actReact.react.sinksOnLava"] = {}
+			}
 	}
 }
