@@ -1,5 +1,7 @@
 # Mari0 2
 
+[![AI-DECLARATION: assist](https://img.shields.io/badge/䷼%20AI--DECLARATION-assist-fef9c3?labelColor=fef9c3)](https://ai-declaration.md)
+
 <img width="400" height="224" alt="Promotional screenshot of Level 1-3 with all of its features" src="https://github.com/user-attachments/assets/cc458d88-95ca-453b-8661-d0646f21a4e8" />
 
 This fork aims to expand the original prototype of Mari0 2.
