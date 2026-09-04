@@ -2,7 +2,7 @@
 
 [![AI-DECLARATION: copilot](https://img.shields.io/badge/䷼%20AI--DECLARATION-copilot-fee2e2?labelColor=fee2e2)](https://ai-declaration.md)
 
-<img width="400" height="224" alt="Promotional screenshot of Level 1-3 with all of its features" src="https://github.com/user-attachments/assets/cc458d88-95ca-453b-8661-d0646f21a4e8" />
+<img width="400" height="224" alt="Promotional screenshot of the level editor showing 27 entities" src="https://github.com/user-attachments/assets/c42a7464-a82e-4dc8-9c40-007574e6eff0" />
 
 This fork aims to expand the original prototype of Mari0 2.
 
