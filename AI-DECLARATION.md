@@ -11,6 +11,6 @@ This format is based on [AI-DECLARATION.md](https://ai-declaration.md/en/0.1.2).
 ## Notes
 
 - AI generated the actor destruction function
-- AI fixed crashes of the player somersault animation
+- AI fixed a crash when the somersault animation of the player did not exist
 - All output was reviewed by a human
 - All other code is human-written
