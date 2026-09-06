@@ -1,0 +1,15 @@
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+
+feature calt {
+    sub f' [b f h i l] by uniE000;
+	sub uniE000 f' by uniE000;
+} calt;
+
+@MMK_o = [o Ograve Oacute Ocircumflex Otilde Odieresis ograve oacute ocircumflex otilde odieresis];
+@MMK_T = [T];
+
+feature kern {
+    pos @MMK_o @MMK_T -128;
+    pos @MMK_T @MMK_o -128;
+} kern;
