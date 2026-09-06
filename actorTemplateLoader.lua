@@ -33,13 +33,13 @@ local function autoQuad(template)
 	end
 end
 
-local env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed}
+local env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed, print = print, print_r = print_r}
 
 local function extend(file)
 	local templateCode, errorMsg = love.filesystem.read(dir .. file)
 	local failure = debug.getinfo(2, "Sl")
 	if failure then failure = failure.short_src end
-	assert(templateCode, "\nAn actor template failed to load its base:\n" .. failure .. "\n" .. errorMsg)
+	assert(templateCode, "\nAn actor template failed to load its base:\n" .. (failure or "") .. "\n" .. errorMsg)
 	return sandbox.run(templateCode, {env = env})
 end
 
