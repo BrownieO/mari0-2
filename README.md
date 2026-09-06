@@ -11,7 +11,7 @@ Currently, the first world of Super Mario Bros and the level editor are working.
 - Download the latest release [here](https://github.com/BrownieO/mari0-2/releases)
 - Check the [wiki](https://github.com/BrownieO/mari0-2/wiki) to start contibuting
 - External tools for content creation are available [here](https://github.com/BrownieO/mari0-2-utilities)
-- Read the AI declaration [here](AI-DECLARATION.md). AI declaration is mandatory!
+- Read the AI declaration [here](AI-DECLARATION.md). AI declaration is mandatory.
 
 Developed for LÖVE 11.5
 
