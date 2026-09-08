@@ -1,5 +1,5 @@
 local Component = require("class.Component")
-local collapsesOnEvents = class("misc.collapsesOnEvents", Component)
+local collapsesOnEvents = class("actReact.react.collapsesOnEvents", Component)
 
 collapsesOnEvents.argList = {
     { "on", "required|table" },

@@ -509,3 +509,13 @@ end
 function ppsToHex(val)
 	return string.format("%X", val * 16 * 16 / 60)
 end
+
+--https://rfcs.luau.org/function-table-create-find.html
+function table_find(table, value, init)
+    for i=init or 1, #table do
+        if rawget(table, i) == value then
+            return i
+        end
+    end
+    return nil
+end

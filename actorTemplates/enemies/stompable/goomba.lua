@@ -2,7 +2,7 @@ return {
     width = 12,
     height = 12,
 
-    img = "img/actors/goomba.png",
+    img = "img/actors/enemies/goomba.png",
     quadWidth = 16,
     quadHeight = 16,
     centerX = 8,

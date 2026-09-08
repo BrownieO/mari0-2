@@ -2,7 +2,7 @@ return {
     width = 12,
     height = 12,
 
-    img = "img/actors/monty_mole.png",
+    img = "img/actors/enemies/monty_mole.png",
     quadWidth = 16,
     quadHeight = 16,
     centerX = 8,

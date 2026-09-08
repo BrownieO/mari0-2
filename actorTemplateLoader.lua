@@ -33,7 +33,13 @@ local function autoQuad(template)
 	end
 end
 
-local env = {VAR = VAR, getRequiredSpeed = getRequiredSpeed, print = print, print_r = print_r}
+local env = {
+VAR = VAR,
+getRequiredSpeed = getRequiredSpeed,
+print = print,
+print_r = print_r,
+table_find = table_find
+}
 
 local function extend(file)
 	local templateCode, errorMsg = love.filesystem.read(dir .. file)

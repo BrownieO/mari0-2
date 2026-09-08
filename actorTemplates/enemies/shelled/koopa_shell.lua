@@ -2,7 +2,7 @@ return {
     width = 12,
     height = 12,
 
-    img = "img/actors/koopa_shell.png",
+    img = "img/actors/enemies/koopa_shell.png",
     quadWidth = 16,
     quadHeight = 16,
     centerX = 8,

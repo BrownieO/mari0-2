@@ -1,6 +1,6 @@
 local base = extend("enemies/shelled/koopa_red.lua")
 
-base.img = "img/actors/koopa_winged.png"
+base.img = "img/actors/enemies/koopa_winged.png"
 base.icon = "img/icons/koopa_red_winged.png"
 
 base.static = true

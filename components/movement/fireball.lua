@@ -68,7 +68,7 @@ function fireball:bottomContact(dt, actorEvent, obj2)
 end
 
 function fireball:contact(obj2)
-	if obj2:hasComponent("actReact.react.collapsesOnEvents") or obj2:hasComponent("actReact.react.getHurtOnEvents") then
+	if obj2.class.name == "Actor" then
 		obj2:event("getFireballDamage", nil, self.actor)
 	end
 end

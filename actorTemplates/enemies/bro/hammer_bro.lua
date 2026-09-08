@@ -2,7 +2,7 @@ return {
     width = 12,
     height = 24,
 
-    img = "img/actors/hammer_bro.png",
+    img = "img/actors/enemies/hammer_bro.png",
     icon = "img/icons/hammer_bro.png",
     quadWidth = 16,
     quadHeight = 24,
