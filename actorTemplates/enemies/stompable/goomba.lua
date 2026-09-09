@@ -49,6 +49,5 @@ return {
                 "getProjectileDamage",
             },
         },
-        ["actReact.react.isHurtByContact"] = {},
     },
 }

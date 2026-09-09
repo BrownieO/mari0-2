@@ -32,10 +32,10 @@ function stomps:resolve(dir, obj2, actorEvent)
         return
     end
 
-    -- On real games, stomps succeed on either conditions.
+    -- On real games, stomps succeed on either condition.
     -- Here, however, bottom collision detection is too generous
     -- (you could even stomp enemies by walking into them!)
-    -- So, they are limited to the invincibility frames state.
+    -- So, it is limited to the invincibility frames state.
     if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
         self.stompDebounce = true
         self.actor.y = obj2.y - self.actor.height

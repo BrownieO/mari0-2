@@ -1,4 +1,5 @@
 --Mari0 2 - MIT License.
+gameStartTime = love.timer.getTime()
 local lovetest = require "test/lovetest"
 require "errorhandler"
 require "loop"
@@ -101,6 +102,7 @@ function love.load(arg)
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
 
     prof.enabled(true)
+	print(love.timer.getTime() - gameStartTime)
 end
 
 function newGame(mappack, editorEnabled, players)

@@ -18,11 +18,11 @@ function isHurtByContact:bottomContact(dt, actorEvent, obj2)
 end
 
 function isHurtByContact:resolve(dir, obj2)
-    if self.actor.invincibility or self.actor.iFramed then
-        return
-    end
     local hurtsByContactComponent = obj2:hasComponent("actReact.act.hurtsByContact")
     if hurtsByContactComponent and hurtsByContactComponent[dir] then
+    if self.actor.cache.speed[2] > 0 or self.actor.invincibility or self.actor.iFramed then
+        return
+    end
         if not hurtsByContactComponent.onlyWhenMoving or obj2.cache.speed[1] ~= 0 then
             self.actor:event("getHurt")
         end

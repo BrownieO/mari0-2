@@ -134,6 +134,8 @@ return {
         ["actReact.act.bounceOnBlocks"] = {},
         ["actReact.act.collectsPowerUps"] = {},
         ["actReact.act.isWarped"] = {},
+		
+		--Reactions
         ["actReact.react.isHurtByContact"] = {},
         ["actReact.react.shrinksWhenHurt"] = {},
         ["actReact.react.losesLife"] = { on = "getKilled" },
