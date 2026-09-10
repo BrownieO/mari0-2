@@ -1,5 +1,5 @@
 return {
-    startMsg = "english localization working",
+    startMsg = "English localization working",
 
     mainMenu = {
         onePlayerGame = "1 player game",
@@ -74,18 +74,18 @@ return {
 
     assertions = {
         -- Level
-        tilemapNonexistent = 'The tilemap "%s" requested by the level doesn\'t exist. Someone should add the missing tileset or update the map file.',
-        tileLoadError = 'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". This may mean that the level is corrupted.',
-        tilemapNotPassed = "A map file references a tileset numbered %s but doesn't mention its name. Someone should fix the level file.",
+        tilemapNonexistent = 'The tilemap "%s" requested by the level doesn\'t exist. Someone should add the missing tileset or update the level file on a text editor.',
+        tileLoadError = 'Couldn\'t load real tile at x=%s, y=%s for requested lookup "%s". Someone should fix the level file on a text editor.',
+        tilemapNotPassed = "A map file references a tileset numbered %s but doesn't mention its name. Someone should fix the level file on a text editor.",
 
         -- Tileset
-        paddingBigger = 'StampMap "%s" from the TileMap "%s" had a padding [%s] bigger than its own size. Someone should fix the tileset.',
+        paddingBigger = 'StampMap "%s" from the TileMap "%s" had a padding [%s] bigger than its own size. Someone should fix the tileset file.',
 
         -- Gui3
-        elementToItself = "A programmer added a GUI element to itself. Please copy this error report and send it to us.",
+        elementToItself = "We made a mistake when programming the user interface. Please copy this error report and send it to us.",
 
         -- Components
-        faultyQuad = [[The state "%s" on actorTemplate %s has a faulty quad. (attempted frame was "%s"). Please copy this error report and send it to us.]],
-        noCrosshair = "Actor tried to fire a portal without having a crosshair. Please copy this error report and send it to us.",
+        faultyQuad = [[The state "%s" of actor %s contains a mistake (attempted frame was "%s"). Please copy this error report and send it to us.]],
+        noCrosshair = "A character fired a portal without having a crosshair. Please copy this error report and send it to us.",
     },
 }
