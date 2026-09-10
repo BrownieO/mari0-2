@@ -1,9 +1,9 @@
 return {
-    startMsg = "localización al español funcionando",
+    startMsg = "Localización al español funcionando",
 
     mainMenu = {
         onePlayerGame = "Juego de 1 jugador",
-        selectMappack = "Seleccionar juego",
+        selectMappack = "Seleccionar niveles",
         levelEditor = "Editor de niveles",
         options = "Opciones",
     },
@@ -11,7 +11,7 @@ return {
     options = {
         options = "OPCIONES",
         language = "🌐 Idioma",
-        resetMappacks = "Reestablecer juegos incluidos",
+        resetMappacks = "Reestablecer niveles incluidos",
     },
 
     editor = {
@@ -42,7 +42,7 @@ return {
     },
 
     state = "estado",
-    powerUp = "power-up",
+    powerUp = "potenciador",
     forms = {
         small = "pequeño",
 
@@ -75,14 +75,14 @@ return {
     assertions = {
         -- Level
         tilemapNonexistent = 'El tileset "%s" requerido por el mapa no existe. Alguien debe añadir el tileset requerido o actualizar el archivo del nivel.',
-        tileLoadError = 'No se pudo cargar el tile en x=%s, y=%s con ID "%s". El nivel puede estar corrupto.',
-        tilemapNotPassed = "El archivo del nivel solicita un tileset con número %s, pero no menciona su nombre. Alguien debe arreglar el archivo del nivel.",
+        tileLoadError = 'No se pudo cargar el tile en x=%s, y=%s con ID "%s". Se debe arreglar el archivo de nivel en un editor de texto.',
+        tilemapNotPassed = "El archivo del nivel solicita un tileset con número %s, pero no menciona su nombre. Se debe arreglar el archivo del nivel en un editor de texto.",
 
         -- Tileset
         paddingBigger = 'El estampado "%s" del tileset "%s" tiene un margen [%s] más grande que su propio tamaño. Alguien debe arreglar el tileset.',
 
         -- Gui3
-        elementToItself = "Un programador emparentó un elemento consigo mismo. Por favor copie este reporte de error y mándenoslo.",
+        elementToItself = "Cometimos un error al programar la interfaz de usuario. Por favor copie este reporte de error y mándenoslo.",
 
         -- Components
         faultyQuad = [[El estado "%s" en actorTemplate %s tiene un cuadro malo. (fotograma "%s"). Por favor copie este reporte de error y mándenoslo.]],
