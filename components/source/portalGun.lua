@@ -1,6 +1,6 @@
 local PortalProjectile = require "class.PortalProjectile"
 local Component = require "class.Component"
-local portalGun = class("misc.portalGun", Component)
+local portalGun = class("source.portalGun", Component)
 
 portalGun.defaultColors = {
     Color3.fromHSV(207/360, 0.84, 0.96),
@@ -23,7 +23,7 @@ end
 
 function portalGun:closePortals()
 	if #self.portals > 0 then
-		playSound("portal_fizzle", 0.8)
+		playSound("portal_fizzle", 0.3)
 	end
     for i = 1, 2 do
         if self.portals[i] then
@@ -35,7 +35,7 @@ end
 
 function portalGun:click(dt, actorEvent, button)
     if button == 1 or button == 2 then
-        local hasCrosshair = self.actor:hasComponent("misc.crosshair")
+        local hasCrosshair = self.actor:hasComponent("source.crosshair")
 
         assert(hasCrosshair, i18n.t("assertions.noCrosshair"))
 
@@ -69,14 +69,14 @@ function portalGun:click(dt, actorEvent, button)
                 end
 
 				if button == 1 then
-					playSound("portalgun_shoot_blue", 0.5)
-					playSound("portal_open1", 0.5)
+					playSound("portalgun_shoot_blue", 0.3)
+					playSound("portal_open1", 0.3)
 				elseif button == 2 then
-					playSound("portalgun_shoot_orange", 0.5)
-					playSound("portal_open2", 0.5)
+					playSound("portalgun_shoot_orange", 0.3)
+					playSound("portal_open2", 0.3)
 				end
             else
-				playSound("portal_invalid_surface", 0.8)
+				playSound("portal_invalid_surface", 0.6)
 			end
 
             -- Create projectile

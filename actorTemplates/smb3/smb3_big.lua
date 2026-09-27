@@ -123,8 +123,9 @@ return {
         ["smb3.jumping"] = {},
         ["smb3.swimming"] = {},
         ["smb3.ducking"] = {},
-        ["misc.crosshair"] = {},
-        ["misc.portalGun"] = {},
+		["source.using"] = {},
+        ["source.crosshair"] = {},
+        ["source.portalGun"] = {},
 
         --Actions
         ["actReact.act.stomps"] = {},

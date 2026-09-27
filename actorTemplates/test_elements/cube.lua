@@ -14,5 +14,7 @@ return {
     components = {
         ["misc.unrotate"] = {},
 		["actReact.act.stomps"] = {},
+		["actReact.tag.useable"] = {},
+		["actReact.react.grabbable"] = {},
 	}
 }

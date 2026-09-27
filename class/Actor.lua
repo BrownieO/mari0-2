@@ -178,12 +178,6 @@ function Actor:loadActorTemplate(actorTemplate)
 	else
 		self.static = false
     end
-	
-    if self.actorTemplate.active == false then
-        self.active = false
-	else
-		self.active = true
-    end
 
     self.components = {}
     for name, args in pairs(self.actorTemplate.components) do

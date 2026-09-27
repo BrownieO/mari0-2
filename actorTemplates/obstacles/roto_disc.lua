@@ -8,10 +8,9 @@ return {
     centerX = 8,
     centerY = 8,
     static = true,
-    resistsStar = true,
-    noTileCollision = true,
 
-    collisionGroup = 1,
+    collisionGroup = 0,
+    collisionMask = 0,
 
     components = {
         ["animation.frames"] = {

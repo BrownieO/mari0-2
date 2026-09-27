@@ -7,7 +7,6 @@ return {
     quadHeight = 16,
     centerX = 8,
     centerY = 8,
-    resistsStar = true,
     static = true,
 
     collisionGroup = 0,

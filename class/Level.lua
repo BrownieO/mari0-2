@@ -219,6 +219,10 @@ function Level:cmdpressed(cmds)
     if cmds["closePortals"] then
         self.players[1].actor:event("closePortals")
     end
+	
+    if cmds["use"] then
+        self.players[1].actor:event("use")
+    end
 
     if cmds["debug.star"] then -- debug
         self.players[1].actor:event("getStar")

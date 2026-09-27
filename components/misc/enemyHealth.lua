@@ -8,7 +8,7 @@ enemyHealth.argList = {
 function enemyHealth:getHurtEnemy()
 	self.health = self.health - 1
 	if self.health > 0 then
-		playSound("subconHurt")
+		playSound("subcon_hurt")
 	else
 		playSound("knock")
 		self.actor:destroy()

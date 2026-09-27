@@ -7,7 +7,6 @@ return {
     quadHeight = 8,
     centerX = 4,
     centerY = 4,
-    resistsStar = true,
     dontShowOnEditor = true,
 
     collisionGroup = VAR("collisionCategories").PLAYER,

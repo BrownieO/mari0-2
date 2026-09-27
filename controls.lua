@@ -2,6 +2,7 @@
 return {
     ["escape"] = {"quit", "editor.select.clear"},
 
+	-- Face buttons
     ["a"] = "left",
     ["d"] = "right",
     ["s"] = "down",
@@ -9,7 +10,8 @@ return {
     ["space"] = {"jump"},--, "editor.tool.entity"},
     ["lshift"] = {"run", "editor.line", "editor.select.add"},
     ["rshift"] = {"run", "editor.line", "editor.select.add"},
-    ["r"] = {"closePortals", "editor.tool.paint"},
+    ["r"] = {"closePortals"},
+	["e"] = {"use"},
 
     ["delete"] = "editor.delete",
     ["^z"] = "editor.undo",
@@ -30,12 +32,13 @@ return {
 
     ["return"] = "editor.select.unFloat",
 
-    ["e"] = "editor.tool.erase",
-    ["3"] = "editor.tool.move",
-    ["q"] = "editor.tool.select",
-    ["g"] = "editor.tool.wand",
-    ["f"] = "editor.tool.fill",
-    ["t"] = "editor.tool.stamp",
+    ["1"] = "editor.tool.erase",
+    ["2"] = "editor.tool.move",
+    ["3"] = "editor.tool.select",
+    ["4"] = "editor.tool.wand",
+    ["5"] = "editor.tool.fill",
+    ["6"] = "editor.tool.stamp",
+	["7"] = "editor.tool.paint",
 
     ["up"] = "editor.up",
     ["right"] = "editor.right",
