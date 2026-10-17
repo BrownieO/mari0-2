@@ -146,10 +146,10 @@ function Actor:loadActorTemplate(actorTemplate)
 
 	self.coin = self.actorTemplate.coin
 
-    if self.actorTemplate.active ~= nil then
-        self.active = self.actorTemplate.active
+    if self.actorTemplate.doesUpdate ~= nil then
+        self.doesUpdate = self.actorTemplate.doesUpdate
     else
-        self.active = true
+        self.doesUpdate = true
     end
 	
     if self.actorTemplate.gravity then

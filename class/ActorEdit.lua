@@ -22,7 +22,7 @@ end
 function ActorEdit:loadActorTemplate(actorTemplate)
     self.actorTemplate = actorTemplate
 
-	self.active = false
+	self.doesUpdate = false
 	self.alpha = 0.75
 
     self.img = self.actorTemplate.img

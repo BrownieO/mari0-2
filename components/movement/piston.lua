@@ -104,7 +104,7 @@ function piston:update(dt)
 		end
 
 		if self.inactiveOnRetracted and self.actor.x == self.startx and self.actor.y == self.starty then
-			self.active = false
+			self.actor.active = false
 		end
 
 		if self.pistontimer > self.pistonRetractTime then
@@ -124,7 +124,7 @@ function piston:update(dt)
 			if not self.dontPistonNearPlayer or not playernear then
 				self.pistontimer = 0
 				self.pistonstate = "extending"
-				self.active = true
+				self.actor.active = true
 			end
 		end
 	end

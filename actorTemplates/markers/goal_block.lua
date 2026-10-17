@@ -9,7 +9,7 @@ return {
     centerX = 13,
     centerY = 13,
     static = true,
-    active = false,
+    doesUpdate = false,
 
     components = {
         ["actReact.tag.warp"] = {},

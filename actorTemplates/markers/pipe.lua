@@ -8,7 +8,7 @@ return {
     centerX = 16 / 2,
     centerY = 26 / 2,
     static = true,
-    active = false,
+    doesUpdate = false,
 
     collisionGroup = 0,
     collisionMask = 0,

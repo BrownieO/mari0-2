@@ -8,5 +8,5 @@ return {
     centerX = 0,
     centerY = 8,
     static = true,
-    active = false,
+    doesUpdate = false,
 }
