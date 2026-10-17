@@ -1,5 +1,5 @@
 --Mari0 2 - MIT License.
-gameStartTime = love.timer.getTime()
+local gameStartTime = love.timer.getTime()
 local lovetest = require "test/lovetest"
 require "errorhandler"
 require "loop"
@@ -21,10 +21,19 @@ function love.load(arg)
         minheight = 165*VAR("scale"),
     })
 
+    love.graphics.setDefaultFilter("nearest", "nearest")
+
+    fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
+        [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔★⛫𓉴🔫🌐🌱🍄🏜️🏰🔨🚢🛦]])
+	love.graphics.setFont(fontOutlined)
+
+	local splash = "NOW LOADING..."
+	love.graphics.print(splash, 400*VAR("scale")/2-fontOutlined:getWidth(splash)*3/2, 224*VAR("scale")/2, 0, 3)
+	love.graphics.present()
+
     love.window.setTitle("Mari0 2")
     love.window.setIcon(love.image.newImageData("img/icon.png"))
 
-    love.graphics.setDefaultFilter("nearest", "nearest")
     -- Libs
     utf8 = require "utf8"
     class = require "lib.middleclass"
@@ -48,7 +57,6 @@ function love.load(arg)
 
     -- Self written libs
     Color3 = require "lib.Color3"
-    -- Font3 = require "lib.Font3"
     Physics3 = require "lib.Physics3"
     Gui3 = require "lib.Gui3"
     FrameDebug3 = require "lib.FrameDebug3"
@@ -69,18 +77,12 @@ function love.load(arg)
     Editor = require "state.Editor"
 	Menus = require "state.Menus"
 
-	fontBig = love.graphics.newFont(16)
-    fontOutlined = love.graphics.newImageFont("img/font-outlined.png",
-        [[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£€¥Šš§©ª«¬▯®¯°±²³Žµ¶·ž¹º»ŒœŸ¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ∩⇔→⇒◔★⛫𓉴🔫🌐🌱🍄🏜️🏰🔨🚢🛦]])
-	local fontOutlinedCyrillic = love.graphics.newImageFont("img/font-outlined-cyrillic.png", [[АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ]])
-	fontOutlined:setFallbacks(fontOutlinedCyrillic)
-	love.graphics.setFont(fontOutlined)
-
     debugCandyImg = love.graphics.newImage("img/debug-candy.png")
     debugCandyImg:setWrap("repeat")
 
     defaultUI = Gui3:new("img/gui/default")
 
+	love.graphics.clear(0,0,0)
     local GameStateManager3 = require "lib.GameStateManager3"
     gameStateManager = GameStateManager3:new()
 
@@ -101,8 +103,8 @@ function love.load(arg)
 
     gameStateManager:event("resize", SCREENWIDTH, SCREENHEIGHT)
 
-    prof.enabled(true)
 	print(love.timer.getTime() - gameStartTime)
+    prof.enabled(true)
 end
 
 function newGame(mappack, editorEnabled, players)

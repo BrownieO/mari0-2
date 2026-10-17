@@ -249,7 +249,6 @@ end
 function PhysObj:resolveCollisions()
 	if not self.world then return end
 	if self.collisionMask == 0 then return end
-	if self.static == true then return end
 	if self.active == false then return end
 
 	if VAR("debug").tracerDebug then
