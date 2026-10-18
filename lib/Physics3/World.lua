@@ -737,7 +737,7 @@ function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
     -- todo: quad tree magic
 
     for _, obj2 in ipairs(self.objects) do
-        if obj ~= obj2 then
+        if obj ~= obj2 and self:shouldCollide(obj, obj2) then
             if obj2:checkCollision(math.round(x), math.round(y)) then
                 return obj2
             end
@@ -745,6 +745,13 @@ function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
     end
 
     return false
+end
+
+function World:shouldCollide(a, b)
+	return bit.band(
+		bit.band(a.collisionGroup, b.collisionMask),
+		bit.band(b.collisionGroup, a.collisionMask)
+	) ~= 0
 end
 
 function World:getXStart()
