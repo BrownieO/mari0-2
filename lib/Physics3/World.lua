@@ -38,9 +38,7 @@ function World:update(dt)
 
     prof.push("Objects")
     for _, obj in ipairs(self.objects) do
-        if obj.doesUpdate ~= false then
-            obj:preMovement()
-        end
+		obj:preMovement()
     end
 
     for _, obj in ipairs(self.objects) do
@@ -86,9 +84,7 @@ function World:update(dt)
     end
 
     for _, obj in ipairs(self.objects) do
-        if obj.doesUpdate ~= false then
-            obj:postMovement()
-        end
+		obj:postMovement()
     end
     prof.pop()
 end

@@ -233,6 +233,11 @@ function PhysObj:checkCollisions()
 end
 
 function PhysObj:resolveCollisions()
+	if not self.world then return end
+	if self.doesUpdate == false then return end
+	if self.collisionMask == 0 then return end
+	if self.static = true then return end
+
 	if VAR("debug").tracerDebug then
 		for _, group in pairs(self.tracers) do
 			for _, tracer in ipairs(group) do
@@ -308,11 +313,13 @@ function PhysObj:resolveCollisions()
 end
 
 function PhysObj:preMovement()
+	if self.doesUpdate == false then return end
 	self.standingOn = nil
 	iClearTable(self.isGroundFor)
 end
 
 function PhysObj:postMovement()
+	if self.doesUpdate == false then return end
 	if self.standingOn and self.standingOn.class:isSubclassOf(PhysObj) then
 		local mx, my = recursivelyGetFrameMovement(self.standingOn)
 
