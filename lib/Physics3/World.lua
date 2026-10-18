@@ -673,7 +673,7 @@ function World:portalVectorDebug()
     end
 end
 
-function World:checkCollision(x, y, obj, vector, portalled, onlyActors, skipMasks)
+function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
 	if not onlyActors then
 		if obj and not portalled then -- don't re-portal points because that's still
 			-- Portal hijacking
