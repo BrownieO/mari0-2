@@ -519,3 +519,14 @@ function table_find(table, value, init)
     end
     return nil
 end
+
+function identify_caller()
+    local info = debug.getinfo(2, "nS")
+
+    if info then
+        print("Called by function: " .. (info.name or "anonymous/main chunk"))
+        print("Source file: " .. info.short_src)
+    else
+        print("No caller found (top level).")
+    end
+end
