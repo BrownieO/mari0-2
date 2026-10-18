@@ -159,7 +159,7 @@ function PhysObj:bottomColCheck()
 	local colX, colY, colObj
 
 	for _, tracer in ipairs(self.tracers.down) do
-		local traceX, traceY, traceObj = tracer:trace(true)
+		local traceX, traceY, traceObj = tracer:trace()
 
 		if traceX and (not colX or traceY < colY) then
 			colX, colY, colObj = traceX, traceY, traceObj
@@ -169,55 +169,41 @@ function PhysObj:bottomColCheck()
 	return colX, colY, colObj
 end
 
-function PhysObj:shouldCollide(a, b)
-	return bit.band(a.collisionGroup, b.collisionMask) ~= 0
-	and bit.band(b.collisionGroup, a.collisionMask) ~= 0
-end
-
 function PhysObj:leftColResolve(obj, x, y)
-	self:leftContact(obj)
-	if PhysObj:shouldCollide(obj, self) then
-		if not self:leftCollision(obj) then
-			if x then
-				if obj.class:isSubclassOf(PhysObj) then
-					self.x = obj.x+obj.width
-				else
-					self.x = x+1
-				end
+	if not self:leftCollision(obj) then
+		if x then
+			if obj.class:isSubclassOf(PhysObj) then
+				self.x = obj.x+obj.width
+			else
+				self.x = x+1
 			end
-
-			self.speed[1] = math.max(self.speed[1], 0)
 		end
+
+		self.speed[1] = math.max(self.speed[1], 0)
 	end
 end
 
 function PhysObj:rightColResolve(obj, x, y)
-	self:rightContact(obj)
-	if PhysObj:shouldCollide(obj, self) then
-		if not self:rightCollision(obj) then
-			if x then
-				if obj.class:isSubclassOf(PhysObj) then
-					self.x = obj.x-self.width
-				else
-					self.x = x-self.width
-				end
+	if not self:rightCollision(obj) then
+		if x then
+			if obj.class:isSubclassOf(PhysObj) then
+				self.x = obj.x-self.width
+			else
+				self.x = x-self.width
 			end
-
-			self.speed[1] = math.min(self.speed[1], 0)
 		end
+
+		self.speed[1] = math.min(self.speed[1], 0)
 	end
 end
 
 function PhysObj:topColResolve(obj, x, y)
-	self:topContact(obj)
-	if PhysObj:shouldCollide(obj, self) then
-		if not self:topCollision(obj) then
-			if y then
-				self.y = y+1
-			end
-
-			self.speed[2] = math.max(self.speed[2], 0)
+	if not self:topCollision(obj) then
+		if y then
+			self.y = y+1
 		end
+
+		self.speed[2] = math.max(self.speed[2], 0)
 	end
 end
 
@@ -247,10 +233,6 @@ function PhysObj:checkCollisions()
 end
 
 function PhysObj:resolveCollisions()
-	if not self.world then return end
-	if self.collisionMask == 0 then return end
-	if self.doesUpdate == false then return end
-
 	if VAR("debug").tracerDebug then
 		for _, group in pairs(self.tracers) do
 			for _, tracer in ipairs(group) do
@@ -259,14 +241,12 @@ function PhysObj:resolveCollisions()
 		end
 	end
 
-	-- update self.inPortals (skip for static actors)
+	-- update self.inPortals
 	clearTable(self.inPortals)
 
-	if not self.static then
-		for _, portal in ipairs(self.world.portals) do
-			if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
-				self.inPortals[portal] = true
-			end
+	for _, portal in ipairs(self.world.portals) do
+		if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
+			self.inPortals[portal] = true
 		end
 	end
 
@@ -321,21 +301,18 @@ function PhysObj:resolveCollisions()
 
 		if x then -- resolve the right collision
 			self:topColResolve(obj, x, y)
-			if self:shouldCollide(obj, self) then
-				obj:bottomColResolve(self)
-			end
+
+			obj:bottomColResolve(self)
 		end
 	end
 end
 
 function PhysObj:preMovement()
-	if self.doesUpdate == false then return end
 	self.standingOn = nil
 	iClearTable(self.isGroundFor)
 end
 
 function PhysObj:postMovement()
-	if self.doesUpdate == false then return end
 	if self.standingOn and self.standingOn.class:isSubclassOf(PhysObj) then
 		local mx, my = recursivelyGetFrameMovement(self.standingOn)
 
@@ -360,24 +337,22 @@ function PhysObj:portalled()
 end
 
 function recursivelyGetFrameMovement(obj, x, y) -- god I hate recursion
-	local totalX = 0
-    local totalY = 0
-    
-    local current = obj
-    
-    while current do
-        totalX = totalX + (current.frameMovementX or 0)
-        totalY = totalY + (current.frameMovementY or 0)
-        
-        current = current.standingOn
-        
-        if current == obj then
-			print(obj, "collided with itself. Stopping")
-            break
-        end
+    if not x then
+        x = 0
+        y = 0
     end
-    
-    return totalX, totalY
+
+    x = x + obj.frameMovementX
+    y = y + obj.frameMovementY
+
+    if obj.standingOn and obj.standingOn.frameMovementX then
+        local mx, my = recursivelyGetFrameMovement(obj.standingOn)
+
+        x = x + mx
+        y = y + my
+    end
+
+    return x, y
 end
 
 function PhysObj:getStoodOn(obj)
@@ -421,7 +396,6 @@ function PhysObj:leftCollision() end
 function PhysObj:rightCollision() end
 function PhysObj:bottomCollision() end
 function PhysObj:topCollision() end
-
 function PhysObj:startFall() end
 
 return PhysObj
