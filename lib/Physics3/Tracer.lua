@@ -23,13 +23,10 @@ function Tracer:cacheCoordinates()
 	end
 end
 
-function Tracer:trace(doExtraChecks)
-	if not self.physObj.world then return end
-
+function Tracer:trace()
 	local i = 1
 
 	while i <= self.len do
-		if not self.physObj.world then return end
 		local x = self.coordinateCache[i][1] + self.physObj.x
 		local y = self.coordinateCache[i][2] + self.physObj.y
 
@@ -48,16 +45,9 @@ function Tracer:trace(doExtraChecks)
 		end
 
 		local col = self.physObj.world:checkCollision(xRounded, yRounded, self.physObj, self.vectorNormalized)
-
 		if col then
-			if doExtraChecks then
-				self.physObj:bottomContact(col)
-			end
-
-			if not doExtraChecks or self.physObj:shouldCollide(col, self.physObj) then
-				self.tracedLength = i
-				return xRounded, yRounded, col
-			end
+			self.tracedLength = i
+			return xRounded, yRounded, col
 		end
 
 		i = i + 1
