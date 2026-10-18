@@ -8,10 +8,11 @@ end
 
 function Deleter:update(dt)
     if self.penDown then
-        local pixelX,pixelY = self.level:cameraToWorld(getWorldMouse())
-        local obj2 = self.level.checkCollision(self.level,pixelX,pixelY,"foo",0,true,true)
-		if obj2 then
-			obj2:destroy()
+        local pixelX, pixelY = self.level:cameraToWorld(getWorldMouse())
+		for _, obj in ipairs(self.level.objects) do
+			if pointInRectangle(pixelX, pixelY, obj.x, obj.y, obj.width, obj.height) then
+				obj:destroy()
+			end
 		end
     end
 end

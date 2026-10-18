@@ -21,18 +21,18 @@ function Placer:update()
 		local pixelX, pixelY = self.level:coordinateToWorld(x + (self.tile.spawnOffsetX or 0) -.5, y + (self.tile.spawnOffsetY or 0))
 		local eraseX, eraseY = self.level:coordinateToWorld(x-.5, y-.5)
 
-        if x ~= self.lastX or y ~= self.lastY then
+        if x ~= self.lastX or y ~= self.lastY then	
+			for _, obj in ipairs(self.level.objects) do
+				if pointInRectangle(eraseX, eraseY, obj.x, obj.y, obj.width, obj.height) then
+					obj:destroy()
+				end
+			end
 			local newActor = self.actorClass:new(self.level, pixelX, pixelY, self.tile)
 			newActor.spawnX = x
 			newActor.spawnY = y
 
             self.lastX = x
             self.lastY = y
-			
-			local obj2 = self.level.checkCollision(self.level,eraseX,eraseY,newActor,0,true,true)
-			if obj2 then
-				obj2:destroy()
-			end
         end
     end
 end
