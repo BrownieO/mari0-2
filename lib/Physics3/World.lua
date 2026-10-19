@@ -140,10 +140,6 @@ function World:checkPortaling(obj, oldX, oldY)
                 obj.x = obj.x-obj.width/2
                 obj.y = obj.y-obj.height/2
 
-                if obj:checkCollisions() then
-                    print("Hey, object " .. tostring(obj) .. " ended up in a wall after portalling. This should be resolved in the future.")
-                end
-
                 if obj.portalled then
                     obj:portalled()
                 end
@@ -733,9 +729,11 @@ function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
     -- todo: quad tree magic
 
     for _, obj2 in ipairs(self.objects) do
-        if obj ~= obj2 and self:shouldCollide(obj, obj2) then
+        if obj ~= obj2 then
             if obj2:checkCollision(math.round(x), math.round(y)) then
-                return obj2
+				if self:checkCollisionMask(obj, obj2) then
+					return obj2
+				end
             end
         end
     end
@@ -743,7 +741,7 @@ function World:checkCollision(x, y, obj, vector, portalled, onlyActors)
     return false
 end
 
-function World:shouldCollide(a, b)
+function World:checkCollisionMask(a, b)
 	return bit.band(
 		bit.band(a.collisionGroup, b.collisionMask),
 		bit.band(b.collisionGroup, a.collisionMask)

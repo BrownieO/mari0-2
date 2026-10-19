@@ -225,13 +225,6 @@ function PhysObj:bottomColResolve(obj, x, y)
 	return false
 end
 
-function PhysObj:checkCollisions()
-	return	self:leftColCheck() or
-			self:rightColCheck() or
-			self:bottomColCheck() or
-			self:topColCheck()
-end
-
 function PhysObj:resolveCollisions()
 	if not self.world then return end
 	if self.doesUpdate == false then return end

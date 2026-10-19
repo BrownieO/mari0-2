@@ -1,3 +1,4 @@
+--TODO: revert this
 local Entity = class("Editor.Entity")
 
 function Entity:initialize(editor)
