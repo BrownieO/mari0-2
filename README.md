@@ -19,6 +19,7 @@ Developed for LÖVE 11.5
 
 - Nintendo - Super Mario assets
 - Hummer Team - Super Mario World music
+- Jonathan Aldrich - Super Mario physics breakdown
 - Maurice Guégan - Everything not listed somewhere else
 - Hans Cárdenas - Sprites, title logo, testing
 - GlowingUmbreon - Fixes
