@@ -225,6 +225,14 @@ function PhysObj:bottomColResolve(obj, x, y)
 	return false
 end
 
+function PhysObj:TEMP_fireContactEvents(obj)
+	--TODO: figure out where to use this
+	self:leftContact(obj)
+	self:rightContact(obj)
+	self:topContact(obj)
+	self:bottomContact(obj)
+end
+
 function PhysObj:resolveCollisions()
 	if not self.world then return end
 	if self.doesUpdate == false then return end
