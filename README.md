@@ -27,3 +27,4 @@ Developed for LÖVE 11.5
 - awesomezack - P-Balloon sprites
 - Alesan99 - Circle movement code
 - Lu9 - Bonus music arrangement
+- Britdan - Research on the physics library
