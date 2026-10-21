@@ -225,8 +225,7 @@ function PhysObj:bottomColResolve(obj, x, y)
 	return false
 end
 
-function PhysObj:TEMP_fireContactEvents(obj)
-	--TODO: figure out where to use this
+function PhysObj:fireContactEvents(obj)
 	self:leftContact(obj)
 	self:rightContact(obj)
 	self:topContact(obj)
@@ -254,6 +253,11 @@ function PhysObj:resolveCollisions()
 		if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
 			self.inPortals[portal] = true
 		end
+	end
+
+	local contact = self.world:aaBb(self)
+	if contact then
+		self:fireContactEvents(contact)
 	end
 
 	local x, y, obj

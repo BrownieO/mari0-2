@@ -8,6 +8,29 @@ local World = class("Physics3.World")
 local fakeTileInstance = Tile:new()
 local fakeCellInstance = Cell:new(nil, nil, nil, fakeTileInstance)
 
+local function portalVector(vector, inPortal)
+    if not vector then
+        return nil
+    end
+
+    local outPortal = inPortal.connectsTo
+    local reversed = inPortal:getReversed(outPortal)
+    local angle = -inPortal.angle - (reversed and 0 or math.pi)
+    local cos, sin = math.cos(angle), math.sin(angle)
+    local x = cos * vector.x - sin * vector.y
+    local y = sin * vector.x + cos * vector.y
+
+    if reversed then
+        y = -y
+    end
+
+    cos, sin = math.cos(outPortal.angle), math.sin(outPortal.angle)
+    return {
+        x = cos * x - sin * y,
+        y = sin * x + cos * y,
+    }
+end
+
 function World:initialize()
     self.tileSize = 16 --lol hardcode
 
@@ -669,6 +692,16 @@ function World:portalVectorDebug()
     end
 end
 
+function World:aaBb(obj)
+	for _, obj2 in ipairs(self.objects) do
+		if obj ~= obj2 then
+			if intersectRectangles(obj.x, obj.y, obj.width, obj.height, obj2.x, obj2.y, obj2.width, obj2.height) then
+				return obj2
+			end
+		end
+	end
+end
+
 function World:checkCollision(x, y, obj, vector, portalled)
 	if obj and not portalled then -- don't re-portal points because that's still
 		-- Portal hijacking
@@ -685,8 +718,9 @@ function World:checkCollision(x, y, obj, vector, portalled)
 							return false
 						else -- point is inside portal
 							local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
+							local newVector = portalVector(vector, portal)
 
-							return self:checkCollision(newX, newY, obj, vector, true)
+							return self:checkCollision(newX, newY, obj, newVector, true)
 						end
 
 					elseif ny > portal.y1 - 0.00000001 then -- stops a thin line covering 45° portals
@@ -699,8 +733,9 @@ function World:checkCollision(x, y, obj, vector, portalled)
 							return fakeCellInstance
 						else
 							local newX, newY = self:portalPoint(x, y, portal, portal.connectsTo) -- warp point or something
+							local newVector = portalVector(vector, portal)
 
-							return self:checkCollision(newX, newY, obj, vector, true)
+							return self:checkCollision(newX, newY, obj, newVector, true)
 						end
 					end
 				end
@@ -740,9 +775,9 @@ function World:checkCollision(x, y, obj, vector, portalled)
 end
 
 function World:checkCollisionMask(a, b)
-	return bit.band(
-		bit.band(a.collisionGroup, b.collisionMask),
-		bit.band(b.collisionGroup, a.collisionMask)
+	return (
+		bit.band(a.collisionGroup, b.collisionMask)
+		* bit.band(b.collisionGroup, a.collisionMask)
 	) ~= 0
 end
 
