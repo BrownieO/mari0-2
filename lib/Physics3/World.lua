@@ -255,6 +255,7 @@ function World:draw()
     love.graphics.setColor(1, 1, 1)
 
     for _, obj in ipairs(self.objects) do
+		if not self:objVisible(obj.x, obj.y, obj.width, obj.height) then goto continue end
         local x, y = obj.x+obj.width/2, obj.y+obj.height/2
 
         local quadX = obj.x+obj.width/2-obj.centerX
@@ -274,9 +275,9 @@ function World:draw()
         love.graphics.stencil(emptyStencil, "replace")
 
         -- Portal duplication
-        iClearTable(inPortals)
+        if obj.doesUpdate ~= false and not obj.static then
+			iClearTable(inPortals)
 
-        if not obj.static then
             for _, p in ipairs(self.portals) do
                 if p.open then
                     if  rectangleOnLine(quadX, quadY, quadWidth, quadHeight, p.x1, p.y1, p.x2, p.y2) and objectWithinPortalRange(p, x, y) then
@@ -284,44 +285,43 @@ function World:draw()
                     end
                 end
             end
+
+			for _, p in ipairs(inPortals) do
+				local angle = math.atan2(obj.speed[2], obj.speed[1])
+				local cX, cY, cAngle, angleDiff, reversed = self:doPortal(p, obj.x+obj.width/2, obj.y+obj.height/2, obj.angle)
+
+				local xScale = 1
+				if reversed then
+					xScale = -1
+				end
+
+				outStencilP = p
+				love.graphics.stencil(outStencil, "replace")
+				love.graphics.setStencilTest("greater", 0)
+
+				if VAR("debug").portalStencils then
+					love.graphics.setColor(0, 1, 0)
+					love.graphics.draw(debugCandyImg, debugCandyQuad, self.camera:worldCoords(0, 0))
+					love.graphics.setColor(1, 1, 1)
+				end
+
+				local a = angleDiff
+
+				if reversed then
+					a = a - (obj.angle or 0)
+				else
+					a = a + (obj.angle or 0)
+				end
+
+				drawObject(obj, cX, cY, a, (obj.animationDirection or 1)*xScale*flipConstant, 1, obj.centerX, obj.centerY)
+
+				love.graphics.setStencilTest()
+
+				if VAR("debug").portalStencils then
+					love.graphics.rectangle("fill", cX-.5, cY-.5, 1, 1)
+				end
+			end
         end
-
-        for _, p in ipairs(inPortals) do
-            local angle = math.atan2(obj.speed[2], obj.speed[1])
-            local cX, cY, cAngle, angleDiff, reversed = self:doPortal(p, obj.x+obj.width/2, obj.y+obj.height/2, obj.angle)
-
-            local xScale = 1
-            if reversed then
-                xScale = -1
-            end
-
-            outStencilP = p
-            love.graphics.stencil(outStencil, "replace")
-            love.graphics.setStencilTest("greater", 0)
-
-            if VAR("debug").portalStencils then
-                love.graphics.setColor(0, 1, 0)
-                love.graphics.draw(debugCandyImg, debugCandyQuad, self.camera:worldCoords(0, 0))
-                love.graphics.setColor(1, 1, 1)
-            end
-
-            local a = angleDiff
-
-            if reversed then
-                a = a - (obj.angle or 0)
-            else
-                a = a + (obj.angle or 0)
-            end
-
-            drawObject(obj, cX, cY, a, (obj.animationDirection or 1)*xScale*flipConstant, 1, obj.centerX, obj.centerY)
-
-            love.graphics.setStencilTest()
-
-            if VAR("debug").portalStencils then
-                love.graphics.rectangle("fill", cX-.5, cY-.5, 1, 1)
-            end
-        end
-
         -- Actual position
         love.graphics.stencil(emptyStencil, "replace", 0, false)
         for _, p in ipairs(inPortals) do
@@ -347,6 +347,7 @@ function World:draw()
         end
 
         obj:draw()
+		::continue::
 	end
     prof.pop()
 
