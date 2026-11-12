@@ -29,3 +29,4 @@ Developed for LÖVE 11.5
 - Alesan99 - Circle movement code
 - Lu9 - Bonus music arrangement
 - Britdan - Research on the physics library
+- Rintedmash - Bugfixes with Zo Computer AI workspace
