@@ -5,23 +5,11 @@ stomps.argList = {
     { "level", "number", 1 },
 }
 
-function stomps:rightContact(dt, actorEvent, obj2)
-    self:resolve("left", obj2, actorEvent)
+function stomps:anyContact(dt, actorEvent, obj2)
+    self:resolve(obj2, actorEvent)
 end
 
-function stomps:leftContact(dt, actorEvent, obj2)
-    self:resolve("right", obj2, actorEvent)
-end
-
-function stomps:topContact(dt, actorEvent, obj2)
-    self:resolve("bottom", obj2, actorEvent)
-end
-
-function stomps:bottomContact(dt, actorEvent, obj2)
-    self:resolve("top", obj2, actorEvent)
-end
-
-function stomps:resolve(dir, obj2, actorEvent)
+function stomps:resolve(obj2, actorEvent)
     if self.stompDebounce then
         return
     end
@@ -31,12 +19,9 @@ function stomps:resolve(dir, obj2, actorEvent)
     if self.actor.invincibility then
         return
     end
+	print(self.actor.cache.y + self.actor.height, obj2.cache.y)
 
-    -- On real games, stomps succeed on either condition.
-    -- Here, however, bottom collision detection is too generous
-    -- (you could even stomp enemies by walking into them!)
-    -- So, it is limited to the invincibility frames state.
-    if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
+    if self.actor.cache.speed[2] > 0 or self.actor.cache.y + self.actor.height <= obj2.cache.y then
         self.stompDebounce = true
         self.actor.y = obj2.y - self.actor.height
         self.actor.speed[2] = -getRequiredSpeed(VAR("enemyBounceHeight"))

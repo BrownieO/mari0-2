@@ -37,7 +37,7 @@ function kicks:resolve(dir, obj2, actorEvent)
         end
     end
 
-    if not self.actor.iFramed and dir == "top" or self.actor.cache.speed[2] > 0 then
+    if self.actor.cache.speed[2] > 0 or self.actor.cache.y + self.actor.height <= obj2.cache.y then
         self.kickDebounce = true
         if obj2.cache.speed[1] == 0 then -- kick it
             local selfX = self.actor.x + self.actor.width * 0.5

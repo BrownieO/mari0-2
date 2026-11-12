@@ -49,5 +49,6 @@ return {
                 "getProjectileDamage",
             },
         },
+		["actReact.act.bounceOnBlocks"] = {},
     },
 }
