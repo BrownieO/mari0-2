@@ -4,10 +4,14 @@ local using = class("source.using", Component)
 local USE_RANGE = 16
 
 function using:use()
+	if self.actor.pickup then
+		self.actor.pickup:event("dropped")
+		self.actor.pickup = nil
+		return
+	end
+
 	xcenter = self.actor.x + 6 + math.cos(self.actor.aimingAngle)*USE_RANGE
 	ycenter = self.actor.y + 6 + math.sin(self.actor.aimingAngle)*USE_RANGE
-
-	if self.actor.pickup then return end
 	
 	for _, obj2 in ipairs(self.actor.world.actors) do
 		if self.actor ~= obj2 then
