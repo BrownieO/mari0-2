@@ -19,7 +19,6 @@ function stomps:resolve(obj2, actorEvent)
     if self.actor.invincibility then
         return
     end
-	print(self.actor.cache.y + self.actor.height, obj2.cache.y)
 
     if self.actor.cache.speed[2] > 0 or self.actor.cache.y + self.actor.height <= obj2.cache.y then
         self.stompDebounce = true

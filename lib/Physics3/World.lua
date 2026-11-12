@@ -8,29 +8,6 @@ local World = class("Physics3.World")
 local fakeTileInstance = Tile:new()
 local fakeCellInstance = Cell:new(nil, nil, nil, fakeTileInstance)
 
-local function portalVector(vector, inPortal)
-    if not vector then
-        return nil
-    end
-
-    local outPortal = inPortal.connectsTo
-    local reversed = inPortal:getReversed(outPortal)
-    local angle = -inPortal.angle - (reversed and 0 or math.pi)
-    local cos, sin = math.cos(angle), math.sin(angle)
-    local x = cos * vector.x - sin * vector.y
-    local y = sin * vector.x + cos * vector.y
-
-    if reversed then
-        y = -y
-    end
-
-    cos, sin = math.cos(outPortal.angle), math.sin(outPortal.angle)
-    return {
-        x = cos * x - sin * y,
-        y = sin * x + cos * y,
-    }
-end
-
 function World:initialize()
     self.tileSize = 16 --lol hardcode
 
@@ -101,7 +78,12 @@ function World:update(dt)
             local oldX, oldY = obj.x, obj.y
 
             prof.push("Collisions")
-            obj:resolveCollisions()
+			for _, contact in ipairs(self:aaBb(obj)) do
+				obj:fireContactEvents(contact)
+			end
+			if obj.collisionMask ~= 0 and obj.static ~= true then
+				obj:resolveCollisions()
+			end
             prof.pop()
 
             self:checkPortaling(obj, oldX, oldY)
@@ -698,13 +680,40 @@ function World:portalVectorDebug()
 end
 
 function World:aaBb(obj)
+	local contacts = {}
+
 	for _, obj2 in ipairs(self.objects) do
 		if obj ~= obj2 then
 			if intersectRectangles(obj.x, obj.y, obj.width, obj.height, obj2.x, obj2.y, obj2.width, obj2.height) then
-				return obj2
+				table.insert(contacts, obj2)
 			end
 		end
 	end
+
+	return contacts
+end
+
+local function portalVector(vector, inPortal)
+    if not vector then
+        return nil
+    end
+
+    local outPortal = inPortal.connectsTo
+    local reversed = inPortal:getReversed(outPortal)
+    local angle = -inPortal.angle - (reversed and 0 or math.pi)
+    local cos, sin = math.cos(angle), math.sin(angle)
+    local x = cos * vector.x - sin * vector.y
+    local y = sin * vector.x + cos * vector.y
+
+    if reversed then
+        y = -y
+    end
+
+    cos, sin = math.cos(outPortal.angle), math.sin(outPortal.angle)
+    return {
+        x = cos * x - sin * y,
+        y = sin * x + cos * y,
+    }
 end
 
 function World:checkCollision(x, y, obj, vector, portalled)

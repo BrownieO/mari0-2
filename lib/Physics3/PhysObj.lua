@@ -235,8 +235,6 @@ end
 
 function PhysObj:resolveCollisions()
 	if not self.world then return end
-	if self.collisionMask == 0 then return end
-	if self.static == true then return end
 
 	if VAR("debug").tracerDebug then
 		for _, group in pairs(self.tracers) do
@@ -253,11 +251,6 @@ function PhysObj:resolveCollisions()
 		if objectWithinPortalRange(portal, self.x+self.width/2, self.y+self.height/2) then
 			self.inPortals[portal] = true
 		end
-	end
-
-	local contact = self.world:aaBb(self)
-	if contact then
-		self:fireContactEvents(contact)
 	end
 
 	local x, y, obj
