@@ -55,9 +55,12 @@ end
 function ActorEdit:draw() end
 
 function ActorEdit:destroy()
+    if self.destroyed then
+        return
+    end
+
     self.destroyed = true
     self.deleteMe = true
-    -- Trigger destruction event for components
     -- Remove from physics world
     if self.world and self.world.removeObject then
         self.world:removeObject(self)

@@ -273,6 +273,10 @@ function Actor:accelerateTo(dt, target, acceleration)
 end
 
 function Actor:destroy()
+    if self.destroyed then
+        return
+    end
+
     self.destroyed = true
     self.deleteMe = true
     -- Trigger destruction event for components
