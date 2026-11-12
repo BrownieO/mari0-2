@@ -1,23 +1,11 @@
 local Component = require("class.Component")
 local collectsPowerUps = class("actReact.act.collectsPowerUps", Component)
 
-function collectsPowerUps:rightContact(dt, actorEvent, obj2)
-    self:resolve("left", obj2)
+function collectsPowerUps:anyContact(dt, actorEvent, obj2)
+    self:resolve(obj2)
 end
 
-function collectsPowerUps:leftContact(dt, actorEvent, obj2)
-    self:resolve("right", obj2)
-end
-
-function collectsPowerUps:topContact(dt, actorEvent, obj2)
-    self:resolve("bottom", obj2)
-end
-
-function collectsPowerUps:bottomContact(dt, actorEvent, obj2)
-    self:resolve("top", obj2)
-end
-
-function collectsPowerUps:resolve(dir, obj2)
+function collectsPowerUps:resolve(obj2)
     local powerUpComponent = obj2:hasComponent("actReact.tag.powerUp")
     if not powerUpComponent then
         return

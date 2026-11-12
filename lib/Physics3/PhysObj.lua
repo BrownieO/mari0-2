@@ -226,6 +226,7 @@ function PhysObj:bottomColResolve(obj, x, y)
 end
 
 function PhysObj:fireContactEvents(obj)
+	self:anyContact(obj)
 	self:leftContact(obj)
 	self:rightContact(obj)
 	self:topContact(obj)

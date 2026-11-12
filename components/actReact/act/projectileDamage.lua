@@ -5,16 +5,7 @@ projectileDamage.argList = {
     { "onlyWhenMoving", "boolean", true },
 }
 
-function projectileDamage:rightContact(dt, actorEvent, obj2)
-    self:resolve(obj2)
-end
-function projectileDamage:leftContact(dt, actorEvent, obj2)
-    self:resolve(obj2)
-end
-function projectileDamage:topContact(dt, actorEvent, obj2)
-    self:resolve(obj2)
-end
-function projectileDamage:bottomContact(dt, actorEvent, obj2)
+function projectileDamage:anyContact(dt, actorEvent, obj2)
     self:resolve(obj2)
 end
 

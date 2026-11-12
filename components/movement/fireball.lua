@@ -54,16 +54,7 @@ function fireball:resolve(dir, obj2)
 	end
 end
 
-function fireball:rightContact(dt, actorEvent, obj2)
-    self:contact(obj2)
-end
-function fireball:leftContact(dt, actorEvent, obj2)
-    self:contact(obj2)
-end
-function fireball:topContact(dt, actorEvent, obj2)
-    self:contact(obj2)
-end
-function fireball:bottomContact(dt, actorEvent, obj2)
+function fireball:anyContact(dt, actorEvent, obj2)
     self:contact(obj2)
 end
 

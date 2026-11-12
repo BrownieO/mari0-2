@@ -230,6 +230,10 @@ function Actor:rightCollision(obj2)
     return self:event("rightCollision", 0, obj2)
 end
 
+function Actor:anyContact(obj2)
+	self:event("anyContact", 0, obj2)
+end
+
 function Actor:leftContact(obj2)
     self:event("leftContact", 0, obj2)
 end
